@@ -574,5 +574,54 @@ document.getElementById('submitChallengeBtn').onclick = function() {
 }
 </script>
 </body>
-</html></body>
+</html><script>
+// CBT TIMER + LOGIC
+let timeLeft = 15;
+let timerInterval;
+
+function startTimer(){
+    clearInterval(timerInterval);
+    timeLeft = 15;
+    timerInterval = setInterval(()=>{
+        timeLeft--;
+        document.querySelectorAll('.quiz-timer-line').forEach(el=> el.innerText = `Seconds Left: ${timeLeft}s`)
+        if(timeLeft <= 0) timeLeft = 15;
+    },1000)
+}
+startTimer();
+
+// ANSWER CLICK LOGIC
+document.querySelectorAll('.opt-btn').forEach(btn=>{
+  btn.onclick = function(){
+    clearInterval(timerInterval);
+    document.querySelectorAll('.opt-btn').forEach(b=> b.disabled = true);
+    
+    let correctAnswers = ['Pentamer', '3d5 4s1', 'Falling Tone', 'Decreased Serum Ferritin'];
+    let isCorrect = correctAnswers.some(word => this.innerText.includes(word));
+    
+    if(isCorrect){
+      this.classList.add('correct-choice');
+    } else {
+      this.classList.add('wrong-choice');
+      // Show correct answer
+      document.querySelectorAll('.opt-btn').forEach(b=>{
+        if(correctAnswers.some(word => b.innerText.includes(word))) b.classList.add('correct-choice');
+      })
+    }
+    // Show AI explanation
+    document.querySelector('.ai-evaluation-module').style.display = 'block';
+  }
+})
+
+// LAB CHALLENGE BUTTON
+if(document.getElementById('submitChallengeBtn')){
+document.getElementById('submitChallengeBtn').onclick = function(e) {
+    e.preventDefault();
+    var answer = document.getElementById('challengeTextarea').value;
+    if(answer.trim() === "") { alert("CEO please type your answer first!"); return false; }
+    var message = "Lab Challenge #104 Submission\nMy Answer:\n" + answer;
+    window.open("https://chat.whatsapp.com/FFjZ6gEPWn0KBngsqogAvN?text=" + encodeURIComponent(message), '_blank');
+}
+}
+</script></body>
 </html> 
