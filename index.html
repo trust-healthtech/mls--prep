@@ -355,14 +355,15 @@
         <div class="tip-box" style="margin-top:10px;"><strong>TIP:</strong> Select a course to focus. Select Mixed to simulate real exam. AI will teach you after every 5 questions.</div>
     </div>
 
-    <!-- 12. Active Clinical Case Challenge -->
-    <div class="card" style="border-left: 4px solid var(--alert-red);">
-        <div class="section-title" style="color:var(--alert-red); margin-bottom:6px;">🚨 ACTIVE LAB CHALLENGE #104</div>
-        <p style="font-size:0.8rem; font-weight:600; line-height:1.4; margin-bottom:10px;">
-            What is the normal human arterial blood pH range? Explain 2 causes of metabolic acidosis and how the body compensates.
-        </p>
-        <textarea id="challengeTextarea" class="textarea-box" placeholder="Provide clinical parameter breakdown here..."></textarea>
-        <a href="https://chat.whatsapp.com/FFjZ6gEPWn0KBngsqogAvN?text=Lab%20Challenge%2023104%20Submission%0A%0AQuestion:%20What%20is%20the%20normal%20human%20arterial%20blood%20pH%20range%3F%0A%0AMy%20Answer:%0A" target="_blank" class="btn btn-red" style="text-decoration:none;">Submit Evaluation Data</a>
+    < <!-- 12. Active Clinical Case Challenge -->
+ <div class="card" style="border-left: 4px solid var(--alert-red);">
+     <div class="section-title" style="color:var(--alert-red); margin-bottom:6px;">🚨 ACTIVE LAB CHALLENGE #104</div>
+     <p style="font-size:0.8rem; font-weight:600; line-height:1.4; margin-bottom:10px;">
+         What is the normal human arterial blood pH range? Explain 2 causes of metabolic acidosis and how the body compensates.
+     </p>
+     <textarea id="challengeTextarea" class="textarea-box" placeholder="Provide clinical parameter breakdown here..."></textarea>
+     <a href="#" id="submitChallengeBtn" class="btn btn-red" style="text-decoration:none; display:block; margin-top:10px;">Submit Evaluation Data</a>
+  </div>
         
         
     </div>
@@ -555,5 +556,23 @@
         el.style.display = (currentStyleState === "block") ? "none" : "block";
     }
 </script>
+<script>
+document.getElementById('submitChallengeBtn').onclick = function() {
+    var answer = document.getElementById('challengeTextarea').value;
+    
+    if(answer.trim() === "") {
+        alert("CEO please type your answer first!");
+        return false;
+    }
+    
+    var question = "What is the normal human arterial blood pH range? Explain 2 causes of metabolic acidosis and how the body compensates.";
+    var message = "Lab Challenge #104 Submission%0A%0AQuestion: " + encodeURIComponent(question) + "%0A%0AMy Answer:%0A" + encodeURIComponent(answer);
+    
+    var whatsappLink = "https://chat.whatsapp.com/FFjZ6gEPWn0KBngsqogAvN?text=" + message;
+    
+    window.open(whatsappLink, '_blank');
+}
+</script>
 </body>
+</html></body>
 </html> 
