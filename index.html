@@ -9,10 +9,10 @@
       --primary: #004aad;
       --primary-light: #0077ff;
       --bg-gray: #f0f4f8;
-      --card-bg: #FFFFFF;
+      --card-bg: #ffffff;
       --alert-red: #e63946;
       --success-green: #008000;
-      --whatsapp-green: #25D366;
+      --whatsapp-green: #25d366;
       --text-dark: #1e293b;
       --text-muted: #64748b;
       --gold: #d4af37;
@@ -21,7 +21,14 @@
       --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
       --radius: 12px;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', Arial, sans-serif; }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', Arial, sans-serif;
+    }
+
     body {
       background: var(--bg-gray);
       color: var(--text-dark);
@@ -29,6 +36,7 @@
       justify-content: center;
       min-height: 100vh;
     }
+
     .mobile-shell {
       width: 100%;
       max-width: 480px;
@@ -38,21 +46,42 @@
       gap: 16px;
       padding-bottom: 40px;
       min-height: 100vh;
-      box-shadow: 0 0 20px rgba(0,0,0,0.03);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.03);
     }
+
     .card {
       background: var(--card-bg);
       border-radius: var(--radius);
       padding: 16px;
       margin: 0 16px;
       box-shadow: var(--shadow);
-      border: 1px solid rgba(0,0,0,0.01);
+      border: 1px solid rgba(0, 0, 0, 0.01);
     }
+
     .section-title {
       color: var(--primary);
       font-weight: 700;
       margin-bottom: 10px;
     }
+
+    .tip-box {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+      font-weight: 500;
+      line-height: 1.3;
+    }
+
+    .green-highlight {
+      background-color: #e8f5e9;
+      color: var(--success-green);
+      border-left: 4px solid var(--success-green);
+      padding: 10px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
     .btn {
       display: inline-block;
       width: 100%;
@@ -66,26 +95,49 @@
       text-decoration: none;
       color: #fff;
     }
+
     .btn-blue { background: var(--primary); }
     .btn-green { background: var(--success-green); }
-    .btn-whatsapp { background: var(--whatsapp-green); }
     .btn-red { background: var(--alert-red); }
-    .green-highlight {
-      background-color: #e8f5e9;
-      color: var(--success-green);
-      border-left: 4px solid var(--success-green);
-      padding: 10px;
-      border-radius: 4px;
-      font-size: 0.8rem;
-      font-weight: 600;
+    .btn-whatsapp { background: var(--whatsapp-green); }
+
+    .brand {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      text-align: center;
+      padding: 24px 16px 20px;
+      border-radius: 0 0 24px 24px;
+      margin: 0;
     }
-    .tip-box {
+
+    .brand-name {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--cyan-glow);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .badge {
+      background: white;
+      color: var(--primary);
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 50px;
       font-size: 0.72rem;
-      color: var(--text-muted);
-      margin-top: 6px;
-      font-weight: 500;
-      line-height: 1.3;
+      font-weight: 700;
+      margin-top: 8px;
     }
+
+    .tagline {
+      margin-top: 10px;
+      color: var(--gold);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
     .footer-end {
       background: var(--primary);
       color: white;
@@ -94,6 +146,13 @@
       font-size: 0.7rem;
       line-height: 1.4;
     }
+
+    .footer-end a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
     .footer-muted-text {
       opacity: 0.75;
       font-size: 0.65rem;
@@ -102,10 +161,10 @@
 </head>
 <body>
   <div class="mobile-shell">
-    <header class="card" style="background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; text-align: center; border: none; border-radius: 0 0 24px 24px; padding: 24px 16px 20px; margin: 0;">
-      <div style="font-size: 28px; font-weight: 800; color: var(--cyan-glow); text-transform: uppercase;">TRUST HEALTH TECH</div>
-      <div style="margin-top: 8px; background: white; color: var(--primary); display: inline-block; padding: 4px 14px; border-radius: 50px; font-size: 0.72rem; font-weight: 700;">KNOWLEDGE YOU CAN TRUST</div>
-      <div style="margin-top: 10px; color: var(--gold); font-size: 0.68rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">GLOBAL MLS ACADEMIC STUDY NODE</div>
+    <header class="brand">
+      <div class="brand-name">TRUST HEALTH TECH</div>
+      <div class="badge">KNOWLEDGE YOU CAN TRUST</div>
+      <div class="tagline">GLOBAL MLS ACADEMIC STUDY NODE</div>
     </header>
 
     <div class="card">
@@ -119,9 +178,9 @@
       <div class="tip-box"><strong>TIP:</strong> Scroll down to see all tools. No login needed.</div>
     </div>
 
-    <div class="card partner-box-2" style="border: 1px solid var(--success-green); text-align:center;">
-      <span class="partner-label" style="font-size:0.65rem; color:var(--gold); font-weight:700; letter-spacing:0.5px;">EDUCATION PARTNER</span>
-      <h4 style="font-size: 1rem; color: var(--text-dark); margin: 4px 0;">POWERING FREE MLS RESOURCES</h4>
+    <div class="card" style="border: 1px solid var(--success-green); text-align:center;">
+      <span style="font-size:0.65rem; color:var(--gold); font-weight:700; letter-spacing:0.5px;">EDUCATION PARTNER</span>
+      <h4 style="font-size:1rem; color: var(--text-dark); margin: 4px 0;">POWERING FREE MLS RESOURCES</h4>
       <p style="font-size:0.72rem; color: var(--text-muted); margin-bottom: 10px;">Partner with us to reach 250+ MLS topics and thousands of students.</p>
       <a href="mailto:trusthealthtech@gmail.com?subject=Corporate%20Sponsorship%20Hub" class="btn btn-green" style="padding:8px 16px; width:auto; font-size:0.8rem;">SPONSOR THIS PLATFORM</a>
       <div class="tip-box"><strong>TIP:</strong> Only 2 partner spaces. No popups. No distractions.</div>
@@ -137,7 +196,7 @@
     <footer class="footer-end">
       <p>&copy; 2026 TRUST HEALTH TECH. All Rights Reserved.</p>
       <p>An Initiative by Trust Isaac • Feeding MLS Students with Little Data.</p>
-      <p class="footer-muted-text">Contact: <a href="mailto:trusthealthtech@gmail.com" style="color: var(--primary); text-decoration: none; font-weight: bold;">trusthealthtech@gmail.com</a></p>
+      <p class="footer-muted-text">Contact: <a href="mailto:trusthealthtech@gmail.com">trusthealthtech@gmail.com</a></p>
       <p class="footer-muted-text" style="margin-top:6px;">This platform is supported by 2 education partners to remain free. No popups. No data tracking.</p>
     </footer>
   </div>
