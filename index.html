@@ -1,627 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TRUST HEALTH TECH</title>
-    <style>
-        :root {
-            --primary: #004aad;
-            --primary-light: #0077ff;
-            --bg-gray: #f0f4f8;
-            --card-bg: #FFFFFF;
-            --alert-red: #e63946;
-            --success-green: #008000;
-            --whatsapp-green: #25D366;
-            --text-dark: #1e293b;
-            --text-muted: #64748b;
-            --gold: #d4af37;
-            --orange: #f97316;
-            --cyan-glow: #00e5ff;
-            --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            --radius: 12px;
-        }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', Arial, sans-serif; -webkit-tap-highlight-color: transparent; }
-        body { background-color: var(--bg-gray); color: var(--text-dark); display: flex; justify-content: center; min-height: 100vh; }
-        .mobile-shell { width: 100%; max-width: 480px; background: #f8fafc; display: flex; flex-direction: column; gap: 16px; padding-bottom: 40px; min-height: 100vh; box-shadow: 0 0 20px rgba(0,0,0,0.03); }
-        h1, h2, h3, h4, h5, .section-title { color: var(--primary); font-weight: 700; }
-        .card { background: var(--card-bg); border-radius: var(--radius); padding: 16px; margin: 0 16px; box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,0.01); text-align: left; }
-        .tip-box { font-size: 0.72rem; color: var(--text-muted); margin-top: 6px; font-weight: 500; line-height: 1.3; text-align: left; }
-        .btn { width: 100%; padding: 12px; border: none; border-radius: 8px; font-weight: 700; font-size: 0.9rem; cursor: pointer; transition: all 0.2s ease; display: inline-block; text-align: center; text-decoration: none; }
-        .btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
-        .btn:active { transform: scale(0.98); opacity: 0.9; }
-        .btn-red { background: var(--alert-red); color: #fff; }
-        .btn-blue { background: var(--primary); color: #fff; }
-        .btn-green { background: var(--success-green); color: #fff; }
-        .btn-whatsapp { background: var(--whatsapp-green); color: #fff; }
-        .input-text, .textarea-box { width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.85rem; margin-bottom: 10px; outline: none; background: #fafafa; }
-        .textarea-box { resize: none; height: 75px; }
-        .gradient-header { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; text-align: center; padding: 24px 16px 20px; border-radius: 0 0 24px 24px; box-shadow: 0 4px 15px rgba(0,74,173,0.15); }
-        .logo-sphere { width: 54px; height: 54px; background: white; border-radius: 50%; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; font-size: 26px; }
-        .brand-glow { font-size: 28px; font-weight: 800; color: var(--cyan-glow); text-shadow: 0 0 10px rgba(0, 229, 255, 0.8); letter-spacing: 0.5px; text-transform: uppercase; }
-        .pill-badge { display: inline-block; background: white; color: var(--primary); padding: 4px 14px; border-radius: 50px; font-size: 0.72rem; font-weight: 700; margin: 8px 0; }
-        .tagline-gold { color: var(--gold); font-size: 0.68rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
-        .header-tip-bar { background: rgba(255,255,255,0.1); margin: 12px -16px -20px; padding: 8px 16px; font-size: 0.7rem; color: #fff; line-height: 1.3; text-align: center; }
-        .stats-wrapper { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 0 16px; }
-        .stat-card { background: var(--card-bg); border-radius: var(--radius); padding: 12px 6px; text-align: center; box-shadow: var(--shadow); cursor: pointer; transition: transform 0.2s; }
-        .stat-card:active { transform: translateY(-2px); }
-        .stat-card h3 { font-size: 1.3rem; margin-bottom: 2px; }
-        .stat-card p { font-size: 0.65rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; }
-        .dashboard-container { display: flex; flex-direction: column; gap: 14px; }
-        .dashboard-box { border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px; text-align: center; }
-        .dashboard-box h4 { font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
-        .timer-numeric { font-size: 2rem; font-weight: 700; color: var(--text-dark); margin-bottom: 8px; }
-        .date-circle-wrap { display: inline-block; padding: 6px 14px; border-radius: 50px; border: 3px solid var(--alert-red); margin-top: 6px; font-weight: 700; font-size: 0.85rem; color: var(--text-dark); }
-        .ads-native-banner { margin: 4px 16px; padding: 12px; background: #e2e8f0; border-radius: 8px; text-align: center; font-size: 0.68rem; color: #475569; font-weight: bold; border: 1px dashed #cbd5e1; }
-        .green-highlight { background-color: #e8f5e9; color: var(--success-green); border-left: 4px solid var(--success-green); padding: 10px; border-radius: 4px; font-size: 0.8rem; font-weight: 500; text-align: left; }
-        .partner-box-1 { border: 1px solid var(--primary); text-align: center; }
-        .partner-box-2 { border: 1px solid var(--success-green); text-align: center; }
-        .partner-label { font-size: 0.65rem; color: var(--gold); font-weight: 700; letter-spacing: 0.5px; }
-        .partner-title { font-size: 1rem; color: var(--text-dark); margin: 4px 0; }
-        .partner-desc { font-size: 0.72rem; color: var(--text-muted); margin-bottom: 10px; }
-        .file-card { border: 1px solid #f1f5f9; padding: 12px; border-radius: 8px; margin-bottom: 10px; background: #fff; text-align: left; }
-        .file-card h5 { font-size: 0.8rem; color: var(--text-dark); margin-bottom: 4px; word-break: break-all; }
-        .file-card p { font-size: 0.7rem; color: var(--text-muted); margin-bottom: 6px; }
-        .price-label { font-size: 0.78rem; font-weight: 700; color: var(--orange); }
-        .student-tag { font-size: 0.58rem; color: var(--text-muted); display: block; font-weight: 700; margin-top: 1px; }
-        .bulletin-log { margin-top: 10px; text-align: left; border-top: 1px solid #f1f5f9; padding-top: 8px; max-height: 120px; overflow-y: auto; }
-        .bulletin-item { font-size: 0.75rem; background: #f8fafc; padding: 6px 8px; border-radius: 6px; margin-bottom: 6px; border-left: 2px solid var(--primary); }
-        .calc-header { padding: 10px; background: #f8fafc; border-radius: 6px; cursor: pointer; display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: 700; margin-bottom: 8px; border: 1px solid #e2e8f0; }
-        .calc-body { display: none; padding: 10px; border: 1px solid #e2e8f0; border-top: none; border-radius: 0 0 6px 6px; margin-top: -8px; margin-bottom: 10px; background: #fff; }
-        .output-box { display: none; background: #e8f5e9; color: var(--success-green); padding: 8px; border-radius: 6px; font-weight: 700; font-size: 0.8rem; margin-top: 8px; text-align: center; }
-        .dark-chat-window { background: #0f172a; border-radius: 8px; padding: 12px; color: #e2e8f0; font-size: 0.8rem; min-height: 80px; margin-bottom: 10px; text-align: left; line-height: 1.4; }
-        .pill-row { display: flex; gap: 6px; overflow-x: auto; margin-bottom: 10px; padding-bottom: 4px; }
-        .pill-chip { background: var(--alert-red); color: white; padding: 6px 12px; border-radius: 50px; font-size: 0.7rem; font-weight: 700; white-space: nowrap; border: none; cursor: pointer; }
-        .exam-btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
-        .course-selector-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-        .course-icon-btn { background: #f1f5f9; border: 1px solid #e2e8f0; padding: 10px 4px; border-radius: 8px; font-size: 0.65rem; font-weight: 700; text-align: center; cursor: pointer; color: var(--primary); }
-        .course-icon-btn:active { background: #e2e8f0; }
-        .quiz-panel-view { display: none; background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px; margin-top: 12px; text-align: left; }
-        .quiz-timer-line { font-size: 0.75rem; font-weight: 700; color: var(--alert-red); margin-bottom: 6px; }
-        .quiz-question-txt { font-size: 0.85rem; font-weight: 600; margin-bottom: 10px; color: var(--text-dark); }
-        .quiz-options-list { display: flex; flex-direction: column; gap: 6px; }
-        .opt-btn { text-align: left; background: #f8fafc; border: 1px solid #cbd5e1; padding: 10px 12px; border-radius: 8px; font-size: 0.82rem; cursor: pointer; transition: all 0.2s ease; outline: none; width: 100%; display: block; }
-        .opt-btn.correct-choice { background: #e8f5e9 !important; border-color: var(--success-green) !important; color: var(--success-green) !important; font-weight: 700; }
-        .opt-btn.wrong-choice { background: #ffebee !important; border-color: var(--alert-red) !important; color: var(--alert-red) !important; font-weight: 700; }
-        .ai-evaluation-module { display: none; background: #0b0f19; border-radius: 8px; padding: 12px; color: #f1f5f9; margin-top: 12px; border-left: 4px solid var(--alert-red); text-align: left; }
-        .ai-error-tag { color: var(--alert-red); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; margin-bottom: 4px; }
-        .ai-syllabus-head { color: var(--cyan-glow); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; margin: 8px 0 2px; }
-        .ai-explanation-p { font-size: 0.75rem; color: #cbd5e1; line-height: 1.4; }
-        .accordion-head { padding: 12px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; margin-bottom: 6px; cursor: pointer; font-size: 0.8rem; font-weight: 700; display: flex; justify-content: space-between; }
-        .accordion-panel { display: none; padding: 10px; border: 1px solid #e2e8f0; border-top: none; margin-top: -6px; margin-bottom: 8px; border-radius: 0 0 8px 8px; background: #fff; text-align: left; }
-        .syllabus-item-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid #f1f5f9; font-size: 0.75rem; }
-        .syllabus-item-row:last-child { border-bottom: none; }
-        .syl-actions { display: flex; gap: 4px; }
-        .btn-tiny { padding: 4px 6px; font-size: 0.6rem; font-weight: 700; border: none; border-radius: 4px; cursor: pointer; color: white; text-decoration: none; }
-        .footer-end { background: var(--primary); color: white; padding: 20px 16px; text-align: center; font-size: 0.7rem; line-height: 1.4; }
-        .footer-end p { margin-bottom: 4px; }
-        .footer-muted-text { opacity: 0.75; font-size: 0.65rem; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TRUST HEALTH TECH</title>
+  <style>
+    :root {
+      --primary: #004aad;
+      --primary-light: #0077ff;
+      --bg-gray: #f0f4f8;
+      --card-bg: #FFFFFF;
+      --alert-red: #e63946;
+      --success-green: #008000;
+      --whatsapp-green: #25D366;
+      --text-dark: #1e293b;
+      --text-muted: #64748b;
+      --gold: #d4af37;
+      --orange: #f97316;
+      --cyan-glow: #00e5ff;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      --radius: 12px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', Arial, sans-serif; }
+    body {
+      background: var(--bg-gray);
+      color: var(--text-dark);
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .mobile-shell {
+      width: 100%;
+      max-width: 480px;
+      background: #f8fafc;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding-bottom: 40px;
+      min-height: 100vh;
+      box-shadow: 0 0 20px rgba(0,0,0,0.03);
+    }
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 16px;
+      margin: 0 16px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(0,0,0,0.01);
+    }
+    .section-title {
+      color: var(--primary);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .btn {
+      display: inline-block;
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      color: #fff;
+    }
+    .btn-blue { background: var(--primary); }
+    .btn-green { background: var(--success-green); }
+    .btn-whatsapp { background: var(--whatsapp-green); }
+    .btn-red { background: var(--alert-red); }
+    .green-highlight {
+      background-color: #e8f5e9;
+      color: var(--success-green);
+      border-left: 4px solid var(--success-green);
+      padding: 10px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .tip-box {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+      font-weight: 500;
+      line-height: 1.3;
+    }
+    .footer-end {
+      background: var(--primary);
+      color: white;
+      padding: 20px 16px;
+      text-align: center;
+      font-size: 0.7rem;
+      line-height: 1.4;
+    }
+    .footer-muted-text {
+      opacity: 0.75;
+      font-size: 0.65rem;
+    }
+  </style>
 </head>
 <body>
-<div class="mobile-shell">
-    <!-- 1. Header Layout Module -->
-    <header class="gradient-header">
-        <div class="logo-sphere">🔬</div>
-        <div class="brand-glow">TRUST HEALTH TECH</div>
-        <div class="pill-badge">KNOWLEDGE YOU CAN TRUST</div>
-        <div class="tagline-gold">GLOBAL MLS ACADEMIC STUDY NODE</div>
-        <div class="header-tip-bar">
-            <strong>TIP:</strong> This is your global MLS study terminal. Everything here is free and works on little data.
-        </div>
+  <div class="mobile-shell">
+    <header class="card" style="background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; text-align: center; border: none; border-radius: 0 0 24px 24px; padding: 24px 16px 20px; margin: 0;">
+      <div style="font-size: 28px; font-weight: 800; color: var(--cyan-glow); text-transform: uppercase;">TRUST HEALTH TECH</div>
+      <div style="margin-top: 8px; background: white; color: var(--primary); display: inline-block; padding: 4px 14px; border-radius: 50px; font-size: 0.72rem; font-weight: 700;">KNOWLEDGE YOU CAN TRUST</div>
+      <div style="margin-top: 10px; color: var(--gold); font-size: 0.68rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">GLOBAL MLS ACADEMIC STUDY NODE</div>
     </header>
 
-    <!-- Earn Space 1: Header Native Sponsor Link -->
-    <div class="ads-native-banner" id="ads-container-top">
-        <span style="opacity:0.6; display:block; font-size:0.55rem; letter-spacing:0.5px;">SPONSORED PLATFORM RESOURCE</span>
-        <a href="https://blogspot.com" target="_blank" style="color:var(--primary); text-decoration:none;">🔬 Tap to Explore Global MLS Premium Research Databases & Notes</a>
-    </div>
-
-    <!-- 2. Metrics Block Section -->
-    <div class="stats-wrapper">
-        <div class="stat-card" onclick="alert('15 Core Laboratory tracks active.')">
-            <h3 style="color: var(--primary);">15</h3>
-            <p>Courses</p>
-        </div>
-        <div class="stat-card" onclick="alert('250+ High yield study blocks available.')">
-            <h3 style="color: var(--primary);">250+</h3>
-            <p>Topics</p>
-        </div>
-        <div class="stat-card" onclick="alert('Platform resources provided completely free.')">
-            <h3 style="color: var(--orange);">Free</h3>
-            <p>Forever</p>
-        </div>
-    </div>
-    <div class="tip-box" style="padding:0 16px; text-align:center;">
-        <strong>TIP:</strong> Tap any card or button to open features.
-    
-    <!-- 3. Operational Study Engine Dashboard -->
     <div class="card">
-        <div class="section-title" style="margin-bottom:10px;">⏱️ Study Hub Dashboard</div>
-        <div class="dashboard-container">
-            <div class="dashboard-box">
-                <h4>Focus Pomodoro Timer</h4>
-                <div class="timer-numeric" id="pomodoroDisplay">25:00</div>
-                <button class="btn btn-red" id="pomodoroBtn" style="padding:6px 16px; width:auto;">Start</button>
-                <div class="tip-box"><strong>TIP:</strong> Use this 25min timer to focus on one topic. Take 5min break when it ends. Repeat 4 times.</div>
-            
-            <div class="dashboard-box">
-  <h4>MLS Exam Target Countdown</h4>
-  <input type="date" id="examDate" class="date-input">
-  <div id="daysLeft" class="days-left-box"></div>
-  <div class="tip-box"><strong>TIP:</strong> Select your exam date to track days left and stay prepared.</div>
-            </div>
-            </>
-        </div>
+      <div class="section-title">👋 Welcome About Terminal</div>
+      <div style="font-size:0.8rem; line-height:1.4; margin-bottom:10px; color: var(--text-dark);">
+        Welcome to this global academic interface. <strong>My name is Trust Isaac born December 2008</strong> and I am an undergraduate Medical Laboratory Science student.
+      </div>
+      <div class="green-highlight">
+        This open study terminal functions as a centralized gateway for Medical Laboratory Science students worldwide to access syllabus, CBT, PDFs and Lab Challenges.
+      </div>
+      <div class="tip-box"><strong>TIP:</strong> Scroll down to see all tools. No login needed.</div>
     </div>
 
-    <!-- 4. Biography Terminal Profile -->
-    <div class="card">
-        <div class="section-title" style="margin-bottom:8px;">👋 Welcome About Terminal</div>
-        <div style="font-size:0.8rem; line-height:1.4; margin-bottom:10px; color: var(--text-dark);">
-            Welcome to this global academic interface. <strong>My name is Trust Isaac born December 2008</strong> and I am an undergraduate Medical Laboratory Science student.
-        </div>
-        <div class="green-highlight">
-            This open study terminal functions as a centralized gateway for Medical Laboratory Science students worldwide to access syllabus, CBT, PDFs and Lab Challenges.
-        </div>
-        <div class="tip-box"><strong>TIP:</strong> Scroll down to see all tools. No login needed.</div>
-    </div>
-    169 <!-- 5. SPONSORSHIP ADVERTISEMENT -->
- <div class="card" style="background: linear-gradient(135deg, #10B981, #059669); color:white; text-align:center; border:none;">
-     <span style="font-size:0.7rem; font-weight:700; letter-spacing:0.5px; opacity:0.9;">🚀 EDUCATION PARTNER ADVERTISEMENT</span>
-     <h4 style="margin:8px 0; font-size:1rem; color:white;">Advertise Your Institute Here</h4>
-     <p style="font-size:0.8rem; margin-bottom:12px; opacity:0.9;">Reach 1000+ Active Global MLS Candidates Monthly</p>
-     <a href="https://chat.whatsapp.com/FFjZ6gEPWn0KBngsqogAvN?text=Hello%20Trust!%20I%20want%20to%20ADVERTISE%20my%20Institute%20on%20HealthTech%0A%0AInstitute%20Name:%0AContact:%0ABudget:" 
-        target="_blank" 
-        class="btn" 
-        style="background:white; color:#059669; font-weight:700; text-decoration:none; display:block; padding:12px; border-radius:10px;">
-        Get Advertising Rates
-     </a>
-     <p style="font-size:0.7rem; margin-top:8px; opacity:0.8;">Banners • PDF Sponsorship • WhatsApp Shoutouts</p>
- </div>
-    <!-- 4.5 PDF REPOSITORY - TRUST HEALTH TECH -->
-    <div class="file-card">
-    <h5>📖 100L Medical Chemistry - Premium Notes</h5>
-    <p>Complete 7 Chapters + BONUS Questions + Study Guide</p>
-    <span class="price-label">Free</span> <span class="student-tag">TRUST HEALTH TECH</span>
-
-    <!-- THIS IS YOUR PDF EMBED -->
-    <iframe src="https://drive.google.com/file/d/1K0TvoAI_a9lnzl5HvZL9qBuq32rvGSFA/preview" 
-    width="100%" height="400px" style="border:none;"></iframe>
-
-    <a href="https://drive.google.com/uc?export=download&id=1K0TvoAI_a9lnzl5HvZL9qBuq32rvGSFA" 
-    class="btn btn-blue" style="margin-top:10px; width:100%; text-align:center;">Download PDF - Free</a>
-    </div> <!-- 4.6 FREE BONUS - PHONETICS -->
-<div class="file-card" style="margin-top:20px;">
-    <h5>🎙️ Phonetics - Complete Lecture Notes</h5>
-    <p>MLS 1st Year - Sounds, Transcription & Clinical Applications</p>
-    <span class="price-label">Free</span> <span class="student-tag">TRUST HEALTH TECH BONUS</span>
-
-    <!-- PHONETICS PDF EMBED -->
-    <iframe src="https://drive.google.com/file/d/1MAeV6_8mnSfzkr2oTcUXiDlvoaq6x4U6/preview" 
-    width="100%" height="400px" style="border:none;"></iframe>
-
-    <a href="https://drive.google.com/uc?export=download&id=1MAeV6_8mnSfzkr2oTcUXiDlvoaq6x4U6" 
-    class="btn btn-blue" style="margin-top:10px; width:100%; text-align:center;">Download Phonetics - Free</a>
-</div>
-        
-        
-        <div class="tip-box"><strong>TIP:</strong> Tap the PDF above to read. Tap "Download PDF" to save to phone.</div>
+    <div class="card partner-box-2" style="border: 1px solid var(--success-green); text-align:center;">
+      <span class="partner-label" style="font-size:0.65rem; color:var(--gold); font-weight:700; letter-spacing:0.5px;">EDUCATION PARTNER</span>
+      <h4 style="font-size: 1rem; color: var(--text-dark); margin: 4px 0;">POWERING FREE MLS RESOURCES</h4>
+      <p style="font-size:0.72rem; color: var(--text-muted); margin-bottom: 10px;">Partner with us to reach 250+ MLS topics and thousands of students.</p>
+      <a href="mailto:trusthealthtech@gmail.com?subject=Corporate%20Sponsorship%20Hub" class="btn btn-green" style="padding:8px 16px; width:auto; font-size:0.8rem;">SPONSOR THIS PLATFORM</a>
+      <div class="tip-box"><strong>TIP:</strong> Only 2 partner spaces. No popups. No distractions.</div>
     </div>
 
-    <!-- 6. Archive Searchable Documents Repository -->
-    <div class="card">
-        <div class="section-title" style="margin-bottom:8px;">📚 Search Branded Core Study PDFs Repository</div>
-        <input type="text" id="pdfSearchInput" class="input-text" placeholder="Type level, topics, or keywords...">
-        <div id="pdfRepositoryList"></div>
-        <div class="tip-box"><strong>TIP:</strong> Use search to find PDFs fast. Tap Get File to download. All PDFs 250 to 950 NGN max.</div>
-    </div>
-
-    <!-- Earn Space 2: In-Feed Content Sponsor Banner Link -->
-    <div class="ads-native-banner" id="ads-container-middle">
-        <span style="opacity:0.6; display:block; font-size:0.55rem; letter-spacing:0.5px;">EDUCATION PARTNER ADVERTISMENT</span>
-         <a href="https://chat.whatsapp.com/FFjZ6gEPWn0KBngsqogAvN?text=Hello%20Trust!%20I%20want%20to%20ADVERTISE%20my%20Institute%20on%20HealthTech" target="_blank" style="color:var(--success-green); text-decoration:none; font-weight:700;">🚀 Advertise Your Institute Here — Reach Thousands of Active Global MLS Candidates Monthly</a>
-    </div>
-    <!-- 7. Live Bulletin Board Station -->
-    <div class="card">
-        <div class="section-title" style="margin-bottom:8px;">💬 Peer Question Drop Station</div>
-        <p style="font-size:0.8rem; margin-bottom:10px; color:var(--text-muted);">
-    Ask any MLS question and get answers from students + me instantly.
-</p>
-<a href="https://chat.whatsapp.com/FFjZ6gEPWn0KBngsqogAvN" target="_blank" class="btn btn-whatsapp">
-    💬 Ask in Live WhatsApp Group
-</a>
-        <div class="tip-box"><strong>TIP:</strong> Click the button above to join. Answers in minutes. Be respectful.</div>
-    </div>
-
-    <!-- 8. Medical Laboratory Diagnostic Calculators -->
-    <div class="card">
-        <div class="section-title" style="margin-bottom:2px;">🧮 Clinical Calculators MLS</div>
-        <div class="tip-box" style="margin-bottom:10px;"><strong>TIP:</strong> Tap a calculator to open it. Enter numbers and tap Calculate Result. Results show below in green.</div>
-        
-        <!-- Calculator A -->
-        <div class="calc-header" onclick="toggleCalc('calcA')"><span>A. BMI Calculator</span><span>▼</span></div>
-        <div class="calc-body" id="calcA">
-            <input type="number" id="bmiW" class="input-text" placeholder="Weight kg">
-            <input type="number" id="bmiH" class="input-text" placeholder="Height cm">
-            <button class="btn btn-red" onclick="runBmi()">Calculate Result</button>
-            <div class="output-box" id="bmiOut"></div>
-            <div class="tip-box"><strong>Tip:</strong> Use this to check patient BMI category.</div>
-        </div>
-
-        <!-- Calculator B -->
-        <div class="calc-header" onclick="toggleCalc('calcB')"><span>B. Dilution Calculator C1V1=C2V2</span><span>▼</span></div>
-        <div class="calc-body" id="calcB">
-            <input type="number" id="dilC1" class="input-text" placeholder="C1 (Stock Concentration)">
-            <input type="number" id="dilC2" class="input-text" placeholder="C2 (Target Concentration)">
-            <input type="number" id="dilV2" class="input-text" placeholder="V2 (Target Volume)">
-            <button class="btn btn-red" onclick="runDilution()">Calculate Result</button>
-            <div class="output-box" id="dilOut"></div>
-            <div class="tip-box"><strong>Tip:</strong> Use this in lab to know how much stock solution to use.</div>
-        </div>
-        <!-- Calculator C -->
-        <div class="calc-header" onclick="toggleCalc('calcC')"><span>C. Osmolarity Calculator</span><span>▼</span></div>
-        <div class="calc-body" id="calcC">
-            <input type="number" id="osmoNa" class="input-text" placeholder="Na (mmol/L)">
-            <input type="number" id="osmoK" class="input-text" placeholder="K (mmol/L)">
-            <input type="number" id="osmoGlu" class="input-text" placeholder="Glucose (mg/dL)">
-            <input type="number" id="osmoBun" class="input-text" placeholder="BUN (mg/dL)">
-            <button class="btn btn-red" onclick="runOsmolarity()">Calculate Result</button>
-            <div class="output-box" id="osmoOut"></div>
-            <div class="tip-box"><strong>Tip:</strong> Use this to check serum osmolarity for clinical cases.</div>
-        </div>
-
-        <!-- Calculator D -->
-        <div class="calc-header" onclick="toggleCalc('calcD')"><span>D. eGFR Calculator CKD-EPI</span><span>▼</span></div>
-        <div class="calc-body" id="calcD">
-            <input type="number" id="egfrAge" class="input-text" placeholder="Age">
-            <input type="number" id="egfrCr" class="input-text" placeholder="Creatinine (mg/dL)">
-            <select id="egfrGender" class="input-text">
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-            </select>
-            <button class="btn btn-red" onclick="runEgfr()">Calculate Result</button>
-            <div class="output-box" id="egfrOut"></div>
-            <div class="tip-box"><strong>Tip:</strong> Select correct gender for accurate kidney function result.</div>
-        </div>
-
-        <!-- Calculator E -->
-        <div class="calc-header" onclick="toggleCalc('calcE')"><span>E. Blood Cell Count Reference</span><span>▼</span></div>
-        <div class="calc-body" id="calcE">
-            <input type="number" id="cbcWbc" class="input-text" placeholder="WBC Count">
-            <input type="number" id="cbcRbc" class="input-text" placeholder="RBC Count">
-            <button class="btn btn-red" onclick="runCbc()">Calculate Result</button>
-            <div class="output-box" id="cbcOut"></div>
-            <div class="tip-box"><strong>Tip:</strong> Use this to quickly check if lab values are normal or abnormal.</div>
-        </div>
-    </div>
-
-    <!-- 9. TRUST AI LAB ASSISTANT Interactive Module -->
-    <div class="card">
-        <div class="section-title" style="margin-bottom:8px;">🤖 TRUST AI LAB ASSISTANT</div>
-        <div class="dark-chat-window" id="aiChatBox">System Core Diagnostics Active. Select quick inquiries below...</div>
-        <div class="pill-row">
-            <button class="pill-chip" onclick="askAiPrompt('Explain Anemia')">Explain Anemia</button>
-            <button class="pill-chip" onclick="askAiPrompt('Normal WBC')">Normal WBC</button>
-            <button class="pill-chip" onclick="askAiPrompt('Urine Test')">Urine Test</button>
-        </div>
-        <div style="display:flex; gap:6px;">
-            <input type="text" id="aiQueryText" class="input-text" placeholder="Type laboratory informatics query..." style="margin-bottom:0;">
-            <button class="btn btn-blue" onclick="runAiInquiry()" style="width:70px; padding:0;">Ask</button>
-        </div>
-        <div class="tip-box" style="margin-top:8px;"><strong>TIP:</strong> Ask any MLS question or tap quick buttons for instant answers.</div>
-    </div>
-
-    <!-- 10. Sponsorship Board Slot 2 -->
-    <div class="card partner-box-2">
-        <span class="partner-label">EDUCATION PARTNER</span>
-        <h4 class="partner-title">POWERING FREE MLS RESOURCES</h4>
-        <p class="partner-desc">Partner with us to reach 250+ MLS topics and thousands of students.</p>
-        <button class="btn btn-green" style="padding:8px 16px; width:auto; font-size:0.8rem;" onclick="location.href='mailto:trustisaac40@://gmail.com Corporate Sponsorship Hub'">SPONSOR THIS PLATFORM</button>
-        <div class="tip-box"><strong>TIP:</strong> Only 2 partner spaces. No popups. No distractions.</div>
-    </div>
-    <!-- 11. Custom Examination Center Cluster -->
-    <div class="card">
-        <div class="section-title" style="margin-bottom:4px;">🎯 SELECTIVE CBT EXAM CENTER</div>
-        <div class="exam-btn-grid">
-            <button class="btn btn-blue" onclick="initiateCbtMode('course')">BY COURSE</button>
-            <button class="btn btn-red" onclick="mixedModeCbt()">MIXED MODE</button>
-        </div>
-        <div id="courseSelectionContainer" style="display:none; margin-bottom:12px;">
-            <div class="course-selector-grid">
-                <div class="course-icon-btn" onclick="startQuiz('HEMATOLOGY')">HEMATOLOGY</div>
-                <div class="course-icon-btn" onclick="startQuiz('CLINICAL CHEMISTRY')">CLINICAL CHEM</div>
-                <div class="course-icon-btn" onclick="startQuiz('MICROBIOLOGY')">MICROBIOLOGY</div>
-                <div class="course-icon-btn" onclick="startQuiz('HISTOPATHOLOGY')">HISTOPATH</div>
-                <div class="course-icon-btn" onclick="startQuiz('IMMUNOLOGY')">IMMUNOLOGY</div>
-                <div class="course-icon-btn" onclick="startQuiz('PARASITOLOGY')">PARASITOLOGY</div>
-                <div class="course-icon-btn" onclick="startQuiz('ENGLISH')">ENGLISH</div>
-                <div class="course-icon-btn" onclick="startQuiz('USE OF ENGLISH')">USE OF ENGL</div>
-                <div class="course-icon-btn" onclick="startQuiz('GSP')">GSP</div>
-            </div>
-        </div>
-        <div class="quiz-panel-view" id="quizShell">
-            <div class="quiz-timer-line" id="quizTimerText">Seconds Left: 0s</div>
-            <div class="quiz-question-txt" id="quizQuestionBox">Loading dynamic test parameters...</div>
-            <div class="quiz-options-list" id="quizOptionsBox"></div>
-        </div>
-        <div class="ai-evaluation-module" id="evaluationBlock">
-            <div class="ai-error-tag">❌ INCORRECT CONCEPT</div>
-            <div id="evalIncorrectBlock" style="font-size:0.75rem; font-weight:600; color:#f8fafc;"></div>
-            <div class="ai-syllabus-head">🔬 SYLLABUS CORE</div>
-            <div class="ai-explanation-p" id="evalSyllabusBlock"></div>
-            <button class="btn btn-blue" onclick="dismissEvaluation()" style="margin-top:10px; padding:6px 12px; font-size:0.75rem; width:auto;">Continue CBT Simulation</button>
-        </div>
-        <div class="tip-box" style="margin-top:10px;"><strong>TIP:</strong> Select a course to focus. Select Mixed to simulate real exam. AI will teach you after every 5 questions.</div>
-    </div>
-
-    < <!-- 12. Active Clinical Case Challenge -->
- <div class="card" style="border-left: 4px solid var(--alert-red);">
-     <div class="section-title" style="color:var(--alert-red); margin-bottom:6px;">🚨 ACTIVE LAB CHALLENGE #104</div>
-     <p style="font-size:0.8rem; font-weight:600; line-height:1.4; margin-bottom:10px;">
-         What is the normal human arterial blood pH range? Explain 2 causes of metabolic acidosis and how the body compensates.
-     </p>
-     <textarea id="challengeTextarea" class="textarea-box" placeholder="Provide clinical parameter breakdown here..."></textarea>
-     <a href="#" id="submitChallengeBtn" class="btn btn-red" style="text-decoration:none; display:block; margin-top:10px;">Submit Evaluation Data</a>
-  </div>
-        
-        
-    </div>
-
-    <!-- 13. COMPLETE SYLLABUS HUB -->
-    <div class="card">
-        <div class="section-title" style="margin-bottom:8px;">📋 COMPLETE SYLLABUS HUB</div>
-        <div class="accordion-head" onclick="toggleAccordion('lvl100')"><span>LEVEL 100 (Pre-Med Foundations)</span><span>▼</span></div>
-        <div class="accordion-panel" id="lvl100">
-            <div class="syllabus-item-row"><span>CHM 101 - Basic Chemistry Foundations</span><div class="syl-actions"><button class="btn-tiny btn-blue" onclick="alert('Launching Quiz')">Start CBT</button><button class="btn-tiny btn-green" onclick="alert('Atomic structure profiles active')">View Notes</button></div></div>
-            <div class="syllabus-item-row"><span>BIO 101 - Cell Biology Ecosystems</span><div class="syl-actions"><button class="btn-tiny btn-blue" onclick="alert('Launching Quiz')">Start CBT</button><button class="btn-tiny btn-green" onclick="alert('Organelle matrix data active')">View Notes</button></div></div>
-        </div>
-        <div class="accordion-head" onclick="toggleAccordion('lvl200')"><span>LEVEL 200 - 500 (Clinical Medicine)</span><span>▼</span></div>
-        <div class="accordion-panel" id="lvl200">
-            <div class="syllabus-item-row"><span>HEM 301 - Diagnostics Hematology</span><div class="syl-actions"><button class="btn-tiny btn-blue" onclick="alert('Launching Quiz')">Start CBT</button><button class="btn-tiny btn-green" onclick="alert('Erythropoiesis tracking indices active')">View Notes</button></div></div>
-            <div class="syllabus-item-row"><span>CHM 401 - Clinical Biochemistry</span><div class="syl-actions"><button class="btn-tiny btn-blue" onclick="alert('Launching Quiz')">Start CBT</button><button class="btn-tiny btn-green" onclick="alert('Hormonal profiles data active')">View Notes</button></div></div>
-        </div>
-        <div class="tip-box"><strong>TIP:</strong> Tap a level to expand. Use Start CBT to practice and View Notes to read.</div>
-    </div>
-
-    <!-- 14. Primary Corporate Mailbox Anchor -->
-    <a href="mailto:trustisaac40@://gmail.com for Trust Health Tech Support" class="btn btn-whatsapp" style="width:auto; margin:0 16px;">
-        📬 Contact TRUST HEALTH TECH via Email
+    <a href="mailto:trusthealthtech@gmail.com?subject=Trust%20Health%20Tech%20Support" class="btn btn-whatsapp" style="width:auto; margin:0 16px;">
+      📬 Contact TRUST HEALTH TECH via Email
     </a>
     <div class="tip-box" style="padding:0 16px; text-align:center; margin-top:-10px;">
-        <strong>TIP:</strong> Email us for support, PDF requests, or partnerships.
+      <strong>TIP:</strong> Email us for support, PDF requests, or partnerships.
     </div>
 
-    <!-- 15. Royal Blue Platform Footer -->
     <footer class="footer-end">
-        <p>&copy; 2026 TRUST HEALTH TECH. All Rights Reserved.</p>
-        <p>An Initiative by Trust Isaac • Feeding MLS Students with Little Data.</p>
-        <p class="footer-muted-text">Contact: trustisaac40@gmail.com</p>
-        <p class="footer-muted-text" style="margin-top:6px;">This platform is supported by 2 education partners to remain free. No popups. No data tracking.</p>
+      <p>&copy; 2026 TRUST HEALTH TECH. All Rights Reserved.</p>
+      <p>An Initiative by Trust Isaac • Feeding MLS Students with Little Data.</p>
+      <p class="footer-muted-text">Contact: <a href="mailto:trusthealthtech@gmail.com" style="color: var(--primary); text-decoration: none; font-weight: bold;">trusthealthtech@gmail.com</a></p>
+      <p class="footer-muted-text" style="margin-top:6px;">This platform is supported by 2 education partners to remain free. No popups. No data tracking.</p>
     </footer>
-</div>
-<script>
-    const PDF_DATA_ARRAY = [
-        { name: "1. 100L_INTRODUCTION_TO_MEDICAL_CHEMISTRY.pdf", desc: "Introductory Module • Foundational atomic tracking rules, subshell electron orientations, buffer parameters, matrix formulas, and volumetric math calculations.", priceNGN: 250, priceUSD: 0.15, type: "intro", url: "" },
-        { name: "2. 100L_CELLULAR_BIOLOGY_CORE_BASICS.pdf", desc: "Introductory Module • Structural cellular layouts, membrane physics, genetic transcription steps, tissue classification models, and microscopic instrumentation mechanics.", priceNGN: 250, priceUSD: 0.15, type: "intro", url: "" },
-        { name: "3. 100L_FOUNDATIONAL_MEDICAL_PHYSICS.pdf", desc: "Introductory Module • Clinical fluid mechanics, radioactive isotopes tracker indices, transducer engineering parameters, and baseline laboratory calibration protocols.", priceNGN: 250, priceUSD: 0.15, type: "intro", url: "" },
-        { name: "4. 200L_ANALYTICAL_LAB_METRICS_MANUAL.pdf", desc: "Advanced Core Volume • Comprehensive blood collection techniques, anticoagulant selection protocols, safety barriers, and basic pathology laboratory calculations.", priceNGN: 750, priceUSD: 0.45, type: "complex", url: "" },
-        { name: "5. 200L_BASIC_ANATOMY_PHYSIOLOGY_METRICS.pdf", desc: "Advanced Core Volume • Microscopic analysis of human organ systems, endocrine loops, renal fluid retention balances, and neurological response parameters.", priceNGN: 750, priceUSD: 0.45, type: "complex", url: "" },
-        { name: "6. 200L_ORGANIC_BIOCHEMISTRY_FOUNDATIONS.pdf", desc: "Advanced Core Volume • High-yield metabolism maps, carbohydrate cycles, lipid biosynthesis steps, and enzyme reaction speed calculations.", priceNGN: 750, priceUSD: 0.45, type: "complex", url: "" },
-        { name: "7. 300L_DIAGNOSTIC_HEMATOLOGY_VOL_I.pdf", desc: "Advanced Core Volume • In-depth cell morphology profiling, automatic analyzer diagnostics, iron panel validations, and bone marrow tracking indices.", priceNGN: 950, priceUSD: 0.57, type: "complex", url: "" },
-        { name: "8. 300L_CLINICAL_BIOCHEMISTRY_SYSTEMS.pdf", desc: "Advanced Core Volume • Metabolic organ profiling data sheets, LFT/RFT panels validation rules, serum protein distributions, and electrolyte balances.", priceNGN: 950, priceUSD: 0.57, type: "complex", url: "" },
-        { name: "9. 300L_MEDICAL_MICROBIOLOGY_TECHNIQUES.pdf", desc: "Advanced Core Volume • Differential aerobic isolation techniques, biochemical reaction charting matrices, media preparation, and quality control metrics.", priceNGN: 950, priceUSD: 0.57, type: "complex", url: "" },
-        { name: "10. 400L_HISTOPATHOLOGY_TISSUE_PROCESSING.pdf", desc: "Advanced Core Volume • Critical automated tissue processing cycles, microtomy technique boundaries, biopsy preparation protocols, and micro-staining checklists.", priceNGN: 950, priceUSD: 0.57, type: "complex", url: "" },
-        { name: "11. 400L_MEDICAL_PARASITOLOGY_VECTORS.pdf", desc: "Advanced Core Volume • Microscopic fecal diagnostic rules, protozoan lifecycle profiling sheets, helminth diagnostic matrices, and thick film loops.", priceNGN: 950, priceUSD: 0.57, type: "complex", url: "" },
-        { name: "12. 400L_IMMUNOLOGY_SEROLOGY_DIAGNOSTICS.pdf", desc: "Advanced Core Volume • High-precision serological profiling procedures, ELISA data patterns, latex slide test limits, and viral indexing rules.", priceNGN: 950, priceUSD: 0.57, type: "complex", url: "" },
-        { name: "13. 500L_BLOOD_TRANSFUSION_SCIENCES.pdf", desc: "Advanced Core Volume • High yield cross-matching procedures, direct/indirect Coombs test maps, antibody titration curves, and storage system logs.", priceNGN: 950, priceUSD: 0.57, type: "complex", url: "" },
-        { name: "14. 500L_CLINICAL_LAB_INFORMATICS.pdf", desc: "Advanced Core Volume • Global laboratory network security protocols, system interface configurations, database models, and error validation metrics.", priceNGN: 950, priceUSD: 0.57, type: "complex", url: "" },
-        { name: "15. 500L_EPIDEMIOLOGY_RESEARCH_THESIS.pdf", desc: "Advanced Core Volume • Outbreak surveillance methodologies, medical math clustering tools, thesis documentation architectures, and verification rules.", priceNGN: 950, priceUSD: 0.57, type: "complex", url: "" }
-    ];
-    const QUIZ_QUESTION_BANK = [
-        { course: "GSP", type: "normal", q: "[GST 111] Which phonetics contour classification is typified by a falling intonation shift inside a declarative sentence structure?", options: ["Rising Tone", "Falling Tone", "Fluctuating Drift", "Suspended Peak"], answer: 1, explanation: "Standard declarative statements use a falling intonation profile at the absolute end of the sentence block structure to signal finality." },
-        { course: "CLINICAL CHEMISTRY", type: "complex", q: "[CHM 101] Chromium (Z=24) displays anomalous electronic configuration structures to achieve stabilization across which subshell geometry?", options: ["3d⁴ 4s²", "3d⁵ 4s¹", "3d⁶ 4s⁰", "3d³ 4s² 4p¹"], answer: 1, explanation: "Anomalous electron migration mechanics cause an electron to jump from the 4s orbital into the 3d shell, producing a highly stable, symmetric, half-filled [Ar] 3d⁵ 4s¹ subshell geometry." },
-        { course: "HEMATOLOGY", type: "normal", q: "[HEMATOLOGY] What is the primary physiological tracking marker inside chronic iron deficiency states?", options: ["Elevated Serum Ferritin", "Decreased Total Iron Binding", "Decreased Serum Ferritin", "Elevated Hemoglobin"], answer: 2, explanation: "Serum ferritin drops significantly during iron deficiency and serves as the most accurate index of depleted storage pools." },
-        { course: "MICROBIOLOGY", type: "normal", q: "Which primary staining identification routine isolates target Mycobacterium tuberculosis cells?", options: ["Gram Stain Profile", "Ziehl-Neelsen Acid-Fast Routine", "Albert Granule Technique", "Crystal Violet Sequence"], answer: 1, explanation: "The high lipid and mycolic acid structure of Mycobacterium tuberculosis layers requires the Ziehl-Neelsen carbolfuchsin heat routine." },
-        { course: "IMMUNOLOGY", type: "complex", q: "Which immunoglobulin molecular matrix features a structural J-chain component configuration to function as a primary pentameric protector?", options: ["IgG Monomer", "IgE Anchor", "IgM Pentamer", "IgA Dimer"], answer: 2, explanation: "IgM forms a massive macro-pentamer structure bound dynamically by a single joining J-chain layer to optimize agglutination actions." }
-    ];
-    document.addEventListener("DOMContentLoaded", () => {
-        renderPdfDirectory(PDF_DATA_ARRAY); reloadBulletinBoard(); setupExamTracker();
-    });
-
-    let pomodoroInstance = null, clockTicksRemaining = 25 * 60;
-    const pomodoroDisplay = document.getElementById("pomodoroDisplay");
-    const pomodoroBtn = document.getElementById("pomodoroBtn");
-
-    pomodoroBtn.addEventListener("click", () => {
-        if (pomodoroInstance) { clearInterval(pomodoroInstance); pomodoroInstance = null; pomodoroBtn.innerText = "Start"; }
-        else {
-            pomodoroBtn.innerText = "Pause";
-            pomodoroInstance = setInterval(() => {
-                if (clockTicksRemaining <= 0) {
-                    clearInterval(pomodoroInstance); pomodoroInstance = null; alert("Focus cycle concluded! Take a 5-minute break.");
-                    clockTicksRemaining = 25 * 60; pomodoroDisplay.innerText = "25:00"; pomodoroBtn.innerText = "Start"; return;
-                }
-                clockTicksRemaining--;
-                let m = Math.floor(clockTicksRemaining / 60).toString().padStart(2, '0');
-                let s = (clockTicksRemaining % 60).toString().padStart(2, '0');
-                pomodoroDisplay.innerText = `${m}:${s}`;
-            }, 1000);
-        }
-    });
-
-    function setupExamTracker() {
-        const picker = document.getElementById("examDatePicker"); const out = document.getElementById("countdownOutput");
-        const cache = localStorage.getItem("mls_target_date"); if (cache) { picker.value = cache; calculateDays(cache); }
-        picker.addEventListener("change", (e) => { localStorage.setItem("mls_target_date", e.target.value); calculateDays(e.target.value); });
-        function calculateDays(val) {
-            if (!val) return; const days = Math.ceil((new Date(val) - new Date()) / (1000 * 60 * 60 * 24));
-            out.innerHTML = `<div class='date-circle-wrap'>${days > 0 ? days + " Days Left" : "Exam Window Open"}</div>`;
-        }
-    }
-
-    function renderPdfDirectory(arr) {
-        const container = document.getElementById("pdfRepositoryList"); container.innerHTML = "";
-        arr.forEach(file => {
-            const block = document.createElement("div"); block.className = "file-card";
-            const tagText = file.type === "intro" ? "STUDENT FRIENDLY PRICE" : "PREMIUM CLINICAL MANUAL";
-            block.innerHTML = `<h5>📄 ${file.name}</h5><p>${file.desc}</p><div style="display:flex; justify-content:space-between; align-items:center;"><div><span class="price-label">₦${file.priceNGN} / $${file.priceUSD.toFixed(2)}</span><span class="student-tag">${tagText}</span></div><button class="btn btn-red" style="padding:4px 10px; width:auto; font-size:0.72rem;" onclick="triggerFileDownload('${file.url}')">Get File</button></div>`;
-            container.appendChild(block);
-        });
-    }
-
-    document.getElementById("pdfSearchInput").addEventListener("input", (e) => {
-        const text = e.target.value.toLowerCase().trim();
-        renderPdfDirectory(PDF_DATA_ARRAY.filter(f => f.name.toLowerCase().includes(text) || f.desc.toLowerCase().includes(text)));
-    });
-
-    function triggerFileDownload(url) { if (!url) { alert("Please add Google Drive link."); } else { window.open(url, '_blank'); } }
-
-    document.getElementById("postQuestionBtn").addEventListener("click", () => {
-        const user = document.getElementById("peerInitialsInput").value.trim() || "Anonymous"; const query = document.getElementById("peerQuestionText").value.trim();
-        if (!query) return; let stored = JSON.parse(localStorage.getItem("mls_bulletins") || "[]");
-        stored.unshift({ author: user, text: query, stamp: new Date().toLocaleTimeString() }); localStorage.setItem("mls_bulletins", JSON.stringify(stored));
-        document.getElementById("peerQuestionText").value = ""; reloadBulletinBoard();
-    });
-    function reloadBulletinBoard() {
-        const box = document.getElementById("bulletinContainer"); let stored = JSON.parse(localStorage.getItem("mls_bulletins") || "[]");
-        if (stored.length === 0) { box.innerHTML = "<div class='tip-box'>No board notifications.</div>"; return; }
-        box.innerHTML = stored.map(b => `<div class='bulletin-item'><strong>[${b.author}]</strong>: ${b.text} <span style='font-size:0.6rem; color:var(--text-muted); display:block;'>${b.stamp}</span></div>`).join("");
-    }
-
-    function toggleCalc(id) {
-        const targetBody = document.getElementById(id);
-        const currentStyleState = window.getComputedStyle(targetBody).display;
-        targetBody.style.display = (currentStyleState === "block") ? "none" : "block";
-    }
-    function displayCalcResult(boxId, msg) { const e = document.getElementById(boxId); e.style.display = "block"; e.innerText = msg; }
-
-    function runBmi() { const w = parseFloat(document.getElementById("bmiW").value), h = parseFloat(document.getElementById("bmiH").value) / 100; if (w && h) displayCalcResult("bmiOut", `Result: BMI = ${(w / (h * h)).toFixed(2)}`); }
-    function runDilution() { const c1 = parseFloat(document.getElementById("dilC1").value), c2 = parseFloat(document.getElementById("dilC2").value), v2 = parseFloat(document.getElementById("dilV2").value); if (c1 && c2 && v2) displayCalcResult("dilOut", `Result: Volume (V1) = ${((c2 * v2) / c1).toFixed(2)}`); }
-    function runOsmolarity() { const na = parseFloat(document.getElementById("osmoNa").value), k = parseFloat(document.getElementById("osmoK").value), g = parseFloat(document.getElementById("osmoGlu").value), bun = parseFloat(document.getElementById("osmoBun").value); if (!isNaN(na)) displayCalcResult("osmoOut", `Result: Osmolarity = ${((2 * na) + k + (g / 18) + (bun / 2.8)).toFixed(2)} mOsm/L`); }
-    function runEgfr() { const age = parseFloat(document.getElementById("egfrAge").value), cr = parseFloat(document.getElementById("egfrCr").value), gen = document.getElementById("egfrGender").value; if (age && cr) { let k = gen === "female" ? 0.7 : 0.9; displayCalcResult("egfrOut", `Result: eGFR = ${(141 * Math.min(cr / k, 1) ** (gen === "female" ? -0.329 : -0.411) * Math.max(cr / k, 1) ** -1.209 * 0.993 ** age).toFixed(2)}`); } }
-    function runCbc() { const w = parseFloat(document.getElementById("cbcWbc").value), r = parseFloat(document.getElementById("cbcRbc").value); displayCalcResult("cbcOut", `WBC: ${w.toFixed(2)} | RBC: ${r.toFixed(2)}`); }
-
-    function askAiPrompt(txt) { document.getElementById("aiQueryText").value = txt; runAiInquiry(); }
-    function runAiInquiry() {
-        const q = document.getElementById("aiQueryText").value.trim().toLowerCase(), box = document.getElementById("aiChatBox"); if (!q) return;
-        if (q.includes("anemia")) box.innerText = "Anemia tracking uses complete blood counts, red cell indices, and body iron store markers.";
-        else if (q.includes("wbc")) box.innerText = "Normal peripheral concentration trends run between 4.0 - 11.0 x10⁹/L.";
-        else if (q.includes("urine")) box.innerText = "Urinalysis tracks physicochemical components alongside microscopic elements to monitor status.";
-        else box.innerText = `Diagnostics active for matching queries over "${q}".`;
-    }
-
-    let activeQuizArray = [], currentQuizIndex = 0, quizCounter = 0, quizCountdownTimer = null, targetQuestionMissed = null;
-
-    function mixedModeCbt() { document.getElementById("courseSelectionContainer").style.display = "none"; activeQuizArray = [...QUIZ_QUESTION_BANK].sort(() => 0.5 - Math.random()); startActiveQuizLoop(); }
-    function initiateCbtMode(mode) {
-        document.getElementById("evaluationBlock").style.display = "none";
-        if (mode === "course") { document.getElementById("courseSelectionContainer").style.display = "block"; document.getElementById("quizShell").style.display = "none"; }
-    }
-    function startQuiz(crs) { activeQuizArray = QUIZ_QUESTION_BANK.filter(q => q.course === crs); startActiveQuizLoop(); }
-    function startActiveQuizLoop() { currentQuizIndex = 0; quizCounter = 0; targetQuestionMissed = null; document.getElementById("quizShell").style.display = "block"; displayQuizQuestion(); }
-
-    function displayQuizQuestion() {
-        clearInterval(quizCountdownTimer); if (currentQuizIndex >= activeQuizArray.length) { alert("Cluster complete!"); document.getElementById("quizShell").style.display = "none"; return; }
-        const q = activeQuizArray[currentQuizIndex]; let ticks = 15; document.getElementById("quizTimerText").innerText = `Seconds Left: ${ticks}s`;
-        quizCountdownTimer = setInterval(() => { ticks--; document.getElementById("quizTimerText").innerText = `Seconds Left: ${ticks}s`; if (ticks <= 0) { clearInterval(quizCountdownTimer); targetQuestionMissed = q; handleCbtAnswer(-1, q); } }, 1000);
-        document.getElementById("quizQuestionBox").innerText = `[${q.course}] ${q.q}`;
-        const optContainer = document.getElementById("quizOptionsBox"); optContainer.innerHTML = "";
-        q.options.forEach((opt, idx) => { const btn = document.createElement("button"); btn.className = "opt-btn"; btn.innerText = opt; btn.onclick = () => { clearInterval(quizCountdownTimer); handleCbtAnswer(idx, q); }; optContainer.appendChild(btn); });
-    }
-
-    function handleCbtAnswer(selectedIdx, questionObj) {
-        const buttons = document.querySelectorAll("#quizOptionsBox .opt-btn");
-        buttons.forEach((btn, idx) => {
-            btn.disabled = true;
-            if (idx === questionObj.answer) {
-                btn.className = "opt-btn correct-choice";
-                btn.innerText = "✅ " + btn.innerText;
-            } else if (idx === selectedIdx) {
-                btn.className = "opt-btn wrong-choice";
-                btn.innerText = "❌ " + btn.innerText;
-                targetQuestionMissed = questionObj;
-            }
-        });
-        if (selectedIdx === -1) { targetQuestionMissed = questionObj; }
-        setTimeout(() => { currentQuizIndex++; quizCounter++; if (quizCounter >= 5) { quizCounter = 0; if (targetQuestionMissed) { triggerAiConsultantPanel(targetQuestionMissed); return; } } displayQuizQuestion(); }, 1500);
-    }
-
-    function triggerAiConsultantPanel(obj) { document.getElementById("quizShell").style.display = "none"; document.getElementById("evaluationBlock").style.display = "block"; document.getElementById("evalIncorrectBlock").innerText = obj.q; document.getElementById("evalSyllabusBlock").innerText = obj.explanation; }
-    function dismissEvaluation() { document.getElementById("evaluationBlock").style.display = "none"; document.getElementById("quizShell").style.display = "block"; targetQuestionMissed = null; displayQuizQuestion(); }
-    function submitChallengeAnswer() { if (document.getElementById("challengeTextarea").value.trim()) document.getElementById("challengeSuccessLog").style.display = "block"; }
-    function toggleAccordion(id) {
-        const el = document.getElementById(id);
-        const currentStyleState = window.getComputedStyle(el).display;
-        el.style.display = (currentStyleState === "block") ? "none" : "block";
-    }
-</script>
-<script>
-document.getElementById('submitChallengeBtn').onclick = function() {
-    var answer = document.getElementById('challengeTextarea').value;
-    
-    if(answer.trim() === "") {
-        alert("CEO please type your answer first!");
-        return false;
-    }
-    
-    var question = "What is the normal human arterial blood pH range? Explain 2 causes of metabolic acidosis and how the body compensates.";
-    var message = "Lab Challenge #104 Submission%0A%0AQuestion: " + encodeURIComponent(question) + "%0A%0AMy Answer:%0A" + encodeURIComponent(answer);
-    
-    var whatsappLink = "https://chat.whatsapp.com/FFjZ6gEPWn0KBngsqogAvN?text=" + message;
-    
-    window.open(whatsappLink, '_blank');
-}
-</script>
+  </div>
 </body>
-</html><script>
-// CBT TIMER + LOGIC
-let timeLeft = 15;
-let timerInterval;
-
-function startTimer(){
-    clearInterval(timerInterval);
-    timeLeft = 15;
-    timerInterval = setInterval(()=>{
-        timeLeft--;
-        document.querySelectorAll('.quiz-timer-line').forEach(el=> el.innerText = `Seconds Left: ${timeLeft}s`)
-        if(timeLeft <= 0) timeLeft = 15;
-    },1000)
-}
-startTimer();
-
-// ANSWER CLICK LOGIC
-document.querySelectorAll('.opt-btn').forEach(btn=>{
-  btn.onclick = function(){
-    clearInterval(timerInterval);
-    document.querySelectorAll('.opt-btn').forEach(b=> b.disabled = true);
-    
-    let correctAnswers = ['Pentamer', '3d5 4s1', 'Falling Tone', 'Decreased Serum Ferritin'];
-    let isCorrect = correctAnswers.some(word => this.innerText.includes(word));
-    
-    if(isCorrect){
-      this.classList.add('correct-choice');
-    } else {
-      this.classList.add('wrong-choice');
-      // Show correct answer
-      document.querySelectorAll('.opt-btn').forEach(b=>{
-        if(correctAnswers.some(word => b.innerText.includes(word))) b.classList.add('correct-choice');
-      })
-    }
-    // Show AI explanation
-    document.querySelector('.ai-evaluation-module').style.display = 'block';
-  }
-})
-
-// LAB CHALLENGE BUTTON
-if(document.getElementById('submitChallengeBtn')){
-document.getElementById('submitChallengeBtn').onclick = function(e) {
-    e.preventDefault();
-    var answer = document.getElementById('challengeTextarea').value;
-    if(answer.trim() === "") { alert("CEO please type your answer first!"); return false; }
-    var message = "Lab Challenge #104 Submission\nMy Answer:\n" + answer;
-    window.open("https://chat.whatsapp.com/FFjZ6gEPWn0KBngsqogAvN?text=" + encodeURIComponent(message), '_blank');
-}
-}
-</script></body>
-</html> 
+</html>
