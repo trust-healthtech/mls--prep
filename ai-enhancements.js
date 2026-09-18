@@ -8,6 +8,10 @@
     const MAX_MESSAGES = 40;
     const MAX_MEMORY_ITEMS = 12;
     const MAX_CONTEXT_MESSAGES = 16;
+
+    if (window.__trustAiInitialized) return;
+    window.__trustAiInitialized = true;
+
     let aiHistory = loadJson(HISTORY_KEY, []);
     let aiMemory = loadJson(MEMORY_KEY, []);
 
@@ -20,9 +24,17 @@
         }
     }
 
+    function saveJson(key, value) {
+        try {
+            localStorage.setItem(key, JSON.stringify(value));
+        } catch (_) {
+            // Ignore storage failures.
+        }
+    }
+
     function saveState() {
-        localStorage.setItem(HISTORY_KEY, JSON.stringify(aiHistory.slice(-MAX_MESSAGES)));
-        localStorage.setItem(MEMORY_KEY, JSON.stringify(aiMemory.slice(-MAX_MEMORY_ITEMS)));
+        saveJson(HISTORY_KEY, aiHistory.slice(-MAX_MESSAGES));
+        saveJson(MEMORY_KEY, aiMemory.slice(-MAX_MEMORY_ITEMS));
     }
 
     function escapeHtml(value) {
@@ -128,28 +140,33 @@
             renderHistory();
         };
         document.getElementById("trustAiVoice").onclick = startVoiceInput;
+
         input.addEventListener("keydown", event => {
             if (event.key === "Enter" && !event.shiftKey) {
                 event.preventDefault();
                 window.runAiInquiry();
             }
         });
+
         renderHistory();
     }
 
     function renderHistory() {
         const historyBox = document.getElementById("trustAiHistory");
-        if (!historyBox) return;
+        const box = document.getElementById("aiChatBox");
+        if (!historyBox || !box) return;
+
         if (!aiHistory.length) {
             historyBox.innerHTML = "<div style='opacity:.8'>Trust AI remembers this conversation on this device. Ask a question to begin.</div>";
             return;
         }
+
         historyBox.innerHTML = aiHistory.map(item => `
             <div style="margin:0 0 10px;padding:8px;border-radius:7px;background:${item.role === "user" ? "#1e40af" : "#1e293b"}">
                 <strong style="font-size:.68rem;color:#93c5fd">${item.role === "user" ? "YOU" : "TRUST AI"}</strong>
                 <div style="white-space:pre-wrap;margin-top:3px">${escapeHtml(item.content)}</div>
             </div>`).join("");
-        const box = document.getElementById("aiChatBox");
+
         box.scrollTop = box.scrollHeight;
     }
 
@@ -169,17 +186,23 @@
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
         const input = document.getElementById("aiQueryText");
         const button = document.getElementById("trustAiVoice");
+
+        if (!input || !button) return;
         if (!SpeechRecognition) {
             input.placeholder = "Voice input is not supported in this browser";
             return;
         }
+
         const recognition = new SpeechRecognition();
         recognition.lang = "en-US";
         recognition.interimResults = false;
         recognition.maxAlternatives = 1;
         button.textContent = "🎙️ Listening...";
+
         recognition.onresult = event => {
-            input.value = event.results[0][0].transcript;
+            const transcript = event.results?.[0]?.[0]?.transcript || "";
+            if (!transcript.trim()) return;
+            input.value = transcript.trim();
             window.runAiInquiry();
         };
         recognition.onerror = () => { button.textContent = "🎙️ Voice"; };
@@ -217,16 +240,38 @@
                 })
             }
         );
-        if (!response.ok) throw new Error("Gemini request failed");
+
+        if (!response.ok) {
+            const errorText = await response.text().catch(() => "");
+            throw new Error("Gemini request failed: " + errorText);
+        }
+
         const data = await response.json();
         const answer = data.candidates?.[0]?.content?.parts?.map(part => part.text || "").join("").trim();
         if (!answer) throw new Error("Empty Gemini response");
         return answer;
     }
 
+    function setThinkingState(isThinking) {
+        const box = document.getElementById("aiChatBox");
+        if (!box) return;
+
+        const loader = document.getElementById("trustAiThinking");
+        if (isThinking) {
+            if (!loader) {
+                box.insertAdjacentHTML("beforeend", "<div id='trustAiThinking' style='opacity:.8;margin-bottom:8px'>Trust AI is thinking...</div>");
+            }
+        } else if (loader) {
+            loader.remove();
+        }
+
+        box.scrollTop = box.scrollHeight;
+    }
+
     window.runAiInquiry = async function () {
         const input = document.getElementById("aiQueryText");
         if (!input) return;
+
         const question = input.value.trim();
         if (!question) return;
 
@@ -236,17 +281,20 @@
         renderHistory();
         input.value = "";
 
-        const box = document.getElementById("aiChatBox");
-        box.insertAdjacentHTML("beforeend", "<div style='opacity:.8;margin-bottom:8px'>Trust AI is thinking...</div>");
-        box.scrollTop = box.scrollHeight;
+        setThinkingState(true);
 
         const apiKey = localStorage.getItem(GEMINI_KEY);
         let answer;
         if (apiKey && apiKey !== "PASTE_YOUR_KEY_HERE") {
             try {
                 answer = await requestGemini(question, apiKey);
-            } catch (_) {
-                answer = "Gemini is unavailable right now.\n\n" + (typeof buildAiFallbackAnswer === "function" ? buildAiFallbackAnswer(question) : "Please try again shortly.");
+            } catch (error) {
+                console.error(error);
+                answer = "Gemini is unavailable right now.\n\n" + (
+                    typeof buildAiFallbackAnswer === "function"
+                        ? buildAiFallbackAnswer(question)
+                        : "Please try again shortly."
+                );
             }
         } else {
             answer = typeof buildAiFallbackAnswer === "function"
@@ -254,18 +302,22 @@
                 : "Please configure your Gemini API key first.";
         }
 
+        setThinkingState(false);
+
         aiHistory.push({ role: "assistant", content: answer });
         aiHistory = aiHistory.slice(-MAX_MESSAGES);
         saveState();
         renderHistory();
     };
 
-    window.addEventListener("DOMContentLoaded", () => {
+    function init() {
         installUiFixes();
         createChatControls();
-    });
-    if (document.readyState !== "loading") {
-        installUiFixes();
-        createChatControls();
+    }
+
+    if (document.readyState === "loading") {
+        window.addEventListener("DOMContentLoaded", init, { once: true });
+    } else {
+        init();
     }
 })();
