@@ -1,4 +1,4 @@
-/* TRUST HEALTH TECH AI enhancements: Gemini 2.5 Flash, memory, persistent chat history, and voice input. */
+/* TRUST HEALTH TECH AI enhancements: Gemini 2.5 Flash, memory, persistent chat history, voice input, and mobile UI fixes. */
 (function () {
     "use strict";
 
@@ -29,6 +29,74 @@
         return String(value).replace(/[&<>'"]/g, character => ({
             "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;"
         }[character]));
+    }
+
+    function installUiFixes() {
+        if (document.getElementById("trustAiUiFixes")) return;
+
+        const style = document.createElement("style");
+        style.id = "trustAiUiFixes";
+        style.textContent = `
+            .pill-row {
+                display: flex !important;
+                flex-wrap: nowrap !important;
+                overflow-x: auto !important;
+                overflow-y: hidden !important;
+                scrollbar-width: thin;
+                -webkit-overflow-scrolling: touch;
+            }
+            .pill-chip {
+                flex: 0 0 auto !important;
+                min-height: 42px;
+                font-size: .78rem !important;
+                font-weight: 800 !important;
+            }
+            .ads-native-banner {
+                background: linear-gradient(135deg, #dcfce7, #bbf7d0, #ecfdf5) !important;
+                border: 2px solid #86efac !important;
+                border-radius: 14px !important;
+                color: #14532d !important;
+                font-size: .82rem !important;
+                font-weight: 800 !important;
+                box-shadow: 0 4px 12px rgba(34,197,94,.22);
+                animation: trustSponsoredGlow 2.8s ease-in-out infinite;
+            }
+            .ads-native-banner a {
+                display: block;
+                color: #166534 !important;
+                font-size: .92rem !important;
+                font-weight: 800 !important;
+                line-height: 1.35;
+            }
+            .ads-native-banner:active { transform: scale(.97); }
+            @keyframes trustSponsoredGlow {
+                0%, 100% { box-shadow: 0 4px 12px rgba(34,197,94,.22); }
+                50% { box-shadow: 0 0 20px rgba(74,222,128,.65); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        const statCards = document.querySelectorAll(".stats-wrapper .stat-card");
+        if (statCards[2]) {
+            statCards[2].onclick = null;
+            statCards[2].removeAttribute("onclick");
+        }
+
+        const challengeButton = document.getElementById("submitChallengeBtn");
+        if (challengeButton) {
+            challengeButton.onclick = function (event) {
+                event.preventDefault();
+                const answer = document.getElementById("challengeTextarea")?.value || "";
+                if (!answer.trim()) {
+                    alert("Please type your answer first!");
+                    return false;
+                }
+                const question = "What is the normal human arterial blood pH range? Explain 2 causes of metabolic acidosis and how the body compensates.";
+                const whatsappLink = "https://chat.whatsapp.com/FFjZ6gEPWn0KBngsqogAvN?text=" + encodeURIComponent("Lab Challenge #104 Submission\n\nQuestion: " + question + "\n\nMy Answer:\n" + answer);
+                window.open(whatsappLink, "_blank");
+                return false;
+            };
+        }
     }
 
     function createChatControls() {
@@ -145,10 +213,7 @@
                         ].join(" ") }]
                     },
                     contents: getGeminiContents(),
-                    generationConfig: {
-                        temperature: 0.4,
-                        maxOutputTokens: 1200
-                    }
+                    generationConfig: { temperature: 0.4, maxOutputTokens: 1200 }
                 })
             }
         );
@@ -195,6 +260,12 @@
         renderHistory();
     };
 
-    window.addEventListener("DOMContentLoaded", createChatControls);
-    if (document.readyState !== "loading") createChatControls();
+    window.addEventListener("DOMContentLoaded", () => {
+        installUiFixes();
+        createChatControls();
+    });
+    if (document.readyState !== "loading") {
+        installUiFixes();
+        createChatControls();
+    }
 })();
