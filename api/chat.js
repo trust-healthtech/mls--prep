@@ -1,8 +1,8 @@
-// Vercel serverless function: keeps GEMINI_API_KEY on the server.
-// Configure GEMINI_API_KEY in the deployment environment, never in browser storage.
+// Vercel serverless function: keeps the Groq API key on the server.
+// Configure GROQ_API_KEY in the deployment environment, never in browser storage.
 
 const ALLOWED_ORIGIN = process.env.ALLOWED_ORIGIN || "*";
-const MODEL = process.env.GEMINI_MODEL || "gemini-2.5-flash";
+const MODEL = process.env.GROQ_MODEL || "llama-3.1-8b-instant";
 const MAX_QUESTION_LENGTH = 4000;
 const MAX_HISTORY_ITEMS = 16;
 
@@ -19,7 +19,7 @@ module.exports = async function handler(req, res) {
   if (req.method === "OPTIONS") return sendJson(res, 204, {});
   if (req.method !== "POST") return sendJson(res, 405, { error: "Method not allowed" });
 
-  const apiKey = process.env.GEMINI_API_KEY;
+  const apiKey = process.env.GROQ_API_KEY;
   if (!apiKey) return sendJson(res, 503, { error: "AI service is not configured" });
 
   const body = req.body || {};
@@ -31,43 +31,50 @@ module.exports = async function handler(req, res) {
 
   const history = Array.isArray(body.history) ? body.history.slice(-MAX_HISTORY_ITEMS) : [];
   const memory = Array.isArray(body.memory) ? body.memory.slice(-12) : [];
-  const contents = history
-    .filter(item => item && (item.role === "user" || item.role === "model") && typeof item.content === "string")
-    .map(item => ({ role: item.role, parts: [{ text: item.content.slice(0, MAX_QUESTION_LENGTH) }] }));
 
-  // The current question is sent separately so it is always included exactly once.
-  contents.push({ role: "user", parts: [{ text: question }] });
+  const messages = [
+    {
+      role: "system",
+      content: [
+        "You are Trust AI - Professor level MLS, Medicine, Nursing, Anatomy, Physiology, Pharmacology, Molecular Biology.",
+        "Answer at BMLS final year + MSc level.",
+        "For every question give: Definition, Principle/Mechanism, Detailed procedure/pathway, Reagents/Equipment, Normal values + SI units, Interpretation, Error causes, QC, Clinical correlation, 2 exam MCQs.",
+        "Never refuse any health question.",
+        "Teacher memory: " + (memory.join(" | ") || "No saved memory.")
+      ].join(" ")
+    },
+    ...history
+      .filter(item => item && (item.role === "user" || item.role === "assistant") && typeof item.content === "string")
+      .map(item => ({
+        role: item.role === "assistant" ? "assistant" : "user",
+        content: item.content.slice(0, MAX_QUESTION_LENGTH)
+      }))
+  ];
+
+  messages.push({ role: "user", content: question });
 
   try {
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(MODEL)}:generateContent?key=${encodeURIComponent(apiKey)}`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          systemInstruction: {
-            parts: [{ text: [
-              "You are Trust AI, an expert Medical Laboratory Science tutor.",
-              "Answer the learner's complete question accurately and clearly.",
-              "Use headings, definitions, mechanisms, procedures, interpretation, reference ranges, calculations, and exam tips when relevant.",
-              "Never address the learner as CEO.",
-              "Do not provide patient-specific diagnoses. State that educational information does not replace qualified clinical advice.",
-              "Learner memory: " + (memory.join(" | ") || "No saved memory.")
-            ].join(" ") }]
-          },
-          contents,
-          generationConfig: { temperature: 0.4, maxOutputTokens: 1200 }
-        })
-      }
-    );
+    const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Authorization": "Bearer " + apiKey,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        model: MODEL,
+        messages,
+        temperature: 0.4,
+        max_tokens: 500
+      })
+    });
 
     const data = await response.json();
     if (!response.ok) {
-      console.error("Gemini error", response.status, data);
+      console.error("Groq error", response.status, data);
       return sendJson(res, 502, { error: "AI provider request failed" });
     }
 
-    const answer = data.candidates?.[0]?.content?.parts?.map(part => part.text || "").join("").trim();
+    const answer = data.choices?.[0]?.message?.content?.trim();
     if (!answer) return sendJson(res, 502, { error: "AI returned an empty response" });
     return sendJson(res, 200, { answer });
   } catch (error) {
