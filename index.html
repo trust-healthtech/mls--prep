@@ -546,135 +546,61 @@
         }
     }
 
-    const TRUST_AI_KB = [
-        {
-            pattern: /(anemia|anaemia)/i,
-            answer: "Anemia is a condition in which the blood has a reduced ability to carry oxygen, usually because of low hemoglobin or low red blood cell count. Common causes include iron deficiency, blood loss, chronic disease, hemolysis, and bone marrow disorders. Important tests include hemoglobin, hematocrit, MCV, MCH, MCHC, ferritin, reticulocyte count, and iron studies."
-        },
-        {
-            pattern: /(normal.*wbc|wbc.*normal|white blood cell.*normal)/i,
-            answer: "The normal WBC count is usually about 4.0 to 11.0 x 10^9/L, although the exact range varies by lab and patient factors. High WBC may suggest infection, inflammation, stress, or leukemia; low WBC may be due to viral infections, bone marrow suppression, or drug effects."
-        },
-        {
-            pattern: /(urine.*analysis|urinalysis|urine test)/i,
-            answer: "Urinalysis checks the physical, chemical, and microscopic properties of urine. It may include color, clarity, specific gravity, pH, protein, glucose, ketones, blood, nitrite, leukocyte esterase, and microscopic examination for cells, casts, crystals, and bacteria. It is used to detect UTI, kidney disease, dehydration, diabetes, and hematuria."
-        },
-        {
-            pattern: /(metabolic acidosis|acidosis)/i,
-            answer: "Metabolic acidosis is a decrease in blood pH caused mainly by reduced bicarbonate or increased acid. Common causes include diabetic ketoacidosis, lactic acidosis, renal failure, diarrhea, and poisoning. Compensation is mainly by the lungs through hyperventilation, which removes carbon dioxide and helps raise pH."
-        },
-        {
-            pattern: /(arterial blood ph|blood ph|normal.*ph)/i,
-            answer: "The normal arterial blood pH is 7.35 to 7.45. Values below 7.35 indicate acidosis; values above 7.45 indicate alkalosis. The body maintains this narrow range to keep enzymes and cellular processes working correctly."
-        },
-        {
-            pattern: /(blood transfusion|cross match|crossmatch)/i,
-            answer: "Blood transfusion safety requires correct ABO/Rh matching, compatibility testing, and checking for transfusion reactions. Crossmatching helps ensure donor blood is compatible with the recipient and reduces the risk of hemolysis."
-        },
-        {
-            pattern: /(electrolyte|sodium|potassium|chloride|bicarbonate)/i,
-            answer: "Major electrolytes include sodium, potassium, chloride, bicarbonate, calcium, magnesium, and phosphate. They control fluid balance, nerve function, muscle contraction, acid-base balance, and heart rhythm. Abnormal levels can affect kidney function and cardiovascular stability."
-        },
-        {
-            pattern: /(platelet|plt|thrombocytopenia|thrombocytosis)/i,
-            answer: "Platelets are important for clotting. Normal platelet count is usually about 150 to 450 x 10^9/L. Thrombocytopenia causes bleeding risk, while thrombocytosis may be reactive or due to blood disorders."
-        },
-        {
-            pattern: /(albumin|total protein|bilirubin|liver function|lft)/i,
-            answer: "Liver function tests commonly include ALT, AST, ALP, GGT, total bilirubin, direct bilirubin, albumin, and total protein. They help assess liver injury, bile flow, synthetic function, and cholestasis."
-        },
-        {
-            pattern: /(hemoglobin|hgb|hb|rbc)/i,
-            answer: "Hemoglobin is the oxygen-carrying protein in red blood cells. Normal hemoglobin is commonly around 12 to 18 g/dL depending on sex and lab. Low levels suggest anemia, while high levels can occur with dehydration or polycythemia."
-        },
-        {
-            pattern: /(histopathology|pathology|microbiology|hematology|clinical chemistry|immunology)/i,
-            answer: "Medical Laboratory Science covers several core areas: hematology studies blood cells and disorders, clinical chemistry evaluates body fluids and metabolites, microbiology identifies infectious organisms, histopathology examines tissues, and immunology studies immune responses."
-        }
-    ];
+        const TRUST_AI_PROXY = "/api/chat";
 
-    function buildAiFallbackAnswer(question) {
+    function offlineTrustAiReply(question) {
         const q = String(question || "").trim();
-        if (!q) return "Please type a question first.";
-
-        for (const item of TRUST_AI_KB) {
-            if (item.pattern.test(q)) {
-                return item.answer;
-            }
-        }
-
-        return "I can help with Medical Laboratory Science and clinical lab questions. Ask about anemia, blood counts, urinalysis, microbiology, hematology, histopathology, clinical chemistry, electrolytes, or lab calculations. I will answer in a simple, clear way.";
+        if (!q) return "Please type your question first.";
+        return `*Trust AI (Offline)*\nQ: ${q}\n\nAnswering from core knowledge. Ask again with internet for detailed AI answer.\n_Educational only._`;
     }
 
-    async function runAiInquiry() {
-        const question = document.getElementById("aiQueryText").value.trim();
-        const aiBox = document.getElementById("aiChatBox");
+    async function askTrustAI(question) {
+        const response = await fetch(TRUST_AI_PROXY, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                question: String(question || "").trim(),
+                history: window.__trustAiHistory || [],
+                memory: window.__trustAiMemory || []
+            })
+        });
 
-        if (!question) {
+        if (!response.ok) throw new Error("Trust AI proxy failed");
+
+        const data = await response.json();
+        if (!data.answer) throw new Error("Empty AI response");
+
+        return data.answer;
+    }
+
+    window.runAiInquiry = async function () {
+        const input = document.getElementById("aiQueryText");
+        const aiBox = document.getElementById("aiChatBox");
+        const q = (input.value || "").trim();
+
+        if (!q) {
             aiBox.innerText = "Please type your question first.";
             return;
         }
 
+        const currentHistory = Array.isArray(window.__trustAiHistory) ? window.__trustAiHistory : [];
+        const updateHistory = [...currentHistory, { role: "user", content: q }];
+        window.__trustAiHistory = updateHistory.slice(-16);
+        input.value = "";
         aiBox.innerText = "Thinking...";
 
-        const apiKey = localStorage.getItem("trust_ai_api_key");
-
-        if (apiKey && apiKey !== "PASTE_YOUR_KEY_HERE") {
-            try {
-                const response = await fetch("https://api.openai.com/v1/chat/completions", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${apiKey}`
-                    },
-                    body: JSON.stringify({
-                        model: "gpt-4o-mini",
-                        messages: [
-                            {
-                                role: "system",
-                                content: "You are a Medical Laboratory Science tutor. Answer clearly, clinically accurate, and in a student-friendly way. Keep explanations concise but useful."
-                            },
-                            {
-                                role: "user",
-                                content: question
-                            }
-                        ],
-                        temperature: 0.5,
-                        max_tokens: 300
-                    })
-                });
-
-                if (!response.ok) {
-                    throw new Error("AI API failed");
-                }
-
-                const data = await response.json();
-                const text = data.choices?.[0]?.message?.content || "";
-
-                if (text) {
-                    aiBox.innerText = text.trim();
-                    return;
-                }
-            } catch (err) {
-                aiBox.innerText = "AI API not available. Using local MLS knowledge instead.\n\n" + buildAiFallbackAnswer(question);
-                return;
-            }
+        try {
+            const answer = await askTrustAI(q);
+            window.__trustAiHistory = [...window.__trustAiHistory, { role: "assistant", content: answer }].slice(-16);
+            aiBox.innerText = answer.trim();
+        } catch (e) {
+            aiBox.innerText = offlineTrustAiReply(q);
         }
-
-        aiBox.innerText = buildAiFallbackAnswer(question);
-    }
+    };
 
     function askAiPrompt(txt) {
         document.getElementById("aiQueryText").value = txt;
-        runAiInquiry();
-    }
-
-    let activeQuizArray = [], currentQuizIndex = 0, quizCounter = 0, quizCountdownTimer = null, targetQuestionMissed = null;
-
-    function mixedModeCbt() {
-        document.getElementById("courseSelectionContainer").style.display = "none";
-        activeQuizArray = [...QUIZ_QUESTION_BANK].sort(() => 0.5 - Math.random());
-        startActiveQuizLoop();
+        window.runAiInquiry();
     }
 
     function initiateCbtMode(mode) {
