@@ -546,12 +546,19 @@
         }
     }
 
-        const TRUST_AI_PROXY = "/api/chat";
+    const TRUST_AI_PROXY = "https://vercel.app";
+
+    function formatAiText(text) {
+        return text
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\*(.*?)\*/g, '<em>$1</em>')
+            .replace(/\n/g, '<br>');
+    }
 
     function offlineTrustAiReply(question) {
         const q = String(question || "").trim();
         if (!q) return "Please type your question first.";
-        return `*Trust AI (Offline)*\nQ: ${q}\n\nAnswering from core knowledge. Ask again with internet for detailed AI answer.\n_Educational only._`;
+        return `<strong>Trust AI (Offline)</strong><br>Q: ${q}<br><br>Answering from core knowledge. Ask again with internet for detailed AI answer.<br><em>Educational only.</em>`;
     }
 
     async function askTrustAI(question) {
@@ -573,13 +580,16 @@
         return data.answer;
     }
 
+    window.__trustAiHistory = window.__trustAiHistory || [];
+    window.__trustAiMemory = window.__trustAiMemory || [];
+
     window.runAiInquiry = async function () {
         const input = document.getElementById("aiQueryText");
         const aiBox = document.getElementById("aiChatBox");
         const q = (input.value || "").trim();
 
         if (!q) {
-            aiBox.innerText = "Please type your question first.";
+            aiBox.innerHTML = "Please type your question first.";
             return;
         }
 
@@ -587,14 +597,14 @@
         const updateHistory = [...currentHistory, { role: "user", content: q }];
         window.__trustAiHistory = updateHistory.slice(-16);
         input.value = "";
-        aiBox.innerText = "Thinking...";
+        aiBox.innerHTML = "Thinking...";
 
         try {
             const answer = await askTrustAI(q);
             window.__trustAiHistory = [...window.__trustAiHistory, { role: "assistant", content: answer }].slice(-16);
-            aiBox.innerText = answer.trim();
+            aiBox.innerHTML = formatAiText(answer.trim());
         } catch (e) {
-            aiBox.innerText = offlineTrustAiReply(q);
+            aiBox.innerHTML = offlineTrustAiReply(q);
         }
     };
 
