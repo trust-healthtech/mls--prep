@@ -12,37 +12,53 @@ export default async function handler(req, res) {
 
     const lower = userQuestion.toLowerCase().trim();
     let finalPrompt = userQuestion;
-    let tokenSize = 600;
+    let tokenSize = 650;
 
-    if (lower === 'yes' || lower === 'y' || lower === 'continue') {
-      tokenSize = 800;
-      finalPrompt = `User said YES to continue. Last topic: ${lastTopic}. Give MEDIUM detailed explanation (8-10 bullets, causes, lab values) about the related subtopic you suggested in last answer.`;
-    } else if (lower === 'no' || lower === 'n' || lower === 'stop') {
+    // --- FIXED SMART DETECTION (no more k/y bug) ---
+    const yesExact = ['yes','y','yep','yup','yea','yah','yeh','yess','alright','alrighty','aight','ok','okay','okk','k','kk','sure','bet','great','cool','nice','fine'];
+    const yesPhrases = ['sure thing','of course','definitely','absolutely','go ahead','proceed','continue','lets go',"let's go",'go on','why not','do it','show me','tell me'];
+
+    const noExact = ['no','noo','nooo','nope','nah','nahh','nop','nopes','stop','cancel','end','quit','abort','leave','skip','later'];
+    const noPhrases = ['not now',"don't",'dont','never mind','nevermind','no thanks','not interested','noo thanks'];
+
+    const moreWords = ['detailed','detail','more','elaborate','deep','full','textbook','comprehensive','expand','breakdown','indepth','further'];
+
+    const isYes = yesExact.includes(lower) || yesPhrases.some(w => lower.includes(w));
+    const isNo = noExact.includes(lower) || noPhrases.some(w => lower.includes(w));
+    const isMore = moreWords.some(w => lower.includes(w)) || lower.includes('explain more') || lower.includes('need more') || lower.includes('more info');
+
+    if (isMore &&!isYes) {
+      tokenSize = 1600;
+      finalPrompt = `User wants FULL DETAILED health/MLS explanation for: ${lastTopic || userQuestion}. Provide comprehensive modern textbook answer.`;
+    } else if (isYes &&!isMore) {
+      tokenSize = 850;
+      finalPrompt = `User said YES (said: "${userQuestion}") to continue related health/MLS topic. Last topic: ${lastTopic}. Continue with medium modern explanation of the related subtopic you suggested.`;
+    } else if (isNo) {
       return res.status(200).json({
         status: 'online',
-        answer: `Got it! 🛑 Stopped.\n\nAsk any new MLS question when ready.\n\n💡 Tip: Type "detailed" anytime for full textbook version.`
+        answer: `Got it! 🛑 No problem.\n\nAsk any other MLS or Health question when ready! 🧬\n\n💡 Tip: Type "more" for full version.`
       });
-    } else if (lower === 'detailed' || lower === 'detail') {
-      tokenSize = 1500;
-      finalPrompt = `User wants DETAILED textbook explanation for: ${lastTopic || 'previous topic'}. Full detailed with tables.`;
     }
 
-    const recentHistory = history.slice(-8);
+    const recentHistory = history.slice(-10);
 
-    const systemInstruction = `You are TRUST AI LAB ASSISTANT with RETENTIVE MEMORY.
+    const systemInstruction = `You are TRUST AI LAB ASSISTANT 🧬 - AI for MLS + Health Education ONLY.
+LOCKED TO: MLS (Chem Path, Hematology, Microbiology, Histopathology, Blood Bank, Immunology) + All Health/Medicine.
+If NOT health/MLS: Reply "🧬 I'm TRUST AI Lab Assistant - I answer only MLS & Health educational questions."
 RULES:
-1. You HAVE MEMORY - use history.
-2. DEFAULT: MEDIUM detailed (8-10 bullets, definition, causes, types, lab features).
-3. After EVERY answer add:
-💡 Type "detailed" for full textbook version.
+1. MEMORY: Use history.
+2. DEFAULT: Modern medium 8-10 bullets with headings, emojis, lab values.
+3. If user says any more-word: Give FULL textbook answer.
+4. After EVERY answer:
+💡 Type "more" for full version.
 
 👉 Related: Want to explore "[relevant subtopic]"? Type Yes / No.
-4. Related MUST align 100% with current topic. Kidney->Nephron/GFR/AKI. Liver->LFT.
-5. If user says YES, give MEDIUM explanation of that related topic.`;
+5. Related 100% aligned: Kidney->Nephron/GFR/AKI. Liver->LFT etc.
+`;
 
     const messages = [
       { role: 'system', content: systemInstruction },
-     ...recentHistory,
+  ...recentHistory,
       { role: 'user', content: finalPrompt }
     ];
 
@@ -52,7 +68,7 @@ RULES:
       body: JSON.stringify({
         model: 'openai/gpt-oss-20b',
         messages,
-        temperature: 0.4,
+        temperature: 0.35,
         max_tokens: tokenSize
       })
     });
@@ -66,4 +82,4 @@ RULES:
     console.error(e);
     return res.status(500).json({ error: e.message });
   }
-  }
+      }
