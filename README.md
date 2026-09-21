@@ -18,7 +18,7 @@
 | **🧠 Topics** | 250+ Searchable Topics Inside |
 | **🛡️ Mission** | Trust-First: Affordable for ALL MLS/Health students |
 | **💳 MAX Price** | **₦2,500 EVER** |
-| **🚀 Current Phase** | **🚀 Founding Promo - ⏰ Ends Dec 31, 2026** |
+| **Current Phase** | **🚀 Founding Promo - ⏰ Ends Dec 31, 2026** |
 
 ### 💰 CURRENT PRICING - FOR EVERY MLS/HEALTH STUDENT
 
