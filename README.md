@@ -16,7 +16,7 @@
 | :--- | :--- |
 | **📚 Courses** | **15 Branded Volumes (100L-500L)** |
 | **🧠 Topics** | **250+ Searchable Topics Inside** |
-| **🛡️ Mission** | **Trust-First: Affordable for ALL MLS/Health students** |
+| **🛡️ Mission** | **Affordable for ALL MLS/Health students** |
 | **💳 MAX Price** | **₦2,500 EVER** |
 | **🌍 AI Tutor** | **Explains in English + 100+ Languages + Nigerian Pidgin - Your Language, Your Understanding** |
 | **Current Phase** | **🚀 Founding Promo - ⏰ Ends Dec 31, 2026** |
