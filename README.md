@@ -18,7 +18,7 @@
 | **🧠 Topics** | **250+ Searchable Topics Inside** |
 | **🛡️ Mission** | **Trust-First: Affordable for ALL MLS/Health students** |
 | **💳 MAX Price** | **₦2,500 EVER** |
-| **🌍 AI Tutor** | **Explains in 100+ Languages - Your Language, Your Understanding** |
+| **🌍 AI Tutor** | **Explains in English + 100+ Languages + Nigerian Pidgin - Your Language, Your Understanding** |
 | **Current Phase** | **🚀 Founding Promo - ⏰ Ends Dec 31, 2026** |
 
 ### 💰 CURRENT PRICING - FOR EVERY MLS/HEALTH STUDENT
