@@ -33,24 +33,24 @@ export default async function handler(req, res) {
       finalPrompt = `User speaks Pidgin/Broken: "${userQuestion}". Last topic: ${lastTopic}. Handle per Pidgin rule.`;
     }
 
-    // --- TRUTHFUL PDF MAPPER - NO LIE ---
+    // --- TRUTHFUL PDF MAPPER - SHORT DISPLAY NO CUT-OFF - NO LIE ---
     function getPdfRecommendation(q, topic) {
       const text = `${q} ${topic||''}`.toLowerCase();
-      if (text.match(/anemia|hb|hemoglobin|pcv|wbc|rbc|hematology|blood cell|platelet|bone marrow|iron|esr|blood film|clotting|coagulation/)) return '7. 300L_DIAGNOSTIC_HEMATOLOGY_VOL_I.pdf - In-depth cell morphology, analyzer diagnostics, iron panel & bone marrow models';
-      if (text.match(/lft|rft|liver|kidney|creatinine|urea|bilirubin|electrolyte|metabolic|serum protein|clinical chemistry|biochemistry systems/)) return '8. 300L_CLINICAL_BIOCHEMISTRY_SYSTEMS.pdf - LFT/RFT panels, serum proteins & disease dashboards';
-      if (text.match(/bacteria|virus|microbiology|culture|media preparation|aerobic|biochemical reaction|gram stain|antibiotic|sensitivity/)) return '9. 300L_MEDICAL_MICROBIOLOGY_TECHNIQUES.pdf - Isolation, media prep & interpretation pathways';
-      if (text.match(/histopathology|tissue processing|microtomy|biopsy|staining|h\&e|fixation/)) return '10. 400L_HISTOPATHOLOGY_TISSUE_PROCESSING.pdf - Tissue processing cycles & staining interpretations';
-      if (text.match(/parasite|parasitology|helminth|protozoa|fecal|stool|vector|malaria|amoeba|giardia/)) return '11. 400L_MEDICAL_PARASITOLOGY_VECTORS.pdf - Fecal diagnostics & lifecycle profiling';
-      if (text.match(/immunology|serology|elisa|antibody|antigen|latex|vdrl|widal|hiv screening|hepatitis screen/)) return '12. 400L_IMMUNOLOGY_SEROLOGY_DIAGNOSTICS.pdf - Serological profiling & antibody identification';
-      if (text.match(/blood transfusion|blood bank|cross.?match|coombs|antibody titration|blood group|storage|donor|compatibility/)) return '13. 500L_BLOOD_TRANSFUSION_SCIENCES.pdf - Cross-matching & Coombs test maps';
-      if (text.match(/lab informatics|lis|informatics|laboratory network|database|system interface|laboratory software|error handling|ai lab/)) return '14. 500L_CLINICAL_LAB_INFORMATICS.pdf - Network security & database models';
-      if (text.match(/epidemiology|research|thesis|outbreak|surveillance|medical math|sampling|statistics|study design/)) return '15. 500L_EPIDEMIOLOGY_RESEARCH_THESIS.pdf - Outbreak surveillance & thesis architecture';
-      if (text.match(/anatomy|physiology|organ system|endocrine|renal physiology|heart|circulation|respiratory/)) return '5. 200L_BASIC_ANATOMY_PHYSIOLOGY_METRICS.pdf - Organ systems & physiology parameters';
-      if (text.match(/organic|metabolism|carbohydrate|lipid|protein metabolism|enzyme|krebs|glycolysis/)) return '6. 200L_ORGANIC_BIOCHEMISTRY_FOUNDATIONS.pdf - Metabolism maps & enzyme reaction speeds';
-      if (text.match(/analytical|blood collection|anticoagulant|edta|phlebotomy|safety|lab metrics|quality control|measurement/)) return '4. 200L_ANALYTICAL_LAB_METRICS_MANUAL.pdf - Blood collection & analytical standards';
-      if (text.match(/medical chemistry|atomic|buffer|mole|solution|ph|subshell|electron|matrix formula/)) return '1. 100L_INTRODUCTION_TO_MEDICAL_CHEMISTRY.pdf - Foundational tracking rules & buffer parameters';
-      if (text.match(/cellular biology|cell biology|membrane|nucleus|genetic transcription|tissue classification|cell interaction/)) return '2. 100L_CELLULAR_BIOLOGY_CORE_BASICS.pdf - Structural layouts & transcription steps';
-      if (text.match(/medical physics|fluid mechanics|radioactive|isotope|transducer|biomedical physics/)) return '3. 100L_FOUNDATIONAL_MEDICAL_PHYSICS.pdf - Fluid mechanics & transducer parameters';
+      if (text.match(/anemia|hb|hemoglobin|pcv|wbc|rbc|hematology|blood cell|platelet|bone marrow|iron|esr|blood film|clotting|coagulation|blood cell count|egfr.*blood|wbc differential/)) return { short: 'PDF 7: Diagnostic Hematology', full: '300L_DIAGNOSTIC_HEMATOLOGY_VOL_I.pdf' };
+      if (text.match(/lft|rft|liver|kidney|creatinine|urea|bilirubin|electrolyte|metabolic|serum protein|clinical chemistry|urine test|egfr calculator|ckd-epi/)) return { short: 'PDF 8: Clinical Biochemistry', full: '300L_CLINICAL_BIOCHEMISTRY_SYSTEMS.pdf' };
+      if (text.match(/bacteria|virus|microbiology|culture|media preparation|aerobic|biochemical reaction|gram stain|antibiotic|sensitivity/)) return { short: 'PDF 9: Medical Microbiology', full: '300L_MEDICAL_MICROBIOLOGY_TECHNIQUES.pdf' };
+      if (text.match(/histopathology|tissue processing|microtomy|biopsy|staining|fixation/)) return { short: 'PDF 10: Histopathology', full: '400L_HISTOPATHOLOGY_TISSUE_PROCESSING.pdf' };
+      if (text.match(/parasite|parasitology|helminth|protozoa|fecal|stool|vector|malaria|amoeba|giardia/)) return { short: 'PDF 11: Parasitology & Vectors', full: '400L_MEDICAL_PARASITOLOGY_VECTORS.pdf' };
+      if (text.match(/immunology|serology|elisa|antibody|antigen|latex|vdrl|widal|hiv screening|hepatitis screen/)) return { short: 'PDF 12: Immunology & Serology', full: '400L_IMMUNOLOGY_SEROLOGY_DIAGNOSTICS.pdf' };
+      if (text.match(/blood transfusion|blood bank|cross.?match|coombs|antibody titration|blood group|storage|donor|compatibility/)) return { short: 'PDF 13: Blood Transfusion', full: '500L_BLOOD_TRANSFUSION_SCIENCES.pdf' };
+      if (text.match(/lab informatics|lis|informatics|laboratory network|database|system interface|laboratory software/)) return { short: 'PDF 14: Lab Informatics', full: '500L_CLINICAL_LAB_INFORMATICS.pdf' };
+      if (text.match(/epidemiology|research|thesis|outbreak|surveillance|medical math|sampling|statistics|study design/)) return { short: 'PDF 15: Epidemiology & Thesis', full: '500L_EPIDEMIOLOGY_RESEARCH_THESIS.pdf' };
+      if (text.match(/anatomy|physiology|organ system|endocrine|renal physiology|heart|circulation|respiratory/)) return { short: 'PDF 5: Anatomy & Physiology', full: '200L_BASIC_ANATOMY_PHYSIOLOGY_METRICS.pdf' };
+      if (text.match(/organic|metabolism|carbohydrate|lipid|protein metabolism|enzyme|krebs|glycolysis/)) return { short: 'PDF 6: Organic Biochemistry', full: '200L_ORGANIC_BIOCHEMISTRY_FOUNDATIONS.pdf' };
+      if (text.match(/analytical|blood collection|anticoagulant|edta|phlebotomy|safety|lab metrics|quality control|measurement/)) return { short: 'PDF 4: Analytical Lab Metrics', full: '200L_ANALYTICAL_LAB_METRICS_MANUAL.pdf' };
+      if (text.match(/medical chemistry|atomic|buffer|mole|solution|ph|subshell|electron|matrix formula/)) return { short: 'PDF 1: Medical Chemistry', full: '100L_INTRODUCTION_TO_MEDICAL_CHEMISTRY.pdf' };
+      if (text.match(/cellular biology|cell biology|membrane|nucleus|genetic transcription|tissue classification|cell interaction/)) return { short: 'PDF 2: Cellular Biology', full: '100L_CELLULAR_BIOLOGY_CORE_BASICS.pdf' };
+      if (text.match(/medical physics|fluid mechanics|radioactive|isotope|transducer|biomedical physics/)) return { short: 'PDF 3: Medical Physics', full: '100L_FOUNDATIONAL_MEDICAL_PHYSICS.pdf' };
       return null;
     }
 
@@ -58,7 +58,7 @@ export default async function handler(req, res) {
     const recentHistory = history.slice(-12);
 
     const systemInstruction = `You are TRUST AI LAB ASSISTANT - Global Pro Lecturer AI for MLS, Health, AI, Use of English.
-CATALOG OF 15 REAL PDFs (NEVER INVENT OUTSIDE THIS):
+CATALOG OF 15 REAL PDFs (FOR SYSTEM USE ONLY - DO NOT LIST IN ANSWER):
 1. 100L_INTRODUCTION_TO_MEDICAL_CHEMISTRY.pdf
 2. 100L_CELLULAR_BIOLOGY_CORE_BASICS.pdf
 3. 100L_FOUNDATIONAL_MEDICAL_PHYSICS.pdf
@@ -76,7 +76,6 @@ CATALOG OF 15 REAL PDFs (NEVER INVENT OUTSIDE THIS):
 15. 500L_EPIDEMIOLOGY_RESEARCH_THESIS.pdf
 
 LANGUAGE RULE: Default Simple English. If user Pidgin like "abeg, wetin, break am", first explain simple English, then ASK: "Would you like me to explain in Pidgin? Type Yes or No." If YES -> Pidgin + MLS terms.
-
 FORMATTING: NEVER USE ### or ##. Use ONLY 1️⃣ 2️⃣ 3️⃣ for headings, - for bullets, **bold** for key terms.
 PRO LECTURER STRUCTURE - FOR EVERY ANSWER MUST INCLUDE:
 1️⃣ Definition / Overview
@@ -86,8 +85,7 @@ PRO LECTURER STRUCTURE - FOR EVERY ANSWER MUST INCLUDE:
 5️⃣ 🧠 EXAM HACK: 1-2 mnemonics
 6️⃣ Simple English Summary
 End with: 💡 Type "more" for full textbook lecture + more traps & hacks. 👉 Related: Want to explore "[relevant subtopic]"? Type Yes / No.
-TRUTH RULE: When recommending PDF, ONLY recommend from catalog above that matches topic. Do NOT lie. If topic like "Anemia" -> recommend Hematology PDF. If no exact match, say "Browse the 15 PDFs at top using search bar".
-
+IMPORTANT: Do NOT mention any PDF inside your lecture. Do NOT add "Recommended PDF". System footer will handle it. You focus only on lecture content.
 ALLOWED: MLS, Health, Medicine, AI basics, Use of English. TONE: Lecturer, friendly.`;
 
     const messages = [{ role: 'system', content: systemInstruction },...recentHistory, { role: 'user', content: finalPrompt }];
@@ -103,9 +101,9 @@ ALLOWED: MLS, Health, Medicine, AI basics, Use of English. TONE: Lecturer, frien
 
     let promoFooter;
     if (pdfMatch) {
-      promoFooter = `\n\n---\n📚 Love this topic? Keep it!\nFor this exact topic, get: **${pdfMatch}**\n⬇️ Download it now - Scroll up ☝️ Your PDFs are at the top! Get File button! 🧬`;
+      promoFooter = `\n\n---\n📚 Love this topic? Keep it!\nFor this exact topic, get:\n**${pdfMatch.short}**\n(${pdfMatch.full})\n⬇️ Scroll up ☝️ Top of page - Tap Get File! 🧬`;
     } else {
-      promoFooter = `\n\n---\n📚 Love this lecture? Keep it!\n⬇️ Browse your 15 TRUST Health Tech PDFs at the top - Use search bar for your topic!\n☝️ Scroll up to get your copy! 🧬`;
+      promoFooter = `\n\n---\n📚 Love this lecture? Keep it!\n⬇️ Browse 15 PDFs at top - Use search bar for your topic!\n☝️ Scroll up to get your copy! 🧬`;
     }
 
     cleanAnswer = cleanAnswer + promoFooter;
@@ -114,4 +112,4 @@ ALLOWED: MLS, Health, Medicine, AI basics, Use of English. TONE: Lecturer, frien
     console.error(e);
     return res.status(500).json({ error: e.message });
   }
-  }
+                       }
