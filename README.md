@@ -26,8 +26,8 @@
 | **Courses** | 15 Branded Volumes (100L-500L) |
 | **Topics** | 250+ Searchable Topics Inside |
 | **Mission** | Trust-First: Affordable for ALL MLS/Health students |
-| **MAX Price** | **₦2,500 / $25 EVER - No ₦15,000** |
-| **Current Phase** | **Founding Promo - Ends Dec 31, 2026** |
+| **MAX Price** | **₦2,500 / $25 EVER  |
+| **Current Phase** | **🚀Founding Promo - ⏰Ends Dec 31, 2026** |
 
 ---
 
