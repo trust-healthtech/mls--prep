@@ -2,55 +2,68 @@ export default async function handler(req, res) {
   if (req.method!== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
-
   try {
-    const { question, message, model, lastTopic, lastRelated } = req.body;
+    const { question, message, history = [], lastTopic } = req.body;
     const userQuestion = question || message;
     if (!userQuestion) return res.status(400).json({ error: 'No question provided' });
 
     const groqKey = process.env.GROQ_API_KEY;
+    if (!groqKey) return res.status(500).json({ error: 'GROQ_API_KEY missing' });
+
     const lower = userQuestion.toLowerCase().trim();
-
-    // Handle YES / NO logic
     let finalPrompt = userQuestion;
-    let isDetailed = lower.includes('detailed');
+    let tokenSize = 600;
 
-    if (lower === 'yes' || lower === 'y') {
-      finalPrompt = `User said YES to explore the related topic you suggested last. Last topic was: ${lastTopic || 'previous topic'}, Related you suggested was: ${lastRelated || 'related subtopic'}. Now explain that related topic in SHORT bullet form.`;
-      isDetailed = false;
-    } else if (lower === 'no' || lower === 'n') {
+    if (lower === 'yes' || lower === 'y' || lower === 'continue') {
+      tokenSize = 800;
+      finalPrompt = `User said YES to continue. Last topic: ${lastTopic}. Give MEDIUM detailed explanation (8-10 bullets, causes, lab values) about the related subtopic you suggested in last answer.`;
+    } else if (lower === 'no' || lower === 'n' || lower === 'stop') {
       return res.status(200).json({
         status: 'online',
-        answer: `Alright! 👍 Ask any new MLS, chemistry, pathology, or blood bank question when you're ready.\n\n💡 Tip: You can also tap the quick buttons below.`
+        answer: `Got it! 🛑 Stopped.\n\nAsk any new MLS question when ready.\n\n💡 Tip: Type "detailed" anytime for full textbook version.`
       });
     } else if (lower === 'detailed' || lower === 'detail') {
-      finalPrompt = `Explain in full detailed textbook style with tables, physiology, causes: ${lastTopic || 'the previous topic'}`;
-      isDetailed = true;
+      tokenSize = 1500;
+      finalPrompt = `User wants DETAILED textbook explanation for: ${lastTopic || 'previous topic'}. Full detailed with tables.`;
     }
+
+    const recentHistory = history.slice(-8);
+
+    const systemInstruction = `You are TRUST AI LAB ASSISTANT with RETENTIVE MEMORY.
+RULES:
+1. You HAVE MEMORY - use history.
+2. DEFAULT: MEDIUM detailed (8-10 bullets, definition, causes, types, lab features).
+3. After EVERY answer add:
+💡 Type "detailed" for full textbook version.
+
+👉 Related: Want to explore "[relevant subtopic]"? Type Yes / No.
+4. Related MUST align 100% with current topic. Kidney->Nephron/GFR/AKI. Liver->LFT.
+5. If user says YES, give MEDIUM explanation of that related topic.`;
+
+    const messages = [
+      { role: 'system', content: systemInstruction },
+     ...recentHistory,
+      { role: 'user', content: finalPrompt }
+    ];
 
     const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method: 'POST',
       headers: { 'Authorization': `Bearer ${groqKey}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        model: model || 'openai/gpt-oss-20b',
-        messages: [
-          {
-            role: 'system',
-            content: `You are TRUST AI LAB ASSISTANT. RULES: 1) Default SHORT answer (max 6 bullets). 2) At end, ALWAYS add exactly 3 lines: Line1: 💡 Type "detailed" for full detailed explanation. Line2: blank line. Line3: 👉 Related: Want to explore "[1 related subtopic name here]"? Type Yes / No. 3) Related topic must be very relevant to current question. 4) If user asks detailed, give LONG textbook answer. Educational only.`
-          },
-          { role: 'user', content: finalPrompt }
-        ],
+        model: 'openai/gpt-oss-20b',
+        messages,
         temperature: 0.4,
-        max_tokens: isDetailed? 1500 : 600
+        max_tokens: tokenSize
       })
     });
 
     const data = await response.json();
-    if (!response.ok) throw new Error(data.error?.message);
+    if (!response.ok) throw new Error(data.error?.message || 'Groq error');
 
     return res.status(200).json({ status: 'online', answer: data.choices[0].message.content });
 
   } catch (e) {
+    console.error(e);
     return res.status(500).json({ error: e.message });
   }
-        }
+  }
