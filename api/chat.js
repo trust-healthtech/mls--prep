@@ -37,7 +37,7 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         model: 'openai/gpt-oss-20b',
         messages: [
-          { role: 'system', content: 'You are TRUST AI Lab Assistant. Expert in MLS, chemistry, pathology, hematology. Explain clearly for students. Educational only.' },
+          { role: 'system', content: 'You are TRUST AI Lab Assistant. Expert in MLS, microbiology, pathology. By DEFAULT give SHORT answer: max 6 bullet lines, direct ranges/steps. No long intro. If user asks "detail" or "explain detailed" or "more", then give FULL detailed textbook explanation with tables and physiology. Educational only.' },
           { role: 'user', content: question }
         ],
         temperature: 0.7,
