@@ -1,12 +1,12 @@
 <div align="center">
 
-![15](https://img.shields.io/badge/15-0F172A?style=for-the-badge) ![COURSES](https://img.shields.io/badge/COURSES-2563EB?style=for-the-badge) ![250+](https://img.shields.io/badge/250%2B-334155?style=for-the-badge) ![TOPICS](https://img.shields.io/badge/TOPICS-7C3AED?style=for-the-badge)
+<img src="https://img.shields.io/badge/15-0F172A?style=for-the-badge" height="38"> <img src="https://img.shields.io/badge/COURSES-2563EB?style=for-the-badge" height="38"> <img src="https://img.shields.io/badge/250%2B-334155?style=for-the-badge" height="38"> <img src="https://img.shields.io/badge/TOPICS-7C3AED?style=for-the-badge" height="38">
 
-![MAX ₦2500](https://img.shields.io/badge/MAX%20₦2500-0F172A?style=for-the-badge) ![EVER](https://img.shields.io/badge/EVER-059669?style=for-the-badge)
+<img src="https://img.shields.io/badge/MAX%20₦2500-0F172A?style=for-the-badge" height="38"> <img src="https://img.shields.io/badge/EVER-059669?style=for-the-badge" height="38">
 
-![PROMO ENDS](https://img.shields.io/badge/PROMO%20ENDS-0F172A?style=for-the-badge) ![DEC 31 2026](https://img.shields.io/badge/DEC%2031%202026-DC2626?style=for-the-badge)
+<img src="https://img.shields.io/badge/PROMO%20ENDS-0F172A?style=for-the-badge" height="38"> <img src="https://img.shields.io/badge/DEC%2031%202026-DC2626?style=for-the-badge" height="38">
 
-> 🎓 Built for EVERY MLS/Health student - Affordable for all, MAX ₦2,500 ever. No one left behind.
+### 🎓 Built for EVERY MLS/Health student - Affordable for all, MAX ₦2,500 ever. No one left behind.
 
 </div>
 
