@@ -4,60 +4,53 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { question, message, model } = req.body;
+    const { question, message, model, lastTopic, lastRelated } = req.body;
     const userQuestion = question || message;
-
-    if (!userQuestion) {
-      return res.status(400).json({ error: 'No question provided' });
-    }
+    if (!userQuestion) return res.status(400).json({ error: 'No question provided' });
 
     const groqKey = process.env.GROQ_API_KEY;
-    if (!groqKey) {
-      return res.status(500).json({ error: 'GROQ_API_KEY missing in Vercel' });
-    }
+    const lower = userQuestion.toLowerCase().trim();
 
-    // SMART MEMORY LOGIC
-    const isDetailedOnly = userQuestion.toLowerCase().trim() === 'detailed' || userQuestion.toLowerCase().trim() === 'detail';
-    const isAskingDetailed = userQuestion.toLowerCase().includes('detailed') || userQuestion.toLowerCase().includes('detail');
-
+    // Handle YES / NO logic
     let finalPrompt = userQuestion;
-    if (isDetailedOnly) {
-      finalPrompt = 'Explain the previous topic we discussed in full detailed textbook style with physiology, causes, clinical significance, tables and exam points.';
+    let isDetailed = lower.includes('detailed');
+
+    if (lower === 'yes' || lower === 'y') {
+      finalPrompt = `User said YES to explore the related topic you suggested last. Last topic was: ${lastTopic || 'previous topic'}, Related you suggested was: ${lastRelated || 'related subtopic'}. Now explain that related topic in SHORT bullet form.`;
+      isDetailed = false;
+    } else if (lower === 'no' || lower === 'n') {
+      return res.status(200).json({
+        status: 'online',
+        answer: `Alright! 👍 Ask any new MLS, chemistry, pathology, or blood bank question when you're ready.\n\n💡 Tip: You can also tap the quick buttons below.`
+      });
+    } else if (lower === 'detailed' || lower === 'detail') {
+      finalPrompt = `Explain in full detailed textbook style with tables, physiology, causes: ${lastTopic || 'the previous topic'}`;
+      isDetailed = true;
     }
 
     const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${groqKey}`,
-        'Content-Type': 'application/json'
-      },
+      headers: { 'Authorization': `Bearer ${groqKey}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({
         model: model || 'openai/gpt-oss-20b',
         messages: [
           {
             role: 'system',
-            content: 'You are TRUST AI LAB ASSISTANT for MLS students in Nigeria. RULES: 1) By default ALWAYS give SHORT, exam-focused answer: max 6 bullet points, direct normal values, steps, causes. No long story. 2) At the VERY END of EVERY short answer, on a new line, ALWAYS add: 💡 Type "detailed" for full detailed explanation. 3) If user asks for detailed/detail/more, then give FULL LONG textbook explanation with tables, physiology, causes, clinical significance. Educational purpose only.'
+            content: `You are TRUST AI LAB ASSISTANT. RULES: 1) Default SHORT answer (max 6 bullets). 2) At end, ALWAYS add exactly 3 lines: Line1: 💡 Type "detailed" for full detailed explanation. Line2: blank line. Line3: 👉 Related: Want to explore "[1 related subtopic name here]"? Type Yes / No. 3) Related topic must be very relevant to current question. 4) If user asks detailed, give LONG textbook answer. Educational only.`
           },
           { role: 'user', content: finalPrompt }
         ],
         temperature: 0.4,
-        max_tokens: isAskingDetailed? 1500 : 500
+        max_tokens: isDetailed? 1500 : 600
       })
     });
 
     const data = await response.json();
+    if (!response.ok) throw new Error(data.error?.message);
 
-    if (!response.ok) {
-      throw new Error(data.error?.message || 'Groq API error');
-    }
+    return res.status(200).json({ status: 'online', answer: data.choices[0].message.content });
 
-    return res.status(200).json({
-      status: 'online',
-      answer: data.choices[0].message.content
-    });
-
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ error: error.message });
+  } catch (e) {
+    return res.status(500).json({ error: e.message });
   }
-}
+        }
