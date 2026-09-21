@@ -54,7 +54,7 @@ End with: 💡 Type "more" for full textbook lecture + more traps & hacks. 👉 
 ALLOWED: MLS, Health, Medicine, AI basics, Use of English. TONE: Lecturer, friendly.`;
     const messages = [
       { role: 'system', content: systemInstruction },
-   ...recentHistory,
+  ...recentHistory,
       { role: 'user', content: finalPrompt }
     ];
     const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
@@ -65,7 +65,7 @@ ALLOWED: MLS, Health, Medicine, AI basics, Use of English. TONE: Lecturer, frien
     const data = await response.json();
     if (!response.ok) throw new Error(data.error?.message || 'Groq error');
     let cleanAnswer = data.choices[0].message.content.replace(/###/g, '').replace(/##/g, '').replace(/^#+\s/gm, '').trim();
-    const promoFooter = `\n\n---\n📚 Love this lecture? Keep it!\n⬇️ Download TRUST Health Tech PDFs for offline reading & exam revision!\n👉 Check Trust Health Tech page to get your copy! 🧬`;
+    const promoFooter = `\n\n---\n📚 Love this lecture? Keep it!\n⬇️ Download TRUST Health Tech PDFs for offline reading & exam revision!\n☝️ Scroll up to get your copy - Your PDFs are up at the top! 🧬`;
     cleanAnswer = cleanAnswer + promoFooter;
     return res.status(200).json({ status: 'online', answer: cleanAnswer });
   } catch (e) {
