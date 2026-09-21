@@ -6,7 +6,7 @@
 
 <img src="https://img.shields.io/badge/PROMO%20ENDS-0F172A?style=for-the-badge" height="38"> <img src="https://img.shields.io/badge/DEC%2031%202026-DC2626?style=for-the-badge" height="38">
 
-### 🎓 Built for EVERY MLS/Health student - Affordable for all, MAX ₦2,500 ever. No one left behind.
+### 🎓 Built for EVERY MLS/Health student - Affordable for all, MAX ₦2,500 ever. No one left behind🙏.
 
 </div>
 
