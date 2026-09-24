@@ -1,0 +1,21 @@
+{
+  "short_name": "MLS Terminal",
+  "name": "Trust Health Tech - Academic Node",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0b132b",
+  "theme_color": "#0052cc",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "./icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "./icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}
