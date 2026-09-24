@@ -1,0 +1,16 @@
+{
+  "name": "MLS Prep - Exam Countdown and Study Web/App for Students",
+  "short_name": "MLS Prep",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1e40af",
+  "description": "MLS Prep - Exam Countdown and Study Web/App for Students",
+  "icons": [
+    {
+      "src": "/og-banner.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
