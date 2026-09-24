@@ -25,7 +25,7 @@
         body { background-color: var(--bg-gray); color: var(--text-dark); display: flex; justify-content: center; min-height: 100vh; }
         .mobile-shell { width: 100%; max-width: 480px; background: #f8fafc; display: flex; flex-direction: column; gap: 16px; padding-bottom: 40px; min-height: 100vh; box-shadow: 0 0 20px rgba(0,0,0,0.03); }
         .card { background: var(--card-bg); border-radius: var(--radius); padding: 16px; margin: 0 16px; box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,0.01); text-align: left; }
-        .tip-box { font-size: 0.72rem; color: var(--text-muted); margin-top: 6px; font-weight: 500; line-height: 1.3; text-align: left; }
+        .tip-box { font-size: 0.82rem; color: #1a202c; margin-top: 6px; font-weight: 600; line-height: 1.4; text-align: left; }
         .btn { width: 100%; padding: 12px; border: none; border-radius: 8px; font-weight: 700; font-size: 0.9rem; cursor: pointer; transition: all 0.2s ease; display: inline-block; text-align: center; text-decoration: none; }
         .btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
         .btn:active { transform: scale(0.98); opacity: 0.9; }
@@ -42,13 +42,13 @@
         .tagline-gold { color: var(--gold); font-size: 0.68rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
         .header-tip-bar { background: rgba(255,255,255,0.1); margin: 12px -16px -20px; padding: 8px 16px; font-size: 0.7rem; color: #fff; line-height: 1.3; text-align: center; }
         .stats-wrapper { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 0 16px; }
-        .stat-card { background: var(--card-bg); border-radius: var(--radius); padding: 12px 6px; text-align: center; box-shadow: var(--shadow); cursor: pointer; transition: transform 0.2s; }
+        .stat-card { background: var(--card-bg); border-radius: var(--radius); padding: 12px 6px; text-align: center; box-shadow: var(--shadow); cursor: pointer; transition: transform 0.2s; display: block; text-decoration: none; color: inherit; }
         .stat-card:active { transform: translateY(-2px); }
         .stat-card h3 { font-size: 1.3rem; margin-bottom: 2px; }
-        .stat-card p { font-size: 0.65rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; }
+        .stat-card p { font-size: 0.65rem; font-weight: 700; color: #1a202c; text-transform: uppercase; }
         .dashboard-container { display: flex; flex-direction: column; gap: 14px; }
         .dashboard-box { border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px; text-align: center; }
-        .dashboard-box h4 { font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
+        .dashboard-box h4 { font-size: 0.75rem; text-transform: uppercase; color: #1a202c; margin-bottom: 6px; }
         .timer-numeric { font-size: 2rem; font-weight: 700; color: var(--text-dark); margin-bottom: 8px; }
         .date-circle-wrap { display: inline-block; padding: 6px 14px; border-radius: 50px; border: 3px solid var(--alert-red); margin-top: 6px; font-weight: 700; font-size: 0.85rem; color: var(--text-dark); }
         .days-left-box { margin-top: 8px; color: var(--text-dark); font-size: 0.8rem; }
@@ -58,18 +58,22 @@
         .partner-box-2 { border: 1px solid var(--success-green); text-align: center; }
         .partner-label { font-size: 0.65rem; color: var(--gold); font-weight: 700; letter-spacing: 0.5px; }
         .partner-title { font-size: 1rem; color: var(--text-dark); margin: 4px 0; }
-        .partner-desc { font-size: 0.72rem; color: var(--text-muted); margin-bottom: 10px; }
+        .partner-desc { font-size: 0.72rem; color: #1a202c; margin-bottom: 10px; }
         .file-card { border: 1px solid #f1f5f9; padding: 12px; border-radius: 8px; margin-bottom: 10px; background: #fff; text-align: left; }
         .file-card h5 { font-size: 0.8rem; color: var(--text-dark); margin-bottom: 4px; word-break: break-all; }
-        .file-card p { font-size: 0.7rem; color: var(--text-muted); margin-bottom: 6px; }
+        .file-card p { font-size: 0.7rem; color: #1a202c; margin-bottom: 6px; }
         .price-label { font-size: 0.78rem; font-weight: 700; color: var(--orange); }
-        .student-tag { font-size: 0.58rem; color: var(--text-muted); display: block; font-weight: 700; margin-top: 1px; }
+        .student-tag { font-size: 0.58rem; color: #1a202c; display: block; font-weight: 700; margin-top: 1px; }
         .bulletin-log { margin-top: 10px; text-align: left; border-top: 1px solid #f1f5f9; padding-top: 8px; max-height: 120px; overflow-y: auto; }
         .bulletin-item { font-size: 0.75rem; background: #f8fafc; padding: 6px 8px; border-radius: 6px; margin-bottom: 6px; border-left: 2px solid var(--primary); }
         .calc-header { padding: 10px; background: #f8fafc; border-radius: 6px; cursor: pointer; display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: 700; margin-bottom: 8px; }
         .calc-body { display: none; padding: 10px; border: 1px solid #e2e8f0; border-top: none; border-radius: 0 0 6px 6px; margin-top: -8px; margin-bottom: 10px; background: #fff; }
         .output-box { display: none; background: #e8f5e9; color: var(--success-green); padding: 8px; border-radius: 6px; font-weight: 700; font-size: 0.8rem; margin-top: 8px; text-align: center; }
-        .dark-chat-window { background: #0f172a; border-radius: 8px; padding: 12px; color: #e2e8f0; font-size: 0.8rem; min-height: 80px; margin-bottom: 10px; text-align: left; line-height: 1.4; }
+        .dark-chat-window { background: #0f172a; border-radius: 8px; padding: 12px; color: #e2e8f0; font-size: 0.8rem; min-height: 520px; margin-bottom: 10px; text-align: left; line-height: 1.4; overflow: auto; border: 1px solid rgba(0, 119, 255, 0.6); box-shadow: 0 0 25px rgba(0, 119, 255, 0.35), 0 0 50px rgba(6, 182, 212, 0.15); animation: aiGlow 3s ease-in-out infinite alternate; }
+        @keyframes aiGlow {
+            from { box-shadow: 0 0 20px rgba(0, 119, 255, 0.3); }
+            to { box-shadow: 0 0 35px rgba(0, 119, 255, 0.6), 0 0 60px rgba(6, 182, 212, 0.25); }
+        }
         .pill-row { display: flex; gap: 6px; overflow-x: auto; margin-bottom: 10px; padding-bottom: 4px; }
         .pill-chip { background: var(--alert-red); color: white; padding: 6px 12px; border-radius: 50px; font-size: 0.7rem; font-weight: 700; white-space: nowrap; border: none; cursor: pointer; }
         .exam-btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
@@ -96,7 +100,7 @@
         .btn-tiny { padding: 4px 6px; font-size: 0.6rem; font-weight: 700; border: none; border-radius: 4px; cursor: pointer; color: white; text-decoration: none; }
         .footer-end { background: var(--primary); color: white; padding: 20px 16px; text-align: center; font-size: 0.7rem; line-height: 1.4; }
         .footer-end p { margin-bottom: 4px; }
-        .footer-muted-text { opacity: 0.75; font-size: 0.65rem; }
+        .footer-muted-text { opacity: 0.75; font-size: 0.65rem; color: #dfe7f3; }
     </style>
 </head>
 <body>
@@ -111,23 +115,23 @@
         </div>
     </header>
 
-    <div class="ads-native-banner" id="ads-container-top">
+    <a class="ads-native-banner" id="ads-container-top" href="https://nih.gov" target="_blank" style="text-decoration:none; display:block; color:var(--primary);">
         <span style="opacity:0.6; display:block; font-size:0.55rem; letter-spacing:0.5px;">SPONSORED PLATFORM RESOURCE</span>
-        <a href="https://blogspot.com" target="_blank" style="color:var(--primary); text-decoration:none;">🔬 Tap to Explore Global MLS Premium Research Databases & Notes</a>
-    </div>
+        <span style="display:block; color:var(--primary);">🔬 Tap to Explore Global MLS Premium Research Databases & Notes</span>
+    </a>
 
     <div class="stats-wrapper">
-        <div class="stat-card" onclick="alert('15 Core Laboratory tracks active.')">
+        <a class="stat-card" href="#syllabus-section">
             <h3 style="color: var(--primary);">15</h3>
             <p>Courses</p>
-        </div>
-        <div class="stat-card" onclick="alert('250+ High yield study blocks available.')">
+        </a>
+        <a class="stat-card" href="#syllabus-section">
             <h3 style="color: var(--primary);">250+</h3>
             <p>Topics</p>
-        </div>
-        <div class="stat-card" onclick="alert('Platform resources provided completely free.')">
+        </a>
+        <div class="stat-card" style="cursor:default;">
             <h3 style="color: var(--orange);">Free</h3>
-            <p>Forever</p>
+            <p>Core study materials are 100% free, premium PDFs are affordable.</p>
         </div>
     </div>
     <div class="tip-box" style="padding:0 16px; text-align:center;">
@@ -164,13 +168,11 @@
         <div class="tip-box"><strong>TIP:</strong> Scroll down to see all tools. No login needed.</div>
     </div>
 
-    <div class="card" style="background: linear-gradient(135deg, #10B981, #059669); color:white; text-align:center; border:none;">
-        <span style="font-size:0.7rem; font-weight:700; letter-spacing:0.5px; opacity:0.9;">🚀 EDUCATION PARTNER ADVERTISEMENT</span>
-        <h4 style="margin:8px 0; font-size:1rem; color:white;">Advertise Your Institute Here</h4>
-        <p style="font-size:0.8rem; margin-bottom:12px; opacity:0.9;">Reach 1000+ Active Global MLS Candidates Monthly</p>
-        <a href="https://chat.whatsapp.com/FFjZ6gEPWn0KBngsqogAvN?text=Hello%20Trust!%20I%20want%20to%20ADVERTISE%20my%20Institute%20on%20HealthTech%0A%0AInstitute%20Name:%0AContact:%0ABudget:" target="_blank" class="btn" style="background:white; color:#059669; font-weight:700; text-decoration:none; display:block; padding:12px 16px; border-radius:10px;">Get Advertising Rates</a>
-        <p style="font-size:0.7rem; margin-top:8px; opacity:0.8;">Banners • PDF Sponsorship • WhatsApp Shoutouts</p>
-    </div>
+    <a href="#" class="card" style="background: #fffdf0; color:#1a202c; text-align:center; border:2px dashed #d4af37; box-shadow:0 4px 15px rgba(212,175,55,0.15); text-decoration:none; display:block; padding:15px; border-radius:12px;">
+        <div style="font-size:0.76rem; font-weight:700; color:#b8860b; letter-spacing:0.5px; margin-bottom:8px;">👑 RECOMMENDED PREMIUM MLS RESOURCE</div>
+        <h4 style="margin:8px 0; font-size:1rem; color:#1a202c;">📕 Essential MLS Textbooks & PDF Bundles</h4>
+        <p style="font-size:0.8rem; margin-bottom:0; color:#2d3748; line-height:1.5;">High-yield textbook PDFs at affordable student rates with carefully selected notes and study bundles for stronger lab and exam performance.</p>
+    </a>
 
     <div class="file-card">
         <h5>📖 100L Medical Chemistry - Premium Notes</h5>
@@ -198,7 +200,7 @@
         <div class="section-title" style="margin-bottom:8px;">📚 Search Branded Core Study PDFs Repository</div>
         <input type="text" id="pdfSearchInput" class="input-text" placeholder="Type level, topics, or keywords...">
         <div id="pdfRepositoryList"></div>
-        <div class="tip-box"><strong>TIP:</strong> Use search to find PDFs fast. Tap Get File to download. All PDFs 250 to 950 NGN max.</div>
+        <div class="tip-box"><strong>TIP:</strong> Use search to find PDFs fast. Tap Get File to download. All premium PDFs: 500 to 2,500 NGN max.</div>
     </div>
 
     <div class="ads-native-banner" id="ads-container-middle">
@@ -281,10 +283,10 @@
             <button class="pill-chip" onclick="askAiPrompt('What is the normal blood pH?')">Normal pH</button>
         </div>
         <div style="display:flex; gap:6px;">
-            <input type="text" id="aiQueryText" class="input-text" placeholder="Ask any MLS, chemistry, pathology, or blood question..." style="margin-bottom:0;">
+            <textarea id="aiQueryText" class="input-text" rows="3" placeholder="Ask any MLS, chemistry, pathology, or blood question..." style="margin-bottom:0; resize: vertical; font-family: inherit;"></textarea>
             <button class="btn btn-blue" onclick="runAiInquiry()" style="width:90px; padding:0;">Ask</button>
         </div>
-        <div class="tip-box" style="margin-top:8px;"><strong>TIP:</strong> Ask any MLS or lab question. If no API key is added, it uses built-in MLS knowledge.</div>
+        <div class="tip-box" style="margin-top:8px;"><strong>TIP:</strong> Ask any MLS or lab question.</div>
     </div>
 
     <div class="orange card partner-box-2">
@@ -303,15 +305,15 @@
         </div>
         <div id="courseSelectionContainer" style="display:none; margin-bottom:12px;">
             <div class="course-selector-grid">
-                <div class="course-icon-btn" onclick="startQuiz('HEMATOLOGY')">HEMATOLOGY</div>
-                <div class="course-icon-btn" onclick="startQuiz('CLINICAL CHEMISTRY')">CLINICAL CHEM</div>
-                <div class="course-icon-btn" onclick="startQuiz('MICROBIOLOGY')">MICROBIOLOGY</div>
-                <div class="course-icon-btn" onclick="startQuiz('HISTOPATHOLOGY')">HISTOPATH</div>
-                <div class="course-icon-btn" onclick="startQuiz('IMMUNOLOGY')">IMMUNOLOGY</div>
-                <div class="course-icon-btn" onclick="startQuiz('PARASITOLOGY')">PARASITOLOGY</div>
-                <div class="course-icon-btn" onclick="startQuiz('ENGLISH')">ENGLISH</div>
-                <div class="course-icon-btn" onclick="startQuiz('USE OF ENGLISH')">USE OF ENGL</div>
-                <div class="course-icon-btn" onclick="startQuiz('GSP')">GSP</div>
+                <div class="course-icon-btn" onclick="launchCoursePractice('HEMATOLOGY')">HEMATOLOGY</div>
+                <div class="course-icon-btn" onclick="launchCoursePractice('CLINICAL CHEMISTRY')">CLINICAL CHEM</div>
+                <div class="course-icon-btn" onclick="launchCoursePractice('MICROBIOLOGY')">MICROBIOLOGY</div>
+                <div class="course-icon-btn" onclick="launchCoursePractice('HISTOPATHOLOGY')">HISTOPATH</div>
+                <div class="course-icon-btn" onclick="launchCoursePractice('IMMUNOLOGY')">IMMUNOLOGY</div>
+                <div class="course-icon-btn" onclick="launchCoursePractice('PARASITOLOGY')">PARASITOLOGY</div>
+                <div class="course-icon-btn" onclick="launchCoursePractice('ENGLISH')">ENGLISH</div>
+                <div class="course-icon-btn" onclick="launchCoursePractice('USE OF ENGLISH')">USE OF ENGL</div>
+                <div class="course-icon-btn" onclick="launchCoursePractice('GSP')">GSP</div>
             </div>
         </div>
         <div class="quiz-panel-view" id="quizShell">
@@ -338,17 +340,17 @@
         <a href="#" id="submitChallengeBtn" class="btn btn-red" style="text-decoration:none; display:block; margin-top:10px;">Submit Evaluation Data</a>
     </div>
 
-    <div class="card">
+    <div class="card" id="syllabus-section">
         <div class="section-title" style="margin-bottom:8px;">📋 COMPLETE SYLLABUS HUB</div>
         <div class="accordion-head" onclick="toggleAccordion('lvl100')"><span>LEVEL 100 (Pre-Med Foundations)</span><span>▼</span></div>
         <div class="accordion-panel" id="lvl100">
-            <div class="syllabus-item-row"><span>CHM 101 - Basic Chemistry Foundations</span><div class="syl-actions"><button class="btn-tiny btn-blue" onclick="alert('Launching Quiz')">Start CBT</button><button class="btn-tiny btn-green" onclick="alert('Opening Notes')">View Notes</button></div></div>
-            <div class="syllabus-item-row"><span>BIO 101 - Cell Biology Ecosystems</span><div class="syl-actions"><button class="btn-tiny btn-blue" onclick="alert('Launching Quiz')">Start CBT</button><button class="btn-tiny btn-green" onclick="alert('Opening Notes')">View Notes</button></div></div>
+            <div class="syllabus-item-row"><span>CHM 101 - Basic Chemistry Foundations</span><div class="syl-actions"><button class="btn-tiny btn-blue" onclick="launchCoursePractice('CHM 101')">Start CBT</button><a class="btn-tiny btn-green" href="#" style="display:inline-flex; align-items:center; justify-content:center;">View Notes</a></div></div>
+            <div class="syllabus-item-row"><span>BIO 101 - Cell Biology Ecosystems</span><div class="syl-actions"><button class="btn-tiny btn-blue" onclick="launchCoursePractice('BIO 101')">Start CBT</button><a class="btn-tiny btn-green" href="#" style="display:inline-flex; align-items:center; justify-content:center;">View Notes</a></div></div>
         </div>
         <div class="accordion-head" onclick="toggleAccordion('lvl200')"><span>LEVEL 200 - 500 (Clinical Medicine)</span><span>▼</span></div>
         <div class="accordion-panel" id="lvl200">
-            <div class="syllabus-item-row"><span>CHEM 301 - Diagnostics Hematology</span><div class="syl-actions"><button class="btn-tiny btn-blue" onclick="alert('Launching Quiz')">Start CBT</button><button class="btn-tiny btn-green" onclick="alert('Opening Notes')">View Notes</button></div></div>
-            <div class="syllabus-item-row"><span>CHM 401 - Clinical Biochemistry</span><div class="syl-actions"><button class="btn-tiny btn-blue" onclick="alert('Launching Quiz')">Start CBT</button><button class="btn-tiny btn-green" onclick="alert('Opening Notes')">View Notes</button></div></div>
+            <div class="syllabus-item-row"><span>CHEM 301 - Diagnostics Hematology</span><div class="syl-actions"><button class="btn-tiny btn-blue" onclick="launchCoursePractice('CHEM 301')">Start CBT</button><a class="btn-tiny btn-green" href="#" style="display:inline-flex; align-items:center; justify-content:center;">View Notes</a></div></div>
+            <div class="syllabus-item-row"><span>CHM 401 - Clinical Biochemistry</span><div class="syl-actions"><button class="btn-tiny btn-blue" onclick="launchCoursePractice('CHM 401')">Start CBT</button><a class="btn-tiny btn-green" href="#" style="display:inline-flex; align-items:center; justify-content:center;">View Notes</a></div></div>
         </div>
         <div class="tip-box"><strong>TIP:</strong> Tap a level to expand. Use Start CBT to practice and View Notes to read.</div>
     </div>
@@ -611,6 +613,18 @@
     function askAiPrompt(txt) {
         document.getElementById("aiQueryText").value = txt;
         window.runAiInquiry();
+    }
+
+    function launchCoursePractice(courseName) {
+        const topic = String(courseName || "MLS practice").trim();
+        const prompt = `Generate continuous MLS CBT practice questions focused on ${topic}. Ask one question at a time, give me multiple-choice options, wait for my answer, then explain the correct answer and continue with the next question until I say stop.`;
+        askAiPrompt(prompt);
+    }
+
+    function mixedModeCbt() {
+        const topics = ["HEMATOLOGY", "CLINICAL CHEMISTRY", "MICROBIOLOGY", "IMMUNOLOGY", "PARASITOLOGY", "GSP", "ENGLISH", "USE OF ENGLISH"];
+        const topic = topics[Math.floor(Math.random() * topics.length)];
+        launchCoursePractice(topic);
     }
 
     function initiateCbtMode(mode) {
