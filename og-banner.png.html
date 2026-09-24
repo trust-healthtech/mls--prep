@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trust Health Tech - Final Banner</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            display: flex; justify-content: center; align-items: center; min-height: 100vh;
+            background-color: #0b0d11; font-family: system-ui, -apple-system, sans-serif;
+        }
+        .banner-canvas {
+            width: 100%; max-width: 1200px; aspect-ratio: 1200 / 630; container-type: inline-size;
+            background-color: #0b53de; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; position: relative; overflow: hidden;
+        }
+        
+        /* THE LOCKED BOX FOR THE EMOJI */
+        .logo-circle {
+            width: 13cqw; height: 13cqw; background: #ffffff; border-radius: 50%;
+            display: table; /* Forces absolute structure */
+            margin-bottom: 3cqw; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        .emoji-cell {
+            display: table-cell; vertical-align: middle; text-align: center;
+            font-size: 7cqw; line-height: 1;
+        }
+
+        .main-title {
+            color: #38b6ff; font-size: 5.6cqw; font-weight: 900; text-transform: uppercase;
+            letter-spacing: 0.8cqw; margin-bottom: 2.5cqw; white-space: nowrap; padding-left: 0.8cqw;
+        }
+        .badge-pill {
+            background-color: #ffffff; color: #0b53de; font-size: 1.7cqw; font-weight: 800;
+            padding: 1.1cqw 5.2cqw; border-radius: 100px; text-transform: uppercase;
+            letter-spacing: 0.3cqw; margin-bottom: 3.2cqw; white-space: nowrap; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+        .subtitle {
+            color: #ffde59; font-size: 1.35cqw; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.55cqw; white-space: nowrap; padding-left: 0.55cqw;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="banner-canvas">
+        
+        <!-- White circle with the table layout to force center the emoji -->
+        <div class="logo-circle">
+            <div class="emoji-cell">🔬</div>
+        </div>
+
+        <h1 class="main-title">Trust Health Tech</h1>
+
+        <div class="badge-pill">Knowledge You Can Trust</div>
+
+        <div class="subtitle">Global MLS Academic Study Node</div>
+
+    </div>
+
+</body>
+</html>
