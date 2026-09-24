@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mls-prep-one.vercel.app/sitemap.xml
+Sitemap: https://trust-healthtech.github.io/mls--prep/sitemap.xml
