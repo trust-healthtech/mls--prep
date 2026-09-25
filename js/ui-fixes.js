@@ -1,6 +1,29 @@
+// CLEAN LIGHT MODE - Eliminate dark crazy layout
 (function(){
-var css='#theme-toggle{position:fixed;top:10px;right:10px;z-index:10000;width:34px;height:34px;background:#fff;border:1px solid #ddd;border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer}button{padding:8px 14px!important;font-size:13px!important;border-radius:8px!important}body.dark-mode{background:#0f0f14!important;color:#eee!important}body.dark-mode .card{background:#1c1c26!important}';
-var s=document.createElement('style');s.innerHTML=css;document.head.appendChild(s);
-var b=document.createElement('div');b.id='theme-toggle';b.innerHTML='🌙';document.body.appendChild(b);
-b.onclick=()=>{document.body.classList.toggle('dark-mode');b.innerHTML=document.body.classList.contains('dark-mode')?'☀️':'🌙'};
+  const style = document.createElement('style');
+  style.innerHTML = `
+    body { background: #f8fafc !important; color: #1e293b !important; }
+    /* Remove all dark/black cards */
+    div[style*="background: black"], div[style*="background:#000"], div[style*="background: #000"],
+    .study-hub-dashboard, #quizShell, #evaluationBlock {
+      background: #ffffff !important;
+      color: #1e293b !important;
+      border: 1px solid #e2e8f0 !important;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06) !important;
+      border-radius: 16px !important;
+      filter: none !important;
+      backdrop-filter: none !important;
+    }
+    /* All inner cards white */
+    div {
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+    /* Buttons stay clean */
+    button { border-radius: 12px !important; }
+    /* Remove blur */
+    * { filter: none !important; }
+  `;
+  document.head.appendChild(style);
+  console.log("Light clean mode activated");
 })();
