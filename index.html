@@ -758,6 +758,31 @@
         var whatsappLink = "https://chat.whatsapp.com/FFjZ6gEPWn0KBngsqogAvN?text=" + encodeURIComponent("Lab Challenge #104 Submission\n\nQuestion: " + question + "\n\nMy Answer:\n" + answer);
         window.open(whatsappLink, '_blank');
     };
+    <div style="margin:15px 0">
+    <button class="purple-btn" onclick="openPast('pastQ')">📚 MLS PAST QUESTIONS BANK</button>
+    <div id="pastQ" class="past-box">
+    <h4 style="color:#7c3aed;margin:5px 0">100 LEVEL (Foundation)</h4>
+    <a class="past-link" href="#">Anatomy Past Q (100L)</a>
+    <a class="past-link" href="#">Physiology Past Q (100L)</a>
+    <a class="past-link" href="#">Biochemistry Past Q (100L)</a>
+    <a class="past-link" href="#">Physics & Chemistry Past Q</a>
+
+    <h4 style="color:#7c3aed;margin:10px 0 5px 0">200 LEVEL (Pre-Clinical)</h4>
+    <a class="past-link" href="#">📘 Hematology Manual + Past Q (200L)</a>
+    <a class="past-link" href="#">📗 Histopathology Manual + Past Q (200L)</a>
+    <a class="past-link" href="#">📙 Medical Microbiology Manual + Past Q (200L)</a>
+    <a class="past-link" href="#">📕 Chemical Pathology Manual + Past Q (200L)</a>
+
+    <h4 style="color:#7c3aed;margin:10px 0 5px 0">300 LEVEL</h4>
+    <a class="past-link" href="#">Immunology Past Q</a>
+    <a class="past-link" href="#">Blood Group Serology Past Q</a>
+    <a class="past-link" href="#">Lab Management Past Q</a>
+
+    <h4 style="color:#7c3aed;margin:10px 0 5px 0">400 LEVEL (Finals)</h4>
+    <a class="past-link" href="#">Professional Exam Past Q</a>
+    <a class="past-link" href="#">Project & Case Studies</a>
+    </div>
+    </div>
 </script>
 <style>.past-box{display:none;background:#f5f3ff;border:2px solid #a78bfa;border-radius:12px;padding:10px;margin-top:10px}.past-link{display:block;background:#fff;padding:10px;border-radius:8px;margin:8px 0;text-decoration:none;color:#111;border-left:4px solid #7c3aed}.purple-btn{background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;border:none;padding:13px;width:100%;border-radius:10px;font-weight:bold}</style><script>function openPast(id){var x=document.getElementById(id);x.style.display=x.style.display=="block"?"none":"block";}</script>
 </body>
