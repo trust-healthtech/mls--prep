@@ -723,41 +723,29 @@
                 }
             }
             displayQuizQuestion();
-        }, 1000);
-    }
+            }, 1000);
+}
 
-    function triggerAiConsultantPanel(obj) {
-        document.getElementById("quizShell").style.display = "none";
-        document.getElementById("evaluationBlock").style.display = "block";
-        document.getElementById("evalIncorrectBlock").innerText = obj.q;
-        document.getElementById("evalSyllabusBlock").innerText = `Focus on: ${obj.course}. Review the topic, then choose the correct option using the syllabus-based rule.`;
-    }
-
-    function dismissEvaluation() {
-        document.getElementById("evaluationBlock").style.display = "none";
-        document.getElementById("quizShell").style.display = "block";
-        targetQuestionMissed = null;
-        displayQuizQuestion();
-    }
-
-    function toggleAccordion(id) {
-        const el = document.getElementById(id);
-        const currentStyleState = window.getComputedStyle(el).display;
-        el.style.display = (currentStyleState === "block") ? "none" : "block";
-    }
-
-    document.getElementById('submitChallengeBtn').onclick = function(e) {
-        e.preventDefault();
-        var answer = document.getElementById('challengeTextarea').value;
-        if (answer.trim() === "") {
-            alert("Please type your answer first!");
-            return false;
-        }
-
-        var question = "What is the normal human arterial blood pH range? Explain 2 causes of metabolic acidosis and how the body compensates.";
-        var whatsappLink = "https://chat.whatsapp.com/FFjZ6gEPWn0KBngsqogAvN?text=" + encodeURIComponent("Lab Challenge #104 Submission\n\nQuestion: " + question + "\n\nMy Answer:\n" + answer);
-        window.open(whatsappLink, '_blank');
-    };
+function triggerAiConsultantPanel(obj){
+    document.getElementById("quizShell").style.display="none";
+    document.getElementById("evaluationBlock").style.display="block";
+    document.getElementById("evalIncorrectBlock").innerHTML=obj.incorrect||"";
+    document.getElementById("evalSyllabusBlock").innerHTML=obj.syllabus||"";
+}
+function dismissEvaluation(){
+    document.getElementById("evaluationBlock").style.display="none";
+    document.getElementById("quizShell").style.display="block";
+    targetQuestionMissed=null;
+    displayQuizQuestion();
+}
+function toggleAccordion(id){
+    const el=document.getElementById(id);
+    const cur=window.getComputedStyle(el).display;
+    el.style.display=(cur==="none"?"block":"none");
+}
 </script>
+<script src="js/download-popup.js"></script>
+<script src="js/ui-fixes.js"></script>
 </body>
 </html>
+                   
