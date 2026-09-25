@@ -1,16 +1,18 @@
-// FINAL 2 COLOURS - Fixed bottom blue footer
+// FINAL 2 COLOURS - Actual + Warm Paper Eye Care
 (function(){
   const css = `
     *{ backdrop-filter:none!important; -webkit-backdrop-filter:none!important; }
 
+    /* ACTUAL - Your original brand */
     body.mode-actual{ background:#f1f5f9!important; }
 
-    /* WARM PAPER */
+    /* WARM PAPER - True eye-care for eye problems - #FFF8DC */
     body.mode-warm{ background:#FFF8DC!important; }
     body.mode-warm div, body.mode-warm section, body.mode-warm main{
       background:#FFFBEB!important;
       color:#3e3524!important;
       border-color:#f5e6a8!important;
+      box-shadow:0 1px 6px rgba(120,90,20,0.06)!important;
     }
     body.mode-warm p, body.mode-warm span, body.mode-warm small, body.mode-warm li{
       color:#57534e!important;
@@ -18,24 +20,6 @@
     body.mode-warm h1, body.mode-warm h2, body.mode-warm h3, body.mode-warm b{
       color:#2a2218!important;
     }
-
-    /* FIX: Keep footer blue + make text readable in Warm Paper */
-    body.mode-warm footer, body.mode-warm div[style*="background: #1"]{
-      background:#1e40af!important;
-    }
-    body.mode-warm footer *, body.mode-warm footer p, body.mode-warm footer span, body.mode-warm footer small,
-    body.mode-warm div[style*="background: #1"] *{
-      color:#FFFBEB!important;
-      opacity:1!important;
-    }
-    body.mode-warm footer a, body.mode-warm div[style*="background: #1"] a{
-      color:#fde68a!important;
-      text-decoration:underline!important;
-    }
-
-    /* Also keep your top TRUST HEALTH TECH header blue */
-    body.mode-warm header{ background:#1d4ed8!important; }
-    body.mode-warm header *{ color:white!important; }
   `;
 
   let s=document.getElementById('health-eye');
@@ -60,6 +44,7 @@
   const modes=['actual','warm'];
   const icons={actual:'🔵', warm:'📖'};
   const labels={actual:'Actual', warm:'Warm Paper'};
+
   let cur=localStorage.getItem('mls-final-mode')||'actual';
 
   function apply(m){
@@ -70,6 +55,7 @@
     localStorage.setItem('mls-final-mode',m);
     cur=m;
   }
+
   apply(cur);
   wrap.onclick=()=>{
     let i=modes.indexOf(cur);
