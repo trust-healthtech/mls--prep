@@ -1,66 +1,68 @@
-// EYE CARE MILK MODE - Soft for eyes like phone reading mode
+// MODERN EYE-CARE - Kindle / Medium style - No blue, No dark
 (function(){
   const css = `
     *{ backdrop-filter:none!important; -webkit-backdrop-filter:none!important; filter:none!important; }
 
-    /* EYE CARE MODE - Warm milk paper */
-    body.eye-mode{ background:#fdf6e3!important; }
-    body.eye-mode div, body.eye-mode section, body.eye-mode main, body.eye-mode article{
-      background:#fffaf0!important;
-      color:#3c2f2f!important;
-      border:1px solid #f5e6c8!important;
+    body, html{
+      background:#FFFBEB!important; /* warm milk - eye perfect */
     }
-    body.eye-mode div[style*="background"], body.eye-mode div[style*="background-color"]{
-      background:#fffaf0!important;
-    }
-    body.eye-mode p, body.eye-mode span, body.eye-mode small, body.eye-mode li{
-      color:#4a3f35!important;
-    }
-    body.eye-mode h1, body.eye-mode h2, body.eye-mode h3, body.eye-mode b, body.eye-mode strong{
-      color:#2c241b!important;
-    }
-    /* Buttons warm */
-    body.eye-mode button{ background:#d97706!important; color:white!important; }
 
-    /* WHITE MODE still available */
-    body.light-mode{ background:#ffffff!important; }
-    body.light-mode div, body.light-mode section{ background:#ffffff!important; color:#1e293b!important; }
+    /* REMOVE BLUE HEADER COMPLETELY - make it warm paper */
+    div[style*="background: blue"], div[style*="background:#"], header, 
+    div[style*="background: rgb(0, 0, 255)"], div[style*="#0000FF"],
+    [style*="linear-gradient"]{
+      background:#FFFBEB!important;
+      background-image:none!important;
+    }
 
-    /* DARK MODE */
-    body.dark-mode{ background:#0f172a!important; }
-    body.dark-mode div, body.dark-mode section{ background:#1e293b!important; color:#f1f5f9!important; }
+    /* All cards - soft paper white */
+    div, section, main, article, aside{
+      background:#FFFEF7!important;
+      background-color:#FFFEF7!important;
+      color:#3C3A36!important;
+      border-color:#F3E8C9!important;
+      box-shadow: 0 1px 4px rgba(60,58,54,0.06)!important;
+    }
+
+    /* Text - warm dark brown, not pure black - best for eyes */
+    p, span, small, li, div{
+      color:#44403C!important;
+      font-weight:400!important;
+      line-height:1.6!important;
+    }
+    h1, h2, h3, h4, b, strong{
+      color:#292524!important;
+    }
+
+    /* Header texts - remove blue glow */
+    h1{ color:#1C1917!important; text-shadow:none!important; }
+
+    /* TIP boxes - light cream */
+    div[style*="TIP"], small{
+      background:#FEF3C7!important;
+      color:#78350F!important;
+    }
+
+    /* Buttons - warm amber, not blue/red */
+    button, .btn, [style*="Start"]{
+      background:#D97706!important;
+      color:#FFFBEB!important;
+      border:none!important;
+      border-radius:12px!important;
+    }
+
+    /* Hide toggle - we don't need dark/blue anymore */
+    #themeToggle{ display:none!important; }
   `;
-  const s=document.createElement('style');
+
+  let s=document.getElementById('eye-final');
+  if(!s){ s=document.createElement('style'); s.id='eye-final'; document.head.appendChild(s); }
   s.innerHTML=css;
-  document.head.appendChild(s);
 
-  let btn=document.getElementById('themeToggle');
-  if(!btn){
-    btn=document.createElement('div');
-    btn.id='themeToggle';
-    btn.style.cssText='position:fixed;top:10px;right:10px;z-index:999999;width:48px;height:48px;background:#fffaf0;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,.2);cursor:pointer;font-size:22px;border:1px solid #f5e6c8;';
-    document.body.appendChild(btn);
-  }
+  // Force light mode only, delete dark
+  document.body.classList.remove('dark-mode','light-mode');
+  document.body.classList.add('eye-mode');
+  localStorage.setItem('mls-theme','eye');
 
-  // Cycle: Eye Care (milk) -> White -> Dark
-  const modes = ['eye','light','dark'];
-  const icons = {eye:'📖', light:'☀️', dark:'🌙'};
-  const labels = {eye:'Eye Care', light:'White', dark:'Dark'};
-
-  let cur = localStorage.getItem('mls-theme') || 'eye';
-
-  function setMode(m){
-    document.body.classList.remove('eye-mode','light-mode','dark-mode');
-    document.body.classList.add(m+'-mode');
-    btn.innerHTML = icons[m];
-    btn.title = labels[m] + ' - Tap to change';
-    localStorage.setItem('mls-theme', m);
-    cur=m;
-  }
-  setMode(cur);
-  btn.onclick = ()=>{
-    let idx = modes.indexOf(cur);
-    idx = (idx+1) % modes.length;
-    setMode(modes[idx]);
-  };
-})();
+  console.log("Modern eye-care activated - No blue, No dark");
+})(); 
