@@ -628,121 +628,616 @@
         window.runAiInquiry();
     }
 
-    function launchCoursePractice(courseName) {
-        const topic = String(courseName || "MLS practice").trim();
-        const prompt = `Generate continuous MLS CBT practice questions focused on ${topic}. Ask one question at a time, give me multiple-choice options, wait for my answer, then explain the correct answer and continue with the next question until I say stop.`;
-        askAiPrompt(prompt);
+    function startCBTInstant(courseKey, count = 20) {
+    const course = String(courseKey || "MLS").trim();
+
+    const cbtCentre = document.getElementById("cbt-centre");
+
+    if (cbtCentre) {
+        cbtCentre.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
     }
 
+    const quizShell = document.getElementById("quizShell");
+
+    if (quizShell) {
+        quizShell.style.display = "block";
+        quizShell.innerHTML = `
+            <div style="padding:24px;text-align:center;">
+                <h3>🤖 AI is generating your CBT</h3>
+                <p style="font-weight:700;">
+                    Generating ${count} ${course} questions...
+                </p>
+                <p>Please wait...</p>
+            </div>
+        `;
+    }
+
+    generateCbtQuestions(course, count);
+    }
+async function generateCbtQuestions(course, count = 20) {
+    const quizShell = document.getElementById("quizShell");
+
+    try {
+        const prompt = `
+You are the CBT question generator for Trust Health Tech.
+
+Generate exactly ${count} multiple-choice MLS CBT questions.
+
+COURSE:
+${course}
+
+STRICT RULES:
+1. Questions must be ONLY about ${course}.
+2. Do not mix in other courses.
+3. Each question must have exactly 4 options.
+4. Give one correct answer.
+5. Give a short explanation.
+6. Do not ask the student anything.
+7. Return ONLY valid JSON.
+8. Do not use Markdown or code fences.
+
+Return this exact JSON structure:
+[
+  {
+    "question": "Question text",
+    "options": ["A", "B", "C", "D"],
+    "correct": 0,
+    "explanation": "Short explanation"
+  }
+]
+`;
+
+        const response = await fetch(TRUST_AI_PROXY, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                question: prompt,
+                history: [],
+                memory: []
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error("CBT AI request failed");
+        }
+
+        const data = await response.json();
+
+        if (!data.answer) {
+            throw new Error("CBT AI returned no answer");
+        }
+
+        let raw = String(data.answer).trim();
+
+        raw = raw
+            .replace(/^```json\s*/i, "")
+            .replace(/^```\s*/i, "")
+            .replace(/\s*```$/i, "")
+            .trim();
+
+        const start = raw.indexOf("[");
+        const end = raw.lastIndexOf("]");
+
+        if (start === -1 || end === -1) {
+            throw new Error("Invalid CBT JSON");
+        }
+
+        const questions = JSON.parse(
+            raw.slice(start, end + 1)
+        );
+
+        if (!Array.isArray(questions) || !questions.length) {
+            throw new Error("No CBT questions generated");
+        }
+
+        window.trustCbtQuestions = questions.slice(0, count);
+        window.trustCbtCourse = course;
+        window.trustCbtIndex = 0;
+
+        if (quizShell) {
+            quizShell.innerHTML = `
+                <div style="padding:24px;text-align:center;">
+                    <h3>✅ ${course} CBT Ready</h3>
+                    <p>
+                        ${window.trustCbtQuestions.length}
+                        questions generated successfully.
+                    </p>
+                    <button
+                        type="button"
+                        onclick="renderCbtQuestion()"
+                        style="
+                            padding:12px 20px;
+                            border:0;
+                            border-radius:10px;
+                            font-weight:700;
+                            cursor:pointer;
+                        "
+                    >
+                        Start CBT →
+                    </button>
+                </div>
+            `;
+        }
+
+    } catch (error) {
+        console.error("CBT generation error:", error);
+
+        if (quizShell) {
+            quizShell.innerHTML = `
+                <div style="padding:24px;text-align:center;">
+                    <h3>⚠️ CBT generation failed</h3>
+                    <p>Please check your internet connection and try again.</p>
+                    <button
+                        type="button"
+                        onclick="startCBTInstant('${String(course).replace(/'/g, "\\'")}', ${count})"
+                        style="
+                            padding:12px 20px;
+                            border:0;
+                            border-radius:10px;
+                            font-weight:700;
+                            cursor:pointer;
+                        "
+                    >
+                        Try Again
+                    </button>
+                </div>
+            `;
+        }
+    }
+    }
+    function renderCbtQuestion() {
+    const quizShell = document.getElementById("quizShell");
+    const questions = window.trustCbtQuestions || [];
+    const index = window.trustCbtIndex || 0;
+
+    if (!quizShell || !questions[index]) return;
+
+    const q = questions[index];
+
+    quizShell.innerHTML = `
+        <div style="padding:20px;">
+            <div style="font-weight:700;margin-bottom:12px;">
+                Question ${index + 1} of ${questions.length}
+            </div>
+
+            <div style="font-size:18px;font-weight:700;margin-bottom:18px;">
+                ${q.question}
+            </div>
+
+            <div>
+                ${q.options.map((option, i) => `
+                    <button
+                        type="button"
+                        onclick="selectCbtAnswer(${i})"
+                        style="
+                            display:block;
+                            width:100%;
+                            margin:10px 0;
+                            padding:14px;
+                            text-align:left;
+                            border:1px solid #ddd;
+                            border-radius:10px;
+                            background:#fff;
+                            font-weight:600;
+                            cursor:pointer;
+                        "
+                    >
+                        ${String.fromCharCode(65 + i)}. ${option}
+                    </button>
+                `).join("")}
+            </div>
+        </div>
+    `;
+    }
+    function selectCbtAnswer(selectedIndex) {
+    const questions = window.trustCbtQuestions || [];
+    const index = window.trustCbtIndex || 0;
+    const q = questions[index];
+    const quizShell = document.getElementById("quizShell");
+
+    if (!q || !quizShell) return;
+
+    const buttons = quizShell.querySelectorAll("button");
+    buttons.forEach(btn => btn.disabled = true);
+
+    const correct = Number(q.correct);
+    const isCorrect = selectedIndex === correct;
+
+    quizShell.innerHTML += `
+        <div style="margin-top:18px;padding:16px;border-radius:10px;background:${isCorrect ? "#ecfdf5" : "#fef2f2"};">
+            <strong>${isCorrect ? "✅ Correct!" : "❌ Incorrect"}</strong>
+            <p style="margin:8px 0;">
+                ${q.explanation || "Explanation coming soon."}
+            </p>
+            <button
+                type="button"
+                onclick="nextCbtQuestion()"
+                style="padding:12px 20px;border:0;border-radius:10px;font-weight:700;cursor:pointer;"
+            >
+                Next Question →
+            </button>
+        </div>
+    `;
+}
+
+function nextCbtQuestion() {
+    window.trustCbtIndex = (window.trustCbtIndex || 0) + 1;
+
+    if (window.trustCbtIndex >= (window.trustCbtQuestions || []).length) {
+        alert("CBT set complete!");
+        return;
+    }
+
+    renderCbtQuestion();
+}
     function mixedModeCbt() {
         const topics = ["HEMATOLOGY", "CLINICAL CHEMISTRY", "MICROBIOLOGY", "IMMUNOLOGY", "PARASITOLOGY", "GSP", "ENGLISH", "USE OF ENGLISH"];
         const topic = topics[Math.floor(Math.random() * topics.length)];
-        launchCoursePractice(topic);
+        startCBTInstant(topic, 20);
     }
 
-    function initiateCbtMode(mode) {
-        document.getElementById("evaluationBlock").style.display = "none";
-        if (mode === "course") {
-            document.getElementById("courseSelectionContainer").style.display = "block";
-            document.getElementById("quizShell").style.display = "none";
+    /* ===== TRUST HEALTH TECH CBT SESSION LAYER ===== */
+
+const TRUST_CBT_CONFIG = {
+    setSize: 10,
+    theoryShort: 7,
+    theoryLong: 8,
+    practicalNormal: 15,
+    practicalSlide: 20,
+    practicalExtra: 25
+};
+
+let trustCbtSession = {
+    answers: [],
+    times: [],
+    startedAt: 0,
+    course: "",
+    mode: "theory",
+    questions: []
+};
+
+function getCbtQuestionTime(question, mode = "theory") {
+    const text = String(question?.question || "").toLowerCase();
+
+    if (mode === "practical") {
+        if (
+            text.includes("slide") ||
+            text.includes("microscope") ||
+            text.includes("scan") ||
+            text.includes("identify")
+        ) return TRUST_CBT_CONFIG.practicalSlide;
+
+        if (
+            text.includes("calculate") ||
+            text.includes("procedure") ||
+            text.includes("interpret")
+        ) return TRUST_CBT_CONFIG.practicalExtra;
+
+        return TRUST_CBT_CONFIG.practicalNormal;
+    }
+
+    if (
+        text.length > 180 ||
+        text.includes("except") ||
+        text.includes("most appropriate")
+    ) return TRUST_CBT_CONFIG.theoryLong;
+
+    return TRUST_CBT_CONFIG.theoryShort;
+}
+
+function resetCbtSession(course, mode = "theory") {
+    trustCbtSession = {
+        answers: [],
+        times: [],
+        startedAt: Date.now(),
+        course: course || "MLS",
+        mode: mode,
+        questions: (window.trustCbtQuestions || []).slice(0, TRUST_CBT_CONFIG.setSize)
+    };
+}
+
+function showCbtMessage(title, message) {
+    const shell = document.getElementById("quizShell");
+    if (!shell) return;
+
+    shell.innerHTML = `
+        <div style="
+            padding:28px;
+            text-align:center;
+            background:#fff;
+            border-radius:16px;
+        ">
+            <h3 style="margin-bottom:10px;">${title}</h3>
+            <p style="margin:0;">${message}</p>
+        </div>
+    `;
+}
+
+function finishTrustCbtSet() {
+    const questions = trustCbtSession.questions || [];
+    const answers = trustCbtSession.answers || [];
+
+    let score = 0;
+    const missed = [];
+
+    questions.forEach((q, i) => {
+        const answer = answers[i];
+
+        if (answer !== undefined && Number(answer) === Number(q.correct)) {
+            score++;
+        } else {
+            missed.push({
+                question: q,
+                selected: answer
+            });
         }
-    }
+    });
 
-    function startQuiz(crs) {
-        activeQuizArray = QUIZ_QUESTION_BANK.filter(q => q.course === crs);
-        startActiveQuizLoop();
-    }
+    const total = questions.length || 10;
+    const percent = Math.round((score / total) * 100);
 
-    function startActiveQuizLoop() {
-        currentQuizIndex = 0;
-        quizCounter = 0;
-        targetQuestionMissed = null;
-        document.getElementById("quizShell").style.display = "block";
-        displayQuizQuestion();
-    }
+    const shell = document.getElementById("quizShell");
+    if (!shell) return;
 
-    function displayQuizQuestion() {
-        clearInterval(quizCountdownTimer);
-        if (currentQuizIndex >= activeQuizArray.length) {
-            alert("Cluster complete!");
-            document.getElementById("quizShell").style.display = "none";
-            return;
+    shell.innerHTML = `
+        <div style="
+            padding:24px;
+            background:#fff;
+            border-radius:18px;
+            text-align:center;
+        ">
+            <div style="
+                font-size:42px;
+                margin-bottom:8px;
+            ">🏆</div>
+
+            <h2 style="margin:0 0 8px;">
+                CBT Set Complete
+            </h2>
+
+            <p style="font-weight:700;margin:0 0 18px;">
+                ${trustCbtSession.course}
+            </p>
+
+            <div style="
+                display:grid;
+                grid-template-columns:repeat(3,1fr);
+                gap:10px;
+                margin-bottom:20px;
+            ">
+                <div style="padding:14px;border-radius:12px;background:#f1f5f9;">
+                    <strong>${score}/${total}</strong>
+                    <small style="display:block;">Score</small>
+                </div>
+
+                <div style="padding:14px;border-radius:12px;background:#f1f5f9;">
+                    <strong>${percent}%</strong>
+                    <small style="display:block;">Average</small>
+                </div>
+
+                <div style="padding:14px;border-radius:12px;background:#f1f5f9;">
+                    <strong>${missed.length}</strong>
+                    <small style="display:block;">Missed</small>
+                </div>
+            </div>
+
+            <p style="font-weight:700;">
+                Don't give up now - be strong 💪
+            </p>
+
+            <button
+                type="button"
+                onclick="renderTrustCbtReview()"
+                style="
+                    width:100%;
+                    padding:13px;
+                    margin-top:10px;
+                    border:0;
+                    border-radius:10px;
+                    font-weight:700;
+                    cursor:pointer;
+                "
+            >
+                Review Mistakes
+            </button>
+
+            <button
+                type="button"
+                onclick="startCBTInstant(trustCbtSession.course, 10)"
+                style="
+                    width:100%;
+                    padding:13px;
+                    margin-top:10px;
+                    border:0;
+                    border-radius:10px;
+                    font-weight:700;
+                    cursor:pointer;
+                "
+            >
+                Continue → Next Set
+            </button>
+
+            <button
+                type="button"
+                onclick="showTrustPastQuestions()"
+                style="
+                    width:100%;
+                    padding:13px;
+                    margin-top:10px;
+                    border:0;
+                    border-radius:10px;
+                    font-weight:700;
+                    cursor:pointer;
+                "
+            >
+                📚 Get Past Questions
+            </button>
+        </div>
+    `;
+}
+
+function renderTrustCbtReview() {
+    const shell = document.getElementById("quizShell");
+    if (!shell) return;
+
+    const missed = [];
+
+    trustCbtSession.questions.forEach((q, i) => {
+        const answer = trustCbtSession.answers[i];
+
+        if (Number(answer) !== Number(q.correct)) {
+            missed.push({
+                question: q,
+                selected: answer
+            });
         }
-        const q = activeQuizArray[currentQuizIndex];
-        let ticks = 15;
-        document.getElementById("quizTimerText").innerText = `Seconds Left: ${ticks}s`;
-        quizCountdownTimer = setInterval(() => {
-            ticks--;
-            document.getElementById("quizTimerText").innerText = `Seconds Left: ${ticks}s`;
-            if (ticks <= 0) {
-                clearInterval(quizCountdownTimer);
-                targetQuestionMissed = q;
-                handleCbtAnswer(-1, q);
+    });
+
+    shell.innerHTML = `
+        <div style="padding:22px;background:#fff;border-radius:18px;">
+            <h3>📝 Review Mistakes</h3>
+
+            ${
+                missed.length
+                ? missed.map((item, i) => `
+                    <div style="
+                        padding:16px;
+                        margin:12px 0;
+                        border-radius:12px;
+                        background:#f8fafc;
+                    ">
+                        <strong>${i + 1}. ${item.question.question}</strong>
+
+                        <p style="margin:10px 0;">
+                            <b>Correct answer:</b>
+                            ${item.question.options?.[item.question.correct] || "Not available"}
+                        </p>
+
+                        <p style="margin:0;">
+                            <b>Explanation:</b>
+                            ${item.question.explanation || "Review this topic again."}
+                        </p>
+                    </div>
+                `).join("")
+                : "<p>Excellent — no mistakes in this set. 🎉</p>"
             }
-        }, 1000);
 
-        document.getElementById("quizQuestionBox").innerText = `[${q.course}] ${q.q}`;
-        const optContainer = document.getElementById("quizOptionsBox");
-        optContainer.innerHTML = "";
-        q.options.forEach((opt, idx) => {
-            const btn = document.createElement("button");
-            btn.className = "opt-btn";
-            btn.innerText = opt;
-            btn.onclick = () => {
-                clearInterval(quizCountdownTimer);
-                handleCbtAnswer(idx, q);
-            };
-            optContainer.appendChild(btn);
-        });
-    }
+            <button
+                type="button"
+                onclick="showTrustPastQuestions()"
+                style="
+                    width:100%;
+                    padding:13px;
+                    margin-top:12px;
+                    border:0;
+                    border-radius:10px;
+                    font-weight:700;
+                    cursor:pointer;
+                "
+            >
+                📚 Get Past Questions
+            </button>
+        </div>
+    `;
+}
 
-    function handleCbtAnswer(selectedIdx, questionObj) {
-        const buttons = document.querySelectorAll("#quizOptionsBox .opt-btn");
-        buttons.forEach((btn, idx) => {
-            btn.disabled = true;
-            if (idx === questionObj.answer) {
-                btn.className = "opt-btn correct-choice";
-                btn.innerText = "✅ " + btn.innerText;
-            } else if (idx === selectedIdx) {
-                btn.className = "opt-btn wrong-choice";
-                btn.innerText = "❌ " + btn.innerText;
-                targetQuestionMissed = questionObj;
-            }
-        });
-        if (selectedIdx === -1) {
-            targetQuestionMissed = questionObj;
-        }
-        setTimeout(() => {
-            currentQuizIndex++;
-            quizCounter++;
-            if (quizCounter >= 5) {
-                quizCounter = 0;
-                if (targetQuestionMissed) {
-                    triggerAiConsultantPanel(targetQuestionMissed);
-                    return;
+function showTrustPastQuestions() {
+    const shell = document.getElementById("quizShell");
+    if (!shell) return;
+
+    shell.innerHTML = `
+        <div style="padding:22px;background:#fff;border-radius:18px;">
+            <h3>📚 Past Questions</h3>
+
+            <div style="
+                display:flex;
+                gap:8px;
+                overflow-x:auto;
+                margin:15px 0;
+            ">
+                ${["2021","2022","2023","2024","2025","2026 PREMIUM 👑"]
+                    .map(year => `
+                        <button
+                            type="button"
+                            onclick="openTrustPastYear('${year}')"
+                            style="
+                                padding:10px 14px;
+                                border:0;
+                                border-radius:10px;
+                                font-weight:700;
+                                white-space:nowrap;
+                                cursor:pointer;
+                            "
+                        >
+                            ${year}
+                        </button>
+                    `).join("")
                 }
-            }
-            displayQuizQuestion();
-            }, 1000);
+            </div>
+
+            <input
+                id="trustPastSearch"
+                type="search"
+                placeholder="Search your course..."
+                style="
+                    width:100%;
+                    box-sizing:border-box;
+                    padding:12px;
+                    border-radius:10px;
+                    border:1px solid #ddd;
+                    margin-bottom:14px;
+                "
+            >
+
+            <div id="trustPastContent">
+                <p>Select a year above to view past questions.</p>
+            </div>
+        </div>
+    `;
 }
 
-function triggerAiConsultantPanel(obj){
-    document.getElementById("quizShell").style.display="none";
-    document.getElementById("evaluationBlock").style.display="block";
-    document.getElementById("evalIncorrectBlock").innerHTML=obj.incorrect||"";
-    document.getElementById("evalSyllabusBlock").innerHTML=obj.syllabus||"";
-}
-function dismissEvaluation(){
-    document.getElementById("evaluationBlock").style.display="none";
-    document.getElementById("quizShell").style.display="block";
-    targetQuestionMissed=null;
-    displayQuizQuestion();
-}
-function toggleAccordion(id){
-    const el=document.getElementById(id);
-    const cur=window.getComputedStyle(el).display;
-    el.style.display=(cur==="none"?"block":"none");
-}
+function openTrustPastYear(year) {
+    const box = document.getElementById("trustPastContent");
+    if (!box) return;
+
+    box.innerHTML = `
+        <div style="
+            padding:18px;
+            border-radius:12px;
+            background:#f8fafc;
+        ">
+            <strong>${year}</strong>
+            <p>
+                ${
+                    year === "2026 PREMIUM 👑"
+                    ? "2026 Premium Past Questions — Selar link will be added."
+                    : "Questions coming soon."
+                }
+            </p>
+
+            <button
+                type="button"
+                onclick="window.open('#','_blank')"
+                style="
+                    padding:11px 16px;
+                    border:0;
+                    border-radius:9px;
+                    font-weight:700;
+                    cursor:pointer;
+                "
+            >
+                ${year === "2026 PREMIUM 👑"
+                    ? "Get 2026 Premium →"
+                    : "Get Past Questions →"}
+            </button>
+        </div>
+    `;
+    }
 </script>
 <script src="js/download-popup.js"></script>
 <script src="js/ui-fixes.js"></script>
