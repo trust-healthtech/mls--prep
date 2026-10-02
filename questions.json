@@ -1,0 +1,5285 @@
+{
+  "hematology": [
+    {
+      "id": "hematology-001",
+      "question": "Which cell is primarily responsible for oxygen transport in normal peripheral blood?",
+      "options": {
+        "A": "Neutrophil",
+        "B": "Erythrocyte",
+        "C": "Platelet",
+        "D": "Monocyte"
+      },
+      "correct": "B",
+      "explanation": "Erythrocytes contain haemoglobin and transport oxygen and carbon dioxide.",
+      "speed_hack": "Think haemoglobin = red cell = oxygen transport."
+    },
+    {
+      "id": "hematology-002",
+      "question": "Which anticoagulant is routinely used for a full blood count?",
+      "options": {
+        "A": "Sodium citrate",
+        "B": "EDTA",
+        "C": "Heparin only",
+        "D": "Sodium fluoride"
+      },
+      "correct": "B",
+      "explanation": "EDTA preserves cellular morphology and prevents clotting by chelating calcium.",
+      "speed_hack": "CBC → EDTA."
+    },
+    {
+      "id": "hematology-003",
+      "question": "A prolonged PT with a relatively normal aPTT most directly suggests a problem in which pathway?",
+      "options": {
+        "A": "Extrinsic pathway",
+        "B": "Intrinsic pathway",
+        "C": "Common pathway only",
+        "D": "Fibrinolytic pathway"
+      },
+      "correct": "A",
+      "explanation": "PT is especially sensitive to the extrinsic pathway, particularly factor VII, and also assesses the common pathway.",
+      "speed_hack": "PT → VII → extrinsic."
+    },
+    {
+      "id": "hematology-004",
+      "question": "Which leukocyte is normally the most abundant in adult peripheral blood?",
+      "options": {
+        "A": "Lymphocyte",
+        "B": "Eosinophil",
+        "C": "Neutrophil",
+        "D": "Basophil"
+      },
+      "correct": "C",
+      "explanation": "Neutrophils usually form the largest proportion of circulating leukocytes in healthy adults.",
+      "speed_hack": "Most common WBC = neutrophil."
+    },
+    {
+      "id": "hematology-005",
+      "question": "A microcytic, hypochromic anaemia with depleted iron stores is most consistent with:",
+      "options": {
+        "A": "Iron deficiency anaemia",
+        "B": "Aplastic anaemia",
+        "C": "Hereditary spherocytosis",
+        "D": "Acute haemolysis"
+      },
+      "correct": "A",
+      "explanation": "Iron deficiency commonly produces small pale red cells and reduced iron stores.",
+      "speed_hack": "Microcytic + low stores → iron deficiency."
+    },
+    {
+      "id": "hematology-006",
+      "question": "Which red-cell index represents average red-cell volume?",
+      "options": {
+        "A": "MCH",
+        "B": "MCV",
+        "C": "MCHC",
+        "D": "RDW"
+      },
+      "correct": "B",
+      "explanation": "MCV is the mean corpuscular volume and reflects average erythrocyte size.",
+      "speed_hack": "V = volume."
+    },
+    {
+      "id": "hematology-007",
+      "question": "Which index describes variation in red-cell size?",
+      "options": {
+        "A": "RDW",
+        "B": "MCH",
+        "C": "MCV",
+        "D": "ESR"
+      },
+      "correct": "A",
+      "explanation": "RDW quantifies anisocytosis, the variation in erythrocyte size.",
+      "speed_hack": "Width distribution → RDW."
+    },
+    {
+      "id": "hematology-008",
+      "question": "Reticulocytes are best described as:",
+      "options": {
+        "A": "Mature granulocytes",
+        "B": "Immature red cells",
+        "C": "Nucleated platelets",
+        "D": "Mature lymphocytes"
+      },
+      "correct": "B",
+      "explanation": "Reticulocytes are young erythroid cells that retain residual ribosomal RNA.",
+      "speed_hack": "Retic = young RBC."
+    },
+    {
+      "id": "hematology-009",
+      "question": "Which stain is commonly used to demonstrate iron stores in bone marrow?",
+      "options": {
+        "A": "Ziehl-Neelsen",
+        "B": "Prussian blue",
+        "C": "PAS only",
+        "D": "Sudan black"
+      },
+      "correct": "B",
+      "explanation": "Prussian blue stains storage iron in tissue and marrow macrophages.",
+      "speed_hack": "Iron → Prussian blue."
+    },
+    {
+      "id": "hematology-010",
+      "question": "A patient with sickle cell disease has a haemoglobin variant caused by a substitution involving:",
+      "options": {
+        "A": "Valine for glutamic acid in beta globin",
+        "B": "Lysine for alanine in alpha globin",
+        "C": "Glycine for valine in gamma globin",
+        "D": "Serine for leucine in delta globin"
+      },
+      "correct": "A",
+      "explanation": "HbS results from a beta-globin point mutation causing glutamic acid to be replaced by valine.",
+      "speed_hack": "HbS → beta chain Glu→Val."
+    },
+    {
+      "id": "hematology-011",
+      "question": "Which plasma protein is the major contributor to oncotic pressure?",
+      "options": {
+        "A": "Albumin",
+        "B": "Fibrinogen",
+        "C": "IgM",
+        "D": "Transferrin"
+      },
+      "correct": "A",
+      "explanation": "Albumin is abundant and contributes substantially to plasma colloid osmotic pressure.",
+      "speed_hack": "Albumin = major plasma oncotic protein."
+    },
+    {
+      "id": "hematology-012",
+      "question": "Which test is primarily used to monitor unfractionated heparin therapy?",
+      "options": {
+        "A": "PT/INR",
+        "B": "aPTT",
+        "C": "Bleeding time",
+        "D": "ESR"
+      },
+      "correct": "B",
+      "explanation": "The activated partial thromboplastin time is commonly used to monitor unfractionated heparin, although anti-Xa assays are also used.",
+      "speed_hack": "UF heparin → aPTT."
+    },
+    {
+      "id": "hematology-013",
+      "question": "Which test is commonly used to monitor warfarin therapy?",
+      "options": {
+        "A": "aPTT",
+        "B": "PT/INR",
+        "C": "Reticulocyte count",
+        "D": "Fibrinogen only"
+      },
+      "correct": "B",
+      "explanation": "Warfarin affects vitamin K-dependent factors and is monitored using PT expressed as INR.",
+      "speed_hack": "Warfarin → PT/INR."
+    },
+    {
+      "id": "hematology-014",
+      "question": "Which coagulation factor is also known as the anti-haemophilic factor A?",
+      "options": {
+        "A": "Factor VIII",
+        "B": "Factor IX",
+        "C": "Factor XI",
+        "D": "Factor XIII"
+      },
+      "correct": "A",
+      "explanation": "Factor VIII deficiency causes classic haemophilia A.",
+      "speed_hack": "A → VIII."
+    },
+    {
+      "id": "hematology-015",
+      "question": "Haemophilia B is associated with deficiency of:",
+      "options": {
+        "A": "Factor V",
+        "B": "Factor VII",
+        "C": "Factor IX",
+        "D": "Factor XII"
+      },
+      "correct": "C",
+      "explanation": "Haemophilia B is caused by factor IX deficiency.",
+      "speed_hack": "B → Christmas factor IX."
+    },
+    {
+      "id": "hematology-016",
+      "question": "Which platelet function is most directly related to primary haemostasis?",
+      "options": {
+        "A": "Formation of the initial platelet plug",
+        "B": "Conversion of fibrin to plasmin",
+        "C": "Synthesis of albumin",
+        "D": "Red-cell oxygen transport"
+      },
+      "correct": "A",
+      "explanation": "Platelets adhere, activate and aggregate to form the initial haemostatic plug.",
+      "speed_hack": "Primary haemostasis = platelets."
+    },
+    {
+      "id": "hematology-017",
+      "question": "Which blood cell is primarily associated with antibody-mediated adaptive immunity?",
+      "options": {
+        "A": "B lymphocyte",
+        "B": "Neutrophil",
+        "C": "Erythrocyte",
+        "D": "Platelet"
+      },
+      "correct": "A",
+      "explanation": "B lymphocytes differentiate into plasma cells that produce antibodies.",
+      "speed_hack": "B cell → antibody."
+    },
+    {
+      "id": "hematology-018",
+      "question": "Which leukocyte is particularly associated with allergic reactions and parasitic infections?",
+      "options": {
+        "A": "Basophil",
+        "B": "Eosinophil",
+        "C": "Neutrophil",
+        "D": "Monocyte"
+      },
+      "correct": "B",
+      "explanation": "Eosinophils are associated with helminth responses and allergic disease.",
+      "speed_hack": "Eosinophil → parasites/allergy."
+    },
+    {
+      "id": "hematology-019",
+      "question": "A markedly increased ESR is generally a nonspecific indicator of:",
+      "options": {
+        "A": "Inflammation",
+        "B": "Blood group O",
+        "C": "Thrombocytopenia only",
+        "D": "Glucose intolerance"
+      },
+      "correct": "A",
+      "explanation": "ESR can rise with inflammatory and other conditions but is nonspecific.",
+      "speed_hack": "ESR is a nonspecific inflammation clue."
+    },
+    {
+      "id": "hematology-020",
+      "question": "Which morphology is classically associated with hereditary spherocytosis?",
+      "options": {
+        "A": "Spherocytes",
+        "B": "Target cells only",
+        "C": "Schistocytes only",
+        "D": "Sickle cells"
+      },
+      "correct": "A",
+      "explanation": "Hereditary spherocytosis produces dense spherical red cells lacking the normal central pallor.",
+      "speed_hack": "Sphere = spherocyte."
+    },
+    {
+      "id": "hematology-021",
+      "question": "Schistocytes on a blood film are most strongly associated with:",
+      "options": {
+        "A": "Fragmentation haemolysis",
+        "B": "Iron overload",
+        "C": "Simple leukocytosis",
+        "D": "Megaloblastic change"
+      },
+      "correct": "A",
+      "explanation": "Schistocytes are fragmented red cells seen with mechanical or microangiopathic haemolysis.",
+      "speed_hack": "Fragments → schistocytes."
+    },
+    {
+      "id": "hematology-022",
+      "question": "Megaloblastic anaemia is classically associated with impaired synthesis of:",
+      "options": {
+        "A": "DNA",
+        "B": "Haem only",
+        "C": "Platelet granules",
+        "D": "Bilirubin"
+      },
+      "correct": "A",
+      "explanation": "Vitamin B12 or folate deficiency impairs DNA synthesis, producing megaloblastic changes.",
+      "speed_hack": "B12/folate → DNA synthesis."
+    },
+    {
+      "id": "hematology-023",
+      "question": "Which vitamin deficiency is specifically associated with pernicious anaemia?",
+      "options": {
+        "A": "Vitamin C",
+        "B": "Vitamin B12",
+        "C": "Vitamin K",
+        "D": "Vitamin D"
+      },
+      "correct": "B",
+      "explanation": "Pernicious anaemia results from impaired intrinsic-factor-dependent vitamin B12 absorption.",
+      "speed_hack": "Pernicious → B12."
+    },
+    {
+      "id": "hematology-024",
+      "question": "Which marrow finding is expected in aplastic anaemia?",
+      "options": {
+        "A": "Hypocellular fatty marrow",
+        "B": "Hypercellular marrow with many blasts in every case",
+        "C": "Normal marrow only",
+        "D": "Marrow packed exclusively with eosinophils"
+      },
+      "correct": "A",
+      "explanation": "Aplastic anaemia is characterized by markedly hypocellular marrow with fatty replacement.",
+      "speed_hack": "Aplastic = empty/hypocellular marrow."
+    },
+    {
+      "id": "hematology-025",
+      "question": "Which blood group antigen is the principal antigen of the RhD system?",
+      "options": {
+        "A": "D antigen",
+        "B": "A antigen",
+        "C": "B antigen",
+        "D": "H antigen"
+      },
+      "correct": "A",
+      "explanation": "RhD status is determined mainly by the presence or absence of the D antigen.",
+      "speed_hack": "Rh positive usually means D present."
+    },
+    {
+      "id": "hematology-026",
+      "question": "In the ABO system, group O red cells normally lack which antigens on their surface?",
+      "options": {
+        "A": "A and B",
+        "B": "D and C",
+        "C": "M and N",
+        "D": "K and k"
+      },
+      "correct": "A",
+      "explanation": "Group O red cells do not express A or B antigens.",
+      "speed_hack": "O has no A/B antigens."
+    },
+    {
+      "id": "hematology-027",
+      "question": "A person with blood group AB normally has which ABO antibodies in plasma?",
+      "options": {
+        "A": "Anti-A only",
+        "B": "Anti-B only",
+        "C": "Both anti-A and anti-B",
+        "D": "Neither anti-A nor anti-B"
+      },
+      "correct": "D",
+      "explanation": "AB individuals have both A and B antigens and therefore normally lack anti-A and anti-B antibodies.",
+      "speed_hack": "AB has both antigens → no ABO antibodies."
+    },
+    {
+      "id": "hematology-028",
+      "question": "Which marrow cell gives rise to megakaryocytes and ultimately platelets?",
+      "options": {
+        "A": "Myeloid progenitor lineage",
+        "B": "Mature erythrocyte",
+        "C": "Plasma cell",
+        "D": "B lymphocyte"
+      },
+      "correct": "A",
+      "explanation": "Megakaryocytes arise from the myeloid hematopoietic lineage and release platelets.",
+      "speed_hack": "Platelets come from megakaryocytes."
+    },
+    {
+      "id": "hematology-029",
+      "question": "A high MCHC is particularly characteristic of which red-cell shape in hereditary spherocytosis?",
+      "options": {
+        "A": "Spherocyte",
+        "B": "Target cell",
+        "C": "Ovalocyte only",
+        "D": "Stomatocyte"
+      },
+      "correct": "A",
+      "explanation": "Spherocytes can have relatively increased MCHC because membrane loss produces dense cells.",
+      "speed_hack": "Spherocyte → relatively high MCHC."
+    },
+    {
+      "id": "hematology-030",
+      "question": "Which test measures the rate at which erythrocytes settle in a vertical tube over time?",
+      "options": {
+        "A": "ESR",
+        "B": "PT",
+        "C": "aPTT",
+        "D": "Bleeding time"
+      },
+      "correct": "A",
+      "explanation": "ESR measures erythrocyte sedimentation under standardized conditions.",
+      "speed_hack": "Sedimentation → ESR."
+    },
+    {
+      "id": "hematology-031",
+      "question": "Which anticoagulant is commonly preferred for coagulation studies because it provides a controlled calcium chelation?",
+      "options": {
+        "A": "Sodium citrate",
+        "B": "EDTA",
+        "C": "Oxalate only",
+        "D": "Fluoride"
+      },
+      "correct": "A",
+      "explanation": "Citrate reversibly binds calcium and is used in coagulation testing at a specified blood-to-anticoagulant ratio.",
+      "speed_hack": "Coagulation tube → citrate."
+    },
+    {
+      "id": "hematology-032",
+      "question": "A platelet count of 40 × 10^9/L is best described as:",
+      "options": {
+        "A": "Thrombocytopenia",
+        "B": "Thrombocytosis",
+        "C": "Erythrocytosis",
+        "D": "Leukocytosis"
+      },
+      "correct": "A",
+      "explanation": "A platelet count substantially below the usual reference interval is thrombocytopenia.",
+      "speed_hack": "Low platelets = thrombocytopenia."
+    },
+    {
+      "id": "hematology-033",
+      "question": "An elevated absolute neutrophil count is termed:",
+      "options": {
+        "A": "Neutropenia",
+        "B": "Neutrophilia",
+        "C": "Lymphopenia",
+        "D": "Eosinopenia"
+      },
+      "correct": "B",
+      "explanation": "Neutrophilia means an increased number of circulating neutrophils.",
+      "speed_hack": "Neutro + philia = high neutrophils."
+    },
+    {
+      "id": "hematology-034",
+      "question": "Auer rods are most characteristically associated with:",
+      "options": {
+        "A": "Myeloid blasts",
+        "B": "Mature erythrocytes",
+        "C": "Plasma cells",
+        "D": "Megakaryocytes"
+      },
+      "correct": "A",
+      "explanation": "Auer rods are needle-like azurophilic inclusions found in myeloid blasts, including acute myeloid leukaemia.",
+      "speed_hack": "Auer rods → myeloid blasts."
+    },
+    {
+      "id": "hematology-035",
+      "question": "The Philadelphia chromosome is classically associated with:",
+      "options": {
+        "A": "Chronic myeloid leukaemia",
+        "B": "Iron deficiency anaemia",
+        "C": "Hereditary spherocytosis",
+        "D": "Immune thrombocytopenia"
+      },
+      "correct": "A",
+      "explanation": "The Philadelphia chromosome results from t(9;22) involving BCR::ABL1 and is characteristic of CML.",
+      "speed_hack": "CML → BCR::ABL1."
+    },
+    {
+      "id": "hematology-036",
+      "question": "Which cell is normally the largest circulating leukocyte?",
+      "options": {
+        "A": "Monocyte",
+        "B": "Basophil",
+        "C": "Neutrophil",
+        "D": "Lymphocyte"
+      },
+      "correct": "A",
+      "explanation": "Monocytes are generally the largest normal peripheral blood leukocytes.",
+      "speed_hack": "Biggest WBC → monocyte."
+    },
+    {
+      "id": "hematology-037",
+      "question": "Which erythrocyte morphology is often associated with liver disease?",
+      "options": {
+        "A": "Target cells",
+        "B": "Spherocytes only",
+        "C": "Schistocytes only",
+        "D": "Drepanocytes"
+      },
+      "correct": "A",
+      "explanation": "Target cells may occur in liver disease among other conditions.",
+      "speed_hack": "Liver disease → think target cells."
+    },
+    {
+      "id": "hematology-038",
+      "question": "Which laboratory finding is most directly useful for assessing the marrow response to anaemia?",
+      "options": {
+        "A": "Reticulocyte count",
+        "B": "ABO group",
+        "C": "ESR",
+        "D": "PT alone"
+      },
+      "correct": "A",
+      "explanation": "Reticulocytosis indicates increased marrow red-cell production when the marrow response is appropriate.",
+      "speed_hack": "Anaemia + retics → marrow response."
+    },
+    {
+      "id": "hematology-039",
+      "question": "Which haemoglobin is normally predominant in healthy adults?",
+      "options": {
+        "A": "HbA",
+        "B": "HbF",
+        "C": "HbS",
+        "D": "HbA2 only"
+      },
+      "correct": "A",
+      "explanation": "HbA (alpha2 beta2) is the major adult haemoglobin.",
+      "speed_hack": "Adult major Hb = HbA."
+    },
+    {
+      "id": "hematology-040",
+      "question": "Which plasma cell product is the main substrate for fibrin formation during coagulation?",
+      "options": {
+        "A": "Fibrinogen",
+        "B": "Albumin",
+        "C": "Transferrin",
+        "D": "Haptoglobin"
+      },
+      "correct": "A",
+      "explanation": "Thrombin converts soluble fibrinogen to insoluble fibrin.",
+      "speed_hack": "Fibrinogen → fibrin."
+    },
+    {
+      "id": "hematology-041",
+      "question": "Which condition most directly causes a prolonged aPTT with normal PT in a classic intrinsic-pathway defect?",
+      "options": {
+        "A": "Haemophilia A",
+        "B": "Factor VII deficiency",
+        "C": "Warfarin excess only",
+        "D": "Isolated platelet deficiency"
+      },
+      "correct": "A",
+      "explanation": "Factor VIII deficiency affects the intrinsic pathway and can prolong aPTT while PT remains normal.",
+      "speed_hack": "Intrinsic → aPTT; VIII → haemophilia A."
+    },
+    {
+      "id": "hematology-042",
+      "question": "Which red-cell inclusion is composed mainly of aggregated ribosomal RNA and is demonstrated with supravital staining?",
+      "options": {
+        "A": "Reticulocyte network",
+        "B": "Auer rod",
+        "C": "Howell-Jolly body",
+        "D": "Pappenheimer body"
+      },
+      "correct": "A",
+      "explanation": "Residual ribosomal RNA in young erythrocytes can be demonstrated by supravital reticulocyte staining.",
+      "speed_hack": "Retic stain → residual RNA."
+    },
+    {
+      "id": "hematology-043",
+      "question": "Howell-Jolly bodies are best described as:",
+      "options": {
+        "A": "Nuclear DNA remnants in erythrocytes",
+        "B": "Iron granules in neutrophils",
+        "C": "Lipid droplets in platelets",
+        "D": "Bacterial inclusions"
+      },
+      "correct": "A",
+      "explanation": "Howell-Jolly bodies are small basophilic nuclear DNA remnants within erythrocytes.",
+      "speed_hack": "Jolly = nuclear remnant."
+    },
+    {
+      "id": "hematology-044",
+      "question": "Which test is most directly used to identify a specific antibody or complement coating red cells in vivo?",
+      "options": {
+        "A": "Direct antiglobulin test",
+        "B": "ESR",
+        "C": "PT",
+        "D": "MCV"
+      },
+      "correct": "A",
+      "explanation": "The direct antiglobulin test detects immunoglobulin and/or complement attached to patient red cells.",
+      "speed_hack": "DAT = coating on patient RBCs."
+    },
+    {
+      "id": "hematology-045",
+      "question": "Which haemolysis pattern is most suggestive of intravascular haemolysis?",
+      "options": {
+        "A": "Haemoglobinaemia/haemoglobinuria",
+        "B": "Only mild splenomegaly",
+        "C": "Normal plasma free haemoglobin",
+        "D": "No change in LDH"
+      },
+      "correct": "A",
+      "explanation": "Intravascular haemolysis releases haemoglobin into plasma and can lead to haemoglobinuria.",
+      "speed_hack": "Inside vessel → free Hb in plasma/urine."
+    }
+  ],
+  "clinical_chem": [
+    {
+      "id": "clinical_chem-001",
+      "question": "Which analyte is commonly used to assess glomerular filtration?",
+      "options": {
+        "A": "Creatinine",
+        "B": "Bilirubin",
+        "C": "ALT",
+        "D": "Amylase"
+      },
+      "correct": "A",
+      "explanation": "Serum creatinine is commonly used as a marker for estimating kidney filtration.",
+      "speed_hack": "Kidney filtration → creatinine/eGFR."
+    },
+    {
+      "id": "clinical_chem-002",
+      "question": "Which enzyme is relatively more specific for hepatocellular injury than AST?",
+      "options": {
+        "A": "ALT",
+        "B": "ALP",
+        "C": "CK-MB",
+        "D": "Amylase"
+      },
+      "correct": "A",
+      "explanation": "ALT is more liver-associated than AST, although it is not completely liver-specific.",
+      "speed_hack": "ALT → liver association."
+    },
+    {
+      "id": "clinical_chem-003",
+      "question": "A markedly elevated ALP with increased GGT most strongly supports a:",
+      "options": {
+        "A": "Cholestatic/hepatobiliary source",
+        "B": "Skeletal muscle source",
+        "C": "Pancreatic-only source",
+        "D": "Red-cell source"
+      },
+      "correct": "A",
+      "explanation": "GGT elevation can support a hepatobiliary source of increased ALP.",
+      "speed_hack": "ALP + GGT → hepatobiliary."
+    },
+    {
+      "id": "clinical_chem-004",
+      "question": "Which bilirubin fraction is water soluble and can appear in urine?",
+      "options": {
+        "A": "Conjugated bilirubin",
+        "B": "Unconjugated bilirubin",
+        "C": "Both never appear",
+        "D": "Haemoglobin"
+      },
+      "correct": "A",
+      "explanation": "Conjugated bilirubin is water soluble and may be excreted in urine when elevated.",
+      "speed_hack": "Conjugated = water soluble."
+    },
+    {
+      "id": "clinical_chem-005",
+      "question": "Which plasma protein is synthesized mainly by the liver and helps maintain oncotic pressure?",
+      "options": {
+        "A": "Albumin",
+        "B": "IgE",
+        "C": "Haemoglobin",
+        "D": "Troponin"
+      },
+      "correct": "A",
+      "explanation": "The liver synthesizes albumin, the major plasma protein contributing to oncotic pressure.",
+      "speed_hack": "Liver → albumin."
+    },
+    {
+      "id": "clinical_chem-006",
+      "question": "Which cardiac biomarker is widely used because of its high cardiac specificity?",
+      "options": {
+        "A": "Cardiac troponin",
+        "B": "Amylase",
+        "C": "ALP",
+        "D": "Albumin"
+      },
+      "correct": "A",
+      "explanation": "Cardiac troponins are central biomarkers for myocardial injury.",
+      "speed_hack": "Myocardial injury → troponin."
+    },
+    {
+      "id": "clinical_chem-007",
+      "question": "Which analyte is most directly related to long-term average glycaemic exposure over roughly 2–3 months?",
+      "options": {
+        "A": "HbA1c",
+        "B": "Serum sodium",
+        "C": "Amylase",
+        "D": "Bilirubin"
+      },
+      "correct": "A",
+      "explanation": "HbA1c reflects glycated haemoglobin over the lifespan of circulating erythrocytes, roughly 2–3 months.",
+      "speed_hack": "HbA1c → previous weeks/months."
+    },
+    {
+      "id": "clinical_chem-008",
+      "question": "Which hormone lowers blood glucose by promoting cellular glucose uptake and storage?",
+      "options": {
+        "A": "Insulin",
+        "B": "Glucagon",
+        "C": "Cortisol only",
+        "D": "Aldosterone"
+      },
+      "correct": "A",
+      "explanation": "Insulin lowers circulating glucose by promoting uptake and anabolic storage pathways.",
+      "speed_hack": "Insulin = lowers glucose."
+    },
+    {
+      "id": "clinical_chem-009",
+      "question": "Which hormone generally raises blood glucose during fasting?",
+      "options": {
+        "A": "Glucagon",
+        "B": "Insulin",
+        "C": "Calcitonin",
+        "D": "Erythropoietin"
+      },
+      "correct": "A",
+      "explanation": "Glucagon promotes hepatic glucose production and helps maintain fasting glucose.",
+      "speed_hack": "Glucagon = glucose gone up."
+    },
+    {
+      "id": "clinical_chem-010",
+      "question": "The major extracellular cation is:",
+      "options": {
+        "A": "Sodium",
+        "B": "Potassium",
+        "C": "Magnesium",
+        "D": "Phosphate"
+      },
+      "correct": "A",
+      "explanation": "Sodium is the principal extracellular cation.",
+      "speed_hack": "ECF cation → Na+."
+    },
+    {
+      "id": "clinical_chem-011",
+      "question": "The major intracellular cation is:",
+      "options": {
+        "A": "Potassium",
+        "B": "Sodium",
+        "C": "Calcium",
+        "D": "Chloride"
+      },
+      "correct": "A",
+      "explanation": "Potassium is the principal intracellular cation.",
+      "speed_hack": "ICF cation → K+."
+    },
+    {
+      "id": "clinical_chem-012",
+      "question": "Which buffer pair is especially important in extracellular acid-base regulation?",
+      "options": {
+        "A": "Bicarbonate/carbonic acid",
+        "B": "Urea/ammonia only",
+        "C": "Albumin/glucose",
+        "D": "Cholesterol/triglyceride"
+      },
+      "correct": "A",
+      "explanation": "The bicarbonate-carbonic acid system is a major extracellular buffer system.",
+      "speed_hack": "Blood buffer → bicarbonate."
+    },
+    {
+      "id": "clinical_chem-013",
+      "question": "A low arterial pH with elevated bicarbonate would most directly suggest:",
+      "options": {
+        "A": "Respiratory acidosis with compensation",
+        "B": "Metabolic acidosis with compensation",
+        "C": "Respiratory alkalosis only",
+        "D": "No acid-base disturbance"
+      },
+      "correct": "A",
+      "explanation": "Primary respiratory acidosis can be accompanied by renal bicarbonate retention as compensation.",
+      "speed_hack": "Low pH + high HCO3− → respiratory acidosis compensation."
+    },
+    {
+      "id": "clinical_chem-014",
+      "question": "A low pH with low bicarbonate is most consistent with:",
+      "options": {
+        "A": "Metabolic acidosis",
+        "B": "Metabolic alkalosis",
+        "C": "Respiratory alkalosis only",
+        "D": "Normal physiology"
+      },
+      "correct": "A",
+      "explanation": "Reduced bicarbonate with acidemia is a typical pattern of metabolic acidosis.",
+      "speed_hack": "Low HCO3− + low pH → metabolic acidosis."
+    },
+    {
+      "id": "clinical_chem-015",
+      "question": "Which calculation is commonly used to estimate serum osmolality?",
+      "options": {
+        "A": "2Na + glucose/18 + BUN/2.8",
+        "B": "Na + albumin only",
+        "C": "K × chloride",
+        "D": "Creatinine × bilirubin"
+      },
+      "correct": "A",
+      "explanation": "A common calculated serum osmolality formula is 2Na + glucose/18 + BUN/2.8 using conventional units.",
+      "speed_hack": "Osmolality shortcut → 2Na + glucose/18 + BUN/2.8."
+    },
+    {
+      "id": "clinical_chem-016",
+      "question": "Which lipid is most strongly associated with atherogenic risk when elevated?",
+      "options": {
+        "A": "LDL cholesterol",
+        "B": "HDL cholesterol",
+        "C": "Albumin",
+        "D": "Bilirubin"
+      },
+      "correct": "A",
+      "explanation": "Elevated LDL cholesterol is a major atherogenic risk factor.",
+      "speed_hack": "LDL = atherogenic lipoprotein."
+    },
+    {
+      "id": "clinical_chem-017",
+      "question": "Which lipoprotein is generally associated with reverse cholesterol transport?",
+      "options": {
+        "A": "HDL",
+        "B": "LDL",
+        "C": "VLDL",
+        "D": "Chylomicron remnant"
+      },
+      "correct": "A",
+      "explanation": "HDL participates in reverse cholesterol transport from peripheral tissues toward the liver.",
+      "speed_hack": "HDL → helps carry cholesterol back."
+    },
+    {
+      "id": "clinical_chem-018",
+      "question": "Which enzyme is especially useful in evaluating acute pancreatic injury?",
+      "options": {
+        "A": "Lipase",
+        "B": "ALP",
+        "C": "ALT",
+        "D": "LDH only"
+      },
+      "correct": "A",
+      "explanation": "Lipase is a key laboratory marker used in suspected acute pancreatitis.",
+      "speed_hack": "Pancreas → lipase."
+    },
+    {
+      "id": "clinical_chem-019",
+      "question": "Which enzyme may rise in both liver and bone disease?",
+      "options": {
+        "A": "Alkaline phosphatase",
+        "B": "ALT only",
+        "C": "CK-MB only",
+        "D": "Troponin"
+      },
+      "correct": "A",
+      "explanation": "ALP has important liver and bone sources.",
+      "speed_hack": "ALP → liver or bone."
+    },
+    {
+      "id": "clinical_chem-020",
+      "question": "Which specimen is commonly preferred for many routine chemistry analytes when serum is required?",
+      "options": {
+        "A": "Clotted blood allowed to separate",
+        "B": "Unlabelled whole blood",
+        "C": "Dry swab only",
+        "D": "Urine only"
+      },
+      "correct": "A",
+      "explanation": "Serum is obtained after blood is allowed to clot and the specimen is separated.",
+      "speed_hack": "Serum = clot, then separate."
+    },
+    {
+      "id": "clinical_chem-021",
+      "question": "Haemolysis of a blood specimen can falsely increase which analyte because of its high intracellular concentration in red cells?",
+      "options": {
+        "A": "Potassium",
+        "B": "Sodium only",
+        "C": "Chloride only",
+        "D": "Bicarbonate only"
+      },
+      "correct": "A",
+      "explanation": "Red-cell rupture releases intracellular potassium into serum or plasma.",
+      "speed_hack": "Haemolysis → think potassium."
+    },
+    {
+      "id": "clinical_chem-022",
+      "question": "Which marker is commonly used to estimate renal filtration together with demographic variables?",
+      "options": {
+        "A": "eGFR based on creatinine",
+        "B": "ALT index",
+        "C": "ALP ratio",
+        "D": "Bilirubin fraction"
+      },
+      "correct": "A",
+      "explanation": "eGFR equations use serum creatinine and demographic variables to estimate filtration.",
+      "speed_hack": "Creatinine → eGFR."
+    },
+    {
+      "id": "clinical_chem-023",
+      "question": "Which protein carries iron in plasma?",
+      "options": {
+        "A": "Transferrin",
+        "B": "Albumin only",
+        "C": "Fibrinogen",
+        "D": "Ceruloplasmin only"
+      },
+      "correct": "A",
+      "explanation": "Transferrin is the principal plasma iron-binding transport protein.",
+      "speed_hack": "Iron transport → transferrin."
+    },
+    {
+      "id": "clinical_chem-024",
+      "question": "Ferritin is most useful as a marker of:",
+      "options": {
+        "A": "Iron stores",
+        "B": "Acute glucose control",
+        "C": "Cardiac contraction",
+        "D": "Sodium balance"
+      },
+      "correct": "A",
+      "explanation": "Ferritin reflects body iron stores, although it also rises as an acute-phase reactant.",
+      "speed_hack": "Ferritin → storage iron."
+    },
+    {
+      "id": "clinical_chem-025",
+      "question": "Which analyte is commonly measured to assess calcium-regulating parathyroid activity indirectly through mineral metabolism?",
+      "options": {
+        "A": "Parathyroid hormone",
+        "B": "Troponin",
+        "C": "Amylase",
+        "D": "ALT"
+      },
+      "correct": "A",
+      "explanation": "Parathyroid hormone regulates calcium and phosphate homeostasis and is measured in relevant disorders.",
+      "speed_hack": "PTH → calcium/phosphate."
+    },
+    {
+      "id": "clinical_chem-026",
+      "question": "Which hormone is produced by the thyroid parafollicular C cells?",
+      "options": {
+        "A": "Calcitonin",
+        "B": "Insulin",
+        "C": "Cortisol",
+        "D": "Aldosterone"
+      },
+      "correct": "A",
+      "explanation": "Thyroid C cells produce calcitonin.",
+      "speed_hack": "C cells → calcitonin."
+    },
+    {
+      "id": "clinical_chem-027",
+      "question": "Which hormone is produced by the adrenal cortex and promotes sodium retention?",
+      "options": {
+        "A": "Aldosterone",
+        "B": "Insulin",
+        "C": "Thyroxine",
+        "D": "Prolactin"
+      },
+      "correct": "A",
+      "explanation": "Aldosterone promotes renal sodium reabsorption and potassium secretion.",
+      "speed_hack": "Aldosterone → Na+ retention."
+    },
+    {
+      "id": "clinical_chem-028",
+      "question": "Which test is commonly used to assess thyroid function initially?",
+      "options": {
+        "A": "TSH",
+        "B": "Troponin",
+        "C": "Amylase",
+        "D": "Ferritin only"
+      },
+      "correct": "A",
+      "explanation": "TSH is a common first-line laboratory test in the evaluation of thyroid function.",
+      "speed_hack": "Thyroid screen → TSH."
+    },
+    {
+      "id": "clinical_chem-029",
+      "question": "A high TSH with low free T4 is most consistent with:",
+      "options": {
+        "A": "Primary hypothyroidism",
+        "B": "Primary hyperthyroidism",
+        "C": "Central hyperthyroidism only",
+        "D": "Normal thyroid function"
+      },
+      "correct": "A",
+      "explanation": "The thyroid fails to produce sufficient hormone, so pituitary TSH rises while free T4 falls.",
+      "speed_hack": "Primary hypo → TSH high, T4 low."
+    },
+    {
+      "id": "clinical_chem-030",
+      "question": "Which analyte is a major marker of muscle injury?",
+      "options": {
+        "A": "Creatine kinase",
+        "B": "Albumin",
+        "C": "Bilirubin",
+        "D": "ALP only"
+      },
+      "correct": "A",
+      "explanation": "Creatine kinase is released from damaged skeletal and cardiac muscle.",
+      "speed_hack": "Muscle injury → CK."
+    },
+    {
+      "id": "clinical_chem-031",
+      "question": "Which fraction of calcium is biologically active and most closely affected by pH?",
+      "options": {
+        "A": "Ionized calcium",
+        "B": "Protein-bound calcium only",
+        "C": "Calcium in bone only",
+        "D": "Total phosphate"
+      },
+      "correct": "A",
+      "explanation": "Ionized calcium is the physiologically active fraction and changes with pH.",
+      "speed_hack": "Active calcium = ionized."
+    },
+    {
+      "id": "clinical_chem-032",
+      "question": "Which renal analyte is strongly influenced by muscle mass?",
+      "options": {
+        "A": "Creatinine",
+        "B": "Bilirubin",
+        "C": "ALT",
+        "D": "Sodium"
+      },
+      "correct": "A",
+      "explanation": "Creatinine production depends partly on muscle mass, so interpretation considers patient characteristics.",
+      "speed_hack": "Creatinine comes partly from muscle metabolism."
+    },
+    {
+      "id": "clinical_chem-033",
+      "question": "Which enzyme is commonly used with CK-MB historically in evaluating myocardial injury?",
+      "options": {
+        "A": "CK",
+        "B": "ALP",
+        "C": "Amylase",
+        "D": "GGT"
+      },
+      "correct": "A",
+      "explanation": "Total CK and CK-MB were historically used in myocardial injury evaluation, though troponin is now central.",
+      "speed_hack": "CK-MB is a CK fraction."
+    },
+    {
+      "id": "clinical_chem-034",
+      "question": "Which analyte is a waste product formed from protein metabolism and commonly assessed in renal function panels?",
+      "options": {
+        "A": "Urea",
+        "B": "Bilirubin",
+        "C": "Troponin",
+        "D": "ALT"
+      },
+      "correct": "A",
+      "explanation": "Urea is generated from nitrogen metabolism and is excreted mainly by the kidneys.",
+      "speed_hack": "Protein nitrogen → urea."
+    },
+    {
+      "id": "clinical_chem-035",
+      "question": "Which condition commonly causes an increased unconjugated bilirubin fraction?",
+      "options": {
+        "A": "Increased haemolysis",
+        "B": "Complete urinary obstruction only",
+        "C": "Cholestatic bile duct obstruction only",
+        "D": "Isolated high HDL"
+      },
+      "correct": "A",
+      "explanation": "Accelerated red-cell destruction can increase bilirubin production and the unconjugated fraction.",
+      "speed_hack": "Haemolysis → unconjugated bilirubin."
+    },
+    {
+      "id": "clinical_chem-036",
+      "question": "Which analyte is commonly measured using the Jaffe reaction in routine chemistry laboratories?",
+      "options": {
+        "A": "Creatinine",
+        "B": "Glucose",
+        "C": "Sodium",
+        "D": "Albumin"
+      },
+      "correct": "A",
+      "explanation": "The Jaffe method is a traditional colorimetric method for creatinine.",
+      "speed_hack": "Jaffe → creatinine."
+    },
+    {
+      "id": "clinical_chem-037",
+      "question": "Which method is widely used in modern laboratories for serum sodium measurement?",
+      "options": {
+        "A": "Ion-selective electrode",
+        "B": "Gram stain",
+        "C": "ELISA only",
+        "D": "Coombs test"
+      },
+      "correct": "A",
+      "explanation": "Ion-selective electrodes are widely used for electrolyte measurement.",
+      "speed_hack": "Electrolytes → ISE."
+    },
+    {
+      "id": "clinical_chem-038",
+      "question": "Which analyte is commonly measured by the hexokinase method for glucose?",
+      "options": {
+        "A": "Glucose",
+        "B": "Urea",
+        "C": "Bilirubin",
+        "D": "Calcium"
+      },
+      "correct": "A",
+      "explanation": "Hexokinase-based assays are specific enzymatic methods for glucose measurement.",
+      "speed_hack": "Hexokinase → glucose."
+    },
+    {
+      "id": "clinical_chem-039",
+      "question": "Which plasma enzyme is strongly associated with biliary obstruction and cholestasis?",
+      "options": {
+        "A": "GGT",
+        "B": "CK",
+        "C": "Troponin",
+        "D": "Amylase"
+      },
+      "correct": "A",
+      "explanation": "GGT often rises with cholestatic hepatobiliary disease and can help identify a hepatic source of ALP.",
+      "speed_hack": "GGT → hepatobiliary/cholestatic clue."
+    },
+    {
+      "id": "clinical_chem-040",
+      "question": "Which quality-control concept describes how close repeated measurements are to each other?",
+      "options": {
+        "A": "Precision",
+        "B": "Accuracy",
+        "C": "Sensitivity",
+        "D": "Specificity"
+      },
+      "correct": "A",
+      "explanation": "Precision describes repeatability or closeness among repeated measurements.",
+      "speed_hack": "Precision = repeatability."
+    },
+    {
+      "id": "clinical_chem-041",
+      "question": "Which quality concept describes closeness of a result to the true or accepted value?",
+      "options": {
+        "A": "Accuracy",
+        "B": "Precision",
+        "C": "Sensitivity",
+        "D": "Turnaround time"
+      },
+      "correct": "A",
+      "explanation": "Accuracy describes closeness to the true or accepted reference value.",
+      "speed_hack": "Accuracy = true value closeness."
+    },
+    {
+      "id": "clinical_chem-042",
+      "question": "A laboratory reference interval is best described as:",
+      "options": {
+        "A": "A defined interval derived from a specified reference population and method",
+        "B": "A universal range identical for every laboratory",
+        "C": "A diagnosis by itself",
+        "D": "A treatment target for every patient"
+      },
+      "correct": "A",
+      "explanation": "Reference intervals depend on population, method and other defined conditions and do not automatically equal diagnostic cutoffs.",
+      "speed_hack": "Reference interval ≠ diagnosis."
+    },
+    {
+      "id": "clinical_chem-043",
+      "question": "Which specimen problem is most likely to cause an erroneous chemistry result before analysis?",
+      "options": {
+        "A": "Misidentification or inappropriate collection",
+        "B": "Correct patient identification",
+        "C": "Proper storage",
+        "D": "Validated method"
+      },
+      "correct": "A",
+      "explanation": "Preanalytical errors such as misidentification and poor collection can compromise results before analysis.",
+      "speed_hack": "Before test = preanalytical."
+    },
+    {
+      "id": "clinical_chem-044",
+      "question": "A calibration curve is primarily used to relate instrument response to:",
+      "options": {
+        "A": "Known analyte concentrations",
+        "B": "Patient age only",
+        "C": "Blood group antigens",
+        "D": "Microscope magnification"
+      },
+      "correct": "A",
+      "explanation": "Calibration establishes the relationship between measured instrument response and known concentrations of an analyte.",
+      "speed_hack": "Calibration → response versus known concentration."
+    },
+    {
+      "id": "clinical_chem-045",
+      "question": "A reagent blank is primarily used to account for:",
+      "options": {
+        "A": "Signal contributed by reagents or background",
+        "B": "Patient diagnosis",
+        "C": "Blood group antibodies",
+        "D": "Cell morphology"
+      },
+      "correct": "A",
+      "explanation": "A reagent blank estimates background absorbance or signal not attributable to the patient analyte.",
+      "speed_hack": "Blank → background signal."
+    }
+  ],
+  "microbiology": [
+    {
+      "id": "microbiology-001",
+      "question": "Which bacterial structure is primarily responsible for peptidoglycan synthesis inhibition by beta-lactam antibiotics?",
+      "options": {
+        "A": "Cell wall",
+        "B": "Ribosome only",
+        "C": "Capsule only",
+        "D": "Flagellum"
+      },
+      "correct": "A",
+      "explanation": "Beta-lactams inhibit penicillin-binding proteins involved in bacterial cell-wall synthesis.",
+      "speed_hack": "Beta-lactam → cell wall."
+    },
+    {
+      "id": "microbiology-002",
+      "question": "Gram-positive bacteria typically retain crystal violet because of their:",
+      "options": {
+        "A": "Thick peptidoglycan layer",
+        "B": "Outer membrane rich in LPS",
+        "C": "Absence of a cell wall",
+        "D": "High lipid capsule only"
+      },
+      "correct": "A",
+      "explanation": "The thick peptidoglycan wall of Gram-positive bacteria retains the crystal violet-iodine complex during decolorization.",
+      "speed_hack": "Gram positive → thick peptidoglycan."
+    },
+    {
+      "id": "microbiology-003",
+      "question": "The major endotoxin component of Gram-negative outer membrane is:",
+      "options": {
+        "A": "Lipid A of LPS",
+        "B": "Peptidoglycan",
+        "C": "Teichoic acid",
+        "D": "Ergosterol"
+      },
+      "correct": "A",
+      "explanation": "Lipid A is the endotoxic portion of lipopolysaccharide.",
+      "speed_hack": "Endotoxin → Lipid A."
+    },
+    {
+      "id": "microbiology-004",
+      "question": "Which organism is classically coagulase positive?",
+      "options": {
+        "A": "Staphylococcus aureus",
+        "B": "Staphylococcus epidermidis",
+        "C": "Streptococcus pyogenes",
+        "D": "Enterococcus faecalis"
+      },
+      "correct": "A",
+      "explanation": "S. aureus is characteristically coagulase positive.",
+      "speed_hack": "Coagulase positive → S. aureus."
+    },
+    {
+      "id": "microbiology-005",
+      "question": "Which test differentiates Staphylococcus from Streptococcus?",
+      "options": {
+        "A": "Catalase test",
+        "B": "Oxidase only",
+        "C": "Urease only",
+        "D": "Indole only"
+      },
+      "correct": "A",
+      "explanation": "Staphylococci are catalase positive, while streptococci are catalase negative.",
+      "speed_hack": "Staph = catalase positive."
+    },
+    {
+      "id": "microbiology-006",
+      "question": "Which organism is a common cause of urinary tract infection and is usually lactose fermenting on MacConkey agar?",
+      "options": {
+        "A": "Escherichia coli",
+        "B": "Salmonella Typhi",
+        "C": "Shigella dysenteriae",
+        "D": "Vibrio cholerae"
+      },
+      "correct": "A",
+      "explanation": "E. coli commonly causes UTIs and typically forms pink lactose-fermenting colonies on MacConkey agar.",
+      "speed_hack": "UTI + lactose fermenter → E. coli."
+    },
+    {
+      "id": "microbiology-007",
+      "question": "Which culture medium is selective and differential for many Gram-negative enteric bacilli?",
+      "options": {
+        "A": "MacConkey agar",
+        "B": "Blood agar only",
+        "C": "Sabouraud agar only",
+        "D": "Lowenstein-Jensen only"
+      },
+      "correct": "A",
+      "explanation": "MacConkey agar selects for many Gram-negative organisms and differentiates lactose fermentation.",
+      "speed_hack": "MacConkey → Gram-negative enterics."
+    },
+    {
+      "id": "microbiology-008",
+      "question": "Which medium is commonly used for fungi?",
+      "options": {
+        "A": "Sabouraud dextrose agar",
+        "B": "MacConkey agar",
+        "C": "CLED only",
+        "D": "Chocolate agar only"
+      },
+      "correct": "A",
+      "explanation": "Sabouraud dextrose agar is commonly used for fungal isolation.",
+      "speed_hack": "Sabouraud → fungi."
+    },
+    {
+      "id": "microbiology-009",
+      "question": "Which stain is commonly used to detect acid-fast bacilli?",
+      "options": {
+        "A": "Ziehl-Neelsen",
+        "B": "Gram only",
+        "C": "India ink only",
+        "D": "Giemsa only"
+      },
+      "correct": "A",
+      "explanation": "Ziehl-Neelsen staining is a classic method for demonstrating acid-fast bacilli.",
+      "speed_hack": "AFB → Ziehl-Neelsen."
+    },
+    {
+      "id": "microbiology-010",
+      "question": "Mycobacterium tuberculosis is characterized by:",
+      "options": {
+        "A": "Acid-fastness",
+        "B": "Coagulase production",
+        "C": "Lactose fermentation",
+        "D": "Spore formation"
+      },
+      "correct": "A",
+      "explanation": "The lipid-rich mycobacterial cell envelope confers acid-fast staining properties.",
+      "speed_hack": "TB bacillus → acid-fast."
+    },
+    {
+      "id": "microbiology-011",
+      "question": "Which organism is classically associated with a positive oxidase reaction?",
+      "options": {
+        "A": "Pseudomonas aeruginosa",
+        "B": "Escherichia coli",
+        "C": "Shigella",
+        "D": "Klebsiella"
+      },
+      "correct": "A",
+      "explanation": "P. aeruginosa is oxidase positive, helping distinguish it from many Enterobacterales.",
+      "speed_hack": "Pseudomonas → oxidase positive."
+    },
+    {
+      "id": "microbiology-012",
+      "question": "Which organism produces a blue-green pigment called pyocyanin?",
+      "options": {
+        "A": "Pseudomonas aeruginosa",
+        "B": "S. aureus",
+        "C": "E. coli",
+        "D": "Candida albicans"
+      },
+      "correct": "A",
+      "explanation": "P. aeruginosa can produce pyocyanin and other pigments.",
+      "speed_hack": "Pyo-cyanin → Pseudomonas."
+    },
+    {
+      "id": "microbiology-013",
+      "question": "Which organism is associated with pseudomembranous colitis after antibiotic exposure?",
+      "options": {
+        "A": "Clostridioides difficile",
+        "B": "E. coli O157:H7",
+        "C": "Salmonella Typhi",
+        "D": "Vibrio parahaemolyticus"
+      },
+      "correct": "A",
+      "explanation": "C. difficile overgrowth after antibiotic exposure can cause toxin-mediated colitis.",
+      "speed_hack": "Antibiotics + pseudomembrane → C. difficile."
+    },
+    {
+      "id": "microbiology-014",
+      "question": "Which bacterial genus forms endospores and includes Bacillus and Clostridium?",
+      "options": {
+        "A": "Bacillus/Clostridium group",
+        "B": "Neisseria",
+        "C": "Mycoplasma",
+        "D": "Chlamydia"
+      },
+      "correct": "A",
+      "explanation": "Bacillus and Clostridium are notable spore-forming bacterial genera.",
+      "speed_hack": "Spore formers → Bacillus/Clostridium."
+    },
+    {
+      "id": "microbiology-015",
+      "question": "Which organism is an encapsulated yeast commonly associated with meningitis in immunocompromised patients?",
+      "options": {
+        "A": "Cryptococcus neoformans",
+        "B": "Candida tropicalis",
+        "C": "Aspergillus fumigatus",
+        "D": "Trichophyton rubrum"
+      },
+      "correct": "A",
+      "explanation": "Cryptococcus neoformans has a prominent polysaccharide capsule and can cause meningitis.",
+      "speed_hack": "Encapsulated yeast → Cryptococcus."
+    },
+    {
+      "id": "microbiology-016",
+      "question": "Which fungus is commonly associated with oral thrush?",
+      "options": {
+        "A": "Candida albicans",
+        "B": "Aspergillus niger",
+        "C": "Microsporum canis",
+        "D": "Cryptococcus only"
+      },
+      "correct": "A",
+      "explanation": "Candida albicans commonly causes mucosal candidiasis including oral thrush.",
+      "speed_hack": "Thrush → Candida."
+    },
+    {
+      "id": "microbiology-017",
+      "question": "Which test can identify a capsule around Cryptococcus in CSF?",
+      "options": {
+        "A": "Cryptococcal antigen test",
+        "B": "Coagulase test",
+        "C": "Oxidase test",
+        "D": "Catalase test"
+      },
+      "correct": "A",
+      "explanation": "Cryptococcal antigen detection is an important diagnostic test for cryptococcal disease.",
+      "speed_hack": "Cryptococcus → antigen in CSF."
+    },
+    {
+      "id": "microbiology-018",
+      "question": "Which organism is classically associated with a curved comma-shaped morphology and cholera?",
+      "options": {
+        "A": "Vibrio cholerae",
+        "B": "Shigella sonnei",
+        "C": "Klebsiella pneumoniae",
+        "D": "Proteus mirabilis"
+      },
+      "correct": "A",
+      "explanation": "V. cholerae is a curved Gram-negative bacterium associated with cholera.",
+      "speed_hack": "Comma-shaped → Vibrio."
+    },
+    {
+      "id": "microbiology-019",
+      "question": "Which organism is classically associated with bacillary dysentery?",
+      "options": {
+        "A": "Shigella",
+        "B": "Vibrio",
+        "C": "Brucella",
+        "D": "Bordetella"
+      },
+      "correct": "A",
+      "explanation": "Shigella species cause shigellosis, often with inflammatory diarrhoea and dysentery.",
+      "speed_hack": "Dysentery → Shigella."
+    },
+    {
+      "id": "microbiology-020",
+      "question": "Which enteric pathogen is associated with typhoid fever?",
+      "options": {
+        "A": "Salmonella Typhi",
+        "B": "S. aureus",
+        "C": "E. coli K-12",
+        "D": "Pseudomonas"
+      },
+      "correct": "A",
+      "explanation": "Salmonella enterica serovar Typhi causes typhoid fever.",
+      "speed_hack": "Typhoid → S. Typhi."
+    },
+    {
+      "id": "microbiology-021",
+      "question": "Which specimen is commonly collected for diagnosis of bacterial meningitis?",
+      "options": {
+        "A": "CSF",
+        "B": "Hair only",
+        "C": "Nail clipping only",
+        "D": "Saliva only"
+      },
+      "correct": "A",
+      "explanation": "Cerebrospinal fluid is a key specimen for laboratory diagnosis of meningitis.",
+      "speed_hack": "Meningitis → CSF."
+    },
+    {
+      "id": "microbiology-022",
+      "question": "Which bacterial structure enables motility in many organisms?",
+      "options": {
+        "A": "Flagellum",
+        "B": "Capsule",
+        "C": "Ribosome",
+        "D": "Endospore only"
+      },
+      "correct": "A",
+      "explanation": "Flagella provide motility in many bacterial species.",
+      "speed_hack": "Motility → flagellum."
+    },
+    {
+      "id": "microbiology-023",
+      "question": "Which structure can help bacteria resist phagocytosis?",
+      "options": {
+        "A": "Capsule",
+        "B": "Ribosome",
+        "C": "Peptidase",
+        "D": "Plasmid only"
+      },
+      "correct": "A",
+      "explanation": "Capsules can inhibit effective phagocytosis and contribute to virulence.",
+      "speed_hack": "Anti-phagocytic coat → capsule."
+    },
+    {
+      "id": "microbiology-024",
+      "question": "A plasmid is best described as:",
+      "options": {
+        "A": "An extrachromosomal DNA molecule",
+        "B": "A bacterial ribosome",
+        "C": "A cell wall protein",
+        "D": "A fungal spore"
+      },
+      "correct": "A",
+      "explanation": "Plasmids are usually small extrachromosomal DNA molecules that can carry accessory genes.",
+      "speed_hack": "Plasmid = extra DNA."
+    },
+    {
+      "id": "microbiology-025",
+      "question": "Transfer of bacterial DNA by bacteriophages is called:",
+      "options": {
+        "A": "Transduction",
+        "B": "Conjugation",
+        "C": "Transformation",
+        "D": "Binary fission"
+      },
+      "correct": "A",
+      "explanation": "Transduction is bacteriophage-mediated DNA transfer between bacteria.",
+      "speed_hack": "Phage transfer → transduction."
+    },
+    {
+      "id": "microbiology-026",
+      "question": "Direct transfer of bacterial DNA through cell-to-cell contact commonly involves:",
+      "options": {
+        "A": "Conjugation",
+        "B": "Transduction",
+        "C": "Transformation",
+        "D": "Sporulation"
+      },
+      "correct": "A",
+      "explanation": "Conjugation commonly involves direct contact and plasmid-mediated DNA transfer.",
+      "speed_hack": "Contact transfer → conjugation."
+    },
+    {
+      "id": "microbiology-027",
+      "question": "Uptake of naked DNA from the environment by a bacterium is:",
+      "options": {
+        "A": "Transformation",
+        "B": "Transduction",
+        "C": "Conjugation",
+        "D": "Translation"
+      },
+      "correct": "A",
+      "explanation": "Transformation is acquisition of free environmental DNA.",
+      "speed_hack": "Free DNA → transformation."
+    },
+    {
+      "id": "microbiology-028",
+      "question": "Which antimicrobial susceptibility method measures zones around antibiotic discs?",
+      "options": {
+        "A": "Kirby-Bauer disc diffusion",
+        "B": "ELISA",
+        "C": "Gram stain",
+        "D": "PCR only"
+      },
+      "correct": "A",
+      "explanation": "Kirby-Bauer disc diffusion interprets inhibition zones around antibiotic discs.",
+      "speed_hack": "Disc diffusion → Kirby-Bauer."
+    },
+    {
+      "id": "microbiology-029",
+      "question": "The minimum inhibitory concentration is the lowest antimicrobial concentration that:",
+      "options": {
+        "A": "Prevents visible growth",
+        "B": "Kills every cell immediately",
+        "C": "Changes Gram reaction",
+        "D": "Causes haemolysis"
+      },
+      "correct": "A",
+      "explanation": "MIC is the lowest concentration that visibly inhibits microbial growth under defined test conditions.",
+      "speed_hack": "MIC = minimum visible inhibition."
+    },
+    {
+      "id": "microbiology-030",
+      "question": "Which biosafety practice is most appropriate when handling potentially infectious specimens?",
+      "options": {
+        "A": "Use risk-appropriate PPE and safe containment",
+        "B": "Taste the specimen to identify it",
+        "C": "Recap needles by hand routinely",
+        "D": "Leave samples open on the bench"
+      },
+      "correct": "A",
+      "explanation": "Risk assessment, PPE and appropriate containment reduce exposure to infectious materials.",
+      "speed_hack": "Infectious specimen → risk assessment + PPE."
+    },
+    {
+      "id": "microbiology-031",
+      "question": "Which method sterilizes by saturated steam under pressure?",
+      "options": {
+        "A": "Autoclaving",
+        "B": "Filtration only",
+        "C": "Dry wiping",
+        "D": "Sunlight exposure"
+      },
+      "correct": "A",
+      "explanation": "Autoclaves use saturated steam under pressure to achieve sterilization.",
+      "speed_hack": "Steam under pressure → autoclave."
+    },
+    {
+      "id": "microbiology-032",
+      "question": "Which organism is a common sexually transmitted bacterial pathogen?",
+      "options": {
+        "A": "Neisseria gonorrhoeae",
+        "B": "Bacillus subtilis",
+        "C": "Staphylococcus epidermidis",
+        "D": "Clostridium tetani"
+      },
+      "correct": "A",
+      "explanation": "N. gonorrhoeae causes gonorrhoea and is transmitted primarily through sexual contact.",
+      "speed_hack": "Gonorrhoea → Neisseria gonorrhoeae."
+    },
+    {
+      "id": "microbiology-033",
+      "question": "Which organism causes syphilis?",
+      "options": {
+        "A": "Treponema pallidum",
+        "B": "Neisseria meningitidis",
+        "C": "E. coli",
+        "D": "Candida albicans"
+      },
+      "correct": "A",
+      "explanation": "Treponema pallidum is the spirochete that causes syphilis.",
+      "speed_hack": "Syphilis → T. pallidum."
+    },
+    {
+      "id": "microbiology-034",
+      "question": "Which bacterial shape describes a spherical cell?",
+      "options": {
+        "A": "Coccus",
+        "B": "Bacillus",
+        "C": "Vibrio",
+        "D": "Spirochete"
+      },
+      "correct": "A",
+      "explanation": "Cocci are spherical or approximately spherical bacterial cells.",
+      "speed_hack": "Coccus = round."
+    },
+    {
+      "id": "microbiology-035",
+      "question": "Which bacterial shape describes a rod?",
+      "options": {
+        "A": "Bacillus",
+        "B": "Coccus",
+        "C": "Vibrio only",
+        "D": "Spirochete"
+      },
+      "correct": "A",
+      "explanation": "Bacilli are rod-shaped bacteria.",
+      "speed_hack": "Bacillus = rod."
+    },
+    {
+      "id": "microbiology-036",
+      "question": "Which organism commonly grows as budding yeast and pseudohyphae?",
+      "options": {
+        "A": "Candida albicans",
+        "B": "Plasmodium falciparum",
+        "C": "E. coli",
+        "D": "Mycobacterium tuberculosis"
+      },
+      "correct": "A",
+      "explanation": "Candida albicans can form budding yeast cells and pseudohyphae.",
+      "speed_hack": "Candida → yeast + pseudohyphae."
+    },
+    {
+      "id": "microbiology-037",
+      "question": "Which microscopic finding is associated with dermatophyte infection of keratinized tissues?",
+      "options": {
+        "A": "Fungal hyphae/arthroconidia",
+        "B": "Gram-negative diplococci only",
+        "C": "Auer rods",
+        "D": "Sickle cells"
+      },
+      "correct": "A",
+      "explanation": "Dermatophytes grow in keratinized tissues and can be demonstrated as fungal elements.",
+      "speed_hack": "Dermatophytes → keratin + hyphae."
+    },
+    {
+      "id": "microbiology-038",
+      "question": "Which test detects microbial nucleic acid after amplification?",
+      "options": {
+        "A": "PCR",
+        "B": "Coagulase",
+        "C": "Catalase",
+        "D": "Oxidase"
+      },
+      "correct": "A",
+      "explanation": "PCR amplifies target nucleic acid sequences for detection.",
+      "speed_hack": "PCR → nucleic acid amplification."
+    },
+    {
+      "id": "microbiology-039",
+      "question": "A culture is best described as:",
+      "options": {
+        "A": "Growth of microorganisms under controlled laboratory conditions",
+        "B": "A blood count",
+        "C": "A staining reaction only",
+        "D": "A chemical electrolyte test"
+      },
+      "correct": "A",
+      "explanation": "Culture provides conditions that allow microorganisms to multiply for identification and susceptibility testing.",
+      "speed_hack": "Culture → grow organism."
+    },
+    {
+      "id": "microbiology-040",
+      "question": "Which term describes microorganisms that normally inhabit the body without necessarily causing disease?",
+      "options": {
+        "A": "Normal microbiota",
+        "B": "Obligate pathogens",
+        "C": "Toxins",
+        "D": "Antibodies"
+      },
+      "correct": "A",
+      "explanation": "Normal microbiota are organisms commonly present on or in the body without necessarily causing disease.",
+      "speed_hack": "Normal flora/microbiota ≠ automatic disease."
+    },
+    {
+      "id": "microbiology-041",
+      "question": "Which factor is especially important for anaerobic culture?",
+      "options": {
+        "A": "Exclusion of oxygen",
+        "B": "High oxygen concentration",
+        "C": "Strong UV light",
+        "D": "Continuous shaking in air"
+      },
+      "correct": "A",
+      "explanation": "Obligate anaerobes require conditions in which oxygen is absent or sufficiently reduced.",
+      "speed_hack": "Anaerobe → protect from oxygen."
+    },
+    {
+      "id": "microbiology-042",
+      "question": "Which specimen issue can significantly compromise microbiological culture results?",
+      "options": {
+        "A": "Delay in transport without appropriate preservation",
+        "B": "Correct sterile collection",
+        "C": "Proper labeling",
+        "D": "Prompt delivery"
+      },
+      "correct": "A",
+      "explanation": "Delay or improper transport can reduce recovery of pathogens and distort culture results.",
+      "speed_hack": "Microbiology specimen → collect and transport promptly."
+    },
+    {
+      "id": "microbiology-043",
+      "question": "Which quality principle means a result should be traceable to the specimen and process that produced it?",
+      "options": {
+        "A": "Traceability",
+        "B": "Randomization",
+        "C": "Anonymity",
+        "D": "Guessing"
+      },
+      "correct": "A",
+      "explanation": "Traceability links samples, procedures, equipment, records and results through controlled documentation.",
+      "speed_hack": "Traceability → follow the result backward."
+    },
+    {
+      "id": "microbiology-044",
+      "question": "Review check: Which option is correct for the following concept? Which bacterial structure is primarily responsible for peptidoglycan synthesis inhibition by beta-lactam antibiotics?",
+      "options": {
+        "A": "Cell wall",
+        "B": "Ribosome only",
+        "C": "Capsule only",
+        "D": "Flagellum"
+      },
+      "correct": "A",
+      "explanation": "Beta-lactams inhibit penicillin-binding proteins involved in bacterial cell-wall synthesis. This alternate stem checks the same core concept from a different angle.",
+      "speed_hack": "Use the same key clue: Beta-lactam → cell wall."
+    },
+    {
+      "id": "microbiology-045",
+      "question": "Review check: Which option is correct for the following concept? Gram-positive bacteria typically retain crystal violet because of their:",
+      "options": {
+        "A": "Thick peptidoglycan layer",
+        "B": "Outer membrane rich in LPS",
+        "C": "Absence of a cell wall",
+        "D": "High lipid capsule only"
+      },
+      "correct": "A",
+      "explanation": "The thick peptidoglycan wall of Gram-positive bacteria retains the crystal violet-iodine complex during decolorization. This alternate stem checks the same core concept from a different angle.",
+      "speed_hack": "Use the same key clue: Gram positive → thick peptidoglycan."
+    }
+  ],
+  "histopath": [
+    {
+      "id": "histopath-001",
+      "question": "What is the main purpose of tissue fixation in routine histopathology?",
+      "options": {
+        "A": "Preserve tissue morphology and limit autolysis",
+        "B": "Dissolve all tissue proteins",
+        "C": "Increase bacterial growth",
+        "D": "Remove all nucleic acids"
+      },
+      "correct": "A",
+      "explanation": "Fixation stabilizes tissue components and helps prevent autolysis and decomposition.",
+      "speed_hack": "Fixation = preserve morphology."
+    },
+    {
+      "id": "histopath-002",
+      "question": "The most common routine fixative for histopathology is:",
+      "options": {
+        "A": "10% neutral buffered formalin",
+        "B": "Absolute ethanol only",
+        "C": "Normal saline only",
+        "D": "Acetone only"
+      },
+      "correct": "A",
+      "explanation": "10% neutral buffered formalin is widely used for routine tissue fixation.",
+      "speed_hack": "Routine tissue → buffered formalin."
+    },
+    {
+      "id": "histopath-003",
+      "question": "Which processing step removes water from fixed tissue?",
+      "options": {
+        "A": "Dehydration",
+        "B": "Embedding",
+        "C": "Sectioning",
+        "D": "Staining"
+      },
+      "correct": "A",
+      "explanation": "Dehydration progressively removes water, commonly using graded alcohols.",
+      "speed_hack": "Dehydrate = remove water."
+    },
+    {
+      "id": "histopath-004",
+      "question": "Which reagent is commonly used to clear tissue before paraffin infiltration?",
+      "options": {
+        "A": "Xylene or a suitable clearing agent",
+        "B": "Water only",
+        "C": "EDTA only",
+        "D": "Eosin only"
+      },
+      "correct": "A",
+      "explanation": "Clearing agents such as xylene replace alcohol and prepare tissue for paraffin infiltration.",
+      "speed_hack": "Clearing → replace alcohol."
+    },
+    {
+      "id": "histopath-005",
+      "question": "Which medium is routinely used for paraffin sections?",
+      "options": {
+        "A": "Paraffin wax",
+        "B": "Agar only",
+        "C": "Gelatin only",
+        "D": "Saline"
+      },
+      "correct": "A",
+      "explanation": "Paraffin wax provides a support matrix for thin routine sections.",
+      "speed_hack": "Paraffin → routine embedding."
+    },
+    {
+      "id": "histopath-006",
+      "question": "Which instrument is commonly used to cut thin paraffin sections?",
+      "options": {
+        "A": "Microtome",
+        "B": "Centrifuge",
+        "C": "Spectrophotometer",
+        "D": "Autoclave"
+      },
+      "correct": "A",
+      "explanation": "A microtome cuts thin sections from paraffin-embedded tissue blocks.",
+      "speed_hack": "Thin sections → microtome."
+    },
+    {
+      "id": "histopath-007",
+      "question": "Which stain is the routine primary stain in histopathology?",
+      "options": {
+        "A": "Haematoxylin and eosin",
+        "B": "Ziehl-Neelsen",
+        "C": "Gram stain only",
+        "D": "India ink"
+      },
+      "correct": "A",
+      "explanation": "H&E is the standard routine stain for assessing tissue architecture and morphology.",
+      "speed_hack": "Routine histology → H&E."
+    },
+    {
+      "id": "histopath-008",
+      "question": "Haematoxylin primarily stains nuclei:",
+      "options": {
+        "A": "Blue-purple",
+        "B": "Bright orange only",
+        "C": "Green only",
+        "D": "Colourless"
+      },
+      "correct": "A",
+      "explanation": "Haematoxylin acts as a basic dye component and commonly produces blue-purple nuclear staining.",
+      "speed_hack": "Haematoxylin → nuclei blue-purple."
+    },
+    {
+      "id": "histopath-009",
+      "question": "Eosin primarily stains cytoplasmic proteins:",
+      "options": {
+        "A": "Pink to red",
+        "B": "Blue-black only",
+        "C": "Colourless",
+        "D": "Silver only"
+      },
+      "correct": "A",
+      "explanation": "Eosin is an acidic dye that commonly stains cytoplasmic and extracellular proteins pink to red.",
+      "speed_hack": "Eosin → cytoplasm pink."
+    },
+    {
+      "id": "histopath-010",
+      "question": "Which stain is commonly used to demonstrate glycogen and certain carbohydrates?",
+      "options": {
+        "A": "PAS",
+        "B": "H&E only",
+        "C": "Gram only",
+        "D": "Sudan black only"
+      },
+      "correct": "A",
+      "explanation": "Periodic acid-Schiff highlights glycogen and other carbohydrate-rich structures.",
+      "speed_hack": "PAS → carbohydrates."
+    },
+    {
+      "id": "histopath-011",
+      "question": "Which stain is commonly used to demonstrate collagen in connective tissue?",
+      "options": {
+        "A": "Masson trichrome",
+        "B": "Ziehl-Neelsen",
+        "C": "Wright stain",
+        "D": "Gram stain"
+      },
+      "correct": "A",
+      "explanation": "Masson trichrome differentiates collagen from other tissue components.",
+      "speed_hack": "Trichrome → collagen."
+    },
+    {
+      "id": "histopath-012",
+      "question": "Which stain is useful for demonstrating reticulin fibres?",
+      "options": {
+        "A": "Reticulin silver stain",
+        "B": "H&E only",
+        "C": "PAS only",
+        "D": "Congo red only"
+      },
+      "correct": "A",
+      "explanation": "Silver-based reticulin stains demonstrate fine reticulin fibres.",
+      "speed_hack": "Reticulin → silver stain."
+    },
+    {
+      "id": "histopath-013",
+      "question": "Which stain is classically used for amyloid?",
+      "options": {
+        "A": "Congo red",
+        "B": "Prussian blue",
+        "C": "Oil Red O",
+        "D": "Ziehl-Neelsen"
+      },
+      "correct": "A",
+      "explanation": "Congo red binds amyloid and shows characteristic apple-green birefringence under polarized light.",
+      "speed_hack": "Amyloid → Congo red."
+    },
+    {
+      "id": "histopath-014",
+      "question": "Which stain is commonly used to demonstrate iron deposits in tissue?",
+      "options": {
+        "A": "Prussian blue",
+        "B": "Congo red",
+        "C": "PAS",
+        "D": "Masson trichrome"
+      },
+      "correct": "A",
+      "explanation": "Prussian blue highlights ferric iron deposits.",
+      "speed_hack": "Iron → Prussian blue."
+    },
+    {
+      "id": "histopath-015",
+      "question": "Frozen section is particularly useful when a rapid intraoperative tissue assessment is required because it:",
+      "options": {
+        "A": "Provides a rapid section for immediate evaluation",
+        "B": "Requires weeks to process",
+        "C": "Cannot be examined microscopically",
+        "D": "Always replaces permanent sections"
+      },
+      "correct": "A",
+      "explanation": "Frozen section permits rapid preparation and examination during surgery, although permanent sections may still be required.",
+      "speed_hack": "Frozen → fast intraoperative answer."
+    },
+    {
+      "id": "histopath-016",
+      "question": "Which cellular change describes an increase in cell size?",
+      "options": {
+        "A": "Hypertrophy",
+        "B": "Hyperplasia",
+        "C": "Atrophy",
+        "D": "Metaplasia"
+      },
+      "correct": "A",
+      "explanation": "Hypertrophy is enlargement of individual cells.",
+      "speed_hack": "HyperTrophy = size."
+    },
+    {
+      "id": "histopath-017",
+      "question": "Which cellular change describes an increase in cell number?",
+      "options": {
+        "A": "Hyperplasia",
+        "B": "Hypertrophy",
+        "C": "Atrophy",
+        "D": "Dysplasia"
+      },
+      "correct": "A",
+      "explanation": "Hyperplasia is an increase in the number of cells in a tissue.",
+      "speed_hack": "Hyperplasia = number."
+    },
+    {
+      "id": "histopath-018",
+      "question": "Reduction in cell size is termed:",
+      "options": {
+        "A": "Atrophy",
+        "B": "Hypertrophy",
+        "C": "Hyperplasia",
+        "D": "Neoplasia"
+      },
+      "correct": "A",
+      "explanation": "Atrophy refers to reduction in cell size, often with reduced tissue mass.",
+      "speed_hack": "Atrophy = smaller."
+    },
+    {
+      "id": "histopath-019",
+      "question": "Replacement of one differentiated adult cell type by another is called:",
+      "options": {
+        "A": "Metaplasia",
+        "B": "Necrosis",
+        "C": "Apoptosis",
+        "D": "Hypertrophy"
+      },
+      "correct": "A",
+      "explanation": "Metaplasia is a reversible adaptive change in which one mature cell type is replaced by another.",
+      "speed_hack": "Metaplasia = cell-type swap."
+    },
+    {
+      "id": "histopath-020",
+      "question": "Disordered cellular maturation and architecture, often associated with premalignant change, is termed:",
+      "options": {
+        "A": "Dysplasia",
+        "B": "Atrophy",
+        "C": "Hypertrophy",
+        "D": "Calcification"
+      },
+      "correct": "A",
+      "explanation": "Dysplasia describes abnormal maturation and organization of cells and may be associated with premalignant lesions.",
+      "speed_hack": "Dysplasia = disordered maturation."
+    },
+    {
+      "id": "histopath-021",
+      "question": "Programmed cell death is called:",
+      "options": {
+        "A": "Apoptosis",
+        "B": "Necrosis",
+        "C": "Metaplasia",
+        "D": "Hyperplasia"
+      },
+      "correct": "A",
+      "explanation": "Apoptosis is regulated programmed cell death.",
+      "speed_hack": "Apoptosis = programmed death."
+    },
+    {
+      "id": "histopath-022",
+      "question": "Which process often causes cell swelling, membrane disruption and inflammation?",
+      "options": {
+        "A": "Necrosis",
+        "B": "Apoptosis only",
+        "C": "Hyperplasia",
+        "D": "Metaplasia"
+      },
+      "correct": "A",
+      "explanation": "Necrosis commonly involves loss of membrane integrity and can provoke inflammation.",
+      "speed_hack": "Necrosis → membrane breakdown + inflammation."
+    },
+    {
+      "id": "histopath-023",
+      "question": "A benign tumour generally:",
+      "options": {
+        "A": "Remains localized and does not metastasize",
+        "B": "Always invades distant organs",
+        "C": "Always destroys all nearby tissue",
+        "D": "Is always infectious"
+      },
+      "correct": "A",
+      "explanation": "Benign neoplasms are generally localized and lack metastatic behaviour.",
+      "speed_hack": "Benign → localized, no metastasis."
+    },
+    {
+      "id": "histopath-024",
+      "question": "A malignant tumour is characterized by the ability to:",
+      "options": {
+        "A": "Invade and potentially metastasize",
+        "B": "Never invade tissue",
+        "C": "Always remain encapsulated",
+        "D": "Contain no abnormal cells"
+      },
+      "correct": "A",
+      "explanation": "Malignant neoplasms can invade surrounding tissue and may metastasize.",
+      "speed_hack": "Malignant → invasion/metastasis potential."
+    },
+    {
+      "id": "histopath-025",
+      "question": "Which term describes spread of malignant cells to a distant site?",
+      "options": {
+        "A": "Metastasis",
+        "B": "Hyperplasia",
+        "C": "Atrophy",
+        "D": "Fixation"
+      },
+      "correct": "A",
+      "explanation": "Metastasis is dissemination of malignant cells to noncontiguous sites.",
+      "speed_hack": "Distant spread → metastasis."
+    },
+    {
+      "id": "histopath-026",
+      "question": "Which tissue is especially sensitive to prolonged hypoxia?",
+      "options": {
+        "A": "Brain tissue",
+        "B": "Mature cartilage only",
+        "C": "Keratin only",
+        "D": "Adipose tissue only"
+      },
+      "correct": "A",
+      "explanation": "Neurons have high metabolic demands and are particularly vulnerable to oxygen deprivation.",
+      "speed_hack": "Hypoxia → think brain/neurons."
+    },
+    {
+      "id": "histopath-027",
+      "question": "Which inflammatory cell is commonly prominent in acute bacterial inflammation?",
+      "options": {
+        "A": "Neutrophil",
+        "B": "Eosinophil only",
+        "C": "Plasma cell only",
+        "D": "Mature erythrocyte"
+      },
+      "correct": "A",
+      "explanation": "Neutrophils are major early responders in acute bacterial inflammation.",
+      "speed_hack": "Acute inflammation → neutrophils."
+    },
+    {
+      "id": "histopath-028",
+      "question": "Which inflammatory cell is strongly associated with chronic inflammation and can differentiate into macrophages?",
+      "options": {
+        "A": "Monocyte",
+        "B": "Erythrocyte",
+        "C": "Platelet",
+        "D": "Basophil only"
+      },
+      "correct": "A",
+      "explanation": "Circulating monocytes enter tissues and can differentiate into macrophages.",
+      "speed_hack": "Monocyte → macrophage."
+    },
+    {
+      "id": "histopath-029",
+      "question": "Granulomas are organized collections primarily composed of:",
+      "options": {
+        "A": "Activated macrophages/epithelioid cells",
+        "B": "Mature erythrocytes",
+        "C": "Platelets only",
+        "D": "Adipocytes only"
+      },
+      "correct": "A",
+      "explanation": "Granulomas are organized macrophage-rich inflammatory structures, often with giant cells and lymphocytes.",
+      "speed_hack": "Granuloma → macrophage organization."
+    },
+    {
+      "id": "histopath-030",
+      "question": "Which special stain can demonstrate acid-fast mycobacteria in tissue?",
+      "options": {
+        "A": "Ziehl-Neelsen",
+        "B": "PAS only",
+        "C": "Congo red",
+        "D": "Masson trichrome"
+      },
+      "correct": "A",
+      "explanation": "Acid-fast stains can demonstrate mycobacteria in tissue sections.",
+      "speed_hack": "Mycobacteria → acid-fast stain."
+    },
+    {
+      "id": "histopath-031",
+      "question": "Which stain is useful for fungal elements in tissue?",
+      "options": {
+        "A": "Grocott methenamine silver",
+        "B": "Prussian blue only",
+        "C": "Wright only",
+        "D": "Reticulin only"
+      },
+      "correct": "A",
+      "explanation": "GMS strongly highlights many fungal organisms in tissue.",
+      "speed_hack": "Fungi → GMS."
+    },
+    {
+      "id": "histopath-032",
+      "question": "Which histologic feature is characteristic of granulomatous inflammation?",
+      "options": {
+        "A": "Epithelioid macrophages",
+        "B": "Only neutrophils with no macrophages",
+        "C": "Only red cells",
+        "D": "Only platelets"
+      },
+      "correct": "A",
+      "explanation": "Epithelioid macrophages are a characteristic component of granulomas.",
+      "speed_hack": "Granuloma → epithelioid macrophages."
+    },
+    {
+      "id": "histopath-033",
+      "question": "The term “in situ” carcinoma refers to malignant epithelial cells that:",
+      "options": {
+        "A": "Remain above the basement membrane",
+        "B": "Have already metastasized widely",
+        "C": "Are normal cells",
+        "D": "Are found only in blood"
+      },
+      "correct": "A",
+      "explanation": "Carcinoma in situ is confined to the epithelium without invasion through the basement membrane.",
+      "speed_hack": "In situ → not yet invasive."
+    },
+    {
+      "id": "histopath-034",
+      "question": "The basement membrane separates many epithelia from:",
+      "options": {
+        "A": "Underlying connective tissue",
+        "B": "Blood plasma only",
+        "C": "Bone marrow only",
+        "D": "Air only"
+      },
+      "correct": "A",
+      "explanation": "Basement membranes support and separate epithelial layers from underlying connective tissue.",
+      "speed_hack": "Epithelium sits on basement membrane."
+    },
+    {
+      "id": "histopath-035",
+      "question": "Which epithelial type is specialized for rapid diffusion, such as in alveoli?",
+      "options": {
+        "A": "Simple squamous epithelium",
+        "B": "Stratified squamous keratinized epithelium",
+        "C": "Transitional epithelium",
+        "D": "Stratified cuboidal only"
+      },
+      "correct": "A",
+      "explanation": "Simple squamous epithelium provides a thin barrier suitable for diffusion.",
+      "speed_hack": "Simple squamous → thin/diffusion."
+    },
+    {
+      "id": "histopath-036",
+      "question": "Which epithelium is characteristic of the urinary bladder?",
+      "options": {
+        "A": "Transitional epithelium (urothelium)",
+        "B": "Simple columnar only",
+        "C": "Simple squamous only",
+        "D": "Keratinized squamous only"
+      },
+      "correct": "A",
+      "explanation": "Urothelium is specialized to stretch and line much of the urinary tract.",
+      "speed_hack": "Bladder → transitional/urothelium."
+    },
+    {
+      "id": "histopath-037",
+      "question": "Which organelle is commonly abundant in cells specialized for protein synthesis?",
+      "options": {
+        "A": "Rough endoplasmic reticulum",
+        "B": "Lysosome only",
+        "C": "Centrosome only",
+        "D": "Peroxisome only"
+      },
+      "correct": "A",
+      "explanation": "Rough ER is studded with ribosomes and synthesizes many secreted and membrane proteins.",
+      "speed_hack": "Protein secretion → rough ER."
+    },
+    {
+      "id": "histopath-038",
+      "question": "Which organelle contains hydrolytic enzymes involved in intracellular digestion?",
+      "options": {
+        "A": "Lysosome",
+        "B": "Ribosome",
+        "C": "Golgi only",
+        "D": "Centrioles"
+      },
+      "correct": "A",
+      "explanation": "Lysosomes contain hydrolytic enzymes for degradation of cellular material.",
+      "speed_hack": "Lysosome → digestion."
+    },
+    {
+      "id": "histopath-039",
+      "question": "Which cell junction helps prevent paracellular leakage between epithelial cells?",
+      "options": {
+        "A": "Tight junction",
+        "B": "Desmosome only",
+        "C": "Gap junction only",
+        "D": "Hemidesmosome only"
+      },
+      "correct": "A",
+      "explanation": "Tight junctions form seals between epithelial cells and limit paracellular passage.",
+      "speed_hack": "Tight junction → seal."
+    },
+    {
+      "id": "histopath-040",
+      "question": "Which cell junction is especially important for strong mechanical attachment between cells?",
+      "options": {
+        "A": "Desmosome",
+        "B": "Gap junction",
+        "C": "Tight junction only",
+        "D": "Cilium"
+      },
+      "correct": "A",
+      "explanation": "Desmosomes provide strong cell-cell adhesion through intermediate filament connections.",
+      "speed_hack": "Desmosome → strength."
+    },
+    {
+      "id": "histopath-041",
+      "question": "Which microscopic structure is primarily responsible for moving mucus along respiratory epithelium?",
+      "options": {
+        "A": "Cilia",
+        "B": "Microvilli",
+        "C": "Desmosomes",
+        "D": "Lysosomes"
+      },
+      "correct": "A",
+      "explanation": "Motile cilia beat rhythmically to move mucus and trapped particles.",
+      "speed_hack": "Cilia → move."
+    },
+    {
+      "id": "histopath-042",
+      "question": "Which structure primarily increases absorptive surface area of many epithelial cells?",
+      "options": {
+        "A": "Microvilli",
+        "B": "Cilia only",
+        "C": "Desmosomes",
+        "D": "Centrioles"
+      },
+      "correct": "A",
+      "explanation": "Microvilli increase apical surface area and support absorption.",
+      "speed_hack": "Microvilli → surface area."
+    },
+    {
+      "id": "histopath-043",
+      "question": "A tissue section that is too thick can cause:",
+      "options": {
+        "A": "Poor microscopic resolution and overlapping structures",
+        "B": "Automatic sterilization",
+        "C": "Better nuclear staining in every case",
+        "D": "Complete tissue transparency"
+      },
+      "correct": "A",
+      "explanation": "Excessive section thickness can obscure detail by increasing overlap of tissue structures.",
+      "speed_hack": "Too thick → overlap."
+    },
+    {
+      "id": "histopath-044",
+      "question": "Proper orientation of tissue during embedding is important because it:",
+      "options": {
+        "A": "Determines which anatomical surfaces are represented in sections",
+        "B": "Prevents all fixation",
+        "C": "Eliminates the need for staining",
+        "D": "Makes every tissue identical"
+      },
+      "correct": "A",
+      "explanation": "Embedding orientation affects the plane of section and therefore what structures are visible.",
+      "speed_hack": "Embedding orientation → section plane."
+    },
+    {
+      "id": "histopath-045",
+      "question": "Review check: Which option is correct for the following concept? What is the main purpose of tissue fixation in routine histopathology?",
+      "options": {
+        "A": "Preserve tissue morphology and limit autolysis",
+        "B": "Dissolve all tissue proteins",
+        "C": "Increase bacterial growth",
+        "D": "Remove all nucleic acids"
+      },
+      "correct": "A",
+      "explanation": "Fixation stabilizes tissue components and helps prevent autolysis and decomposition. This alternate stem checks the same core concept from a different angle.",
+      "speed_hack": "Use the same key clue: Fixation = preserve morphology."
+    }
+  ],
+  "immunology": [
+    {
+      "id": "immunology-001",
+      "question": "Which immunoglobulin is usually the first antibody produced in a primary immune response?",
+      "options": {
+        "A": "IgM",
+        "B": "IgG",
+        "C": "IgA",
+        "D": "IgE"
+      },
+      "correct": "A",
+      "explanation": "IgM is typically produced first in a primary antibody response.",
+      "speed_hack": "First antibody → IgM."
+    },
+    {
+      "id": "immunology-002",
+      "question": "Which immunoglobulin is the major antibody in secondary immune responses?",
+      "options": {
+        "A": "IgG",
+        "B": "IgM only",
+        "C": "IgE only",
+        "D": "IgD only"
+      },
+      "correct": "A",
+      "explanation": "Memory responses commonly produce a faster and stronger IgG response after class switching.",
+      "speed_hack": "Secondary response → IgG commonly dominates."
+    },
+    {
+      "id": "immunology-003",
+      "question": "Which immunoglobulin is prominent in mucosal secretions?",
+      "options": {
+        "A": "IgA",
+        "B": "IgM",
+        "C": "IgD",
+        "D": "IgE"
+      },
+      "correct": "A",
+      "explanation": "Secretory IgA is important in mucosal immune defence.",
+      "speed_hack": "Mucosa → IgA."
+    },
+    {
+      "id": "immunology-004",
+      "question": "Which immunoglobulin is associated with immediate hypersensitivity and allergy?",
+      "options": {
+        "A": "IgE",
+        "B": "IgG",
+        "C": "IgA",
+        "D": "IgM"
+      },
+      "correct": "A",
+      "explanation": "IgE binds mast cells and basophils and participates in immediate hypersensitivity reactions.",
+      "speed_hack": "Allergy → IgE."
+    },
+    {
+      "id": "immunology-005",
+      "question": "Which immunoglobulin is expressed on the surface of mature naive B cells along with IgM?",
+      "options": {
+        "A": "IgD",
+        "B": "IgA",
+        "C": "IgE",
+        "D": "IgG4 only"
+      },
+      "correct": "A",
+      "explanation": "Naive B cells commonly express membrane IgM and IgD.",
+      "speed_hack": "Naive B cell → IgM + IgD."
+    },
+    {
+      "id": "immunology-006",
+      "question": "Which immune cells produce antibodies after differentiating from B lymphocytes?",
+      "options": {
+        "A": "Plasma cells",
+        "B": "Neutrophils",
+        "C": "Erythrocytes",
+        "D": "Platelets"
+      },
+      "correct": "A",
+      "explanation": "Activated B cells can differentiate into plasma cells that secrete antibodies.",
+      "speed_hack": "B cell → plasma cell → antibody."
+    },
+    {
+      "id": "immunology-007",
+      "question": "Which lymphocyte is primarily responsible for direct cellular immune responses?",
+      "options": {
+        "A": "T lymphocyte",
+        "B": "Erythrocyte",
+        "C": "Platelet",
+        "D": "Neutrophil"
+      },
+      "correct": "A",
+      "explanation": "T lymphocytes mediate major cellular immune functions.",
+      "speed_hack": "T cell → cellular immunity."
+    },
+    {
+      "id": "immunology-008",
+      "question": "Which T-cell subset commonly helps activate B cells and macrophages?",
+      "options": {
+        "A": "CD4+ helper T cells",
+        "B": "CD8+ cytotoxic cells only",
+        "C": "NK cells only",
+        "D": "Erythrocytes"
+      },
+      "correct": "A",
+      "explanation": "CD4+ helper T cells coordinate immune responses through cytokines and cell-cell interactions.",
+      "speed_hack": "CD4 = helper."
+    },
+    {
+      "id": "immunology-009",
+      "question": "Which T-cell subset directly kills infected or abnormal target cells?",
+      "options": {
+        "A": "CD8+ cytotoxic T cells",
+        "B": "CD4+ helper T cells",
+        "C": "B cells only",
+        "D": "Neutrophils only"
+      },
+      "correct": "A",
+      "explanation": "CD8+ cytotoxic T cells can recognize antigen presented on MHC I and kill target cells.",
+      "speed_hack": "CD8 = cytotoxic."
+    },
+    {
+      "id": "immunology-010",
+      "question": "MHC class I molecules are expressed on:",
+      "options": {
+        "A": "Most nucleated cells",
+        "B": "Only red cells",
+        "C": "Only B cells",
+        "D": "Only platelets"
+      },
+      "correct": "A",
+      "explanation": "MHC I is broadly expressed on nucleated cells and presents endogenous peptides to CD8+ T cells.",
+      "speed_hack": "MHC I → nucleated cells/CD8."
+    },
+    {
+      "id": "immunology-011",
+      "question": "MHC class II molecules are mainly expressed on:",
+      "options": {
+        "A": "Professional antigen-presenting cells",
+        "B": "Mature erythrocytes",
+        "C": "Platelets only",
+        "D": "All bacteria"
+      },
+      "correct": "A",
+      "explanation": "MHC II is mainly expressed on professional antigen-presenting cells such as dendritic cells, macrophages and B cells.",
+      "speed_hack": "MHC II → APCs/CD4."
+    },
+    {
+      "id": "immunology-012",
+      "question": "Which cell is considered a professional antigen-presenting cell?",
+      "options": {
+        "A": "Dendritic cell",
+        "B": "Erythrocyte",
+        "C": "Platelet",
+        "D": "Mature neutrophil only"
+      },
+      "correct": "A",
+      "explanation": "Dendritic cells are highly effective antigen-presenting cells that initiate T-cell responses.",
+      "speed_hack": "Dendritic cell → APC."
+    },
+    {
+      "id": "immunology-013",
+      "question": "Which complement component is a major opsonin?",
+      "options": {
+        "A": "C3b",
+        "B": "C9 only",
+        "C": "Factor XII",
+        "D": "IgE"
+      },
+      "correct": "A",
+      "explanation": "C3b coats microbial surfaces and promotes phagocytosis.",
+      "speed_hack": "C3b → opsonization."
+    },
+    {
+      "id": "immunology-014",
+      "question": "Which complement fragment is a potent chemoattractant and inflammatory mediator?",
+      "options": {
+        "A": "C5a",
+        "B": "C1 only",
+        "C": "C3d only",
+        "D": "Factor VIII"
+      },
+      "correct": "A",
+      "explanation": "C5a promotes chemotaxis and inflammatory activation.",
+      "speed_hack": "C5a → chemotaxis."
+    },
+    {
+      "id": "immunology-015",
+      "question": "Which complement component forms the membrane attack complex with other terminal components?",
+      "options": {
+        "A": "C9",
+        "B": "C3 only",
+        "C": "C1q only",
+        "D": "IgG"
+      },
+      "correct": "A",
+      "explanation": "C9 polymerizes in the terminal complement complex to form membrane pores.",
+      "speed_hack": "MAC terminal → C5b-9, C9 is pore-forming."
+    },
+    {
+      "id": "immunology-016",
+      "question": "Type I hypersensitivity is primarily mediated by:",
+      "options": {
+        "A": "IgE and mast-cell activation",
+        "B": "Immune complexes only",
+        "C": "Cytotoxic T cells only",
+        "D": "IgM against red cells only"
+      },
+      "correct": "A",
+      "explanation": "Type I hypersensitivity involves allergen-specific IgE and rapid mast-cell mediator release.",
+      "speed_hack": "Type I → IgE."
+    },
+    {
+      "id": "immunology-017",
+      "question": "Type II hypersensitivity commonly involves:",
+      "options": {
+        "A": "Antibody against cell-surface or matrix antigens",
+        "B": "Only immune-complex deposition",
+        "C": "Only T-cell delayed response",
+        "D": "No immune mechanism"
+      },
+      "correct": "A",
+      "explanation": "Type II reactions involve antibodies directed at fixed cellular or extracellular antigens.",
+      "speed_hack": "Type II → antibody against fixed target."
+    },
+    {
+      "id": "immunology-018",
+      "question": "Type III hypersensitivity is characterized by:",
+      "options": {
+        "A": "Immune-complex deposition",
+        "B": "IgE alone",
+        "C": "Direct cytotoxic T-cell killing only",
+        "D": "No complement involvement"
+      },
+      "correct": "A",
+      "explanation": "Type III reactions involve deposition of antigen-antibody complexes that can activate complement and inflammation.",
+      "speed_hack": "Type III → immune complexes."
+    },
+    {
+      "id": "immunology-019",
+      "question": "Type IV hypersensitivity is primarily:",
+      "options": {
+        "A": "T-cell mediated",
+        "B": "IgE mediated",
+        "C": "Immune-complex mediated only",
+        "D": "Complement-independent antibody only"
+      },
+      "correct": "A",
+      "explanation": "Type IV hypersensitivity is delayed and mediated primarily by sensitized T cells.",
+      "speed_hack": "Type IV → T cells/delayed."
+    },
+    {
+      "id": "immunology-020",
+      "question": "Which test is commonly used to detect antibodies or antigens using enzyme-labelled reagents?",
+      "options": {
+        "A": "ELISA",
+        "B": "ESR",
+        "C": "PT",
+        "D": "Gram stain"
+      },
+      "correct": "A",
+      "explanation": "ELISA uses enzyme-linked detection systems to identify antigen or antibody.",
+      "speed_hack": "ELISA → enzyme-linked immunoassay."
+    },
+    {
+      "id": "immunology-021",
+      "question": "Which serologic principle detects visible clumping caused by antigen-antibody reactions?",
+      "options": {
+        "A": "Agglutination",
+        "B": "Electrophoresis only",
+        "C": "Filtration",
+        "D": "Centrifugation"
+      },
+      "correct": "A",
+      "explanation": "Agglutination produces visible clumping when particulate antigens or carrier particles cross-link.",
+      "speed_hack": "Agglutination → clumping."
+    },
+    {
+      "id": "immunology-022",
+      "question": "Precipitation reactions involve:",
+      "options": {
+        "A": "Soluble antigen and antibody forming an insoluble lattice",
+        "B": "Only intact red cells",
+        "C": "Only bacterial motility",
+        "D": "DNA amplification"
+      },
+      "correct": "A",
+      "explanation": "Precipitation occurs when soluble antigen and antibody form sufficiently large insoluble complexes.",
+      "speed_hack": "Soluble antigen → precipitate."
+    },
+    {
+      "id": "immunology-023",
+      "question": "The zone of antigen-antibody concentration producing the strongest lattice is called:",
+      "options": {
+        "A": "Zone of equivalence",
+        "B": "Prozone only",
+        "C": "Postzone only",
+        "D": "Neutral zone"
+      },
+      "correct": "A",
+      "explanation": "At equivalence, antigen and antibody are present in proportions that favor extensive lattice formation.",
+      "speed_hack": "Equivalence → optimal ratio."
+    },
+    {
+      "id": "immunology-024",
+      "question": "Excess antibody causing a weak or negative agglutination reaction is called:",
+      "options": {
+        "A": "Prozone",
+        "B": "Postzone",
+        "C": "Equivalence",
+        "D": "Affinity"
+      },
+      "correct": "A",
+      "explanation": "Prozone occurs when antibody excess interferes with optimal lattice formation.",
+      "speed_hack": "Prozone → antibody excess."
+    },
+    {
+      "id": "immunology-025",
+      "question": "Excess antigen causing a weak or negative reaction is called:",
+      "options": {
+        "A": "Postzone",
+        "B": "Prozone",
+        "C": "Equivalence",
+        "D": "Avidity"
+      },
+      "correct": "A",
+      "explanation": "Postzone refers to antigen excess that reduces visible lattice formation.",
+      "speed_hack": "Postzone → antigen excess."
+    },
+    {
+      "id": "immunology-026",
+      "question": "Affinity refers to:",
+      "options": {
+        "A": "Strength of a single antigen-antibody binding interaction",
+        "B": "Total number of antibodies in serum",
+        "C": "Number of complement proteins",
+        "D": "Cell size"
+      },
+      "correct": "A",
+      "explanation": "Affinity describes the strength of an individual antigen-binding interaction.",
+      "speed_hack": "Affinity = one binding site."
+    },
+    {
+      "id": "immunology-027",
+      "question": "Avidity refers to:",
+      "options": {
+        "A": "Overall strength of multiple antigen-antibody interactions",
+        "B": "Only antibody concentration",
+        "C": "Only antigen size",
+        "D": "Complement quantity"
+      },
+      "correct": "A",
+      "explanation": "Avidity is the combined functional strength of multiple binding interactions.",
+      "speed_hack": "Avidity = overall combined binding."
+    },
+    {
+      "id": "immunology-028",
+      "question": "Which immune cell is especially important in innate antiviral responses and killing of abnormal cells without prior antigen-specific sensitization?",
+      "options": {
+        "A": "Natural killer cell",
+        "B": "Erythrocyte",
+        "C": "Platelet",
+        "D": "Plasma cell"
+      },
+      "correct": "A",
+      "explanation": "NK cells can kill certain infected or transformed cells as part of innate immunity.",
+      "speed_hack": "NK → innate cytotoxicity."
+    },
+    {
+      "id": "immunology-029",
+      "question": "Which cytokine is strongly associated with fever and acute inflammatory responses?",
+      "options": {
+        "A": "IL-1",
+        "B": "IgA",
+        "C": "C3b",
+        "D": "Albumin"
+      },
+      "correct": "A",
+      "explanation": "IL-1 is a pro-inflammatory cytokine associated with fever and acute inflammation.",
+      "speed_hack": "IL-1 → fever/inflammation."
+    },
+    {
+      "id": "immunology-030",
+      "question": "Which cytokine is a major endogenous pyrogen along with IL-1?",
+      "options": {
+        "A": "TNF",
+        "B": "IgM",
+        "C": "C9",
+        "D": "Albumin"
+      },
+      "correct": "A",
+      "explanation": "TNF is a pro-inflammatory cytokine that can contribute to fever and systemic inflammation.",
+      "speed_hack": "TNF → inflammatory fever effects."
+    },
+    {
+      "id": "immunology-031",
+      "question": "Vaccination primarily aims to generate:",
+      "options": {
+        "A": "Immunologic memory",
+        "B": "Permanent antibiotic levels",
+        "C": "Immediate universal immunity without exposure",
+        "D": "Red-cell replacement"
+      },
+      "correct": "A",
+      "explanation": "Vaccines stimulate adaptive immune responses and immunologic memory.",
+      "speed_hack": "Vaccine → memory."
+    },
+    {
+      "id": "immunology-032",
+      "question": "Passive immunity differs from active immunity because passive immunity:",
+      "options": {
+        "A": "Provides preformed antibodies",
+        "B": "Requires the recipient to make all antibodies",
+        "C": "Always lasts lifelong",
+        "D": "Cannot occur naturally"
+      },
+      "correct": "A",
+      "explanation": "Passive immunity transfers antibodies rather than requiring the recipient to generate the initial response.",
+      "speed_hack": "Passive = antibodies provided."
+    },
+    {
+      "id": "immunology-033",
+      "question": "Which antibody class crosses the placenta efficiently?",
+      "options": {
+        "A": "IgG",
+        "B": "IgM",
+        "C": "IgA",
+        "D": "IgE"
+      },
+      "correct": "A",
+      "explanation": "IgG is the major immunoglobulin class transferred across the placenta.",
+      "speed_hack": "Placenta → IgG."
+    },
+    {
+      "id": "immunology-034",
+      "question": "Which antibody class is too large to cross the placenta efficiently as an intact pentamer?",
+      "options": {
+        "A": "IgM",
+        "B": "IgG",
+        "C": "IgA monomer",
+        "D": "IgD"
+      },
+      "correct": "A",
+      "explanation": "IgM is predominantly pentameric and does not cross the placenta efficiently.",
+      "speed_hack": "IgM = large pentamer."
+    },
+    {
+      "id": "immunology-035",
+      "question": "Which complement pathway is activated directly by antigen-antibody complexes involving IgG or IgM?",
+      "options": {
+        "A": "Classical pathway",
+        "B": "Alternative pathway only",
+        "C": "Lectin pathway only",
+        "D": "Coagulation pathway"
+      },
+      "correct": "A",
+      "explanation": "The classical complement pathway is initiated by antibody-antigen complexes, especially IgM and certain IgG subclasses.",
+      "speed_hack": "Antibody complex → classical."
+    },
+    {
+      "id": "immunology-036",
+      "question": "Which complement pathway can activate on microbial surfaces without antibody?",
+      "options": {
+        "A": "Alternative pathway",
+        "B": "Classical only",
+        "C": "Coagulation pathway",
+        "D": "Intrinsic coagulation"
+      },
+      "correct": "A",
+      "explanation": "The alternative pathway can activate directly on suitable microbial surfaces.",
+      "speed_hack": "No antibody needed → alternative."
+    },
+    {
+      "id": "immunology-037",
+      "question": "The lectin pathway is initiated by recognition of microbial:",
+      "options": {
+        "A": "Carbohydrate patterns",
+        "B": "Red-cell nuclei",
+        "C": "Host albumin",
+        "D": "Platelet granules"
+      },
+      "correct": "A",
+      "explanation": "Lectins such as mannose-binding lectin recognize microbial carbohydrate patterns.",
+      "speed_hack": "Lectin → microbial sugars."
+    },
+    {
+      "id": "immunology-038",
+      "question": "Which immunologic test is commonly used to detect antigen-specific IgE in allergy evaluation?",
+      "options": {
+        "A": "Specific IgE immunoassay",
+        "B": "PT",
+        "C": "ESR",
+        "D": "Gram stain"
+      },
+      "correct": "A",
+      "explanation": "Allergen-specific IgE can be measured by immunoassay in appropriate clinical contexts.",
+      "speed_hack": "Allergy → specific IgE."
+    },
+    {
+      "id": "immunology-039",
+      "question": "Autoimmunity occurs when the immune system:",
+      "options": {
+        "A": "Targets self-antigens inappropriately",
+        "B": "Cannot recognize any antigen",
+        "C": "Only responds to bacteria",
+        "D": "Produces red cells"
+      },
+      "correct": "A",
+      "explanation": "Autoimmune disease involves inappropriate immune recognition and attack against self components.",
+      "speed_hack": "Autoimmunity → self target."
+    },
+    {
+      "id": "immunology-040",
+      "question": "Immunodeficiency refers broadly to:",
+      "options": {
+        "A": "Impaired immune function",
+        "B": "Excess red-cell production",
+        "C": "High serum sodium only",
+        "D": "Normal immunity"
+      },
+      "correct": "A",
+      "explanation": "Immunodeficiency is impaired immune function that can increase susceptibility to infection or other problems.",
+      "speed_hack": "Immunodeficiency → weak/absent immune function."
+    },
+    {
+      "id": "immunology-041",
+      "question": "A seroconversion most commonly means:",
+      "options": {
+        "A": "Development of detectable antibodies after previously being negative",
+        "B": "Loss of all antibodies",
+        "C": "Conversion of serum to plasma",
+        "D": "Formation of red cells"
+      },
+      "correct": "A",
+      "explanation": "Seroconversion describes development of detectable specific antibodies after an earlier negative state.",
+      "speed_hack": "Seroconversion → antibody status changes to positive."
+    },
+    {
+      "id": "immunology-042",
+      "question": "Which laboratory result can indicate a recent or acute antibody response in many infections?",
+      "options": {
+        "A": "Specific IgM detection",
+        "B": "Albumin level",
+        "C": "ESR alone",
+        "D": "Sodium level"
+      },
+      "correct": "A",
+      "explanation": "Pathogen-specific IgM can support evidence of a recent immune response, though interpretation depends on the infection and assay.",
+      "speed_hack": "IgM often signals recent response—but interpret clinically."
+    },
+    {
+      "id": "immunology-043",
+      "question": "Review check: Which option is correct for the following concept? Which immunoglobulin is usually the first antibody produced in a primary immune response?",
+      "options": {
+        "A": "IgM",
+        "B": "IgG",
+        "C": "IgA",
+        "D": "IgE"
+      },
+      "correct": "A",
+      "explanation": "IgM is typically produced first in a primary antibody response. This alternate stem checks the same core concept from a different angle.",
+      "speed_hack": "Use the same key clue: First antibody → IgM."
+    },
+    {
+      "id": "immunology-044",
+      "question": "Review check: Which option is correct for the following concept? Which immunoglobulin is the major antibody in secondary immune responses?",
+      "options": {
+        "A": "IgG",
+        "B": "IgM only",
+        "C": "IgE only",
+        "D": "IgD only"
+      },
+      "correct": "A",
+      "explanation": "Memory responses commonly produce a faster and stronger IgG response after class switching. This alternate stem checks the same core concept from a different angle.",
+      "speed_hack": "Use the same key clue: Secondary response → IgG commonly dominates."
+    },
+    {
+      "id": "immunology-045",
+      "question": "Review check: Which option is correct for the following concept? Which immunoglobulin is prominent in mucosal secretions?",
+      "options": {
+        "A": "IgA",
+        "B": "IgM",
+        "C": "IgD",
+        "D": "IgE"
+      },
+      "correct": "A",
+      "explanation": "Secretory IgA is important in mucosal immune defence. This alternate stem checks the same core concept from a different angle.",
+      "speed_hack": "Use the same key clue: Mucosa → IgA."
+    }
+  ],
+  "parasitology": [
+    {
+      "id": "parasitology-001",
+      "question": "Which parasite causes malaria?",
+      "options": {
+        "A": "Plasmodium species",
+        "B": "Entamoeba histolytica",
+        "C": "Giardia duodenalis",
+        "D": "Taenia solium"
+      },
+      "correct": "A",
+      "explanation": "Malaria is caused by Plasmodium parasites transmitted by Anopheles mosquitoes.",
+      "speed_hack": "Malaria → Plasmodium."
+    },
+    {
+      "id": "parasitology-002",
+      "question": "The usual vector for human malaria parasites is the:",
+      "options": {
+        "A": "Female Anopheles mosquito",
+        "B": "Male Culex mosquito",
+        "C": "Tsetse fly",
+        "D": "Sandfly only"
+      },
+      "correct": "A",
+      "explanation": "Female Anopheles mosquitoes transmit Plasmodium during blood feeding.",
+      "speed_hack": "Malaria vector → female Anopheles."
+    },
+    {
+      "id": "parasitology-003",
+      "question": "Which Plasmodium species is particularly associated with severe malaria?",
+      "options": {
+        "A": "P. falciparum",
+        "B": "P. vivax only",
+        "C": "P. ovale only",
+        "D": "P. malariae only"
+      },
+      "correct": "A",
+      "explanation": "P. falciparum is associated with severe and potentially life-threatening malaria.",
+      "speed_hack": "Severe malaria → falciparum."
+    },
+    {
+      "id": "parasitology-004",
+      "question": "Which blood film method can help detect malaria parasites?",
+      "options": {
+        "A": "Thick and thin blood films",
+        "B": "Urine culture only",
+        "C": "Gram stain only",
+        "D": "Sputum cytology only"
+      },
+      "correct": "A",
+      "explanation": "Thick films are sensitive for detection, while thin films help species identification and parasitaemia assessment.",
+      "speed_hack": "Malaria microscopy → thick for detection, thin for detail."
+    },
+    {
+      "id": "parasitology-005",
+      "question": "Which intestinal protozoan commonly causes greasy, foul-smelling diarrhoea and malabsorption?",
+      "options": {
+        "A": "Giardia duodenalis",
+        "B": "Plasmodium falciparum",
+        "C": "Taenia saginata",
+        "D": "Schistosoma mansoni"
+      },
+      "correct": "A",
+      "explanation": "Giardia can cause malabsorption and characteristic greasy diarrhoea.",
+      "speed_hack": "Greasy diarrhoea → Giardia."
+    },
+    {
+      "id": "parasitology-006",
+      "question": "Which protozoan causes amoebic dysentery?",
+      "options": {
+        "A": "Entamoeba histolytica",
+        "B": "Giardia",
+        "C": "Trichomonas vaginalis",
+        "D": "Plasmodium"
+      },
+      "correct": "A",
+      "explanation": "E. histolytica can invade the colon and cause amoebic dysentery.",
+      "speed_hack": "Amoebic dysentery → E. histolytica."
+    },
+    {
+      "id": "parasitology-007",
+      "question": "Which intestinal protozoan is transmitted mainly through cyst ingestion?",
+      "options": {
+        "A": "Giardia duodenalis",
+        "B": "Plasmodium",
+        "C": "Trichomonas vaginalis",
+        "D": "Trypanosoma brucei"
+      },
+      "correct": "A",
+      "explanation": "Giardia cysts are environmentally resistant and are the infectious form acquired by ingestion.",
+      "speed_hack": "Giardia → cyst ingestion."
+    },
+    {
+      "id": "parasitology-008",
+      "question": "Which parasite is commonly associated with nocturnal perianal itching?",
+      "options": {
+        "A": "Enterobius vermicularis",
+        "B": "Taenia solium",
+        "C": "Schistosoma haematobium",
+        "D": "Fasciola hepatica"
+      },
+      "correct": "A",
+      "explanation": "Female pinworms migrate to the perianal region at night and deposit eggs.",
+      "speed_hack": "Night itching → Enterobius."
+    },
+    {
+      "id": "parasitology-009",
+      "question": "The preferred simple test for Enterobius eggs is:",
+      "options": {
+        "A": "Perianal adhesive tape test",
+        "B": "Blood culture",
+        "C": "Urine dipstick",
+        "D": "Sputum Gram stain"
+      },
+      "correct": "A",
+      "explanation": "The adhesive tape test samples perianal eggs, ideally in the morning before washing.",
+      "speed_hack": "Pinworm → tape test."
+    },
+    {
+      "id": "parasitology-010",
+      "question": "Which helminth causes urinary schistosomiasis?",
+      "options": {
+        "A": "Schistosoma haematobium",
+        "B": "S. mansoni",
+        "C": "Taenia saginata",
+        "D": "Ascaris lumbricoides"
+      },
+      "correct": "A",
+      "explanation": "S. haematobium has a strong association with urinary tract disease.",
+      "speed_hack": "Urinary schistosomiasis → S. haematobium."
+    },
+    {
+      "id": "parasitology-011",
+      "question": "Which Schistosoma species is classically associated with intestinal/hepatic disease?",
+      "options": {
+        "A": "Schistosoma mansoni",
+        "B": "S. haematobium",
+        "C": "Enterobius",
+        "D": "Strongyloides"
+      },
+      "correct": "A",
+      "explanation": "S. mansoni is associated with intestinal and hepatosplenic schistosomiasis.",
+      "speed_hack": "Mansoni → intestinal/hepatic."
+    },
+    {
+      "id": "parasitology-012",
+      "question": "Schistosoma eggs are acquired by humans mainly when cercariae:",
+      "options": {
+        "A": "Penetrate the skin in freshwater",
+        "B": "Are inhaled from air",
+        "C": "Are injected by mosquitoes",
+        "D": "Are eaten in beef"
+      },
+      "correct": "A",
+      "explanation": "Cercariae released from freshwater snails penetrate human skin during water exposure.",
+      "speed_hack": "Schistosoma → skin penetration in freshwater."
+    },
+    {
+      "id": "parasitology-013",
+      "question": "Which helminth is commonly acquired by eating undercooked beef?",
+      "options": {
+        "A": "Taenia saginata",
+        "B": "Taenia solium",
+        "C": "Ascaris lumbricoides",
+        "D": "Enterobius vermicularis"
+      },
+      "correct": "A",
+      "explanation": "T. saginata infection follows ingestion of cysticerci in inadequately cooked beef.",
+      "speed_hack": "Beef tapeworm → T. saginata."
+    },
+    {
+      "id": "parasitology-014",
+      "question": "Which tapeworm is associated with cysticercosis when humans ingest eggs?",
+      "options": {
+        "A": "Taenia solium",
+        "B": "Taenia saginata",
+        "C": "Diphyllobothrium only",
+        "D": "Hymenolepis nana only"
+      },
+      "correct": "A",
+      "explanation": "Ingestion of T. solium eggs can lead to tissue cysticercosis.",
+      "speed_hack": "Solium eggs → cysticercosis."
+    },
+    {
+      "id": "parasitology-015",
+      "question": "Which roundworm commonly causes intestinal obstruction in heavy infections?",
+      "options": {
+        "A": "Ascaris lumbricoides",
+        "B": "Enterobius vermicularis",
+        "C": "Trichuris only",
+        "D": "Strongyloides only"
+      },
+      "correct": "A",
+      "explanation": "Heavy Ascaris infection can cause intestinal obstruction.",
+      "speed_hack": "Heavy Ascaris → obstruction."
+    },
+    {
+      "id": "parasitology-016",
+      "question": "Which parasite is associated with larva currens and autoinfection?",
+      "options": {
+        "A": "Strongyloides stercoralis",
+        "B": "Taenia saginata",
+        "C": "Giardia",
+        "D": "Schistosoma"
+      },
+      "correct": "A",
+      "explanation": "Strongyloides can autoinfect the host, and rapidly moving larval skin lesions can occur.",
+      "speed_hack": "Strongyloides → autoinfection."
+    },
+    {
+      "id": "parasitology-017",
+      "question": "Which helminth infection is commonly associated with iron-deficiency anaemia due to intestinal blood loss?",
+      "options": {
+        "A": "Hookworm infection",
+        "B": "Enterobius infection",
+        "C": "Giardiasis",
+        "D": "Trichomoniasis"
+      },
+      "correct": "A",
+      "explanation": "Hookworms attach to intestinal mucosa and can cause chronic blood loss and iron deficiency.",
+      "speed_hack": "Hookworm → blood loss → iron deficiency."
+    },
+    {
+      "id": "parasitology-018",
+      "question": "Which parasite is transmitted by the tsetse fly?",
+      "options": {
+        "A": "Trypanosoma brucei",
+        "B": "Plasmodium",
+        "C": "Giardia",
+        "D": "Taenia"
+      },
+      "correct": "A",
+      "explanation": "African trypanosomes are transmitted by tsetse flies.",
+      "speed_hack": "Tsetse → Trypanosoma brucei."
+    },
+    {
+      "id": "parasitology-019",
+      "question": "Which parasite causes Chagas disease?",
+      "options": {
+        "A": "Trypanosoma cruzi",
+        "B": "T. brucei",
+        "C": "Leishmania donovani",
+        "D": "Plasmodium"
+      },
+      "correct": "A",
+      "explanation": "T. cruzi causes Chagas disease.",
+      "speed_hack": "Chagas → T. cruzi."
+    },
+    {
+      "id": "parasitology-020",
+      "question": "Which vector transmits Leishmania?",
+      "options": {
+        "A": "Sandfly",
+        "B": "Anopheles mosquito",
+        "C": "Tsetse fly",
+        "D": "Blackfly only"
+      },
+      "correct": "A",
+      "explanation": "Leishmania parasites are transmitted by phlebotomine sandflies.",
+      "speed_hack": "Leishmania → sandfly."
+    },
+    {
+      "id": "parasitology-021",
+      "question": "Which parasite is associated with river blindness?",
+      "options": {
+        "A": "Onchocerca volvulus",
+        "B": "Wuchereria bancrofti",
+        "C": "Loa loa",
+        "D": "Ascaris"
+      },
+      "correct": "A",
+      "explanation": "Onchocerca volvulus causes onchocerciasis, transmitted by blackflies.",
+      "speed_hack": "River blindness → Onchocerca."
+    },
+    {
+      "id": "parasitology-022",
+      "question": "Which vector transmits Onchocerca volvulus?",
+      "options": {
+        "A": "Blackfly (Simulium)",
+        "B": "Tsetse fly",
+        "C": "Sandfly",
+        "D": "Anopheles"
+      },
+      "correct": "A",
+      "explanation": "Simulium blackflies transmit Onchocerca near fast-flowing rivers.",
+      "speed_hack": "Onchocerca → blackfly."
+    },
+    {
+      "id": "parasitology-023",
+      "question": "Which filarial parasite is a major cause of lymphatic filariasis?",
+      "options": {
+        "A": "Wuchereria bancrofti",
+        "B": "Onchocerca volvulus",
+        "C": "Taenia solium",
+        "D": "Giardia"
+      },
+      "correct": "A",
+      "explanation": "Wuchereria bancrofti is a major cause of lymphatic filariasis.",
+      "speed_hack": "Lymphatic filariasis → Wuchereria."
+    },
+    {
+      "id": "parasitology-024",
+      "question": "Which specimen is commonly used for diagnosing lymphatic filariasis by microscopy?",
+      "options": {
+        "A": "Peripheral blood collected at an appropriate time",
+        "B": "Stool only",
+        "C": "CSF only",
+        "D": "Sputum only"
+      },
+      "correct": "A",
+      "explanation": "Microfilariae of some lymphatic filariae show periodicity, so blood collection timing can matter.",
+      "speed_hack": "Filariae → peripheral blood, timing matters."
+    },
+    {
+      "id": "parasitology-025",
+      "question": "Which parasite is a sexually transmitted flagellated protozoan?",
+      "options": {
+        "A": "Trichomonas vaginalis",
+        "B": "Giardia",
+        "C": "Entamoeba histolytica",
+        "D": "Plasmodium"
+      },
+      "correct": "A",
+      "explanation": "T. vaginalis is a sexually transmitted flagellated protozoan.",
+      "speed_hack": "STI protozoan → Trichomonas."
+    },
+    {
+      "id": "parasitology-026",
+      "question": "Which form of Trichomonas vaginalis is found in humans?",
+      "options": {
+        "A": "Trophozoite",
+        "B": "Cyst only",
+        "C": "Oocyst",
+        "D": "Egg"
+      },
+      "correct": "A",
+      "explanation": "T. vaginalis exists primarily as a trophozoite and has no classic cyst stage in humans.",
+      "speed_hack": "Trichomonas → trophozoite."
+    },
+    {
+      "id": "parasitology-027",
+      "question": "Which stool examination method increases detection of some intestinal parasites by concentrating organisms?",
+      "options": {
+        "A": "Concentration technique",
+        "B": "Gram stain only",
+        "C": "Blood grouping",
+        "D": "ESR"
+      },
+      "correct": "A",
+      "explanation": "Concentration methods increase the likelihood of detecting ova, cysts or larvae in stool.",
+      "speed_hack": "O&P → concentration can improve recovery."
+    },
+    {
+      "id": "parasitology-028",
+      "question": "CDC guidance for suspected parasitic intestinal infection may recommend examination of:",
+      "options": {
+        "A": "Multiple stool specimens on separate days",
+        "B": "One urine sample only",
+        "C": "Only a throat swab",
+        "D": "Only a blood smear"
+      },
+      "correct": "A",
+      "explanation": "CDC notes that three or more stool specimens collected on separate days may improve detection for O&P testing.",
+      "speed_hack": "O&P → multiple separate-day stools can improve detection."
+    },
+    {
+      "id": "parasitology-029",
+      "question": "Which parasite commonly causes hydatid disease?",
+      "options": {
+        "A": "Echinococcus granulosus",
+        "B": "Taenia saginata",
+        "C": "Enterobius",
+        "D": "Ascaris"
+      },
+      "correct": "A",
+      "explanation": "E. granulosus causes cystic echinococcosis (hydatid disease).",
+      "speed_hack": "Hydatid cyst → Echinococcus."
+    },
+    {
+      "id": "parasitology-030",
+      "question": "Which helminth egg is characteristically barrel-shaped with bipolar plugs?",
+      "options": {
+        "A": "Trichuris trichiura",
+        "B": "Ascaris lumbricoides",
+        "C": "Enterobius vermicularis",
+        "D": "Hookworm"
+      },
+      "correct": "A",
+      "explanation": "Trichuris eggs are barrel-shaped with prominent bipolar plugs.",
+      "speed_hack": "Bipolar plugs → Trichuris."
+    },
+    {
+      "id": "parasitology-031",
+      "question": "Which helminth egg is classically described as having a thick mammillated outer coat?",
+      "options": {
+        "A": "Ascaris lumbricoides",
+        "B": "Enterobius",
+        "C": "Trichuris",
+        "D": "Schistosoma"
+      },
+      "correct": "A",
+      "explanation": "Fertilized Ascaris eggs can have a thick, mammillated albuminous coat.",
+      "speed_hack": "Mammillated coat → Ascaris."
+    },
+    {
+      "id": "parasitology-032",
+      "question": "Which parasite has an egg with a prominent lateral spine?",
+      "options": {
+        "A": "Schistosoma mansoni",
+        "B": "Schistosoma haematobium",
+        "C": "Enterobius",
+        "D": "Taenia saginata"
+      },
+      "correct": "A",
+      "explanation": "S. mansoni eggs have a prominent lateral spine.",
+      "speed_hack": "Lateral spine → S. mansoni."
+    },
+    {
+      "id": "parasitology-033",
+      "question": "Which Schistosoma egg has a terminal spine?",
+      "options": {
+        "A": "Schistosoma haematobium",
+        "B": "S. mansoni",
+        "C": "Taenia solium",
+        "D": "Hookworm"
+      },
+      "correct": "A",
+      "explanation": "S. haematobium eggs characteristically have a terminal spine.",
+      "speed_hack": "Terminal spine → S. haematobium."
+    },
+    {
+      "id": "parasitology-034",
+      "question": "Which parasite can be identified by a pear-shaped trophozoite with two nuclei in classic teaching descriptions?",
+      "options": {
+        "A": "Giardia duodenalis",
+        "B": "Entamoeba histolytica",
+        "C": "Plasmodium",
+        "D": "Trichomonas"
+      },
+      "correct": "A",
+      "explanation": "Giardia trophozoites are pear-shaped and have two nuclei in classic microscopic descriptions.",
+      "speed_hack": "Giardia → pear-shaped, two nuclei."
+    },
+    {
+      "id": "parasitology-035",
+      "question": "Which amoeba is pathogenic and can contain ingested red cells in trophozoites?",
+      "options": {
+        "A": "Entamoeba histolytica",
+        "B": "Entamoeba coli",
+        "C": "Endolimax nana",
+        "D": "Iodamoeba bütschlii"
+      },
+      "correct": "A",
+      "explanation": "E. histolytica trophozoites may contain ingested erythrocytes, supporting pathogenic identification.",
+      "speed_hack": "Ingested RBCs → E. histolytica."
+    },
+    {
+      "id": "parasitology-036",
+      "question": "Which parasite is commonly associated with eosinophilia because of tissue-invasive helminth stages?",
+      "options": {
+        "A": "Helminth infections",
+        "B": "Most uncomplicated bacterial UTIs",
+        "C": "ABO incompatibility",
+        "D": "Iron deficiency alone"
+      },
+      "correct": "A",
+      "explanation": "Tissue-invasive helminth infections commonly stimulate eosinophilic responses, although eosinophilia is not universal.",
+      "speed_hack": "Helminths + tissue migration → think eosinophils."
+    },
+    {
+      "id": "parasitology-037",
+      "question": "Which stage of many helminths is often responsible for environmental transmission to a new host?",
+      "options": {
+        "A": "Egg or larval stage",
+        "B": "Mature erythrocyte",
+        "C": "Platelet",
+        "D": "Bacterial spore only"
+      },
+      "correct": "A",
+      "explanation": "Helminths use species-specific eggs or larvae as transmission stages; the exact stage varies by parasite.",
+      "speed_hack": "Helminth transmission → know the infective stage."
+    },
+    {
+      "id": "parasitology-038",
+      "question": "A parasite laboratory report should ideally include enough information to support:",
+      "options": {
+        "A": "Correct identification and clinical interpretation",
+        "B": "A guaranteed diagnosis without clinical context",
+        "C": "No specimen details",
+        "D": "Only the colour of the container"
+      },
+      "correct": "A",
+      "explanation": "Parasitology results are interpreted with specimen type, collection timing, morphology and clinical context.",
+      "speed_hack": "Parasite ID → specimen + morphology + context."
+    },
+    {
+      "id": "parasitology-039",
+      "question": "Which microscopy feature is especially useful when identifying malaria species on a thin film?",
+      "options": {
+        "A": "Red-cell and parasite morphology",
+        "B": "Urine colour",
+        "C": "Serum sodium",
+        "D": "Platelet size only"
+      },
+      "correct": "A",
+      "explanation": "Thin films allow assessment of parasite morphology and infected red-cell features useful for species identification.",
+      "speed_hack": "Thin film → species morphology."
+    },
+    {
+      "id": "parasitology-040",
+      "question": "Which laboratory principle is important when collecting stool for ova-and-parasite examination?",
+      "options": {
+        "A": "Use an appropriate clean container and prevent contamination",
+        "B": "Mix stool with bleach before testing",
+        "C": "Leave the specimen unlabelled",
+        "D": "Collect into a blood culture bottle"
+      },
+      "correct": "A",
+      "explanation": "Correct collection, labeling and preservation help maintain parasite morphology and specimen integrity.",
+      "speed_hack": "Stool O&P → clean container, label, preserve appropriately."
+    },
+    {
+      "id": "parasitology-041",
+      "question": "Which parasite is associated with elephantiasis in lymphatic filariasis?",
+      "options": {
+        "A": "Wuchereria bancrofti",
+        "B": "Giardia",
+        "C": "Taenia saginata",
+        "D": "Entamoeba coli"
+      },
+      "correct": "A",
+      "explanation": "Chronic lymphatic filariasis can cause lymphatic obstruction and limb or genital swelling.",
+      "speed_hack": "Elephantiasis → lymphatic filaria."
+    },
+    {
+      "id": "parasitology-042",
+      "question": "Which general diagnostic approach is most appropriate when parasitic disease is suspected?",
+      "options": {
+        "A": "Choose specimen and test based on suspected parasite and clinical setting",
+        "B": "Use one identical test for every parasite",
+        "C": "Always test only serum",
+        "D": "Never consider travel or exposure history"
+      },
+      "correct": "A",
+      "explanation": "Parasitic diagnosis varies by organism, life cycle, symptoms, specimen and exposure history.",
+      "speed_hack": "Parasites differ → match test to life cycle."
+    },
+    {
+      "id": "parasitology-043",
+      "question": "Review check: Which option is correct for the following concept? Which parasite causes malaria?",
+      "options": {
+        "A": "Plasmodium species",
+        "B": "Entamoeba histolytica",
+        "C": "Giardia duodenalis",
+        "D": "Taenia solium"
+      },
+      "correct": "A",
+      "explanation": "Malaria is caused by Plasmodium parasites transmitted by Anopheles mosquitoes. This alternate stem checks the same core concept from a different angle.",
+      "speed_hack": "Use the same key clue: Malaria → Plasmodium."
+    },
+    {
+      "id": "parasitology-044",
+      "question": "Review check: Which option is correct for the following concept? The usual vector for human malaria parasites is the:",
+      "options": {
+        "A": "Female Anopheles mosquito",
+        "B": "Male Culex mosquito",
+        "C": "Tsetse fly",
+        "D": "Sandfly only"
+      },
+      "correct": "A",
+      "explanation": "Female Anopheles mosquitoes transmit Plasmodium during blood feeding. This alternate stem checks the same core concept from a different angle.",
+      "speed_hack": "Use the same key clue: Malaria vector → female Anopheles."
+    },
+    {
+      "id": "parasitology-045",
+      "question": "Review check: Which option is correct for the following concept? Which Plasmodium species is particularly associated with severe malaria?",
+      "options": {
+        "A": "P. falciparum",
+        "B": "P. vivax only",
+        "C": "P. ovale only",
+        "D": "P. malariae only"
+      },
+      "correct": "A",
+      "explanation": "P. falciparum is associated with severe and potentially life-threatening malaria. This alternate stem checks the same core concept from a different angle.",
+      "speed_hack": "Use the same key clue: Severe malaria → falciparum."
+    }
+  ],
+  "english": [
+    {
+      "id": "english-001",
+      "question": "Choose the word closest in meaning to “abundant”.",
+      "options": {
+        "A": "Plentiful",
+        "B": "Scarce",
+        "C": "Fragile",
+        "D": "Brief"
+      },
+      "correct": "A",
+      "explanation": "Abundant means existing in large quantities; plentiful is a close synonym.",
+      "speed_hack": "Abundant = plentiful."
+    },
+    {
+      "id": "english-002",
+      "question": "Choose the word opposite in meaning to “scarce”.",
+      "options": {
+        "A": "Plentiful",
+        "B": "Rare",
+        "C": "Limited",
+        "D": "Insufficient"
+      },
+      "correct": "A",
+      "explanation": "Scarce means insufficient or in short supply; plentiful is its opposite.",
+      "speed_hack": "Scarce ↔ plentiful."
+    },
+    {
+      "id": "english-003",
+      "question": "Which sentence shows correct plural subject–verb agreement?",
+      "options": {
+        "A": "The students was ready.",
+        "B": "The students were ready.",
+        "C": "The students is ready.",
+        "D": "The students be ready."
+      },
+      "correct": "B",
+      "explanation": "The plural subject “students” takes the plural verb “were.”",
+      "speed_hack": "Plural subject → plural verb."
+    },
+    {
+      "id": "english-004",
+      "question": "Choose the correctly spelled word.",
+      "options": {
+        "A": "Accomodation",
+        "B": "Accommodation",
+        "C": "Acommodation",
+        "D": "Accommmodation"
+      },
+      "correct": "B",
+      "explanation": "The standard spelling is accommodation, with double c and double m.",
+      "speed_hack": "Accommodation → cc + mm."
+    },
+    {
+      "id": "english-005",
+      "question": "Which word is a noun?",
+      "options": {
+        "A": "Quickly",
+        "B": "Honesty",
+        "C": "Careful",
+        "D": "Write"
+      },
+      "correct": "B",
+      "explanation": "Honesty is a noun naming a quality or state.",
+      "speed_hack": "Noun = name of person/place/thing/idea."
+    },
+    {
+      "id": "english-006",
+      "question": "Which word is an adverb?",
+      "options": {
+        "A": "Quickly",
+        "B": "Quick",
+        "C": "Quicken",
+        "D": "Quickness"
+      },
+      "correct": "A",
+      "explanation": "Quickly modifies a verb and is an adverb.",
+      "speed_hack": "-ly often signals an adverb."
+    },
+    {
+      "id": "english-007",
+      "question": "Which sentence uses the apostrophe correctly?",
+      "options": {
+        "A": "The students books were new.",
+        "B": "The student’s books were new.",
+        "C": "The students’ books were new.",
+        "D": "The students’s books were new."
+      },
+      "correct": "C",
+      "explanation": "Students is plural; the apostrophe after s indicates possession by multiple students.",
+      "speed_hack": "Plural possessive → apostrophe after s."
+    },
+    {
+      "id": "english-008",
+      "question": "Choose the correct completion: “Neither the lecturer nor the students ___ late.”",
+      "options": {
+        "A": "was",
+        "B": "were",
+        "C": "is",
+        "D": "be"
+      },
+      "correct": "B",
+      "explanation": "With neither/nor, the verb commonly agrees with the nearer subject; “students” is plural.",
+      "speed_hack": "Nearest subject = students → were."
+    },
+    {
+      "id": "english-009",
+      "question": "Which sentence is in the passive voice?",
+      "options": {
+        "A": "The scientist analysed the sample.",
+        "B": "The sample was analysed by the scientist.",
+        "C": "The scientist is analysing the sample.",
+        "D": "The scientist analyses samples."
+      },
+      "correct": "B",
+      "explanation": "The passive construction places the receiver of the action as the grammatical subject.",
+      "speed_hack": "Passive → was/were + past participle."
+    },
+    {
+      "id": "english-010",
+      "question": "Which punctuation mark normally introduces a list after a complete clause?",
+      "options": {
+        "A": "Colon",
+        "B": "Apostrophe",
+        "C": "Hyphen",
+        "D": "Question mark"
+      },
+      "correct": "A",
+      "explanation": "A colon can introduce a list following an independent clause.",
+      "speed_hack": "List after complete thought → colon."
+    },
+    {
+      "id": "english-011",
+      "question": "Choose the correct form: “She has ___ the report.”",
+      "options": {
+        "A": "write",
+        "B": "wrote",
+        "C": "written",
+        "D": "writing"
+      },
+      "correct": "C",
+      "explanation": "The present perfect uses has/have + past participle; written is the past participle of write.",
+      "speed_hack": "Has/have → past participle."
+    },
+    {
+      "id": "english-012",
+      "question": "Which sentence contains a metaphor?",
+      "options": {
+        "A": "The baby slept.",
+        "B": "Her voice was music to my ears.",
+        "C": "He ran quickly.",
+        "D": "The book is on the table."
+      },
+      "correct": "B",
+      "explanation": "“Her voice was music” directly compares voice with music without using like/as.",
+      "speed_hack": "Metaphor = direct comparison."
+    },
+    {
+      "id": "english-013",
+      "question": "Which sentence contains a simile?",
+      "options": {
+        "A": "The room was silent.",
+        "B": "He is a lion.",
+        "C": "She ran like the wind.",
+        "D": "The sky darkened."
+      },
+      "correct": "C",
+      "explanation": "A simile makes a comparison using words such as like or as.",
+      "speed_hack": "Like/as comparison → simile."
+    },
+    {
+      "id": "english-014",
+      "question": "The main idea of a paragraph is:",
+      "options": {
+        "A": "The central point the paragraph communicates",
+        "B": "The longest sentence",
+        "C": "The first word",
+        "D": "A minor detail"
+      },
+      "correct": "A",
+      "explanation": "The main idea is the central message or point developed by the paragraph.",
+      "speed_hack": "Main idea = central point."
+    },
+    {
+      "id": "english-015",
+      "question": "A synonym is a word that:",
+      "options": {
+        "A": "Has a similar meaning",
+        "B": "Has the opposite meaning",
+        "C": "Has no meaning",
+        "D": "Is always longer"
+      },
+      "correct": "A",
+      "explanation": "Synonyms have similar or closely related meanings.",
+      "speed_hack": "Synonym = similar meaning."
+    },
+    {
+      "id": "english-016",
+      "question": "An antonym is a word that:",
+      "options": {
+        "A": "Has an opposite meaning",
+        "B": "Has the same meaning",
+        "C": "Is always a noun",
+        "D": "Is always a verb"
+      },
+      "correct": "A",
+      "explanation": "Antonyms have contrasting or opposite meanings.",
+      "speed_hack": "Antonym = opposite."
+    },
+    {
+      "id": "english-017",
+      "question": "Which sentence has correct subject-verb agreement?",
+      "options": {
+        "A": "Each of the samples are labelled.",
+        "B": "Each of the samples is labelled.",
+        "C": "Each samples are labelled.",
+        "D": "Each sample were labelled."
+      },
+      "correct": "B",
+      "explanation": "Each is singular and takes the singular verb “is.”",
+      "speed_hack": "Each → singular verb."
+    },
+    {
+      "id": "english-018",
+      "question": "Choose the correct word: “The results are different ___ those reported yesterday.”",
+      "options": {
+        "A": "than",
+        "B": "from",
+        "C": "then",
+        "D": "to"
+      },
+      "correct": "B",
+      "explanation": "The standard construction is “different from.”",
+      "speed_hack": "Different from."
+    },
+    {
+      "id": "english-019",
+      "question": "Which word best completes: “The technician worked ___ to finish the task.”",
+      "options": {
+        "A": "careful",
+        "B": "carefully",
+        "C": "care",
+        "D": "caring"
+      },
+      "correct": "B",
+      "explanation": "Carefully is the adverb modifying worked.",
+      "speed_hack": "Verb modifier → adverb."
+    },
+    {
+      "id": "english-020",
+      "question": "Which sentence is correctly punctuated?",
+      "options": {
+        "A": "After the test the students left.",
+        "B": "After the test, the students left.",
+        "C": "After, the test the students left.",
+        "D": "After the test the, students left."
+      },
+      "correct": "B",
+      "explanation": "A comma can separate an introductory phrase from the main clause.",
+      "speed_hack": "Introductory phrase → comma."
+    },
+    {
+      "id": "english-021",
+      "question": "Which is a compound sentence?",
+      "options": {
+        "A": "The student studied.",
+        "B": "The student studied and the lecturer marked the scripts.",
+        "C": "Studying hard.",
+        "D": "Because the student studied."
+      },
+      "correct": "B",
+      "explanation": "A compound sentence joins two independent clauses, often with a coordinating conjunction.",
+      "speed_hack": "Two independent clauses → compound."
+    },
+    {
+      "id": "english-022",
+      "question": "Which is a complex sentence?",
+      "options": {
+        "A": "The student studied, and the lecturer marked.",
+        "B": "Although the student was tired, she studied.",
+        "C": "The student studied.",
+        "D": "Study hard!"
+      },
+      "correct": "B",
+      "explanation": "A complex sentence contains an independent clause and at least one dependent clause.",
+      "speed_hack": "Dependent + independent → complex."
+    },
+    {
+      "id": "english-023",
+      "question": "Which word is closest in meaning to “concise”?",
+      "options": {
+        "A": "Brief",
+        "B": "Confusing",
+        "C": "Lengthy",
+        "D": "Loud"
+      },
+      "correct": "A",
+      "explanation": "Concise means expressing much in few words.",
+      "speed_hack": "Concise = brief."
+    },
+    {
+      "id": "english-024",
+      "question": "Which word is closest in meaning to “ambiguous”?",
+      "options": {
+        "A": "Unclear",
+        "B": "Certain",
+        "C": "Obvious",
+        "D": "Exact"
+      },
+      "correct": "A",
+      "explanation": "Ambiguous means open to more than one interpretation or unclear.",
+      "speed_hack": "Ambiguous = unclear/multiple meanings."
+    },
+    {
+      "id": "english-025",
+      "question": "Which sentence uses “affect” correctly?",
+      "options": {
+        "A": "The medication may affect the result.",
+        "B": "The medication may effect the result in every context.",
+        "C": "The result was affect.",
+        "D": "Affect is always a noun."
+      },
+      "correct": "A",
+      "explanation": "Affect is commonly used as a verb meaning to influence.",
+      "speed_hack": "Affect → usually verb."
+    },
+    {
+      "id": "english-026",
+      "question": "Which sentence uses “effect” correctly as a noun?",
+      "options": {
+        "A": "The new method had a positive effect.",
+        "B": "The new method effected the sample as a noun.",
+        "C": "The effect the sample yesterday.",
+        "D": "Effect is always a verb."
+      },
+      "correct": "A",
+      "explanation": "Effect is commonly a noun meaning a result or consequence.",
+      "speed_hack": "Effect → usually noun."
+    },
+    {
+      "id": "english-027",
+      "question": "Choose the correct pronoun: “The lecturer gave the students and ___ the assignment.”",
+      "options": {
+        "A": "I",
+        "B": "me",
+        "C": "my",
+        "D": "mine"
+      },
+      "correct": "B",
+      "explanation": "The pronoun is the object of “gave,” so “me” is correct.",
+      "speed_hack": "Object position → me."
+    },
+    {
+      "id": "english-028",
+      "question": "Which word correctly completes: “___ going to review the results.”",
+      "options": {
+        "A": "Their",
+        "B": "There",
+        "C": "They’re",
+        "D": "Theirs"
+      },
+      "correct": "C",
+      "explanation": "They’re is the contraction of “they are.”",
+      "speed_hack": "They’re = they are."
+    },
+    {
+      "id": "english-029",
+      "question": "Which word correctly completes: “The samples are over ___.”",
+      "options": {
+        "A": "their",
+        "B": "there",
+        "C": "they’re",
+        "D": "theirs"
+      },
+      "correct": "B",
+      "explanation": "There refers to a place or position.",
+      "speed_hack": "There = place."
+    },
+    {
+      "id": "english-030",
+      "question": "Which word correctly completes: “The students brought ___ books.”",
+      "options": {
+        "A": "their",
+        "B": "there",
+        "C": "they’re",
+        "D": "theirs"
+      },
+      "correct": "A",
+      "explanation": "Their is the possessive determiner.",
+      "speed_hack": "Their = belonging to them."
+    },
+    {
+      "id": "english-031",
+      "question": "Which sentence correctly uses “fewer”?",
+      "options": {
+        "A": "There were fewer errors this week.",
+        "B": "There was fewer water.",
+        "C": "Fewer milk was used.",
+        "D": "Fewer equipment was available."
+      },
+      "correct": "A",
+      "explanation": "Fewer is normally used with countable plural nouns such as errors.",
+      "speed_hack": "Fewer → countable nouns."
+    },
+    {
+      "id": "english-032",
+      "question": "Which sentence correctly uses “less”?",
+      "options": {
+        "A": "The lab used less water.",
+        "B": "The lab used less bottles.",
+        "C": "There were less samples.",
+        "D": "Less students attended."
+      },
+      "correct": "A",
+      "explanation": "Less is normally used with uncountable quantities such as water.",
+      "speed_hack": "Less → uncountable."
+    },
+    {
+      "id": "english-033",
+      "question": "Which word best completes: “The report was ___ than expected.”",
+      "options": {
+        "A": "clearer",
+        "B": "more clear than",
+        "C": "clearest",
+        "D": "clearly"
+      },
+      "correct": "A",
+      "explanation": "Clearer is the standard comparative form of clear.",
+      "speed_hack": "Comparative adjective → clearer."
+    },
+    {
+      "id": "english-034",
+      "question": "Which sentence is most formal?",
+      "options": {
+        "A": "Send me the thing ASAP.",
+        "B": "Please forward the report at your earliest convenience.",
+        "C": "Give me that file now.",
+        "D": "I need it quick."
+      },
+      "correct": "B",
+      "explanation": "The second sentence uses formal, professional wording.",
+      "speed_hack": "Formal register → polite, precise wording."
+    },
+    {
+      "id": "english-035",
+      "question": "Which phrase is redundant?",
+      "options": {
+        "A": "Advance planning",
+        "B": "Final outcome",
+        "C": "New innovation",
+        "D": "All of the above"
+      },
+      "correct": "D",
+      "explanation": "Advance planning, final outcome and new innovation each contain commonly cited redundancy.",
+      "speed_hack": "Watch repeated meanings in adjacent words."
+    },
+    {
+      "id": "english-036",
+      "question": "Which option gives the correct spelling of the word meaning “apart or distinct”?",
+      "options": {
+        "A": "Separate",
+        "B": "Seperate",
+        "C": "Sepparate",
+        "D": "Separete"
+      },
+      "correct": "A",
+      "explanation": "Separate is the standard spelling.",
+      "speed_hack": "Separate has “par” in the middle."
+    },
+    {
+      "id": "english-037",
+      "question": "Which word is correctly spelled?",
+      "options": {
+        "A": "Laboratory",
+        "B": "Laboritory",
+        "C": "Labouratory",
+        "D": "Laboratry"
+      },
+      "correct": "A",
+      "explanation": "Laboratory is the standard spelling in this context.",
+      "speed_hack": "Laboratory → “-atory”."
+    },
+    {
+      "id": "english-038",
+      "question": "Which sentence avoids a dangling modifier?",
+      "options": {
+        "A": "Walking to the lab, the rain soaked me.",
+        "B": "Walking to the lab, I was soaked by the rain.",
+        "C": "Walking to the lab, the building appeared.",
+        "D": "Walking to the lab, the rain was heavy."
+      },
+      "correct": "B",
+      "explanation": "The introductory phrase “Walking to the lab” logically modifies “I.”",
+      "speed_hack": "Modifier should clearly modify the intended subject."
+    },
+    {
+      "id": "english-039",
+      "question": "Which sentence uses a semicolon appropriately?",
+      "options": {
+        "A": "The test was difficult; however, the students finished.",
+        "B": "The test; was difficult.",
+        "C": "The test was; difficult.",
+        "D": "The test was difficult however; the students finished."
+      },
+      "correct": "A",
+      "explanation": "A semicolon can join closely related independent clauses, including before a conjunctive adverb such as however.",
+      "speed_hack": "Semicolon → independent clause ; independent clause."
+    },
+    {
+      "id": "english-040",
+      "question": "Which word is closest in meaning to “reliable”?",
+      "options": {
+        "A": "Dependable",
+        "B": "Uncertain",
+        "C": "Random",
+        "D": "Fragile"
+      },
+      "correct": "A",
+      "explanation": "Reliable means dependable or consistently trustworthy.",
+      "speed_hack": "Reliable = dependable."
+    },
+    {
+      "id": "english-041",
+      "question": "Which word is closest in meaning to “interpret”?",
+      "options": {
+        "A": "Explain the meaning of",
+        "B": "Ignore",
+        "C": "Destroy",
+        "D": "Duplicate"
+      },
+      "correct": "A",
+      "explanation": "To interpret is to explain or determine the meaning of something.",
+      "speed_hack": "Interpret = explain meaning."
+    },
+    {
+      "id": "english-042",
+      "question": "Which sentence shows correct plural subject–verb agreement? (MLS practice item)",
+      "options": {
+        "A": "There is many reasons.",
+        "B": "There are many reasons.",
+        "C": "There be many reasons.",
+        "D": "There was many reasons."
+      },
+      "correct": "B",
+      "explanation": "The plural noun “reasons” takes “are.”",
+      "speed_hack": "There are + plural noun."
+    },
+    {
+      "id": "english-043",
+      "question": "Which sentence contains a relative clause?",
+      "options": {
+        "A": "The student who studied passed.",
+        "B": "The student passed.",
+        "C": "Study now.",
+        "D": "The laboratory is busy."
+      },
+      "correct": "A",
+      "explanation": "“Who studied” is a relative clause modifying “student.”",
+      "speed_hack": "Who/which/that can introduce relative clauses."
+    },
+    {
+      "id": "english-044",
+      "question": "Which word is the best transition for showing contrast?",
+      "options": {
+        "A": "However",
+        "B": "Therefore",
+        "C": "Furthermore",
+        "D": "Similarly"
+      },
+      "correct": "A",
+      "explanation": "However signals contrast between ideas.",
+      "speed_hack": "Contrast → however."
+    },
+    {
+      "id": "english-045",
+      "question": "Review check: Which option is correct for the following concept? Choose the word closest in meaning to “abundant”.",
+      "options": {
+        "A": "Plentiful",
+        "B": "Scarce",
+        "C": "Fragile",
+        "D": "Brief"
+      },
+      "correct": "A",
+      "explanation": "Abundant means existing in large quantities; plentiful is a close synonym. This alternate stem checks the same core concept from a different angle.",
+      "speed_hack": "Use the same key clue: Abundant = plentiful."
+    }
+  ],
+  "use_of_engl": [
+    {
+      "id": "use_of_engl-001",
+      "question": "Choose the correct option: “If I ___ earlier, I would have caught the bus.”",
+      "options": {
+        "A": "leave",
+        "B": "left",
+        "C": "had left",
+        "D": "have left"
+      },
+      "correct": "C",
+      "explanation": "Third conditional structure uses past perfect in the if-clause: had left.",
+      "speed_hack": "If + had + past participle → would have + past participle."
+    },
+    {
+      "id": "use_of_engl-002",
+      "question": "Choose the correct option: “She ___ to the laboratory every day.”",
+      "options": {
+        "A": "go",
+        "B": "goes",
+        "C": "going",
+        "D": "gone"
+      },
+      "correct": "B",
+      "explanation": "Third-person singular present simple takes -s: goes.",
+      "speed_hack": "He/she/it → verb + s in present simple."
+    },
+    {
+      "id": "use_of_engl-003",
+      "question": "Choose the correct preposition: “The sample was collected ___ the patient.”",
+      "options": {
+        "A": "from",
+        "B": "at",
+        "C": "by",
+        "D": "on"
+      },
+      "correct": "A",
+      "explanation": "A sample is collected from a patient.",
+      "speed_hack": "Collected from."
+    },
+    {
+      "id": "use_of_engl-004",
+      "question": "Choose the correct word: “The technician is responsible ___ quality control.”",
+      "options": {
+        "A": "for",
+        "B": "to",
+        "C": "at",
+        "D": "with"
+      },
+      "correct": "A",
+      "explanation": "The standard collocation is “responsible for.”",
+      "speed_hack": "Responsible for."
+    },
+    {
+      "id": "use_of_engl-005",
+      "question": "Choose the correct option: “Neither answer ___ correct.”",
+      "options": {
+        "A": "are",
+        "B": "were",
+        "C": "is",
+        "D": "be"
+      },
+      "correct": "C",
+      "explanation": "Neither is singular in standard formal usage and takes “is.”",
+      "speed_hack": "Neither → singular verb."
+    },
+    {
+      "id": "use_of_engl-006",
+      "question": "Choose the correct option: “The equipment ___ calibrated yesterday.”",
+      "options": {
+        "A": "was",
+        "B": "were",
+        "C": "are",
+        "D": "have"
+      },
+      "correct": "A",
+      "explanation": "Equipment is an uncountable singular noun, so “was” is correct.",
+      "speed_hack": "Equipment → singular/uncountable."
+    },
+    {
+      "id": "use_of_engl-007",
+      "question": "Choose the correct option: “The results ___ already been reported.”",
+      "options": {
+        "A": "has",
+        "B": "have",
+        "C": "is",
+        "D": "was"
+      },
+      "correct": "B",
+      "explanation": "Plural subject “results” takes “have been.”",
+      "speed_hack": "Plural results → have."
+    },
+    {
+      "id": "use_of_engl-008",
+      "question": "Choose the correct form: “He is good ___ interpreting data.”",
+      "options": {
+        "A": "at",
+        "B": "in",
+        "C": "on",
+        "D": "for"
+      },
+      "correct": "A",
+      "explanation": "The standard collocation is “good at.”",
+      "speed_hack": "Good at + gerund."
+    },
+    {
+      "id": "use_of_engl-009",
+      "question": "Choose the correct form: “She is interested ___ microbiology.”",
+      "options": {
+        "A": "in",
+        "B": "on",
+        "C": "at",
+        "D": "for"
+      },
+      "correct": "A",
+      "explanation": "The standard collocation is “interested in.”",
+      "speed_hack": "Interested in."
+    },
+    {
+      "id": "use_of_engl-010",
+      "question": "Choose the correct word: “The report was submitted ___ time.”",
+      "options": {
+        "A": "on",
+        "B": "in",
+        "C": "at",
+        "D": "by"
+      },
+      "correct": "A",
+      "explanation": "“On time” means punctually.",
+      "speed_hack": "On time = punctual."
+    },
+    {
+      "id": "use_of_engl-011",
+      "question": "Choose the correct word: “The students arrived ___ the examination began.”",
+      "options": {
+        "A": "before",
+        "B": "unless",
+        "C": "despite",
+        "D": "although"
+      },
+      "correct": "A",
+      "explanation": "Before indicates that one event occurred earlier than another.",
+      "speed_hack": "Before = earlier than."
+    },
+    {
+      "id": "use_of_engl-012",
+      "question": "Choose the correct option: “Despite ___ tired, she continued.”",
+      "options": {
+        "A": "be",
+        "B": "being",
+        "C": "was",
+        "D": "been"
+      },
+      "correct": "B",
+      "explanation": "After despite, a noun phrase or gerund is used; “being tired” is correct.",
+      "speed_hack": "Despite + noun/gerund."
+    },
+    {
+      "id": "use_of_engl-013",
+      "question": "Choose the correct option: “Although he was ill, he ___ the exam.”",
+      "options": {
+        "A": "writes",
+        "B": "wrote",
+        "C": "writing",
+        "D": "has write"
+      },
+      "correct": "B",
+      "explanation": "The past context requires the past tense “wrote.”",
+      "speed_hack": "Although + clause; match the tense."
+    },
+    {
+      "id": "use_of_engl-014",
+      "question": "Choose the correct comparative: “This method is ___ than the old one.”",
+      "options": {
+        "A": "efficient",
+        "B": "more efficient",
+        "C": "most efficient",
+        "D": "efficiently"
+      },
+      "correct": "B",
+      "explanation": "For this adjective, “more efficient” is the comparative form.",
+      "speed_hack": "Comparative → more + longer adjective."
+    },
+    {
+      "id": "use_of_engl-015",
+      "question": "Choose the correct superlative: “This was the ___ result.”",
+      "options": {
+        "A": "accurate",
+        "B": "more accurate",
+        "C": "most accurate",
+        "D": "accurately"
+      },
+      "correct": "C",
+      "explanation": "“Most accurate” is the superlative form.",
+      "speed_hack": "Superlative → most + adjective."
+    },
+    {
+      "id": "use_of_engl-016",
+      "question": "Choose the correct article: “She is ___ MLS student.”",
+      "options": {
+        "A": "a",
+        "B": "an",
+        "C": "the",
+        "D": "no article"
+      },
+      "correct": "B",
+      "explanation": "Because “MLS” is pronounced “em-el-ess,” it begins with a vowel sound, so “an” is used.",
+      "speed_hack": "Article depends on sound, not spelling: an MLS."
+    },
+    {
+      "id": "use_of_engl-017",
+      "question": "Choose the correct article: “He completed ___ laboratory practical.”",
+      "options": {
+        "A": "a",
+        "B": "an",
+        "C": "the only",
+        "D": "no article"
+      },
+      "correct": "A",
+      "explanation": "“Laboratory” begins with a consonant sound, so “a” is appropriate when introducing one practical.",
+      "speed_hack": "A before consonant sound."
+    },
+    {
+      "id": "use_of_engl-018",
+      "question": "Choose the correct option: “The students ___ studying when the lecturer arrived.”",
+      "options": {
+        "A": "are",
+        "B": "were",
+        "C": "was",
+        "D": "be"
+      },
+      "correct": "B",
+      "explanation": "Past continuous is formed with were + present participle for plural subjects.",
+      "speed_hack": "Past continuous → was/were + -ing."
+    },
+    {
+      "id": "use_of_engl-019",
+      "question": "Choose the correct option: “By next week, they ___ the project.”",
+      "options": {
+        "A": "complete",
+        "B": "completed",
+        "C": "will have completed",
+        "D": "are complete"
+      },
+      "correct": "C",
+      "explanation": "Future perfect uses will have + past participle for an action completed before a future time.",
+      "speed_hack": "By + future time → future perfect often fits."
+    },
+    {
+      "id": "use_of_engl-020",
+      "question": "Choose the correct option: “I have lived here ___ 2022.”",
+      "options": {
+        "A": "for",
+        "B": "since",
+        "C": "during",
+        "D": "from"
+      },
+      "correct": "B",
+      "explanation": "Since introduces a starting point in time.",
+      "speed_hack": "Since = starting point; for = duration."
+    },
+    {
+      "id": "use_of_engl-021",
+      "question": "Choose the correct option: “I have studied for ___ three hours.”",
+      "options": {
+        "A": "since",
+        "B": "for",
+        "C": "at",
+        "D": "on"
+      },
+      "correct": "B",
+      "explanation": "For introduces a duration.",
+      "speed_hack": "For + period of time."
+    },
+    {
+      "id": "use_of_engl-022",
+      "question": "Choose the correct option: “The lecturer asked whether I ___ the sample.”",
+      "options": {
+        "A": "label",
+        "B": "labelled",
+        "C": "had labelled",
+        "D": "am label"
+      },
+      "correct": "C",
+      "explanation": "Reported questions about an earlier completed action can use the past perfect.",
+      "speed_hack": "Earlier past action → had + past participle."
+    },
+    {
+      "id": "use_of_engl-023",
+      "question": "Choose the correct reported speech: He said, “I am ready.”",
+      "options": {
+        "A": "He said that he was ready.",
+        "B": "He said that I am ready.",
+        "C": "He says he were ready.",
+        "D": "He said he be ready."
+      },
+      "correct": "A",
+      "explanation": "Backshift commonly changes present “am” to past “was” in reported speech when the reporting verb is past.",
+      "speed_hack": "Reported speech → tense may backshift."
+    },
+    {
+      "id": "use_of_engl-024",
+      "question": "Choose the correct question tag: “The result is correct, ___?”",
+      "options": {
+        "A": "is it",
+        "B": "isn’t it",
+        "C": "wasn’t it",
+        "D": "does it"
+      },
+      "correct": "B",
+      "explanation": "A positive statement with “is” commonly takes the negative tag “isn’t it?”",
+      "speed_hack": "Positive statement → negative tag."
+    },
+    {
+      "id": "use_of_engl-025",
+      "question": "Choose the correct word: “The technician ___ the instrument every morning.”",
+      "options": {
+        "A": "checks",
+        "B": "check",
+        "C": "checking",
+        "D": "checked"
+      },
+      "correct": "A",
+      "explanation": "Third-person singular subject takes “checks” in the present simple.",
+      "speed_hack": "Technician = singular → checks."
+    },
+    {
+      "id": "use_of_engl-026",
+      "question": "Choose the correct option: “If the sample is contaminated, the result ___ unreliable.”",
+      "options": {
+        "A": "will be",
+        "B": "would have been",
+        "C": "were",
+        "D": "had"
+      },
+      "correct": "A",
+      "explanation": "First conditional commonly uses present condition + will in the result.",
+      "speed_hack": "If + present → will + base verb."
+    },
+    {
+      "id": "use_of_engl-027",
+      "question": "Choose the correct option: “If I were you, I ___ the supervisor.”",
+      "options": {
+        "A": "inform",
+        "B": "would inform",
+        "C": "will informed",
+        "D": "had informed"
+      },
+      "correct": "B",
+      "explanation": "Second conditional uses would + base verb in the result clause.",
+      "speed_hack": "If I were → would + verb."
+    },
+    {
+      "id": "use_of_engl-028",
+      "question": "Choose the correct conjunction: “The test was repeated ___ the first result was unexpected.”",
+      "options": {
+        "A": "because",
+        "B": "unless",
+        "C": "although",
+        "D": "whereas"
+      },
+      "correct": "A",
+      "explanation": "Because introduces a reason.",
+      "speed_hack": "Because = reason."
+    },
+    {
+      "id": "use_of_engl-029",
+      "question": "Choose the correct conjunction: “___ the test was difficult, the students completed it.”",
+      "options": {
+        "A": "Although",
+        "B": "Because of",
+        "C": "Despite of",
+        "D": "Unless"
+      },
+      "correct": "A",
+      "explanation": "Although introduces a concessive clause containing a subject and verb.",
+      "speed_hack": "Although + clause."
+    },
+    {
+      "id": "use_of_engl-030",
+      "question": "Choose the correct preposition: “The sample was placed ___ the refrigerator.”",
+      "options": {
+        "A": "in",
+        "B": "at",
+        "C": "on to",
+        "D": "by"
+      },
+      "correct": "A",
+      "explanation": "A sample is placed in a refrigerator.",
+      "speed_hack": "In = inside a container/place."
+    },
+    {
+      "id": "use_of_engl-031",
+      "question": "Choose the correct preposition: “The lecture starts ___ 8:00 a.m.”",
+      "options": {
+        "A": "at",
+        "B": "on",
+        "C": "in",
+        "D": "by"
+      },
+      "correct": "A",
+      "explanation": "At is used with specific clock times.",
+      "speed_hack": "At + exact time."
+    },
+    {
+      "id": "use_of_engl-032",
+      "question": "Choose the correct preposition: “The examination is ___ Monday.”",
+      "options": {
+        "A": "on",
+        "B": "at",
+        "C": "in",
+        "D": "by"
+      },
+      "correct": "A",
+      "explanation": "On is used with days and dates.",
+      "speed_hack": "On + day/date."
+    },
+    {
+      "id": "use_of_engl-033",
+      "question": "Choose the correct preposition: “The practical occurs ___ June.”",
+      "options": {
+        "A": "in",
+        "B": "on",
+        "C": "at",
+        "D": "by"
+      },
+      "correct": "A",
+      "explanation": "In is used with months and years.",
+      "speed_hack": "In + month/year."
+    },
+    {
+      "id": "use_of_engl-034",
+      "question": "Choose the correct word: “The results were consistent ___ the control.”",
+      "options": {
+        "A": "with",
+        "B": "to",
+        "C": "at",
+        "D": "by"
+      },
+      "correct": "A",
+      "explanation": "“Consistent with” is the standard collocation.",
+      "speed_hack": "Consistent with."
+    },
+    {
+      "id": "use_of_engl-035",
+      "question": "Choose the correct option: “No sooner had the test started ___ the power failed.”",
+      "options": {
+        "A": "than",
+        "B": "when",
+        "C": "then",
+        "D": "as"
+      },
+      "correct": "A",
+      "explanation": "The standard correlative construction is “no sooner … than.”",
+      "speed_hack": "No sooner → than."
+    },
+    {
+      "id": "use_of_engl-036",
+      "question": "Choose the correct option: “Hardly had he arrived ___ the phone rang.”",
+      "options": {
+        "A": "when",
+        "B": "than",
+        "C": "then",
+        "D": "because"
+      },
+      "correct": "A",
+      "explanation": "“Hardly … when” is the standard paired construction.",
+      "speed_hack": "Hardly → when."
+    },
+    {
+      "id": "use_of_engl-037",
+      "question": "Choose the correct word: “The patient was advised to abstain ___ food before the test.”",
+      "options": {
+        "A": "from",
+        "B": "for",
+        "C": "at",
+        "D": "with"
+      },
+      "correct": "A",
+      "explanation": "The collocation is “abstain from.”",
+      "speed_hack": "Abstain from."
+    },
+    {
+      "id": "use_of_engl-038",
+      "question": "Choose the correct option: “The equipment needs ___ before use.”",
+      "options": {
+        "A": "calibrate",
+        "B": "calibrating",
+        "C": "to be calibrated",
+        "D": "calibrated only"
+      },
+      "correct": "C",
+      "explanation": "“Needs to be calibrated” correctly expresses a required passive action.",
+      "speed_hack": "Needs + to be + past participle for passive requirement."
+    },
+    {
+      "id": "use_of_engl-039",
+      "question": "Choose the correct option: “The supervisor made the students ___ the procedure.”",
+      "options": {
+        "A": "repeat",
+        "B": "to repeat",
+        "C": "repeated",
+        "D": "repeating"
+      },
+      "correct": "A",
+      "explanation": "After make + object, the base verb is used in active causative construction.",
+      "speed_hack": "Make + object + base verb."
+    },
+    {
+      "id": "use_of_engl-040",
+      "question": "Choose the correct option: “The students were made ___ the procedure.”",
+      "options": {
+        "A": "repeat",
+        "B": "to repeat",
+        "C": "repeated",
+        "D": "repeating"
+      },
+      "correct": "B",
+      "explanation": "The passive form is be made + to-infinitive.",
+      "speed_hack": "Made passive → to + verb."
+    },
+    {
+      "id": "use_of_engl-041",
+      "question": "Choose the correct word: “The report is different ___ the previous version.”",
+      "options": {
+        "A": "from",
+        "B": "than",
+        "C": "to",
+        "D": "with"
+      },
+      "correct": "A",
+      "explanation": "“Different from” is the standard formal construction.",
+      "speed_hack": "Different from."
+    },
+    {
+      "id": "use_of_engl-042",
+      "question": "Choose the correct option: “The number of students ___ increasing.”",
+      "options": {
+        "A": "are",
+        "B": "is",
+        "C": "were",
+        "D": "be"
+      },
+      "correct": "B",
+      "explanation": "The head noun “number” is singular in “the number of.”",
+      "speed_hack": "The number → singular verb."
+    },
+    {
+      "id": "use_of_engl-043",
+      "question": "Choose the correct option: “A number of students ___ absent.”",
+      "options": {
+        "A": "is",
+        "B": "was",
+        "C": "are",
+        "D": "be"
+      },
+      "correct": "C",
+      "explanation": "“A number of” is followed by a plural noun and plural verb.",
+      "speed_hack": "A number of → plural verb."
+    },
+    {
+      "id": "use_of_engl-044",
+      "question": "Choose the correct word: “The lecturer explained the procedure ___.”",
+      "options": {
+        "A": "clear",
+        "B": "clearly",
+        "C": "clearness",
+        "D": "cleared"
+      },
+      "correct": "B",
+      "explanation": "Clearly is an adverb modifying explained.",
+      "speed_hack": "Explain → clearly."
+    },
+    {
+      "id": "use_of_engl-045",
+      "question": "Review check: Which option is correct for the following concept? Choose the correct option: “If I ___ earlier, I would have caught the bus.”",
+      "options": {
+        "A": "leave",
+        "B": "left",
+        "C": "had left",
+        "D": "have left"
+      },
+      "correct": "C",
+      "explanation": "Third conditional structure uses past perfect in the if-clause: had left. This alternate stem checks the same core concept from a different angle.",
+      "speed_hack": "Use the same key clue: If + had + past participle → would have + past participle."
+    }
+  ],
+  "gsp": [
+    {
+      "id": "gsp-001",
+      "question": "Which branch of government primarily makes laws in a constitutional democracy?",
+      "options": {
+        "A": "Legislature",
+        "B": "Judiciary",
+        "C": "Executive",
+        "D": "Civil service only"
+      },
+      "correct": "A",
+      "explanation": "The legislature is the law-making arm of government.",
+      "speed_hack": "Legislature → makes laws."
+    },
+    {
+      "id": "gsp-002",
+      "question": "Which arm of government is primarily responsible for interpreting laws?",
+      "options": {
+        "A": "Judiciary",
+        "B": "Legislature",
+        "C": "Executive",
+        "D": "Electoral commission only"
+      },
+      "correct": "A",
+      "explanation": "The judiciary interprets and applies laws in adjudicating cases.",
+      "speed_hack": "Judiciary → interprets laws."
+    },
+    {
+      "id": "gsp-003",
+      "question": "Which arm of government generally implements laws and policies?",
+      "options": {
+        "A": "Executive",
+        "B": "Judiciary",
+        "C": "Legislature",
+        "D": "Press"
+      },
+      "correct": "A",
+      "explanation": "The executive implements and administers laws and public policies.",
+      "speed_hack": "Executive → implements."
+    },
+    {
+      "id": "gsp-004",
+      "question": "A constitution is best described as:",
+      "options": {
+        "A": "A fundamental framework of government and rights",
+        "B": "A daily newspaper",
+        "C": "A laboratory SOP",
+        "D": "A private contract only"
+      },
+      "correct": "A",
+      "explanation": "A constitution establishes fundamental rules, institutions, powers and rights of a state.",
+      "speed_hack": "Constitution → basic rules of the state."
+    },
+    {
+      "id": "gsp-005",
+      "question": "Democracy broadly means government in which political authority is derived from:",
+      "options": {
+        "A": "The people",
+        "B": "Only the military",
+        "C": "Only judges",
+        "D": "Private companies"
+      },
+      "correct": "A",
+      "explanation": "Democracy is based on popular participation and political authority ultimately deriving from the people.",
+      "speed_hack": "Democracy → people."
+    },
+    {
+      "id": "gsp-006",
+      "question": "The rule of law means, among other things, that:",
+      "options": {
+        "A": "Law applies through established rules and institutions",
+        "B": "Officials are always above the law",
+        "C": "Courts are unnecessary",
+        "D": "Only one person is accountable"
+      },
+      "correct": "A",
+      "explanation": "Rule of law requires governance according to established laws and legal principles.",
+      "speed_hack": "Rule of law → no one is above the law."
+    },
+    {
+      "id": "gsp-007",
+      "question": "Which is a fundamental feature of citizenship?",
+      "options": {
+        "A": "Rights and civic responsibilities",
+        "B": "Automatic exemption from laws",
+        "C": "Unlimited government power",
+        "D": "No civic duties"
+      },
+      "correct": "A",
+      "explanation": "Citizenship involves legal status with associated rights and responsibilities.",
+      "speed_hack": "Citizenship → rights + duties."
+    },
+    {
+      "id": "gsp-008",
+      "question": "A referendum is:",
+      "options": {
+        "A": "A direct vote by citizens on a specific issue",
+        "B": "A court judgment",
+        "C": "A laboratory examination",
+        "D": "A budget document only"
+      },
+      "correct": "A",
+      "explanation": "A referendum allows voters to decide a specified public question directly.",
+      "speed_hack": "Referendum → direct public vote."
+    },
+    {
+      "id": "gsp-009",
+      "question": "The principle of separation of powers aims to:",
+      "options": {
+        "A": "Distribute government powers among institutions",
+        "B": "Give all power to one office",
+        "C": "Eliminate courts",
+        "D": "Prevent elections"
+      },
+      "correct": "A",
+      "explanation": "Separation of powers distributes governmental authority to reduce concentration of power.",
+      "speed_hack": "Separate powers → prevent concentration."
+    },
+    {
+      "id": "gsp-010",
+      "question": "A federal system generally divides constitutional powers between:",
+      "options": {
+        "A": "Central and subnational governments",
+        "B": "Only private businesses",
+        "C": "Courts and hospitals",
+        "D": "Students and lecturers"
+      },
+      "correct": "A",
+      "explanation": "Federalism constitutionally allocates powers between a national government and constituent units.",
+      "speed_hack": "Federal → central + subnational."
+    },
+    {
+      "id": "gsp-011",
+      "question": "Which document is commonly used to express a citizen’s choice in an election?",
+      "options": {
+        "A": "Ballot",
+        "B": "Passport only",
+        "C": "Birth certificate",
+        "D": "Laboratory request form"
+      },
+      "correct": "A",
+      "explanation": "A ballot records an elector’s vote in an election.",
+      "speed_hack": "Election choice → ballot."
+    },
+    {
+      "id": "gsp-012",
+      "question": "The principle of universal suffrage refers to:",
+      "options": {
+        "A": "Broad voting rights for eligible citizens",
+        "B": "Voting only by judges",
+        "C": "Voting only by civil servants",
+        "D": "No voting rights"
+      },
+      "correct": "A",
+      "explanation": "Universal suffrage means voting rights are broadly extended to eligible adult citizens subject to lawful rules.",
+      "speed_hack": "Suffrage → right to vote."
+    },
+    {
+      "id": "gsp-013",
+      "question": "A pressure group primarily seeks to:",
+      "options": {
+        "A": "Influence public policy or decisions",
+        "B": "Form every government automatically",
+        "C": "Replace all courts",
+        "D": "Conduct laboratory tests"
+      },
+      "correct": "A",
+      "explanation": "Pressure or interest groups advocate for particular causes or interests and seek policy influence.",
+      "speed_hack": "Pressure group → influence policy."
+    },
+    {
+      "id": "gsp-014",
+      "question": "A political party primarily seeks to:",
+      "options": {
+        "A": "Win political office and implement its programme",
+        "B": "Operate hospitals only",
+        "C": "Conduct private exams",
+        "D": "Avoid public policy"
+      },
+      "correct": "A",
+      "explanation": "Political parties organize political participation and seek elected office to pursue programmes.",
+      "speed_hack": "Party → contest office/programme."
+    },
+    {
+      "id": "gsp-015",
+      "question": "Public accountability means public officials should:",
+      "options": {
+        "A": "Be answerable for their decisions and use of authority",
+        "B": "Never explain decisions",
+        "C": "Operate without records",
+        "D": "Ignore oversight"
+      },
+      "correct": "A",
+      "explanation": "Accountability requires answerability, transparency and appropriate oversight of public authority.",
+      "speed_hack": "Accountability → answerability."
+    },
+    {
+      "id": "gsp-016",
+      "question": "Transparency in public administration generally involves:",
+      "options": {
+        "A": "Making relevant information accessible and processes open",
+        "B": "Hiding all records",
+        "C": "Avoiding audits",
+        "D": "Removing documentation"
+      },
+      "correct": "A",
+      "explanation": "Transparency supports openness and access to relevant public information, subject to lawful limits.",
+      "speed_hack": "Transparency → openness."
+    },
+    {
+      "id": "gsp-017",
+      "question": "Which institution is primarily associated with auditing public finances?",
+      "options": {
+        "A": "Supreme audit institution/Auditor-General",
+        "B": "Weather service",
+        "C": "Hospital laboratory",
+        "D": "University library"
+      },
+      "correct": "A",
+      "explanation": "A supreme audit institution or Auditor-General examines public financial management according to its legal mandate.",
+      "speed_hack": "Public money → audit institution."
+    },
+    {
+      "id": "gsp-018",
+      "question": "Corruption is broadly understood as:",
+      "options": {
+        "A": "Abuse of entrusted power for private gain",
+        "B": "Ordinary public service",
+        "C": "Transparent budgeting",
+        "D": "Scientific peer review"
+      },
+      "correct": "A",
+      "explanation": "Corruption involves misuse of entrusted authority for improper private or other unauthorized benefit.",
+      "speed_hack": "Corruption → abuse of entrusted power."
+    },
+    {
+      "id": "gsp-019",
+      "question": "A conflict of interest occurs when:",
+      "options": {
+        "A": "Private interests could improperly influence official duties",
+        "B": "A public meeting has an agenda",
+        "C": "Two people agree",
+        "D": "A laboratory uses controls"
+      },
+      "correct": "A",
+      "explanation": "A conflict of interest exists when competing personal interests could affect impartial official judgment.",
+      "speed_hack": "Conflict → competing interests."
+    },
+    {
+      "id": "gsp-020",
+      "question": "Civic education aims to help citizens understand:",
+      "options": {
+        "A": "Rights, responsibilities and public institutions",
+        "B": "Only sports results",
+        "C": "Only laboratory methods",
+        "D": "Only private business"
+      },
+      "correct": "A",
+      "explanation": "Civic education develops knowledge of citizenship, institutions, rights and responsibilities.",
+      "speed_hack": "Civic education → informed citizenship."
+    },
+    {
+      "id": "gsp-021",
+      "question": "Human rights are best described as:",
+      "options": {
+        "A": "Fundamental rights and freedoms inherent to people",
+        "B": "Privileges available only to officials",
+        "C": "Laboratory reference ranges",
+        "D": "Tax receipts"
+      },
+      "correct": "A",
+      "explanation": "Human rights are fundamental rights and freedoms recognized through international and national legal frameworks.",
+      "speed_hack": "Human rights → fundamental freedoms."
+    },
+    {
+      "id": "gsp-022",
+      "question": "Freedom of expression generally concerns the ability to:",
+      "options": {
+        "A": "Communicate opinions and information subject to lawful limits",
+        "B": "Ignore all laws",
+        "C": "Use violence freely",
+        "D": "Control courts"
+      },
+      "correct": "A",
+      "explanation": "Freedom of expression protects communication of ideas and information, subject to lawful restrictions such as those recognized in human-rights law.",
+      "speed_hack": "Expression → communicate ideas."
+    },
+    {
+      "id": "gsp-023",
+      "question": "A civil society organization is generally:",
+      "options": {
+        "A": "A non-state group operating around social/public interests",
+        "B": "A government ministry",
+        "C": "A court only",
+        "D": "A political office by definition"
+      },
+      "correct": "A",
+      "explanation": "Civil society includes organized groups outside the state and market that pursue social or public interests.",
+      "speed_hack": "Civil society → organized non-state action."
+    },
+    {
+      "id": "gsp-024",
+      "question": "Which is an example of a public good?",
+      "options": {
+        "A": "Street lighting",
+        "B": "A private meal",
+        "C": "A personal phone",
+        "D": "A private laboratory notebook"
+      },
+      "correct": "A",
+      "explanation": "Public goods are broadly non-excludable and non-rival in consumption; street lighting is a common example.",
+      "speed_hack": "Public good → shared benefit."
+    },
+    {
+      "id": "gsp-025",
+      "question": "Inflation means a sustained:",
+      "options": {
+        "A": "General increase in price levels",
+        "B": "Decrease in all prices",
+        "C": "Increase in one person’s income only",
+        "D": "Change in population only"
+      },
+      "correct": "A",
+      "explanation": "Inflation is a sustained increase in the general price level of goods and services.",
+      "speed_hack": "Inflation → general prices rise."
+    },
+    {
+      "id": "gsp-026",
+      "question": "Gross domestic product measures the:",
+      "options": {
+        "A": "Value of final goods and services produced within an economy over a period",
+        "B": "Number of voters only",
+        "C": "Total rainfall",
+        "D": "Size of a hospital"
+      },
+      "correct": "A",
+      "explanation": "GDP measures the market value of final goods and services produced within an economy over a specified period.",
+      "speed_hack": "GDP → production within economy."
+    },
+    {
+      "id": "gsp-027",
+      "question": "Opportunity cost is the:",
+      "options": {
+        "A": "Value of the next-best alternative forgone",
+        "B": "Total cash in a bank",
+        "C": "Price of every product",
+        "D": "Amount of tax only"
+      },
+      "correct": "A",
+      "explanation": "Opportunity cost is the value of the best alternative sacrificed when a choice is made.",
+      "speed_hack": "Choice → next-best alternative lost."
+    },
+    {
+      "id": "gsp-028",
+      "question": "A budget is primarily a plan for:",
+      "options": {
+        "A": "Expected income and expenditure",
+        "B": "Blood grouping",
+        "C": "Microscope calibration only",
+        "D": "Weather observation"
+      },
+      "correct": "A",
+      "explanation": "A budget estimates revenues/income and planned expenditures over a period.",
+      "speed_hack": "Budget → income + spending plan."
+    },
+    {
+      "id": "gsp-029",
+      "question": "Sustainable development seeks to meet present needs while:",
+      "options": {
+        "A": "Maintaining the ability of future generations to meet their needs",
+        "B": "Using all resources immediately",
+        "C": "Ignoring environmental effects",
+        "D": "Ending all economic activity"
+      },
+      "correct": "A",
+      "explanation": "Sustainable development balances current needs with long-term environmental, social and economic considerations.",
+      "speed_hack": "Sustainability → present + future."
+    },
+    {
+      "id": "gsp-030",
+      "question": "Which action is most consistent with environmental conservation?",
+      "options": {
+        "A": "Reducing unnecessary waste and protecting ecosystems",
+        "B": "Dumping waste into rivers",
+        "C": "Burning all plastics openly",
+        "D": "Clearing forests without planning"
+      },
+      "correct": "A",
+      "explanation": "Waste reduction and ecosystem protection are core conservation practices.",
+      "speed_hack": "Conservation → reduce waste/protect ecosystems."
+    },
+    {
+      "id": "gsp-031",
+      "question": "A communicable disease is one that:",
+      "options": {
+        "A": "Can be transmitted from an infectious source to another host",
+        "B": "Is always genetic",
+        "C": "Cannot spread",
+        "D": "Only affects plants"
+      },
+      "correct": "A",
+      "explanation": "Communicable diseases can be transmitted through defined routes from infectious sources or reservoirs.",
+      "speed_hack": "Communicable → can transmit."
+    },
+    {
+      "id": "gsp-032",
+      "question": "Vaccination programmes contribute to public health primarily by:",
+      "options": {
+        "A": "Reducing susceptibility and transmission of vaccine-preventable diseases",
+        "B": "Increasing infection deliberately",
+        "C": "Replacing all diagnostic tests",
+        "D": "Eliminating every disease immediately"
+      },
+      "correct": "A",
+      "explanation": "Vaccination reduces individual susceptibility and can reduce transmission at population level.",
+      "speed_hack": "Vaccination → less susceptibility/transmission."
+    },
+    {
+      "id": "gsp-033",
+      "question": "Primary prevention aims to:",
+      "options": {
+        "A": "Prevent disease before it occurs",
+        "B": "Treat established complications only",
+        "C": "Perform rehabilitation only",
+        "D": "Diagnose after death"
+      },
+      "correct": "A",
+      "explanation": "Primary prevention acts before disease develops, such as vaccination and risk reduction.",
+      "speed_hack": "Primary → prevent onset."
+    },
+    {
+      "id": "gsp-034",
+      "question": "Secondary prevention focuses mainly on:",
+      "options": {
+        "A": "Early detection and prompt treatment",
+        "B": "Only rehabilitation",
+        "C": "Only end-of-life care",
+        "D": "Environmental conservation only"
+      },
+      "correct": "A",
+      "explanation": "Secondary prevention aims to detect disease early and treat it promptly.",
+      "speed_hack": "Secondary → early detection."
+    },
+    {
+      "id": "gsp-035",
+      "question": "Tertiary prevention focuses on:",
+      "options": {
+        "A": "Reducing complications and disability from established disease",
+        "B": "Preventing every exposure",
+        "C": "Only screening healthy people",
+        "D": "Only vaccination"
+      },
+      "correct": "A",
+      "explanation": "Tertiary prevention reduces complications, disability and impact of established disease.",
+      "speed_hack": "Tertiary → reduce disability/complications."
+    },
+    {
+      "id": "gsp-036",
+      "question": "Which practice is essential for preventing many healthcare-associated infections?",
+      "options": {
+        "A": "Appropriate hand hygiene",
+        "B": "Sharing contaminated needles",
+        "C": "Skipping cleaning",
+        "D": "Reusing disposable gloves"
+      },
+      "correct": "A",
+      "explanation": "Hand hygiene is a foundational infection-prevention measure.",
+      "speed_hack": "Infection control → hand hygiene."
+    },
+    {
+      "id": "gsp-037",
+      "question": "A risk assessment in laboratory safety should consider:",
+      "options": {
+        "A": "Hazards, likelihood, consequences and controls",
+        "B": "Only the colour of equipment",
+        "C": "Only the room size",
+        "D": "Only the cost of reagents"
+      },
+      "correct": "A",
+      "explanation": "Risk assessment identifies hazards, estimates risk and determines appropriate controls.",
+      "speed_hack": "Risk = hazard + likelihood/consequence + controls."
+    },
+    {
+      "id": "gsp-038",
+      "question": "Which control is generally most effective in the hierarchy of controls?",
+      "options": {
+        "A": "Elimination of the hazard",
+        "B": "Personal preference",
+        "C": "Warning poster alone",
+        "D": "Ignoring the hazard"
+      },
+      "correct": "A",
+      "explanation": "Elimination removes the hazard entirely and sits at the top of the traditional hierarchy of controls.",
+      "speed_hack": "Best control → eliminate hazard."
+    },
+    {
+      "id": "gsp-039",
+      "question": "Personal protective equipment is best described as:",
+      "options": {
+        "A": "A last-line or supplementary control against exposure",
+        "B": "A substitute for all engineering controls",
+        "C": "A way to remove every hazard",
+        "D": "An administrative policy only"
+      },
+      "correct": "A",
+      "explanation": "PPE helps protect workers but should complement, not replace, higher-level controls.",
+      "speed_hack": "PPE protects the person; it does not eliminate the hazard."
+    },
+    {
+      "id": "gsp-040",
+      "question": "Which is a key element of effective teamwork?",
+      "options": {
+        "A": "Clear communication and defined responsibilities",
+        "B": "Withholding relevant information",
+        "C": "Duplicating every task",
+        "D": "Avoiding feedback"
+      },
+      "correct": "A",
+      "explanation": "Clear communication and role clarity improve coordination and reduce preventable errors.",
+      "speed_hack": "Teamwork → communicate + clarify roles."
+    },
+    {
+      "id": "gsp-041",
+      "question": "Critical thinking involves:",
+      "options": {
+        "A": "Evaluating evidence and reasoning before reaching a conclusion",
+        "B": "Accepting every claim automatically",
+        "C": "Ignoring evidence",
+        "D": "Choosing by appearance alone"
+      },
+      "correct": "A",
+      "explanation": "Critical thinking evaluates evidence, assumptions and reasoning to reach a justified conclusion.",
+      "speed_hack": "Critical thinking → evidence + reasoning."
+    },
+    {
+      "id": "gsp-042",
+      "question": "A primary source of information is:",
+      "options": {
+        "A": "Original research or firsthand record",
+        "B": "A summary that cites another summary only",
+        "C": "An anonymous rumour",
+        "D": "An unsourced social post"
+      },
+      "correct": "A",
+      "explanation": "Primary sources present original data, observations or firsthand records.",
+      "speed_hack": "Primary source → original evidence."
+    },
+    {
+      "id": "gsp-043",
+      "question": "Plagiarism is:",
+      "options": {
+        "A": "Presenting another person’s work or ideas as your own without proper acknowledgment",
+        "B": "Citing a source correctly",
+        "C": "Writing original work",
+        "D": "Taking notes for study"
+      },
+      "correct": "A",
+      "explanation": "Plagiarism involves using another person’s work or ideas without appropriate attribution.",
+      "speed_hack": "Plagiarism → use without credit."
+    },
+    {
+      "id": "gsp-044",
+      "question": "Which citation practice best supports academic integrity?",
+      "options": {
+        "A": "Acknowledge sources for borrowed ideas and quotations",
+        "B": "Remove all references",
+        "C": "Copy without attribution",
+        "D": "Invent sources"
+      },
+      "correct": "A",
+      "explanation": "Proper citation gives credit and allows readers to trace supporting sources.",
+      "speed_hack": "Academic integrity → credit sources."
+    },
+    {
+      "id": "gsp-045",
+      "question": "A hypothesis is best described as:",
+      "options": {
+        "A": "A testable proposed explanation or prediction",
+        "B": "A proven law in every case",
+        "C": "A random number",
+        "D": "A final invoice"
+      },
+      "correct": "A",
+      "explanation": "A hypothesis is a proposed explanation that can be tested using observations or experiments.",
+      "speed_hack": "Hypothesis → testable explanation."
+    }
+  ]
+}
