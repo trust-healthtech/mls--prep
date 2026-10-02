@@ -14,7 +14,7 @@
 
 | STAT | VALUE |
 | :--- | :--- |
-| **📚 Courses** | **15 Branded Volumes (100L-500L)** |
+| **📚 Courses** | **15 Branded Volumes (100L PDFs BUNDLE-500L PDFs BUNDLE)** |
 | **🧠 Topics** | **250+ Searchable Topics Inside** |
 | **🛡️ Mission** | **Affordable for ALL MLS/Health students** |
 | **💳 MAX Price** | **₦2,500 EVER** |
