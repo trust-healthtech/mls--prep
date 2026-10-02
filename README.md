@@ -1,30 +1,37 @@
 <div align="center">
 
-<img src="https://img.shields.io/badge/15-0F172A?style=for-the-badge" height="38"> <img src="https://img.shields.io/badge/COURSES-2563EB?style=for-the-badge" height="38"> <img src="https://img.shields.io/badge/250%2B-334155?style=for-the-badge" height="38"> <img src="https://img.shields.io/badge/TOPICS-7C3AED?style=for-the-badge" height="38">
+### 🎓 Built for EVERY MLS / Health Student
+### Affordable for All — MAX ₦2,500 Ever. No One Left Behind 🙏
 
-<img src="https://img.shields.io/badge/MAX%20₦2500-0F172A?style=for-the-badge" height="38"> <img src="https://img.shields.io/badge/EVER-059669?style=for-the-badge" height="38">
+![Courses](https://img.shields.io/badge/15_COURSES-0F172A?style=for-the-badge)
+![Topics](https://img.shields.io/badge/250%2B_TOPICS-2563EB?style=for-the-badge)
+![Max Price](https://img.shields.io/badge/MAX_₦2500_EVER-059669?style=for-the-badge)
 
-<img src="https://img.shields.io/badge/PROMO%20ENDS-0F172A?style=for-the-badge" height="38"> <img src="https://img.shields.io/badge/DEC%2031%202026-DC2626?style=for-the-badge" height="38">
-
-### 🎓 Built for EVERY MLS/Health student - Affordable for all, MAX ₦2,500 ever. No one left behind🙏.
+![Promo](https://img.shields.io/badge/🎁_FOUNDING_PROMO_ACTIVE-DC2626?style=for-the-badge)
+![Ends](https://img.shields.io/badge/⏰_ENDS_DEC_31_2026-0F172A?style=for-the-badge)
 
 </div>
 
-### 📊 PLATFORM STATS
+---
 
-| STAT | VALUE |
-| :--- | :--- |
-| **📚 Courses** | **15 Branded Volumes (100L PDFs BUNDLE-500L PDFs BUNDLE)** |
-| **🧠 Topics** | **250+ Searchable Topics Inside** |
-| **🛡️ Mission** | **Affordable for ALL MLS/Health students** |
-| **💳 MAX Price** | **₦2,500 EVER** |
-| **🌍 AI Tutor** | **Explains in English + 100+ Languages + Nigerian Pidgin - Your Language, Your Understanding** |
-| **Current Phase** | **🚀 Founding Promo - ⏰ Ends Dec 31, 2026** |
+### 📊 Platform at a Glance
 
-### 💰 CURRENT PRICING - FOR EVERY MLS/HEALTH STUDENT
+| | Details |
+|---|---|
+| **📚 Library** | **15 Branded Volumes** — 100L to 500L (3-in-1 PDF Courses) |
+| **🧠 Coverage** | **250+ Searchable Topics** Inside |
+| **🤖 AI Tutor** | Explains in **English + 100+ Languages + Nigerian Pidgin** 🗣️ |
+| **🛡️ Mission** | Affordable for ALL MLS/Health students |
 
-**Our Promise: Even after promo, NO manual will be more than ₦2,500. Accessible to all students, regardless of background. No student left behind.**
+---
 
 > [!IMPORTANT]
-> ### ⚠️ FOUNDING PROMO ENDS DEC 31, 2026 →
-       
+> ### 🎁 🚀 FOUNDING PROMO LIVE — ⏰ Ends Dec 31, 2026
+> **Our Promise:** Even after promo, NO manual will be more than ₦2,500. Accessible to all.
+
+### 💰 Founding Promo Pricing
+
+| Bundle | Normal Price | **Promo Price** | You Save |
+| :--- | :--- | :--- | :--- |
+| **Single Volume (e.g. 200L)** | ₦2,500 | **₦1,000** 🔥 | 60% |
+| **Full 15 Volumes (100L-500L)** | ₦15,000 | **₦2,500** 🎁 | 83
