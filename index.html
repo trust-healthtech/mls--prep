@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="google-site-verification" content="OpzPswIUZU-TfXpoGOHrKnlsxSeBSj_i0nyZpD19I1Q" />    
+<meta name="google-site-verification" content="6gPnTuPy8fIPCa53Se7uBBqCxa0pQyEM7RvjFnv81gA" />    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#004aad">
+    <link rel="manifest" href="/manifest.json">
+    <title>MLS Prep - Exam Countdown and Study Web/App for Students</title>
+      <meta name="description" content="MLS Prep - Exam Countdown and Study Web/App for Students-Knowledge You Can Trust">
+  <meta property="og:title" content="MLS Prep - Exam Countdown and Study Web/App for Students">
+  <meta property="og:description" content="MLS Prep - Exam Countdown and Study Web/App for Students">
+  <meta property="og:image" content="https://mls-prep-one.vercel.app/og-banner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mls-prep-one.vercel.app/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://mls-prep-one.vercel.app/og-banner.png">
+  <link rel="icon" type="image/png" href="/favicon.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/icon-192.png" sizes="192x192">
+<link rel="icon" type="image/png" href="/icon-512.png" sizes="512x512">
+    
+    <style>
+        :root {
+            --primary: #004aad;
+            --primary-light: #0077ff;
+            --bg-gray: #f0f4f8;
+            --card-bg: #FFFFFF;
+            --alert-red: #e63946;
+            --success-green: #008000;
+            --whatsapp-green: #25D366;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --gold: #d4af37;
+            --orange: #f97316;
+            --cyan-glow: #00e5ff;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --radius: 12px;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', Arial, sans-serif; -webkit-tap-highlight-color: transparent; }
+        body { background-color: var(--bg-gray); color: var(--text-dark); display: flex; justify-content: center; min-height: 100vh; }
+        .mobile-shell { width: 100%; max-width: 480px; background: #f8fafc; display: flex; flex-direction: column; gap: 16px; padding-bottom: 40px; min-height: 100vh; box-shadow: 0 0 20px rgba(0,0,0,0.03); }
+        .card { background: var(--card-bg); border-radius: var(--radius); padding: 16px; margin: 0 16px; box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,0.01); text-align: left; }
+        .tip-box { font-size: 0.82rem; color: #1a202c; margin-top: 6px; font-weight: 600; line-height: 1.4; text-align: left; }
+        .btn { width: 100%; padding: 12px; border: none; border-radius: 8px; font-weight: 700; font-size: 0.9rem; cursor: pointer; transition: all 0.2s ease; display: inline-block; text-align: center; text-decoration: none; }
+        .btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+        .btn:active { transform: scale(0.98); opacity: 0.9; }
+        .btn-red { background: var(--alert-red); color: #fff; }
+        .btn-blue { background: var(--primary); color: #fff; }
+        .btn-green { background: var(--success-green); color: #fff; }
+        .btn-whatsapp { background: var(--whatsapp-green); color: #fff; }
+        .input-text, .textarea-box { width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.85rem; margin-bottom: 10px; outline: none; background: #fafafa; }
+        .textarea-box { resize: none; height: 75px; }
+        .gradient-header { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; text-align: center; padding: 24px 16px 20px; border-radius: 0 0 24px 24px; box-shadow: 0 6px 20px rgba(0, 74, 173, 0.25); }
+        .logo-sphere { width: 54px; height: 54px; background: white; border-radius: 50%; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; font-size: 26px; }
+        .brand-glow { font-size: 28px; font-weight: 800; color: var(--cyan-glow); text-shadow: 0 0 10px rgba(0, 229, 255, 0.8); letter-spacing: 0.5px; text-transform: uppercase; }
+        .pill-badge { display: inline-block; background: white; color: var(--primary); padding: 4px 14px; border-radius: 50px; font-size: 0.72rem; font-weight: 700; margin: 8px 0; }
+        .tagline-gold { color: var(--gold); font-size: 0.68rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+        .header-tip-bar { background: rgba(255,255,255,0.1); margin: 12px -16px -20px; padding: 8px 16px; font-size: 0.7rem; color: #fff; line-height: 1.3; text-align: center; }
+        .stats-wrapper { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 0 16px; }
+        .stat-card { background: var(--card-bg); border-radius: var(--radius); padding: 12px 6px; text-align: center; box-shadow: var(--shadow); cursor: pointer; transition: transform 0.2s; display: block; text-decoration: none; color: inherit; }
+        .stat-card:active { transform: translateY(-2px); }
+        .stat-card h3 { font-size: 1.3rem; margin-bottom: 2px; }
+        .stat-card p { font-size: 0.65rem; font-weight: 700; color: #1a202c; text-transform: uppercase; }
+        .dashboard-container { display: flex; flex-direction: column; gap: 14px; }
+        .dashboard-box { border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px; text-align: center; }
+        .dashboard-box h4 { font-size: 0.75rem; text-transform: uppercase; color: #1a202c; margin-bottom: 6px; }
+        .timer-numeric { font-size: 2rem; font-weight: 700; color: var(--text-dark); margin-bottom: 8px; }
+        .date-circle-wrap { display: inline-block; padding: 6px 14px; border-radius: 50px; border: 3px solid var(--alert-red); margin-top: 6px; font-weight: 700; font-size: 0.85rem; color: var(--text-dark); }
+        .days-left-box { margin-top: 8px; color: var(--text-dark); font-size: 0.8rem; }
+        .ads-native-banner { margin: 4px 16px; padding: 12px; background: #e2e8f0; border-radius: 8px; text-align: center; font-size: 0.68rem; color: #475569; font-weight: bold; border: 1px dashed #94a3b8; }
+        .green-highlight { background-color: #e8f5e9; color: var(--success-green); border-left: 4px solid var(--success-green); padding: 10px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; }
+        .partner-box-1 { border: 1px solid var(--primary); text-align: center; }
+        .partner-box-2 { border: 1px solid var(--success-green); text-align: center; }
+        .partner-label { font-size: 0.65rem; color: var(--gold); font-weight: 700; letter-spacing: 0.5px; }
+        .partner-title { font-size: 1rem; color: var(--text-dark); margin: 4px 0; }
+        .partner-desc { font-size: 0.72rem; color: #1a202c; margin-bottom: 10px; }
+        .file-card { border: 1px solid #f1f5f9; padding: 12px; border-radius: 8px; margin-bottom: 10px; background: #fff; text-align: left; }
+        .file-card h5 { font-size: 0.8rem; color: var(--text-dark); margin-bottom: 4px; word-break: break-all; }
+        .file-card p { font-size: 0.7rem; color: #1a202c; margin-bottom: 6px; }
+        .price-label { font-size: 0.78rem; font-weight: 700; color: var(--orange); }
+        .student-tag { font-size: 0.58rem; color: #1a202c; display: block; font-weight: 700; margin-top: 1px; }
+        .bulletin-log { margin-top: 10px; text-align: left; border-top: 1px solid #f1f5f9; padding-top: 8px; max-height: 120px; overflow-y: auto; }
+        .bulletin-item { font-size: 0.75rem; background: #f8fafc; padding: 6px 8px; border-radius: 6px; margin-bottom: 6px; border-left: 2px solid var(--primary); }
+        .calc-header { padding: 10px; background: #f8fafc; border-radius: 6px; cursor: pointer; display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: 700; margin-bottom: 8px; }
+        .calc-body { display: none; padding: 10px; border: 1px solid #e2e8f0; border-top: none; border-radius: 0 0 6px 6px; margin-top: -8px; margin-bottom: 10px; background: #fff; }
+        .output-box { display: none; background: #e8f5e9; color: var(--success-green); padding: 8px; border-radius: 6px; font-weight: 700; font-size: 0.8rem; margin-top: 8px; text-align: center; }
+        .dark-chat-window { background: #0f172a; border-radius: 8px; padding: 12px; color: #e2e8f0; font-size: 0.8rem; min-height: 520px; margin-bottom: 10px; text-align: left; line-height: 1.4; overflow: auto; border: 1px solid rgba(0, 119, 255, 0.6); box-shadow: 0 0 25px rgba(0, 119, 255, 0.35), 0 0 50px rgba(6, 182, 212, 0.15); animation: aiGlow 3s ease-in-out infinite alternate; }
+        @keyframes aiGlow {
+            from { box-shadow: 0 0 20px rgba(0, 119, 255, 0.3); }
+            to { box-shadow: 0 0 35px rgba(0, 119, 255, 0.6), 0 0 60px rgba(6, 182, 212, 0.25); }
+        }
+        .pill-row { display: flex; gap: 6px; overflow-x: auto; margin-bottom: 10px; padding-bottom: 4px; }
+        .pill-chip { background: var(--alert-red); color: white; padding: 6px 12px; border-radius: 50px; font-size: 0.7rem; font-weight: 700; white-space: nowrap; border: none; cursor: pointer; }
+        .exam-btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+        .exam-btn-grid .btn { min-height: 52px; padding: 13px 10px; font-size: 0.82rem; font-weight: 900; letter-spacing: .04em; border-radius: 11px; box-shadow: 0 3px 0 rgba(15,23,42,.14); }
+        .exam-btn-grid .btn:active { transform: translateY(1px); box-shadow: 0 1px 0 rgba(15,23,42,.14); }
+        .course-selector-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+        .course-icon-btn { background: linear-gradient(180deg,#ffffff,#eef4fb); border: 2px solid #d7e2ef; padding: 13px 6px; min-height: 64px; border-radius: 12px; font-size: 0.76rem; line-height: 1.15; font-weight: 900; letter-spacing: .035em; text-align: center; cursor: pointer; color: var(--primary); box-shadow: 0 3px 0 rgba(30,64,175,.12), 0 5px 12px rgba(15,23,42,.06); transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease, background .12s ease; }
+        .course-icon-btn:hover { border-color: var(--primary-light); background: #f8fbff; box-shadow: 0 4px 0 rgba(30,64,175,.14), 0 8px 16px rgba(15,23,42,.08); }
+        .course-icon-btn:active { background: #e2e8f0; transform: translateY(2px); box-shadow: 0 1px 0 rgba(30,64,175,.12); }
+        .quiz-panel-view { display: none; background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px; margin-top: 12px; text-align: left; }
+        .quiz-timer-line { font-size: 0.75rem; font-weight: 700; color: var(--alert-red); margin-bottom: 6px; }
+        .quiz-question-txt { font-size: 0.85rem; font-weight: 600; margin-bottom: 10px; color: var(--text-dark); }
+        .quiz-options-list { display: flex; flex-direction: column; gap: 6px; }
+        .opt-btn { text-align: left; background: #f8fafc; border: 1px solid #cbd5e1; padding: 10px 12px; border-radius: 8px; font-size: 0.82rem; cursor: pointer; transition: all 0.2s ease; outline: none; }
+        .opt-btn:hover { border-color: var(--primary); }
+        .opt-btn.correct-choice { background: #e8f5e9 !important; border-color: var(--success-green) !important; color: var(--success-green) !important; font-weight: 700; }
+        .opt-btn.wrong-choice { background: #ffebee !important; border-color: var(--alert-red) !important; color: var(--alert-red) !important; font-weight: 700; }
+        .ai-evaluation-module { display: none; background: #0b0f19; border-radius: 8px; padding: 12px; color: #f1f5f9; margin-top: 12px; border-left: 4px solid var(--alert-red); text-align: left; }
+        .ai-error-tag { color: var(--alert-red); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; margin-bottom: 4px; }
+        .ai-syllabus-head { color: var(--cyan-glow); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; margin: 8px 0 2px; }
+        .ai-explanation-p { font-size: 0.75rem; color: #cbd5e1; line-height: 1.4; }
+        .accordion-head { padding: 12px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; margin-bottom: 6px; cursor: pointer; font-size: 0.8rem; font-weight: 700; display: flex; justify-content: space-between; }
+        .accordion-panel { display: none; padding: 10px; border: 1px solid #e2e8f0; border-top: none; margin-top: -6px; margin-bottom: 8px; border-radius: 0 0 8px 8px; background: #fff; text-align: left; }
+        .syllabus-item-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid #f1f5f9; font-size: 0.75rem; }
+        .syllabus-item-row:last-child { border-bottom: none; }
+        .syl-actions { display: flex; gap: 4px; }
+        .btn-tiny { min-height: 40px; padding: 9px 10px; font-size: 0.72rem; line-height: 1; font-weight: 900; letter-spacing: .025em; border: none; border-radius: 9px; cursor: pointer; color: white; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 2px 0 rgba(15,23,42,.16); }
+        .footer-end { background: var(--primary); color: white; padding: 20px 16px; text-align: center; font-size: 0.7rem; line-height: 1.4; }
+        .footer-end p { margin-bottom: 4px; }
+        .footer-muted-text { opacity: 0.75; font-size: 0.65rem; color: #dfe7f3; }
+        #cbt-core-target { scroll-margin-top: 8px; }
+        .cbt-question-workspace { background:#fff; border-radius:10px; }
+        .cbt-question-meta { display:grid; grid-template-columns:1fr auto auto; gap:8px; align-items:center; font-size:0.7rem; font-weight:700; color:var(--primary); margin-bottom:12px; }
+        .cbt-question-meta strong { color:var(--alert-red); font-size:0.78rem; white-space:nowrap; }
+        .timer-critical { animation: cbtTimerPulse 1s ease-in-out infinite alternate; }
+        @keyframes cbtTimerPulse { from { opacity:1; } to { opacity:0.55; } }
+        .cbt-message { padding:24px 16px; text-align:center; background:#fff; border-radius:10px; }
+        .cbt-message h3 { color:var(--primary); margin-bottom:8px; }
+        .cbt-message p { font-size:0.78rem; line-height:1.5; }
+        .cbt-summary-panel { display:none; margin-top:12px; }
+        .cbt-score-summary { font-size:0.78rem; line-height:1.45; margin-top:5px; }
+        .cbt-filter-tabs { display:grid; grid-template-columns:repeat(3,1fr); gap:6px; margin:12px 0; }
+        .cbt-filter { border:1px solid #cbd5e1; background:#fff; color:var(--text-dark); border-radius:7px; padding:8px 4px; font-size:0.68rem; font-weight:700; cursor:pointer; }
+        .cbt-filter.active { background:var(--primary); color:#fff; border-color:var(--primary); }
+        .cbt-review-card { padding:12px; border-radius:8px; margin-bottom:9px; font-size:0.74rem; line-height:1.45; }
+        .cbt-review-card p { margin-top:6px; }
+        .review-win { background:#EFF6FF; border-left:4px solid #1E40AF; }
+        .review-wrong { background:#FEF2F2; border-left:4px solid #DC2626; }
+        .cbt-speed-hack { margin-top:8px; padding:8px; border-radius:6px; background:#fff7ed; color:#9a3412; font-weight:700; }
+        .past-qs-launch { width:100%; border:0; border-radius:8px; padding:11px; background:#6B46C1; color:#fff; font-weight:700; cursor:pointer; }
+        .syllabus-header-row { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:8px; }
+        .syllabus-more-btn { border:0; background:#f8fafc; color:#6B46C1; font-size:0.68rem; font-weight:800; padding:7px 9px; border-radius:7px; cursor:pointer; white-space:nowrap; }
+        .syllabus-extended-label { color:var(--primary); font-size:0.68rem; font-weight:800; letter-spacing:.4px; margin:8px 0 5px; }
+        .syl-actions { display:grid; grid-template-columns:repeat(3,auto); gap:4px; flex-shrink:0; }
+        .btn-tiny { min-width:72px; text-align:center; }
+        .btn-purple { background:#6B46C1; color:#fff; }
+        .cbt-scroll-float { position:fixed; right:max(16px, calc((100vw - 480px) / 2 + 16px)); bottom:24px; width:44px; height:44px; border:0; border-radius:50%; background:#1E40AF; color:#fff; font-size:1.25rem; font-weight:800; box-shadow:0 6px 18px rgba(30,64,175,.28); z-index:50; cursor:pointer; }
+        .past-modal { position:fixed; inset:0; background:rgba(15,23,42,.55); z-index:100; align-items:center; justify-content:center; padding:16px; }
+        .past-modal-card { position:relative; width:min(100%,440px); background:#fff; border-radius:14px; padding:18px; box-shadow:0 20px 60px rgba(0,0,0,.2); }
+        .past-modal-card h3 { color:#1E40AF; margin-bottom:5px; }
+        .past-modal-card p { font-size:.75rem; margin-bottom:12px; }
+        .past-modal-close { position:absolute; right:10px; top:8px; width:30px; height:30px; border:0; border-radius:50%; background:#f1f5f9; font-size:1.2rem; cursor:pointer; }
+        .past-purchase-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+        .past-purchase-card { position:relative; display:flex; flex-direction:column; gap:7px; padding:13px; border-radius:10px; background:#f8fafc; border:1px solid #e2e8f0; color:#1e293b; text-decoration:none; font-size:.72rem; }
+        .past-purchase-card b { color:#6B46C1; }
+        .new-badge { align-self:flex-start; background:#d4af37; color:#fff; border-radius:5px; padding:2px 6px; font-size:.58rem; font-weight:800; }
+        .syllabus-download-alert { position:fixed; right:16px; bottom:80px; width:min(310px,calc(100vw - 32px)); padding:13px; border-radius:12px; color:#fff; background:linear-gradient(135deg,#6B46C1,#4c1d95); box-shadow:0 12px 30px rgba(76,29,149,.28); z-index:70; display:flex; flex-direction:column; gap:5px; animation:slideInRight .25s ease-out; }
+        .syllabus-download-alert span { font-size:.7rem; line-height:1.35; }
+        .syllabus-download-alert a { color:#fff; font-size:.72rem; font-weight:800; text-decoration:underline; }
+        .syllabus-download-alert.hide { animation:slideOutRight .25s ease-in forwards; }
+        .persistent-download-banner { position:fixed; left:16px; right:16px; bottom:12px; max-width:448px; margin:auto; z-index:69; background:#6B46C1; color:#fff; border-radius:9px; padding:11px; text-align:center; font-size:.75rem; font-weight:800; text-decoration:none; box-shadow:0 8px 24px rgba(76,29,149,.25); }
+        @keyframes slideInRight { from { transform:translateX(120%); opacity:0; } to { transform:translateX(0); opacity:1; } }
+        @keyframes slideOutRight { from { transform:translateX(0); opacity:1; } to { transform:translateX(120%); opacity:0; } }
+        @media (max-width:390px) { .syl-actions { grid-template-columns:1fr; } .btn-tiny { min-width:100%; } .cbt-question-meta { grid-template-columns:1fr auto; } .cbt-question-meta strong { grid-column:1 / -1; } .past-purchase-grid { grid-template-columns:1fr; } }
+
+        .upgrade-stack{display:flex;flex-direction:column;gap:14px;margin-top:12px}
+        .upgrade-entry{width:100%;border:0!important;border-radius:15px!important;padding:18px 16px!important;text-align:left;color:#fff;font-size:1rem!important;font-weight:900!important;letter-spacing:.02em;box-shadow:0 5px 0 rgba(15,23,42,.16);cursor:pointer}
+        .upgrade-entry small{display:block;font-size:.76rem;font-weight:600;line-height:1.45;margin-top:5px;opacity:.94;letter-spacing:0}
+        .upgrade-entry.red{background:linear-gradient(135deg,#dc2626,#991b1b)} .upgrade-entry.purple{background:linear-gradient(135deg,#7c3aed,#4c1d95)}
+        .stage-panel{display:none;margin-top:12px;padding:14px;border:1px solid #dbe5f1;border-radius:13px;background:#f8fbff}
+        .stage-label{display:block;font-weight:900;font-size:.82rem;margin:12px 0 7px;color:#12335f}
+        .stage-select{width:100%;min-height:46px;border:2px solid #cbd5e1;border-radius:9px;padding:10px;background:#fff;font-size:.9rem;font-weight:650}
+        .choice-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}
+        .choice-row.time-row{grid-template-columns:repeat(3,minmax(0,1fr))}
+        .stage-choice{min-height:44px;border:2px solid #cbd5e1!important;border-radius:9px!important;background:#fff;color:#12335f;font-size:.9rem!important;font-weight:900!important;cursor:pointer;padding:8px 4px!important}
+        .stage-choice.active{background:#dbeafe;border-color:#1d4ed8;color:#1e3a8a;box-shadow:inset 0 0 0 1px #1d4ed8}
+        .config-review{padding:11px;background:#eaf2ff;border-radius:9px;font-size:.82rem;line-height:1.55;margin-top:12px}
+        .start-cbt{width:100%;min-height:52px;border:0!important;border-radius:10px!important;background:#0b2f6b;color:#fff;font-size:1rem!important;font-weight:950!important;margin-top:12px;cursor:pointer;padding:14px!important}
+        .cbt-nav-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:14px}
+        .cbt-nav-btn{min-height:46px;border:0!important;border-radius:9px!important;background:#1e40af;color:white;font-size:.86rem!important;font-weight:900!important;padding:9px 6px!important;cursor:pointer}
+        .cbt-nav-btn:disabled{opacity:.42;cursor:not-allowed}
+        .opt-btn.selected-choice{background:#dbeafe!important;border:2px solid #1d4ed8!important;color:#1e3a8a!important;font-weight:900}
+        .opt-btn{min-height:48px;font-size:.9rem}
+        .past-entry-grid{display:grid;grid-template-columns:1fr;gap:9px;margin-top:12px}
+        .past-action{display:block;padding:14px;border-radius:10px;text-decoration:none;font-weight:900;color:white;background:#6d28d9;text-align:center}
+        .past-action.gold{background:#b8870b;color:#fff}
+        .config-note{font-size:.76rem;line-height:1.5;color:#475569;margin-top:8px}
+        @media(max-width:390px){.choice-row{grid-template-columns:repeat(2,minmax(0,1fr))}.choice-row.time-row{grid-template-columns:repeat(2,minmax(0,1fr))}.cbt-nav-row{grid-template-columns:1fr 1fr}.cbt-nav-btn.end-btn{grid-column:1/-1}}
+
+
+        .syllabus-link-key{display:flex;flex-direction:column;gap:6px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px;margin-bottom:12px;font-size:.75rem;font-weight:800}
+        .syllabus-level{border:1px solid #dbe4ef;border-radius:12px;margin:10px 0;overflow:hidden;background:#fff}
+        .syllabus-level summary{cursor:pointer;list-style:none;background:#eff6ff;padding:13px 12px;font-weight:900;color:#1e3a8a;display:flex;justify-content:space-between;gap:10px;align-items:center}
+        .syllabus-level summary::-webkit-details-marker{display:none}
+        .syllabus-level-body{padding:8px}
+        .syllabus-course{border-bottom:1px solid #e8edf4;padding:12px 4px;display:flex;flex-direction:column;gap:7px}
+        .syllabus-course:last-child{border-bottom:0}
+        .syllabus-course-title{font-size:.82rem;font-weight:800;line-height:1.4;color:#172554}
+        .syllabus-course-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+        .syllabus-resource-btn{display:flex;justify-content:center;align-items:center;text-align:center;min-height:42px;padding:9px 7px;border-radius:9px;font-size:.73rem;font-weight:900;text-decoration:none;border:0}
+        .syllabus-resource-btn.selar{background:#6d28d9;color:#fff}
+        .syllabus-resource-btn.drive{background:#dbeafe;color:#1d4ed8;border:1px solid #93c5fd}
+        .syllabus-resource-btn.unavailable{background:#f1f5f9;color:#64748b;border:1px dashed #cbd5e1;cursor:not-allowed}
+        .syllabus-link-note{font-size:.68rem;color:#64748b;line-height:1.4}
+        @media(min-width:650px){.syllabus-course{padding:13px 8px}.syllabus-course-actions{max-width:520px}}
+    </style>
+</head>
+<body>
+<div class="mobile-shell">
+    <header class="gradient-header">
+        <div class="logo-sphere">🔬</div>
+        <div class="brand-glow">TRUST HEALTH TECH</div>
+        <div class="pill-badge">KNOWLEDGE YOU CAN TRUST</div>
+        <div class="tagline-gold">MLS ESSENTIAL ACADEMIC STUDY NODE</div>
+        <div class="header-tip-bar">
+            <strong>TIP:</strong>Your MLS 📚 study terminal. Core blocks are free on low data. Paid PDFs are marked.
+        </div>
+    </header>
+
+    <a class="ads-native-banner" id="ads-container-top" href="https://nih.gov" target="_blank" style="text-decoration:none; display:block; color:var(--primary);">
+        <span style="opacity:0.6; display:block; font-size:0.55rem; letter-spacing:0.5px;">SPONSORED PLATFORM RESOURCE</span>
+        <span style="display:block; color:var(--primary);">🔬 Tap to Explore Global MLS Premium Research Databases & Notes</span>
+    </a>
+
+    <div class="stats-wrapper">
+        <a class="stat-card" href="#syllabus-section">
+            <h3 style="color: var(--primary);">15</h3>
+            <p>Courses</p>
+        </a>
+        <a class="stat-card" href="#syllabus-section">
+            <h3 style="color: var(--primary);">250+</h3>
+            <p>Topics</p>
+        </a>
+        <div class="stat-card" style="cursor:default;">
+            <h3 style="color: var(--orange);">Free</h3>
+            <p>Core study materials are 100% free, premium PDFs are affordable.</p>
+        </div>
+    </div>
+    <div class="tip-box" style="padding:0 16px; text-align:center;">
+        <strong>TIP:</strong> Tap any card or button to open features.
+    </div>
+
+    <div class="card">
+        <div class="section-title" style="margin-bottom:10px;">⏱️ Study Hub Dashboard</div>
+        <div class="dashboard-container">
+            <div class="dashboard-box">
+                <h4>Focus Pomodoro Timer</h4>
+                <div class="timer-numeric" id="pomodoroDisplay">25:00</div>
+                <button class="btn btn-red" id="pomodoroBtn" style="padding:6px 16px; width:auto;">Start</button>
+                <div class="tip-box"><strong>TIP:</strong> Use this 25min timer to focus on one topic. Take 5min break when it ends. Repeat 4 times.</div>
+            </div>
+
+            <div class="dashboard-box">
+                <h4>MLS Exam Target Countdown</h4>
+                <input type="date" id="examDate" class="input-text" style="margin-bottom:0px;">
+                <div id="daysLeft" class="days-left-box"></div>
+                <div class="tip-box"><strong>TIP:</strong> Select your exam date to track days left and stay prepared.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="section-title" style="margin-bottom:8px;">👋 Welcome About Terminal</div>
+        <div style="font-size:0.8rem; line-height:1.4; margin-bottom:10px; color: var(--text-dark);">
+            Welcome to this global academic interface. <strong>My name is Trust Isaac born December 2008</strong> and I am an undergraduate Medical Laboratory Science student.
+        </div>
+        <div class="green-highlight">
+            This open study terminal functions as a centralized gateway for Medical Laboratory Science students worldwide to access syllabus, CBT, PDFs and Lab Challenges.
+        </div>
+        <div class="tip-box"><strong>TIP:</strong> Scroll down to see all tools. No login needed.</div>
+    </div>
+
+    <a href="#" class="card" style="background: #fffdf0; color:#1a202c; text-align:center; border:2px dashed #d4af37; box-shadow:0 4px 15px rgba(212,175,55,0.15); text-decoration:none; display:block; padding:15px; border-radius:12px;">
+        <div style="font-size:0.76rem; font-weight:700; color:#b8860b; letter-spacing:0.5px; margin-bottom:8px;">👑 RECOMMENDED PREMIUM MLS RESOURCE</div>
+        <h4 style="margin:8px 0; font-size:1rem; color:#1a202c;">📕 Essential MLS Textbooks & PDF Bundles</h4>
+        <p style="font-size:0.8rem; margin-bottom:0; color:#2d3748; line-height:1.5;">High-yield MLS textbooks at student-friendly prices. Carefully selected notes to boost your lab and exam performance.
+
+🔥 LEVEL BUNDLE PROMO: Pay for 1, Get all 3 PDFs for your Level. One payment 🔓unlocks the complete pack.
+
+100L = FREE (3 PDFs) | 200L-500L = Pay for 1, Get 3</p>
+    </a>
+
+    <div class="file-card">
+        <h5>📖 100L Medical Chemistry - Premium Notes</h5>
+        <p>Complete 7 Chapters + BONUS Questions + Study Guide</p>
+        <span class="price-label">Free</span> <span class="student-tag">TRUST HEALTH TECH</span>
+
+        <iframe src="https://drive.google.com/file/d/1xuCHbCHoyQx4_3iVocoHrmNS8xPI2VEk/preview?usp=drivesdk" width="100%" height="400px" style="border:none;"></iframe>
+
+        <a href="https://drive.google.com/file/d/1xuCHbCHoyQx4_3iVocoHrmNS8xPI2VEk/preview?usp=drivesdk" class="btn btn-blue" style="margin-top:10px; width:100%; text-align:center;">View & Download PDF - Free</a>
+    </div>
+
+    <div class="file-card" style="margin-top:20px;">
+        <h5>🎙️ Phonetics - Complete Lecture Notes</h5>
+        <p>MLS 1st Year - Sounds, Transcription & Clinical Applications</p>
+        <span class="price-label">Free</span> <span class="student-tag">TRUST HEALTH TECH BONUS</span>
+
+        <iframe src="https://drive.google.com/file/d/1PV9-zGIcqdHUdhYLe7kDvzIgYRiZ7qrJ/preview?usp=drivesdk" width="100%" height="400px" style="border:none;"></iframe>
+
+        <a href="https://drive.google.com/file/d/1PV9-zGIcqdHUdhYLe7kDvzIgYRiZ7qrJ/preview?usp=drivesdk" class="btn btn-blue" style="margin-top:10px; width:100%; text-align:center;">View & Download Phonetics PDF - Free</a>
+    </div>
+
+    <div class="tip-box"><strong>TIP:</strong> Tap the PDF above to read. Tap "Download PDF" to save to phone.</div>
+
+    <div class="card">
+        <div class="section-title" style="margin-bottom:8px;">📚 Search Branded Core Study PDFs Repository. Pay for 1 file 👉Get all 3 files for that Level</div>
+        <input type="text" id="pdfSearchInput" class="input-text" placeholder="Type level, topics, or keywords...">
+        <div id="pdfRepositoryList"></div>
+        <div class="tip-box"><strong>TIP:</strong> Use search to find PDFs fast. Tap Get File to download. All premium PDFs: 600 to 2,500 NGN max.</div>
+    </div>
+
+    <div class="ads-native-banner" id="ads-container-middle">
+        <span style="opacity:0.6; display:block; font-size:0.55rem; letter-spacing:0.5px;">EDUCATION PARTNER ADVERTISMENT</span>
+        <a href="https://chat.whatsapp.com/FFjZ6gEPWn0KBngsqogAvN?text=Hello%20Trust!%20I%20want%20to%20ADVERTISE%20my%20Institute%20on%20HealthTech" target="_blank" style="color:var(--success-green); text-decoration:none;">🤝 Partner With Trust Health Tech</a>
+    </div>
+
+    <div class="card">
+        <div class="section-title" style="margin-bottom:2px;">🧮 Clinical Calculators MLS</div>
+        <div class="tip-box" style="margin-bottom:10px;"><strong>TIP:</strong> Tap a calculator to open it. Enter numbers and tap Calculate Result. Results show below in green.</div>
+
+        <div class="calc-header" onclick="toggleCalc('calcA')"><span>A. BMI Calculator</span><span>▼</span></div>
+        <div class="calc-body" id="calcA">
+            <input type="number" id="bmiW" class="input-text" placeholder="Weight kg">
+            <input type="number" id="bmiH" class="input-text" placeholder="Height cm">
+            <button class="btn btn-red" onclick="runBmi()">Calculate Result</button>
+            <div class="output-box" id="bmiOut"></div>
+            <div class="tip-box"><strong>Tip:</strong> Use this to check patient BMI category.</div>
+        </div>
+
+        <div class="calc-header" onclick="toggleCalc('calcB')"><span>B. Dilution Calculator C1V1=C2V2</span><span>▼</span></div>
+        <div class="calc-body" id="calcB">
+            <input type="number" id="dilC1" class="input-text" placeholder="C1 (Stock Concentration)">
+            <input type="number" id="dilC2" class="input-text" placeholder="C2 (Target Concentration)">
+            <input type="number" id="dilV2" class="input-text" placeholder="V2 (Target Volume)">
+            <button class="btn btn-red" onclick="runDilution()">Calculate Result</button>
+            <div class="output-box" id="dilOut"></div>
+            <div class="tip-box"><strong>Tip:</strong> Use this in lab to know how much stock solution to use.</div>
+        </div>
+
+        <div class="calc-header" onclick="toggleCalc('calcC')"><span>C. Osmolarity Calculator</span><span>▼</span></div>
+        <div class="calc-body" id="calcC">
+            <input type="number" id="osmoNa" class="input-text" placeholder="Na (mmol/L)">
+            <input type="number" id="osmoK" class="input-text" placeholder="K (mmol/L)">
+            <input type="number" id="osmoGlu" class="input-text" placeholder="Glucose (mg/dL)">
+            <input type="number" id="osmoBun" class="input-text" placeholder="BUN (mg/dL)">
+            <button class="btn btn-red" onclick="runOsmolarity()">Calculate Result</button>
+            <div class="output-box" id="osmoOut"></div>
+            <div class="tip-box"><strong>Tip:</strong> Use this to check serum osmolarity for clinical cases.</div>
+        </div>
+
+        <div class="calc-header" onclick="toggleCalc('calcD')"><span>D. eGFR Calculator CKD-EPI</span><span>▼</span></div>
+        <div class="calc-body" id="calcD">
+            <input type="number" id="egfrAge" class="input-text" placeholder="Age">
+            <input type="number" id="egfrCr" class="input-text" placeholder="Creatinine (mg/dL)">
+            <select id="egfrGender" class="input-text">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+            <button class="btn btn-red" onclick="runEgfr()">Calculate Result</button>
+            <div class="output-box" id="egfrOut"></div>
+            <div class="tip-box"><strong>Tip:</strong> Select correct gender for accurate kidney function result.</div>
+        </div>
+
+        <div class="calc-header" onclick="toggleCalc('calcE')"><span>E. Blood Cell Count Reference</span><span>▼</span></div>
+        <div class="calc-body" id="calcE">
+            <input type="number" id="cbcWbc" class="input-text" placeholder="WBC Count">
+            <input type="number" id="cbcRbc" class="input-text" placeholder="RBC Count">
+            <button class="btn btn-red" onclick="runCbc()">Calculate Result</button>
+            <div class="output-box" id="cbcOut"></div>
+            <div class="tip-box"><strong>Tip:</strong> Use this to quickly check if lab values are normal or abnormal.</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="section-title" style="margin-bottom:8px;">🤖 TRUST AI LAB ASSISTANT</div>
+        <div class="dark-chat-window" id="aiChatBox">Trust AI is active. Ask any MLS or lab-related question.</div>
+        <div class="pill-row">
+            <button class="pill-chip" onclick="askAiPrompt('Explain anemia in simple terms')">Explain Anemia</button>
+            <button class="pill-chip" onclick="askAiPrompt('What is the normal WBC count?')">Normal WBC</button>
+            <button class="pill-chip" onclick="askAiPrompt('What is urine analysis?')">Urine Test</button>
+            <button class="pill-chip" onclick="askAiPrompt('What is metabolic acidosis?')">Metabolic Acidosis</button>
+            <button class="pill-chip" onclick="askAiPrompt('What is the normal blood pH?')">Normal pH</button>
+        </div>
+        <div style="display:flex; gap:6px;">
+            <textarea id="aiQueryText" class="input-text" rows="3" placeholder="Ask any MLS, chemistry, pathology, or blood question..." style="margin-bottom:0; resize: vertical; font-family: inherit;"></textarea>
+            <button class="btn btn-blue" onclick="runAiInquiry()" style="width:90px; padding:0;">Ask</button>
+        </div>
+        <div class="tip-box" style="margin-top:8px;"><strong>TIP:</strong> Ask any MLS or lab question.</div>
+    </div>
+
+    <div class="orange card partner-box-2">
+        <span class="partner-label">EDUCATION PARTNER</span>
+        <h4 class="partner-title">POWERING FREE MLS RESOURCES</h4>
+        <p class="partner-desc">Partner with us to reach 250+ MLS topics and thousands of students.</p>
+        <button class="btn btn-green" style="padding:8px 16px; width:auto; font-size:0.8rem;" onclick="location.href='mailto:trusthealthtech@gmail.com?subject=Corporate%20Sponsorship%20Hub'">SPONSOR THIS PLATFORM</button>
+        <div class="tip-box"><strong>TIP:</strong> Only 2 partner spaces. No popups. No distractions.</div>
+    </div>
+
+    <div id="cbt-core-target"></div>
+    <div class="card" id="cbt-centre">
+        <div class="section-title" style="margin-bottom:4px;">🎯 MLS CBT EXAM CENTRE</div>
+        <p class="config-note">Choose a single course or Mixed Mode. Your score and answer review appear in Results Analysis after submission.</p>
+        <div class="exam-btn-grid">
+            <button class="btn btn-blue" type="button" onclick="initiateCbtMode('course')">BY COURSE · PRACTICE</button>
+            <button class="btn btn-red" type="button" onclick="mixedModeCbt()">MIXED MODE · ALL TOPICS</button>
+        </div>
+
+        <div id="courseSelectionContainer" style="display:none; margin-bottom:12px;">
+            <div class="course-selector-grid">
+                <button class="course-icon-btn" type="button" onclick="launchCoursePractice('hematology')">HEMATOLOGY</button>
+                <button class="course-icon-btn" type="button" onclick="launchCoursePractice('clinical_chem')">CLINICAL CHEM</button>
+                <button class="course-icon-btn" type="button" onclick="launchCoursePractice('microbiology')">MICROBIOLOGY</button>
+                <button class="course-icon-btn" type="button" onclick="launchCoursePractice('histopath')">HISTOPATH</button>
+                <button class="course-icon-btn" type="button" onclick="launchCoursePractice('immunology')">IMMUNOLOGY</button>
+                <button class="course-icon-btn" type="button" onclick="launchCoursePractice('parasitology')">PARASITOLOGY</button>
+                <button class="course-icon-btn" type="button" onclick="launchCoursePractice('english')">ENGLISH</button>
+                <button class="course-icon-btn" type="button" onclick="launchCoursePractice('use_of_engl')">USE OF ENGL</button>
+                <button class="course-icon-btn" type="button" onclick="launchCoursePractice('gsp')">GSP</button>
+            </div>
+        </div>
+
+        <div class="quiz-panel-view" id="quizShell" aria-live="polite">
+            <div id="quizHeaderLine" class="quiz-timer-line"></div>
+            <div class="quiz-question-txt" id="quizQuestionBox"></div>
+            <div class="quiz-options-list" id="quizOptionsBox"></div>
+        </div>
+
+        <div class="cbt-summary-panel" id="cbtSummaryPanel" style="display:none;">
+            <div class="cbt-summary-head">
+                <div>
+                    <div class="section-title" style="margin:0;">📊 RESULTS ANALYSIS</div>
+                    <div id="cbtScoreSummary" class="cbt-score-summary"></div>
+                </div>
+            </div>
+            <div class="cbt-filter-tabs" role="tablist" aria-label="Question review filters">
+                <button type="button" class="cbt-filter active" onclick="filterCbtReview('all', this)">Show All</button>
+                <button type="button" class="cbt-filter" onclick="filterCbtReview('wins', this)">Wins Only</button>
+                <button type="button" class="cbt-filter" onclick="filterCbtReview('wrongs', this)">Wrongs Only</button>
+            </div>
+            <div id="cbtReviewList"></div>
+            <button type="button" class="past-qs-launch" onclick="openPastQuestionsModal()">Download Past Qs (2021-2026)</button>
+        </div>
+
+        <div class="tip-box" style="margin-top:10px;"><strong>💡 Tip:</strong> This CBT simulator runs in zero-latency cache mode to save your mobile data while perfectly matching standard exam timing paradigms.</div>
+    </div>
+
+    <div class="card" id="peer-question-station">
+        <div class="section-title" style="margin-bottom:8px;">💬 Peer Question Drop Station / Bulletin Board</div>
+        <p style="font-size:0.8rem; margin-bottom:10px; color:var(--text-muted);">Drop a short MLS question or study note for the local bulletin board.</p>
+        <input id="bulletinAuthor" class="input-text" type="text" maxlength="40" placeholder="Your name / study tag">
+        <textarea id="bulletinText" class="textarea-box" maxlength="500" placeholder="Write your MLS question or study note..."></textarea>
+        <button type="button" class="btn btn-red" onclick="submitBulletinPost()">Submit to Bulletin</button>
+        <div id="bulletinContainer" class="bulletin-log"></div>
+        <div class="tip-box"><strong>TIP:</strong> Posts are stored locally on this device.</div>
+    </div>
+
+    <div class="card" id="syllabus-section">
+        <div class="section-title" style="margin:0;">📋 COMPLETE MLS SYLLABUS HUB</div>
+        <p class="config-note">TRUST HEALTH TECH • MLS ESSENTIAL ACADEMIC STUDY NODE. Browse the 100L–500L course list below. Each course has two editable link placeholders: Get PDF for your Selar link and Read PDF for your Google Drive link.</p>
+        <div class="upgrade-stack">
+            <button class="upgrade-entry red" type="button" aria-expanded="false" aria-controls="cbtStagePanel" onclick="toggleUpgradePanel('cbtStagePanel',this)">🎯 CBT EXAM MODE<small>Choose an available question topic, question count and duration. The timer starts only after START CBT.</small></button>
+            <section class="stage-panel" id="cbtStagePanel" aria-label="CBT configuration">
+                <strong>Step 1 — Academic level and available question topic</strong>
+                <label class="stage-label" for="cbtLevelSelect">Academic level</label>
+                <select id="cbtLevelSelect" class="stage-select" onchange="refreshCbtCourseOptions()">
+                    <option value="100L">100L — Foundation</option><option value="200L">200L — Basic Medical Laboratory Science</option><option value="300L">300L — Systemic Laboratory Science I</option><option value="400L">400L — Systemic Laboratory Science II</option><option value="500L">500L — Professional / Final Year</option>
+                </select>
+                <label class="stage-label" for="cbtCourseSelect">Question-bank topic</label>
+                <select id="cbtCourseSelect" class="stage-select"><option value="hematology">Hematology</option></select>
+                <p class="config-note">The syllabus directory lists all courses supplied in your syllabus. The CBT selector only offers topics for which this current questions.json has matching questions; a course code does not automatically mean a matching question bank exists.</p>
+                <strong>Step 2 — Question volume</strong>
+                <div class="choice-row" role="group" aria-label="Question count">
+                    <button class="stage-choice" type="button" data-count="15" onclick="setCbtChoice('count',15,this)">15</button><button class="stage-choice active" type="button" data-count="30" onclick="setCbtChoice('count',30,this)">30</button><button class="stage-choice" type="button" data-count="40" onclick="setCbtChoice('count',40,this)">40</button><button class="stage-choice" type="button" data-count="50" onclick="setCbtChoice('count',50,this)">50</button>
+                </div>
+                <strong class="stage-label">Step 3 — Duration</strong>
+                <div class="choice-row time-row" role="group" aria-label="Exam duration">
+                    <button class="stage-choice" type="button" data-seconds="300" onclick="setCbtChoice('seconds',300,this)">5 mins</button><button class="stage-choice active" type="button" data-seconds="900" onclick="setCbtChoice('seconds',900,this)">15 mins</button><button class="stage-choice" type="button" data-seconds="1800" onclick="setCbtChoice('seconds',1800,this)">30 mins</button><button class="stage-choice" type="button" data-seconds="2700" onclick="setCbtChoice('seconds',2700,this)">45 mins</button><button class="stage-choice" type="button" data-seconds="3600" onclick="setCbtChoice('seconds',3600,this)">1 hour</button>
+                </div>
+                <div id="cbtConfigReview" class="config-review" aria-live="polite">Review: 100L • Hematology • 30 questions • 15 minutes</div>
+                <button class="start-cbt" type="button" onclick="startConfiguredCbt()">START CBT</button>
+            </section>
+            <button class="upgrade-entry purple" type="button" aria-expanded="false" aria-controls="syllabusCourseDirectory" onclick="toggleUpgradePanel('syllabusCourseDirectory',this)">📚 COMPLETE SYLLABUS & RESOURCES<small>Open the full course directory for 100L, 200L, 300L, 400L and 500L.</small></button>
+            <section class="stage-panel syllabus-directory" id="syllabusCourseDirectory" aria-label="Complete MLS syllabus course directory">
+                <div class="syllabus-link-key"><span>🟣 Get PDF · add your Selar link</span><span>🔵 Read PDF · add your Google Drive link</span></div>
+                <div id="fullSyllabusLevels"></div>
+                <p class="config-note"><strong>PDF links:</strong> All links are intentionally blank (href="") for you to fill in later. Add the Selar URL to each Get PDF button and the Google Drive URL to each Read PDF button. Set Google Drive sharing to Viewer to make reading view-only.</p>
+            </section>
+        </div>
+    </div>
+
+    <button type="button" id="cbtScrollFloat" class="cbt-scroll-float" aria-label="Scroll to syllabus">↓</button>
+
+    <div id="pastQuestionsModal" class="past-modal" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="pastQuestionsTitle">
+        <div class="past-modal-card">
+            <button type="button" class="past-modal-close" onclick="closePastQuestionsModal()" aria-label="Close">×</button>
+            <h3 id="pastQuestionsTitle">📚 Past Questions</h3>
+            <p>Select a purchase option to continue.</p>
+            <div class="past-purchase-grid">
+                <a class="past-purchase-card" href="#" onclick="event.preventDefault();showResourceLinkNotice('Past Questions checkout')">
+                    <strong>2021 - 2025 Past Qs</strong>
+                    <span>Fixed Student Price Archive Pack</span>
+                    <b>Get Access →</b>
+                </a>
+                <a class="past-purchase-card" href="#" onclick="event.preventDefault();showResourceLinkNotice('Past Questions checkout')">
+                    <span class="new-badge">NEW</span>
+                    <strong>2026 Mock Exam Pool</strong>
+                    <span>Premium Verified Tier</span>
+                    <b>Get Access →</b>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="card" style="border-left: 4px solid var(--alert-red);">
+        <div class="section-title" style="color:var(--alert-red); margin-bottom:6px;">🚨 ACTIVE LAB CHALLENGE #104</div>
+        <p style="font-size:0.8rem; font-weight:600; line-height:1.4; margin-bottom:10px;">
+            What is the normal human arterial blood pH range? Explain 2 causes of metabolic acidosis and how the body compensates.
+        </p>
+        <textarea id="challengeTextarea" class="textarea-box" placeholder="Provide clinical parameter breakdown here..."></textarea>
+        <a href="#" id="submitChallengeBtn" class="btn btn-red" style="text-decoration:none; display:block; margin-top:10px;">Submit Evaluation Data</a>
+    </div>
+
+    <a href="mailto:trusthealthtech@gmail.com?subject=Trust%20Health%20Tech%20Support" class="btn btn-whatsapp" style="width:auto; margin:0 16px;">
+        📬 Contact TRUST HEALTH TECH via Email
+    </a>
+    <div class="tip-box" style="padding:0 16px; text-align:center; margin-top:-10px;">
+        <strong>TIP:</strong> Email us for support, PDF requests, or partnerships.
+    </div>
+
+    <div id="cbtMistakeModal" class="past-modal" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="cbtMistakeTitle">
+      <div class="past-modal-card"><button type="button" class="past-modal-close" onclick="closeCbtMistakeModal()" aria-label="Close">×</button><h3 id="cbtMistakeTitle">Question Review</h3><div id="cbtMistakeContent"></div></div>
+    </div>
+    <footer class="footer-end">
+        <p>TRUST HEALTH TECH • mls-prep-one.vercel.app | © TRUST HEALTH TECH. All Rights Reserved. An Initiative by Trust Isaac.</p>
+        <p>An Initiative by Trust Isaac • Feeding MLS Students with Little Data.</p>
+        <p class="footer-muted-text">Contact: trusthealthtech@gmail.com</p>
+        <p class="footer-muted-text" style="margin-top:6px;">This platform is supported by 2 education partners to remain free. No popups. No data tracking.</p>
+    </footer>
+</div>
+<script>
+    const PDF_DATA_ARRAY = [
+        { name: "1. 100L_INTRODUCTION_TO_MEDICAL_CHEMISTRY.pdf", desc: "Introductory Module • Foundational atomic tracking rules, subshell electron orientations, buffer parameters, matrix formulae and system-level diagnostic applications.", type: "intro", price: "Free", url: "https://drive.google.com/file/d/1xuCHbCHoyQx4_3iVocoHrmNS8xPI2VEk/view?usp=drivesdk" },
+        { name: "2. 100L_CELLULAR_BIOLOGY_CORE_BASICS.pdf", desc: "Introductory Module • Structural cellular layouts, membrane physics, genetic transcription steps, tissue classification models and cell interaction mechanics.", type: "intro", price: "Free", url: "https://drive.google.com/file/d/1F9qzHp8hqQ3crTitUqjs2gg53oOmxLZ_/view?usp=drivesdk" },
+        { name: "3. 100L_FOUNDATIONAL_MEDICAL_PHYSICS.pdf", desc: "Introductory Module • Clinical fluid mechanics, radioactive isotopes tracker indices, transducer engineering parameters, and biomedical orientation frameworks.", type: "intro", price: "Free", url: "https://drive.google.com/file/d/1TQZmTgw2kMmUChhZxuxO3kufFzcd9ucF/preview?usp=drivesdk" },
+        { name: "4. 200L_ANALYTICAL_LAB_METRICS_MANUAL.pdf", desc: "Advanced Core Volume • Comprehensive blood collection techniques, anticoagulant selection protocols, safety barriers, and basic analytical measurement standards.", type: "core", price: "₦850/$3.50", url: "https://selar.com/89qzrb261s" },
+        { name: "5. 200L_BASIC_ANATOMY_PHYSIOLOGY_METRICS.pdf", desc: "Advanced Core Volume • Microscopic analysis of human organ systems, endocrine loops, renal fluid retention balances, and normal physiology parameters.", type: "core", price: "₦850/$3.50", url: "https://selar.com/89qzrb261s" },
+        { name: "6. 200L_ORGANIC_BIOCHEMISTRY_FOUNDATIONS.pdf", desc: "Advanced Core Volume • High-yield metabolism maps, carbohydrate cycles, lipid biosynthesis steps, and enzyme reaction speeds.", type: "core", price: "₦850/$3.50", url: "https://selar.com/89qzrb261s" },
+        { name: "7. 300L_DIAGNOSTIC_HEMATOLOGY_VOL_I.pdf", desc: "Advanced Core Volume • In-depth cell morphology profiling, automatic analyzer diagnostics, iron panel validations, and bone marrow interpretation models.", type: "core", price: "₦1000/$4.50", url: "https://selar.com/9e9j62fq4y" },
+        { name: "8. 300L_CLINICAL_BIOCHEMISTRY_SYSTEMS.pdf", desc: "Advanced Core Volume • Metabolic organ profiling data sheets, LFT/RFT panels validation rules, serum protein distributions, and disease dashboards.", type: "core", price: "₦1000/$4.50", url: "https://selar.com/9e9j62fq4y" },
+        { name: "9. 300L_MEDICAL_MICROBIOLOGY_TECHNIQUES.pdf", desc: "Advanced Core Volume • Differential aerobic isolation techniques, biochemical reaction charting matrices, media preparation protocols and interpretation pathways.", type: "core", price: "₦1000/$4.50", url: "https://selar.com/9e9j62fq4y" },
+        { name: "10. 400L_HISTOPATHOLOGY_TISSUE_PROCESSING.pdf", desc: "Advanced Core Volume • Critical automated tissue processing cycles, microtomy technique boundaries, biopsy preparation procedures and staining interpretations.", type: "core", price: "₦1,200/$5.00", url: "https://selar.com/1r9307591l" },
+        { name: "11. 400L_MEDICAL_PARASITOLOGY_VECTORS.pdf", desc: "Advanced Core Volume • Microscopic fecal diagnostic rules, protozoan lifecycle profiling sheets, helminth diagnostic matrices, and vector maps.", type: "core", price: "₦1,200/$5.00", url: "https://selar.com/1r9307591l" },
+        { name: "12. 400L_IMMUNOLOGY_SEROLOGY_DIAGNOSTICS.pdf", desc: "Advanced Core Volume • High-precision serological profiling procedures, ELISA data patterns, latex slide test limits, and antibody identification tools.", type: "core", price: "₦1,200/$5.00", url: "https://selar.com/1r9307591l" },
+        { name: "13. 500L_BLOOD_TRANSFUSION_SCIENCES.pdf", desc: "Advanced Core Volume • High yield cross-matching procedures, direct/indirect Coombs test maps, antibody titration curves, and storage safety notes.", type: "core", price: "₦1,800/$6.50", url: "https://selar.com/377vs39319" },
+        { name: "14. 500L_CLINICAL_LAB_INFORMATICS.pdf", desc: "Advanced Core Volume • Global laboratory network security protocols, system interface configurations, database models, and error-handling frameworks.", type: "core", price: "₦1,800/$6.50", url: "https://selar.com/377vs39319" },
+        { name: "15. 500L_EPIDEMIOLOGY_RESEARCH_THESIS.pdf", desc: "Advanced Core Volume • Outbreak surveillance methodologies, medical math clustering tools, thesis documentation architectures, and clinical sampling systems.", type: "core", price: "₦1,800/$6.50", url: "https://selar.com/377vs39319" }
+    ];
+
+    document.addEventListener("DOMContentLoaded", () => {
+        renderPdfDirectory(PDF_DATA_ARRAY);
+        reloadBulletinBoard();
+        setupExamTracker();
+    });
+
+    let pomodoroInstance = null, clockTicksRemaining = 25 * 60;
+    const pomodoroDisplay = document.getElementById("pomodoroDisplay");
+    const pomodoroBtn = document.getElementById("pomodoroBtn");
+
+    pomodoroBtn.addEventListener("click", () => {
+        if (pomodoroInstance) {
+            clearInterval(pomodoroInstance);
+            pomodoroInstance = null;
+            pomodoroBtn.innerText = "Start";
+        } else {
+            pomodoroBtn.innerText = "Pause";
+            pomodoroInstance = setInterval(() => {
+                if (clockTicksRemaining <= 0) {
+                    clearInterval(pomodoroInstance);
+                    pomodoroInstance = null;
+                    alert("Focus cycle concluded! Take a 5-minute break.");
+                    clockTicksRemaining = 25 * 60;
+                    pomodoroDisplay.innerText = "25:00";
+                    pomodoroBtn.innerText = "Start";
+                    return;
+                }
+                clockTicksRemaining--;
+                let m = Math.floor(clockTicksRemaining / 60).toString().padStart(2, '0');
+                let s = (clockTicksRemaining % 60).toString().padStart(2, '0');
+                pomodoroDisplay.innerText = `${m}:${s}`;
+            }, 1000);
+        }
+    });
+
+    function setupExamTracker() {
+        const picker = document.getElementById("examDate");
+        const output = document.getElementById("daysLeft");
+        const saved = localStorage.getItem("mls_target_date");
+        if (saved) {
+            picker.value = saved;
+            calculateDays(saved, output);
+        }
+        picker.addEventListener("change", (e) => {
+            localStorage.setItem("mls_target_date", e.target.value);
+            calculateDays(e.target.value, output);
+        });
+    }
+
+    function calculateDays(val, out) {
+        if (!val) return;
+        const diff = Math.ceil((new Date(val) - new Date()) / (1000 * 60 * 60 * 24));
+        out.innerHTML = `<div class='date-circle-wrap'>${diff > 0 ? diff + " Days Left" : "Exam Window Open"}</div>`;
+    }
+
+    function renderPdfDirectory(arr) {
+        const container = document.getElementById("pdfRepositoryList");
+        container.innerHTML = "";
+        arr.forEach(file => {
+            const block = document.createElement("div");
+            block.className = "file-card";
+            const tagText = file.type === "intro" ? "STUDENT FRIENDLY PRICE" : "PREMIUM CLINICAL MANUAL";
+            block.innerHTML = `
+                <h5>📄 ${file.name}</h5>
+                <p>${file.desc}</p>
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <div>
+                        <span class="price-label">${file.price}</span>
+                        <span class="student-tag">${tagText}</span>
+                    </div>
+                    <button class="btn btn-blue" style="width:auto; padding:8px 12px; font-size:0.7rem;" onclick="triggerFileDownload('${file.url}')">Get File</button>
+                </div>
+            `;
+            container.appendChild(block);
+        });
+    }
+
+    document.getElementById("pdfSearchInput").addEventListener("input", (e) => {
+        const text = e.target.value.toLowerCase().trim();
+        renderPdfDirectory(PDF_DATA_ARRAY.filter(f => f.name.toLowerCase().includes(text) || f.desc.toLowerCase().includes(text)));
+    });
+
+    function triggerFileDownload(url) {
+        if (!url || url === "#") {
+            alert("Please add Google Drive link.");
+            return;
+        }
+        window.open(url, '_blank');
+    }
+
+    function reloadBulletinBoard() {
+        const box = document.getElementById("bulletinContainer");
+        let stored = JSON.parse(localStorage.getItem("mls_bulletins") || "[]");
+        if (stored.length === 0) {
+            box.innerHTML = "<div class='tip-box'>No board notifications.</div>";
+            return;
+        }
+        box.innerHTML = stored.map(b => `<div class='bulletin-item'><strong>[${b.author}]</strong>: ${b.text} <span style='font-size:0.6rem; color:var(--text-muted); display:block;'>${b.stamp}</span></div>`).join("");
+    }
+
+    function toggleCalc(id) {
+        const targetBody = document.getElementById(id);
+        const currentStyleState = window.getComputedStyle(targetBody).display;
+        targetBody.style.display = (currentStyleState === "block") ? "none" : "block";
+    }
+
+    function displayCalcResult(boxId, msg) {
+        const e = document.getElementById(boxId);
+        e.style.display = "block";
+        e.innerText = msg;
+    }
+
+    function runBmi() {
+        const w = parseFloat(document.getElementById("bmiW").value), h = parseFloat(document.getElementById("bmiH").value) / 100;
+        if (w && h) {
+            const bmi = w / (h * h);
+            displayCalcResult("bmiOut", `Result: ${bmi.toFixed(1)} kg/m²`);
+        }
+    }
+
+    function runDilution() {
+        const c1 = parseFloat(document.getElementById("dilC1").value), c2 = parseFloat(document.getElementById("dilC2").value), v2 = parseFloat(document.getElementById("dilV2").value);
+        if (c1 && c2 && v2) {
+            const v1 = (c2 * v2) / c1;
+            displayCalcResult("dilOut", `Required stock volume: ${v1.toFixed(2)} units`);
+        }
+    }
+
+    function runOsmolarity() {
+        const na = parseFloat(document.getElementById("osmoNa").value), k = parseFloat(document.getElementById("osmoK").value), glu = parseFloat(document.getElementById("osmoGlu").value), bun = parseFloat(document.getElementById("osmoBun").value);
+        if (na && k && glu && bun) {
+            const osmo = (2 * (na + k)) + (glu / 18) + (bun / 2.8);
+            displayCalcResult("osmoOut", `Calculated osmolarity: ${osmo.toFixed(1)} mOsm/L`);
+        }
+    }
+
+    function runEgfr() {
+        const age = parseFloat(document.getElementById("egfrAge").value), cr = parseFloat(document.getElementById("egfrCr").value), gen = document.getElementById("egfrGender").value;
+        if (age && cr) {
+            let egfr = 186 * Math.pow(cr, -1.154) * Math.pow(age, -0.203);
+            if (gen === "female") egfr *= 0.742;
+            displayCalcResult("egfrOut", `Estimated eGFR: ${egfr.toFixed(1)} mL/min/1.73m²`);
+        }
+    }
+
+    function runCbc() {
+        const w = parseFloat(document.getElementById("cbcWbc").value), r = parseFloat(document.getElementById("cbcRbc").value);
+        if (w && r) {
+            displayCalcResult("cbcOut", `WBC: ${w.toFixed(2)} | RBC: ${r.toFixed(2)} | Reference range check complete.`);
+        }
+    }
+
+    const TRUST_AI_PROXY = "https://mls-prep-one.vercel.app/api/chat";
+
+    function formatAiText(text) {
+        return text
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\*(.*?)\*/g, '<em>$1</em>')
+            .replace(/\n/g, '<br>');
+    }
+
+    function offlineTrustAiReply(question) {
+        const q = String(question || "").trim();
+        if (!q) return "Please type your question first.";
+        return `<strong>Trust AI (Offline)</strong><br>Q: ${q}<br><br>Answering from core knowledge. Ask again with internet for detailed AI answer.<br><em>Educational only.</em>`;
+    }
+
+    async function askTrustAI(question) {
+        const response = await fetch(TRUST_AI_PROXY, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                question: String(question || "").trim(),
+                history: window.__trustAiHistory || [],
+                memory: window.__trustAiMemory || []
+            })
+        });
+
+        if (!response.ok) throw new Error("Trust AI proxy failed");
+
+        const data = await response.json();
+        if (!data.answer) throw new Error("Empty AI response");
+
+        return data.answer;
+    }
+
+    window.__trustAiHistory = window.__trustAiHistory || [];
+    window.__trustAiMemory = window.__trustAiMemory || [];
+
+    window.runAiInquiry = async function () {
+        const input = document.getElementById("aiQueryText");
+        const aiBox = document.getElementById("aiChatBox");
+        const q = (input.value || "").trim();
+
+        if (!q) {
+            aiBox.innerHTML = "Please type your question first.";
+            return;
+        }
+
+        const currentHistory = Array.isArray(window.__trustAiHistory) ? window.__trustAiHistory : [];
+        const updateHistory = [...currentHistory, { role: "user", content: q }];
+        window.__trustAiHistory = updateHistory.slice(-16);
+        input.value = "";
+        aiBox.innerHTML = "Thinking...";
+
+        try {
+            const answer = await askTrustAI(q);
+            window.__trustAiHistory = [...window.__trustAiHistory, { role: "assistant", content: answer }].slice(-16);
+            aiBox.innerHTML = formatAiText(answer.trim());
+        } catch (e) {
+            aiBox.innerHTML = offlineTrustAiReply(q);
+        }
+    };
+
+    function askAiPrompt(txt) {
+        document.getElementById("aiQueryText").value = txt;
+        window.runAiInquiry();
+    }
+
+    /* ===== LOCAL CACHED CBT ENGINE ===== */
+    const CBT_COURSES = [
+        { key: "hematology", label: "HEMATOLOGY" },
+        { key: "clinical_chem", label: "CLINICAL CHEM" },
+        { key: "microbiology", label: "MICROBIOLOGY" },
+        { key: "histopath", label: "HISTOPATH" },
+        { key: "immunology", label: "IMMUNOLOGY" },
+        { key: "parasitology", label: "PARASITOLOGY" },
+        { key: "english", label: "ENGLISH" },
+        { key: "use_of_engl", label: "USE OF ENGL" },
+        { key: "gsp", label: "GSP" }
+    ];
+
+    /* The source specification defines 40 questions per course and 42 for Mixed Mode,
+       but does not provide a numeric exam duration. These constants keep the timing
+       explicit and configurable instead of hiding the assumption inside the engine. */
+    const CBT_SECONDS_PER_QUESTION = 60;
+    const CBT_MIXED_EXTRA_SECONDS = 3 * 60;
+    const CBT_COURSE_SIZE = 40;
+    const CBT_MIXED_SIZE = 42;
+
+    let localQuestions = {};
+    let cbtSession = null;
+    let cbtTimerHandle = null;
+    let cbtActive = false;
+    let cbtReviewFilter = "all";
+
+    window.localQuestions = localQuestions;
+
+    function escapeCbtHtml(value) {
+        return String(value ?? "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+
+    function fisherYatesShuffle(items) {
+        const array = Array.isArray(items) ? items.slice() : [];
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
+    function normalizeQuestion(raw, fallbackId) {
+        if (!raw || typeof raw !== "object") return null;
+        const options = raw.options && typeof raw.options === "object"
+            ? {
+                A: raw.options.A,
+                B: raw.options.B,
+                C: raw.options.C,
+                D: raw.options.D
+            }
+            : Array.isArray(raw.options)
+                ? { A: raw.options[0], B: raw.options[1], C: raw.options[2], D: raw.options[3] }
+                : null;
+        if (!options || ["A", "B", "C", "D"].some(k => typeof options[k] !== "string")) return null;
+        const correct = String(raw.correct ?? "").trim().toUpperCase();
+        if (!["A", "B", "C", "D"].includes(correct)) return null;
+        if (!String(raw.question ?? "").trim()) return null;
+        return {
+            id: raw.id ?? fallbackId,
+            question: String(raw.question).trim(),
+            options,
+            correct,
+            explanation: String(raw.explanation ?? "Review the underlying concept and the correct option.").trim(),
+            speed_hack: String(raw.speed_hack ?? "Use the key diagnostic clue in the question before comparing options.").trim()
+        };
+    }
+
+    function validateCourseDataset(courseKey) {
+        const raw = localQuestions?.[courseKey];
+        if (!Array.isArray(raw)) return [];
+        return raw.map((q, i) => normalizeQuestion(q, `${courseKey}-${i + 1}`)).filter(Boolean);
+    }
+
+    function formatTime(totalSeconds) {
+        const seconds = Math.max(0, Math.floor(totalSeconds));
+        const minutes = Math.floor(seconds / 60).toString().padStart(2, "0");
+        const remainder = (seconds % 60).toString().padStart(2, "0");
+        return `${minutes}:${remainder}`;
+    }
+
+    async function loadLocalQuestions() {
+        try {
+            const response = await fetch("./questions.json", { cache: "force-cache" });
+            if (!response.ok) throw new Error(`questions.json returned ${response.status}`);
+            const data = await response.json();
+            if (!data || typeof data !== "object" || Array.isArray(data)) throw new Error("Invalid questions.json root");
+            localQuestions = data;
+            window.localQuestions = localQuestions;
+            window.dispatchEvent(new CustomEvent("localQuestionsReady"));
+            refreshCbtCourseOptions();
+        } catch (error) {
+            console.error("Local CBT data load failed:", error);
+            localQuestions = {};
+            window.localQuestions = localQuestions;
+            showCbtMessage("⚠️ Local CBT data unavailable", "Place the production questions.json beside index.html, then reload the app. No network question generator is used by this CBT engine.");
+        }
+    }
+
+    function showCbtMessage(title, message) {
+        const shell = document.getElementById("quizShell");
+        if (!shell) return;
+        shell.style.display = "block";
+        shell.innerHTML = `<div class="cbt-message"><h3>${escapeCbtHtml(title)}</h3><p>${escapeCbtHtml(message)}</p></div>`;
+    }
+
+    function initiateCbtMode(mode) {
+        if (mode === "course") {
+            document.getElementById("courseSelectionContainer").style.display = "block";
+            document.getElementById("quizShell").style.display = "none";
+            document.getElementById("cbtSummaryPanel").style.display = "none";
+            stopCbtTimer();
+            cbtActive = false;
+            return;
+        }
+        mixedModeCbt();
+    }
+
+    function getCourseLabel(courseKey) {
+        return CBT_COURSES.find(course => course.key === courseKey)?.label || String(courseKey).toUpperCase();
+    }
+
+    let configuredCbtCount = 30;
+    let configuredCbtSeconds = 900;
+    const COURSE_LABELS = {
+      hematology:"Hematology", clinical_chem:"Clinical Chemistry / Biochemistry", microbiology:"Medical Microbiology", histopath:"Histopathology", immunology:"Immunology & Serology", parasitology:"Medical Parasitology", english:"English", use_of_engl:"Use of English", gsp:"General Studies / GSP"
+    };
+    const LEVEL_COURSES = {
+      "100L":["english","use_of_engl","gsp"],
+      "200L":["hematology","microbiology","clinical_chem","parasitology","histopath"],
+      "300L":["hematology","microbiology","clinical_chem","parasitology","histopath","immunology"],
+      "400L":["hematology","microbiology","clinical_chem","parasitology","histopath","immunology"],
+      "500L":["hematology","microbiology","clinical_chem","parasitology","histopath","immunology"]
+    };
+    const TRUST_MLS_SYLLABUS = [
+      {level:"100L",title:"FOUNDATION",courses:[
+        ["GST 101","General Studies"],["GST 102","General Studies"],["GST 103","General Studies"],["GST 104","General Studies"],
+        ["BIO 101","Biology"],["BIO 102","Biology"],["CHM 101","Chemistry"],["CHM 102","Chemistry"],["PHY 101","Physics"],["PHY 102","Physics"],["MTH 101","Mathematics"],["MTH 102","Mathematics"],["CSC 101","Computer Science"]
+      ]},
+      {level:"200L",title:"BASIC MEDICAL LABORATORY SCIENCE",courses:[
+        ["MLS 201","Introduction to MLS, Ethics & Law"],["MLS 202","Basic Instrumentation & Lab Safety"],["MLS 203","Basic Hematology"],["MLS 204","Basic Medical Microbiology"],["MLS 205","Basic Clinical Chemistry"],["MLS 206","Basic Parasitology"],["MLS 207","Basic Histopathology & Cytology"],["MLS 208","Phlebotomy & Specimen Collection"],["ANA 201","Human Anatomy"],["PHY 201","Human Physiology"],["BCH 201","Introductory Biochemistry"]
+      ]},
+      {level:"300L",title:"SYSTEMIC LABORATORY SCIENCE I",courses:[
+        ["MLS 301","Systemic Hematology I"],["MLS 302","Systemic Hematology II"],["MLS 303","Medical Microbiology I — Bacteriology"],["MLS 304","Medical Microbiology II — Mycology"],["MLS 305","Clinical Chemistry I"],["MLS 306","Clinical Chemistry II"],["MLS 307","Medical Parasitology I"],["MLS 308","Medical Parasitology II"],["MLS 309","Histopathology Techniques I"],["MLS 310","Immunology & Serology"],["BBS 301","Blood Grouping & Compatibility Testing"]
+      ]},
+      {level:"400L",title:"SYSTEMIC LABORATORY SCIENCE II",courses:[
+        ["MLS 401","Advanced Hematology & Hemostasis"],["MLS 402","Advanced Medical Microbiology"],["MLS 403","Advanced Clinical Chemistry"],["MLS 404","Advanced Medical Parasitology"],["MLS 405","Advanced Histopathology & Cytology"],["MLS 406","Blood Transfusion Science"],["MLS 407","Molecular Biology Techniques"],["MLS 408","Research Methodology & Biostatistics"],["MLS 409","Laboratory Management & Quality Assurance"]
+      ]},
+      {level:"500L",title:"PROFESSIONAL / FINAL YEAR",courses:[
+        ["MLS 501","Advanced Parasitology & Virology"],["MLS 502","Medical Microbiology & Public Health"],["MLS 503","Advanced Histopathology"],["MLS 504","Molecular Diagnostics & Genetics"],["MLS 505","Clinical Chemistry — Special Topics"],["MLS 506","Hematology — Special Topics"],["MLS 507","Seminar"],["MLS 508","Research Project"],["MLS 509","Clinical Posting / Internship"]
+      ]}
+    ];
+    // Link placeholders are intentionally empty. Add the real Selar and Google Drive URLs later.
+    function renderFullSyllabus(){
+      const host=document.getElementById("fullSyllabusLevels"); if(!host)return;
+      host.innerHTML=TRUST_MLS_SYLLABUS.map((group,gi)=>`<details class="syllabus-level" ${gi===0?"open":""}><summary><span>${group.level} — ${group.title}</span><span>${group.courses.length} courses ▾</span></summary><div class="syllabus-level-body">${group.courses.map(([code,name])=>
+        `<article class="syllabus-course"><div class="syllabus-course-title">${code} — ${name}</div><div class="syllabus-course-actions"><a class="syllabus-resource-btn selar" href="" onclick="event.preventDefault();showResourceLinkNotice('Selar PDF for ${code}')" aria-label="Add Selar PDF link for ${code}">🟣 Get PDF</a><a class="syllabus-resource-btn drive" href="" onclick="event.preventDefault();showResourceLinkNotice('Google Drive PDF for ${code}')" aria-label="Add Google Drive reading link for ${code}">🔵 Read PDF</a></div><div class="syllabus-link-note">Links are placeholders — add your URLs before publishing.</div></article>`
+      ).join("")}</div></details>`).join("");
+    }
+
+    function toggleUpgradePanel(id,button){
+      const panel=document.getElementById(id); if(!panel)return;
+      const open=getComputedStyle(panel).display!=="none"; panel.style.display=open?"none":"block";
+      if(button)button.setAttribute("aria-expanded",String(!open));
+      if(!open&&id==="cbtStagePanel")refreshCbtCourseOptions();
+    }
+    function setCbtChoice(type,value,button){
+      if(type==="count")configuredCbtCount=Number(value); else configuredCbtSeconds=Number(value);
+      const parent=button?.parentElement; if(parent){parent.querySelectorAll(".stage-choice").forEach(b=>b.classList.remove("active"));button.classList.add("active");}
+      updateCbtConfigReview();
+    }
+    function refreshCbtCourseOptions(){
+      const level=document.getElementById("cbtLevelSelect")?.value||"100L"; const select=document.getElementById("cbtCourseSelect"); if(!select)return;
+      const keys=(LEVEL_COURSES[level]||[]).filter(k=>Array.isArray(localQuestions[k])&&localQuestions[k].length);
+      const previous=select.value; select.innerHTML=keys.map(k=>`<option value="${k}">${escapeCbtHtml(COURSE_LABELS[k]||k)} (${localQuestions[k].length} questions)</option>`).join("");
+      if(keys.includes(previous))select.value=previous; updateCbtConfigReview();
+    }
+    function updateCbtConfigReview(){
+      const box=document.getElementById("cbtConfigReview"); if(!box)return;
+      const level=document.getElementById("cbtLevelSelect")?.value||"100L"; const key=document.getElementById("cbtCourseSelect")?.value||"hematology";
+      const minutes=configuredCbtSeconds===3600?"1 hour":`${configuredCbtSeconds/60} minutes`;
+      box.textContent=`Review: ${level} • ${COURSE_LABELS[key]||key} • ${configuredCbtCount} questions • ${minutes}`;
+    }
+    function startConfiguredCbt(){
+      const key=document.getElementById("cbtCourseSelect")?.value; if(!key){showCbtMessage("No course questions available","This level currently has no mapped question set. Select another level or add validated questions to questions.json.");return;}
+      const panel=document.getElementById("cbtStagePanel"); if(panel)panel.style.display="none";
+      document.getElementById("cbt-core-target")?.scrollIntoView({behavior:"smooth",block:"start"});
+      bootCbtExam(key,configuredCbtCount,configuredCbtSeconds,false);
+    }
+    function showResourceLinkNotice(name){window.alert(`${name}: the source HTML currently contains a placeholder checkout URL. Add the verified unified Selar URL before publishing this button.`);}
+    function launchCoursePractice(courseKey) { bootCbtExam(courseKey, Math.min(CBT_COURSE_SIZE,validateCourseDataset(courseKey).length), CBT_COURSE_SIZE * CBT_SECONDS_PER_QUESTION, false); }
+    function triggerHubQuiz(courseKey) { bootCbtExam(courseKey, Math.min(CBT_COURSE_SIZE,validateCourseDataset(courseKey).length), CBT_COURSE_SIZE * CBT_SECONDS_PER_QUESTION, false); }
+
+    function mixedModeCbt() {
+        const pools = CBT_COURSES.flatMap(course => validateCourseDataset(course.key));
+        const mixedQuestions = fisherYatesShuffle(pools).slice(0, CBT_MIXED_SIZE);
+        if (mixedQuestions.length < CBT_MIXED_SIZE) {
+            showCbtMessage("⚠️ Mixed Mode needs more data", `Mixed Mode requires ${CBT_MIXED_SIZE} valid questions across the nine official datasets. Loaded ${mixedQuestions.length}.`);
+            return;
+        }
+        bootCbtExam("mixed", CBT_MIXED_SIZE, (CBT_MIXED_SIZE * CBT_SECONDS_PER_QUESTION) + CBT_MIXED_EXTRA_SECONDS, true, mixedQuestions);
+    }
+
+    function bootCbtExam(courseKey, count, seconds, isMixed, providedQuestions) {
+        const source = providedQuestions || validateCourseDataset(courseKey);
+        if (source.length < count) {
+            showCbtMessage("⚠️ Not enough questions", `${getCourseLabel(courseKey)} needs ${count} valid questions in questions.json. This dataset currently has ${source.length}.`);
+            return;
+        }
+        stopCbtTimer();
+        cbtSession = {
+            courseKey,
+            label: isMixed ? "MIXED MODE" : getCourseLabel(courseKey),
+            isMixed,
+            questions: fisherYatesShuffle(source).slice(0, count),
+            answers: {},
+            index: 0,
+            remainingSeconds: seconds,
+            startedAt: Date.now(),
+            finished: false
+        };
+        cbtActive = true;
+        cbtReviewFilter = "all";
+        document.getElementById("courseSelectionContainer").style.display = "none";
+        document.getElementById("cbtSummaryPanel").style.display = "none";
+        document.getElementById("quizShell").style.display = "block";
+        renderCbtQuestion();
+        cbtTimerHandle = window.setInterval(() => {
+            if (!cbtActive || !cbtSession) return;
+            cbtSession.remainingSeconds -= 1;
+            updateCbtTimer();
+            if (cbtSession.remainingSeconds <= 0) finishCbtExam("Time expired");
+        }, 1000);
+    }
+
+    function stopCbtTimer() {
+        if (cbtTimerHandle) {
+            clearInterval(cbtTimerHandle);
+            cbtTimerHandle = null;
+        }
+    }
+
+    function updateCbtTimer() {
+        const timer = document.getElementById("cbtTimerValue");
+        if (!timer || !cbtSession) return;
+        timer.textContent = formatTime(cbtSession.remainingSeconds);
+        timer.classList.toggle("timer-critical", cbtSession.remainingSeconds <= 60);
+    }
+
+    function renderCbtQuestion() {
+        if (!cbtSession || cbtSession.finished) return;
+        const question = cbtSession.questions[cbtSession.index];
+        const shell = document.getElementById("quizShell");
+        if (!question || !shell) {
+            finishCbtExam("Question set complete");
+            return;
+        }
+        shell.style.display = "block";
+        shell.innerHTML = `
+            <div class="cbt-question-workspace">
+                <div class="cbt-question-meta">
+                    <span>${escapeCbtHtml(cbtSession.label)}</span>
+                    <span>Question ${cbtSession.index + 1} of ${cbtSession.questions.length}</span>
+                    <strong id="cbtTimerValue">${formatTime(cbtSession.remainingSeconds)}</strong>
+                </div>
+                <div class="quiz-question-txt">${escapeCbtHtml(question.question)}</div>
+                <div class="quiz-options-list">
+                    ${["A", "B", "C", "D"].map(letter => `
+                        <button type="button" class="opt-btn ${cbtSession.answers[cbtSession.index] === letter ? "selected-choice" : ""}" aria-pressed="${cbtSession.answers[cbtSession.index] === letter ? "true" : "false"}" onclick="selectCbtAnswer('${letter}')">
+                            <strong>${letter}.</strong> ${escapeCbtHtml(question.options[letter])}
+                        </button>
+                    `).join("")}
+                </div>
+            </div>
+            <div class="cbt-nav-row">
+                <button type="button" class="cbt-nav-btn" onclick="navigateCbtQuestion(-1)" ${cbtSession.index === 0 ? "disabled" : ""}>← Previous</button>
+                <button type="button" class="cbt-nav-btn" onclick="navigateCbtQuestion(1)" ${cbtSession.index === cbtSession.questions.length - 1 ? "disabled" : ""}>Next →</button>
+                <button type="button" class="cbt-nav-btn end-btn" onclick="confirmEndCbt()">END CBT</button>
+            </div>
+        `;
+        updateCbtTimer();
+    }
+
+    function selectCbtAnswer(letter) {
+        if (!cbtActive || !cbtSession || cbtSession.finished) return;
+        const answer = String(letter).toUpperCase();
+        if (!["A", "B", "C", "D"].includes(answer)) return;
+        cbtSession.answers[cbtSession.index] = answer;
+        renderCbtQuestion();
+    }
+
+    function navigateCbtQuestion(step) {
+        if (!cbtActive || !cbtSession || cbtSession.finished) return;
+        const next = cbtSession.index + Number(step);
+        if (next < 0 || next >= cbtSession.questions.length) return;
+        cbtSession.index = next;
+        renderCbtQuestion();
+    }
+
+    function confirmEndCbt() {
+        if (!cbtSession || cbtSession.finished) return;
+        if (window.confirm("Are you sure to end CBT?")) finishCbtExam("Ended by student");
+    }
+
+    function handleCbtKeyboard(event) {
+        if (!cbtActive || !cbtSession || cbtSession.finished) return;
+        if (["INPUT", "TEXTAREA", "SELECT"].includes(event.target?.tagName)) return;
+        const key = String(event.key || "").toUpperCase();
+        if (["A", "B", "C", "D"].includes(key)) {
+            event.preventDefault();
+            selectCbtAnswer(key);
+        }
+    }
+
+    function finishCbtExam(reason) {
+        if (!cbtSession || cbtSession.finished) return;
+        cbtSession.finished = true;
+        cbtActive = false;
+        stopCbtTimer();
+        renderCbtSummary(reason);
+    }
+
+    function renderCbtSummary(reason) {
+        const summary = document.getElementById("cbtSummaryPanel");
+        const scoreBox = document.getElementById("cbtScoreSummary");
+        const shell = document.getElementById("quizShell");
+        if (!summary || !scoreBox || !shell || !cbtSession) return;
+        let score = 0;
+        cbtSession.questions.forEach((q, i) => {
+            if (cbtSession.answers[i] === q.correct) score += 1;
+        });
+        const total = cbtSession.questions.length;
+        const percent = total ? Math.round((score / total) * 100) : 0;
+        scoreBox.innerHTML = `${escapeCbtHtml(reason)} • <strong>${score}/${total}</strong> (${percent}%) • ${escapeCbtHtml(cbtSession.label)}`;
+        shell.innerHTML = `<div class="cbt-message"><h3>✅ Exam Complete</h3><p>Your review is ready below.</p></div>`;
+        summary.style.display = "block";
+        saveCbtAnalytics(score,total,percent,reason);
+        filterCbtReview("all");
+        summary.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+
+    const CBT_ANALYTICS_KEY = "tht_cbt_analytics_v1";
+    const CBT_ANALYTICS_TTL = 7 * 24 * 60 * 60 * 1000;
+    function cleanCbtAnalytics(){
+      try{const now=Date.now();const saved=JSON.parse(localStorage.getItem(CBT_ANALYTICS_KEY)||"[]");localStorage.setItem(CBT_ANALYTICS_KEY,JSON.stringify(saved.filter(x=>x&&Number(x.savedAt)>now-CBT_ANALYTICS_TTL)));}catch(e){localStorage.removeItem(CBT_ANALYTICS_KEY);}
+    }
+    function saveCbtAnalytics(score,total,percent,reason){
+      try{cleanCbtAnalytics();const saved=JSON.parse(localStorage.getItem(CBT_ANALYTICS_KEY)||"[]");saved.push({savedAt:Date.now(),course:cbtSession.label,score,total,percent,reason,answers:cbtSession.answers,questions:cbtSession.questions});localStorage.setItem(CBT_ANALYTICS_KEY,JSON.stringify(saved));}catch(e){console.warn("CBT analytics could not be stored locally",e);}
+    }
+    cleanCbtAnalytics();
+    window.setInterval(cleanCbtAnalytics,60*60*1000);
+
+    function openCbtMistakeModal(index){
+      if(!cbtSession)return;const q=cbtSession.questions[index];if(!q)return;
+      const selected=cbtSession.answers[index]||"Not answered";
+      const body=document.getElementById("cbtMistakeContent");if(!body)return;
+      body.innerHTML=`<p><strong>Question:</strong> ${escapeCbtHtml(q.question)}</p><p><strong>Your answer:</strong> ${escapeCbtHtml(selected==="Not answered"?selected:`${selected}. ${q.options[selected]}`)}</p><p><strong>Correct answer:</strong> ${escapeCbtHtml(`${q.correct}. ${q.options[q.correct]}`)}</p><p><strong>Explanation:</strong> ${escapeCbtHtml(q.explanation)}</p>`;
+      document.getElementById("cbtMistakeModal").style.display="flex";
+    }
+    function closeCbtMistakeModal(){const m=document.getElementById("cbtMistakeModal");if(m)m.style.display="none";}
+
+    function filterCbtReview(filter, clickedButton) {
+        if (!cbtSession) return;
+        cbtReviewFilter = filter || "all";
+        document.querySelectorAll(".cbt-filter").forEach(btn => btn.classList.remove("active"));
+        if (clickedButton) clickedButton.classList.add("active");
+        else document.querySelector(`.cbt-filter[onclick*="'${cbtReviewFilter}'"]`)?.classList.add("active");
+
+        const list = document.getElementById("cbtReviewList");
+        if (!list) return;
+        const cards = cbtSession.questions.map((question, index) => {
+            const selected = cbtSession.answers[index] || "Not answered";
+            const correct = selected === question.correct;
+            return { question, index, selected, correct };
+        }).filter(item => filter === "all" || (filter === "wins" ? item.correct : !item.correct));
+
+        list.innerHTML = cards.length ? cards.map(item => {
+            const q = item.question;
+            const selectedText = item.selected === "Not answered" ? "Not answered" : `${item.selected}. ${q.options[item.selected]}`;
+            const correctText = `${q.correct}. ${q.options[q.correct]}`;
+            return `
+                <article class="cbt-review-card ${item.correct ? "review-win" : "review-wrong"}" role="button" tabindex="0" onclick="openCbtMistakeModal(${item.index})" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openCbtMistakeModal(${item.index})}">
+                    <strong>${item.index + 1}. ${escapeCbtHtml(q.question)}</strong>
+                    <p><b>Your answer:</b> ${escapeCbtHtml(selectedText)}</p>
+                    <p><b>Correct answer:</b> ${escapeCbtHtml(correctText)}</p>
+                    <p><b>Explanation:</b> ${escapeCbtHtml(q.explanation)}</p>
+                    <div class="cbt-speed-hack">💡 ${escapeCbtHtml(q.speed_hack)}</div>
+                </article>
+            `;
+        }).join("") : `<div class="tip-box">No questions match this filter.</div>`;
+    }
+
+    function toggleAccordion(id) {
+        const panel = document.getElementById(id);
+        if (!panel) return;
+        const open = window.getComputedStyle(panel).display !== "none";
+        panel.style.display = open ? "none" : "block";
+    }
+
+    function toggleExtendedSyllabus() {
+        const tray = document.getElementById("extended-syllabus-tray");
+        const button = document.getElementById("syllabusMoreBtn");
+        if (!tray || !button) return;
+        const hidden = window.getComputedStyle(tray).display === "none";
+        tray.style.display = hidden ? "block" : "none";
+        button.textContent = hidden ? "See Less ▴" : "See More ▾";
+    }
+
+    function submitBulletinPost() {
+        const author = (document.getElementById("bulletinAuthor")?.value || "Anonymous").trim().slice(0, 40) || "Anonymous";
+        const text = (document.getElementById("bulletinText")?.value || "").trim().slice(0, 500);
+        if (!text) return;
+        const posts = JSON.parse(localStorage.getItem("mls_bulletins") || "[]");
+        posts.unshift({ author, text, stamp: new Date().toLocaleString() });
+        localStorage.setItem("mls_bulletins", JSON.stringify(posts.slice(0, 30)));
+        document.getElementById("bulletinText").value = "";
+        reloadBulletinBoard();
+    }
+
+    function setupCbtScrollFloat() {
+        const button = document.getElementById("cbtScrollFloat");
+        const target = document.getElementById("cbt-core-target");
+        const syllabus = document.getElementById("syllabus-section");
+        if (!button || !target || !syllabus) return;
+        const update = () => {
+            const down = window.scrollY <= 300;
+            button.textContent = down ? "↓" : "↑";
+            button.setAttribute("aria-label", down ? "Scroll to syllabus" : "Scroll to CBT");
+        };
+        button.addEventListener("click", () => {
+            (window.scrollY <= 300 ? syllabus : target).scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+        window.addEventListener("scroll", update, { passive: true });
+        update();
+    }
+
+    let syllabusSeconds = 0;
+    let syllabusCycles = 0;
+    let syllabusAlertActive = false;
+    let syllabusLastActivity = 0;
+    let syllabusObserverVisible = false;
+    let syllabusInterval = null;
+
+    function setupSyllabusConcentrationTracker() {
+        const syllabus = document.getElementById("syllabus-section");
+        if (!syllabus) return;
+        const markActivity = () => { syllabusLastActivity = Date.now(); };
+        ["scroll", "touchstart", "pointerdown", "wheel"].forEach(type => window.addEventListener(type, markActivity, { passive: true }));
+        const observer = new IntersectionObserver(entries => {
+            syllabusObserverVisible = entries.some(entry => entry.isIntersecting && entry.intersectionRatio > 0);
+        }, { threshold: [0, 0.1] });
+        observer.observe(syllabus);
+        syllabus.addEventListener("pointerenter", markActivity);
+        syllabus.addEventListener("touchstart", markActivity, { passive: true });
+        syllabusInterval = window.setInterval(() => {
+            if (!syllabusObserverVisible) return;
+            if (Date.now() - syllabusLastActivity > 5000) return;
+            syllabusSeconds += 1;
+            if (syllabusSeconds >= 90 && !syllabusAlertActive && syllabusCycles < 2) {
+                syllabusSeconds = 0;
+                syllabusCycles += 1;
+                showSyllabusDownloadAlert();
+            }
+        }, 1000);
+    }
+
+    function showSyllabusDownloadAlert() {
+        const card = document.createElement("div");
+        card.className = "syllabus-download-alert";
+        card.innerHTML = `<strong>📥 Study Offline</strong><span>Keep your core files available when your data is limited.</span><a href="#" onclick="event.preventDefault();showResourceLinkNotice('Past Questions checkout')">Download Files →</a>`;
+        document.body.appendChild(card);
+        syllabusAlertActive = true;
+        window.setTimeout(() => {
+            card.classList.add("hide");
+            window.setTimeout(() => card.remove(), 250);
+            syllabusAlertActive = false;
+            if (syllabusCycles === 2) showPersistentDownloadBanner();
+        }, 6000);
+    }
+
+    function showPersistentDownloadBanner() {
+        if (document.getElementById("persistentDownloadBanner")) return;
+        const banner = document.createElement("a");
+        banner.id = "persistentDownloadBanner";
+        banner.className = "persistent-download-banner";
+        banner.href = "https://selar.co";
+        banner.textContent = "📥 Download Files";
+        document.body.appendChild(banner);
+    }
+
+    function openPastQuestionsModal() {
+        const modal = document.getElementById("pastQuestionsModal");
+        if (modal) modal.style.display = "flex";
+    }
+
+    function closePastQuestionsModal() {
+        const modal = document.getElementById("pastQuestionsModal");
+        if (modal) modal.style.display = "none";
+    }
+
+    document.addEventListener("keydown", handleCbtKeyboard);
+    window.addEventListener("click", event => {
+        const modal = document.getElementById("pastQuestionsModal");
+        if (modal && event.target === modal) closePastQuestionsModal();
+        const mistakeModal = document.getElementById("cbtMistakeModal");
+        if (mistakeModal && event.target === mistakeModal) closeCbtMistakeModal();
+    });
+
+    window.onload = async function () {
+        await loadLocalQuestions();
+        setupCbtScrollFloat();
+        setupSyllabusConcentrationTracker();
+        renderFullSyllabus();
+    };
+</script>
+<script>
+if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
+  window.addEventListener('load', () => navigator.serviceWorker.register('/sw.js').catch(err => console.warn('Service worker registration failed', err)));
+}
+</script>
+<script src="js/download-popup.js"></script>
+<script src="js/ui-fixes.js"></script>
+</body>
+</html>
+                   
