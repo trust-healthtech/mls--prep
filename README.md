@@ -40,3 +40,6 @@
 
 ---
 **Mission:** Quality MLS education, affordable for all. No student left behind.
+---
+**© 2026 Trust HealthTech. All Rights Reserved.**
+Unauthorized reproduction or resale is prohibited.
