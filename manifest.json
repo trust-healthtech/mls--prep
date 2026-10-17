@@ -7,13 +7,12 @@
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone"],
   "orientation": "portrait-primary",
   "background_color": "#F7FBFF",
   "theme_color": "#087FF5",
-  "categories": [
-    "education",
-    "medical"
-  ],
+  "handle_links": "preferred",
+  "categories": ["education", "medical"],
   "icons": [
     {
       "src": "/icon-192.png",
@@ -32,6 +31,22 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot-wide.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "MLS Prep Dashboard"
+    },
+    {
+      "src": "/screenshot-mobile.png",
+      "sizes": "720x1280",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "MLS Prep CBT Practice"
     }
   ]
 }
