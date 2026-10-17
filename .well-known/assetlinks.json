@@ -1,0 +1,9 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "com.trusthealthtech.mlsprep",
+        "sha256_cert_fingerprints": ["11:9E:85:45:F8:A9:AE:95:C2:DE:3D:66:B8:C8:B4:75:39:84:0E:28:1D:5F:5D:18:DF:56:76:F0:66:31:11:49"]
+      }
+    }]
+
