@@ -1,7 +1,7 @@
 {
   "id": "/",
   "name": "MLS Prep — TRUST HEALTH TECH",
-  "short_name": "MLS Prep",
+  "short_name": "THT MLS Prep",
   "description": "MLS Prep — Exam Countdown, Study Resources & CBT Practice for Nigerian MLS Students.",
   "lang": "en-NG",
   "start_url": "/",
@@ -39,14 +39,14 @@
       "sizes": "1280x720",
       "type": "image/png",
       "form_factor": "wide",
-      "label": "MLS Prep Dashboard"
+      "label": "THT MLS Prep Dashboard"
     },
     {
       "src": "/screenshot-mobile.png",
       "sizes": "720x1280",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "MLS Prep CBT Practice"
+      "label": "THT MLS Prep CBT Practice"
     }
   ]
 }
