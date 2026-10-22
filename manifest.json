@@ -1,0 +1,57 @@
+{
+  "id": "/",
+  "name": "MLS Prep — TRUST HEALTH TECH",
+  "short_name": "MLS PREP",
+  "description": "MLS Prep — Exam Countdown, MLS Study Resources, PDF Bundles, CBT Practice and Clinical Laboratory Tools for Nigerian MLS Students.",
+  "lang": "en-NG",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": [
+    "window-controls-overlay",
+    "standalone"
+  ],
+  "orientation": "portrait-primary",
+  "background_color": "#e6f0ff",
+  "theme_color": "#0046c7",
+  "categories": [
+    "education",
+    "medical"
+  ],
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot-mobile.png",
+      "sizes": "691x1536",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "MLS PREP Learning Dashboard"
+    },
+    {
+      "src": "/screenshot-library.png",
+      "sizes": "691x1536",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "MLS Syllabus and PDF Library"
+    }
+  ]
+}
