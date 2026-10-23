@@ -1,115 +1,163 @@
+import Groq from 'groq-sdk';
+
+const groq = new Groq({
+  apiKey: process.env.GROQ_API_KEY,
+});
+
 export default async function handler(req, res) {
-  if (req.method!== 'POST') return res.status(405).json({ error: 'Method not allowed' });
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
+
   try {
-    const { question, message, history = [], lastTopic } = req.body;
+    const { question, message, history = [], lastTopic, attachment } = req.body;
     const userQuestion = question || message;
-    if (!userQuestion) return res.status(400).json({ error: 'No question provided' });
+    
+    if (!userQuestion) {
+      return res.status(400).json({ error: 'No query provided' });
+    }
+
     const groqKey = process.env.GROQ_API_KEY;
-    if (!groqKey) return res.status(500).json({ error: 'GROQ_API_KEY missing' });
+    if (!groqKey) {
+      return res.status(500).json({ error: 'System configuration error: API key unavailable.' });
+    }
+
     const lower = userQuestion.toLowerCase().trim();
     let finalPrompt = userQuestion;
-    let tokenSize = 900;
+    let tokenSize = 2500; 
 
+    // --- STAGE 1: STRICT MEDICAL / MLS SCOPE VALIDATION ---
+    const medicalKeywords = [
+      'anemia', 'hemoglobin', 'pcv', 'wbc', 'rbc', 'hematology', 'blood', 'platelet', 'marrow', 'esr', 'clotting', 'coagulation',
+      'lft', 'rft', 'liver', 'kidney', 'creatinine', 'urea', 'bilirubin', 'electrolyte', 'metabolic', 'serum', 'urine', 'egfr',
+      'bacteria', 'virus', 'microbiology', 'culture', 'stain', 'antibiotic', 'parasite', 'helminth', 'malaria', 'amoeba',
+      'histopathology', 'tissue', 'biopsy', 'fixation', 'staining', 'immunology', 'serology', 'elisa', 'antibody', 'antigen',
+      'transfusion', 'crossmatch', 'coombs', 'blood bank', 'donor', 'lab', 'laboratory', 'pathology', 'cell', 'glucose', 'protein',
+      'plasma', 'clinical', 'infection', 'disease', 'phlebotomy', 'specimen', 'anticoagulant', 'edta', 'serum', 'dilution', 'analyte',
+      'explain', 'what', 'how', 'why', 'lecture', 'define', 'test', 'microscope', 'serological', 'count', 'indices', 'mcv', 'mch', 'mchc'
+    ];
+
+    // Check history or active topic for continuity if the query is very brief (e.g. "yes", "more")
+    const shortInputExceptions = ['yes', 'y', 'more', 'explain', 'continue', 'proceed', 'ok', 'okay', 'no', 'stop'];
+    const isException = shortInputExceptions.includes(lower);
+    const hasMedicalContext = medicalKeywords.some(keyword => lower.includes(keyword)) || 
+                               (lastTopic && medicalKeywords.some(keyword => lastTopic.toLowerCase().includes(keyword)));
+
+    if (!isException && !hasMedicalContext) {
+      return res.status(200).json({
+        status: 'online',
+        answer: 'System Restraint: This platform is exclusively optimized for Medical Laboratory Science (MLS), clinical medicine, and healthcare diagnostics. Please submit a valid medical topic, laboratory parameter, or diagnostic graphic for analysis.',
+        topic: lastTopic || 'Out of Scope'
+      });
+    }
+
+    // --- STAGE 2: INTENT EVALUATION LOGIC ---
     const yesExact = ['yes','y','yep','yup','yea','yah','yeh','yess','yeah','ya','alright','alrighty','aight','ok','okay','okk','k','kk','sure','bet','great','cool','nice','fine','okay na','yes o','yes oo','yes now','yupz'];
     const yesPhrases = ['sure thing','of course','definitely','absolutely','go ahead','proceed','continue','lets go',"let's go",'go on','why not','do it','show me','tell me','explain','i want','abeg','make you','na yes','yes abeg','teach me','lecture me'];
     const noExact = ['no','noo','nooo','nope','nah','nahh','nop','nopes','stop','cancel','end','quit','abort','leave','skip','later','no o','no oo'];
     const noPhrases = ['not now',"don't",'dont','never mind','nevermind','no thanks','not interested','noo thanks','make e no','leave am'];
-    const moreWords = ['detailed','detail','more','elaborate','deep','full','textbook','comprehensive','expand','breakdown','indepth','further','exam trap','exam hack','hack','simplify','simple english','lecture'];
-    const pidginWords = ['abeg','wetin','wey','dey','na','shey','how far','no sabi','i no understand','no understand','break am','pidgin','pijin','no too clear','e no clear'];
+    const localInformalWords = ['abeg','wetin','wey','dey','na','shey','how far','no sabi','i no understand','no understand','break am','pidgin','pijin','no too clear','e no clear'];
+    
     const isYes = yesExact.includes(lower) || yesPhrases.some(w => lower.includes(w));
     const isNo = noExact.includes(lower) || noPhrases.some(w => lower.includes(w));
-    const isMore = moreWords.some(w => lower.includes(w)) || lower.includes('explain more');
-    const isPidginInput = pidginWords.some(w => lower.includes(w));
+    const isInformalInput = localInformalWords.some(w => lower.includes(w));
 
-    if (isMore &&!isYes) {
-      tokenSize = 2000;
-      finalPrompt = `FULL PRO LECTURE with TRAPS+HACKS for: ${lastTopic || userQuestion}`;
-    } else if (isYes &&!isMore) {
-      tokenSize = 1100;
-      finalPrompt = `User said YES "${userQuestion}" to continue. Last topic: ${lastTopic}. If last was Pidgin offer and YES, switch to Pidgin + MLS terms. Else continue related subtopic with trap+hack.`;
-    } else if (isNo) {
-      return res.status(200).json({ status: 'online', answer: `Got it! 🛑 No wahala!\n\nAsk any other MLS, Health or AI question when ready! 🧬\n\n💡 Tip: Type "more" for full lecture + exam traps & hacks.` });
-    } else if (isPidginInput) {
-      finalPrompt = `User speaks Pidgin/Broken: "${userQuestion}". Last topic: ${lastTopic}. Handle per Pidgin rule.`;
-    }
-
-    // --- TRUTHFUL PDF MAPPER - SHORT DISPLAY NO CUT-OFF - NO LIE ---
-    function getPdfRecommendation(q, topic) {
-      const text = `${q} ${topic||''}`.toLowerCase();
-      if (text.match(/anemia|hb|hemoglobin|pcv|wbc|rbc|hematology|blood cell|platelet|bone marrow|iron|esr|blood film|clotting|coagulation|blood cell count|egfr.*blood|wbc differential/)) return { short: 'PDF 7: Diagnostic Hematology', full: '300L_DIAGNOSTIC_HEMATOLOGY_VOL_I.pdf' };
-      if (text.match(/lft|rft|liver|kidney|creatinine|urea|bilirubin|electrolyte|metabolic|serum protein|clinical chemistry|urine test|egfr calculator|ckd-epi/)) return { short: 'PDF 8: Clinical Biochemistry', full: '300L_CLINICAL_BIOCHEMISTRY_SYSTEMS.pdf' };
-      if (text.match(/bacteria|virus|microbiology|culture|media preparation|aerobic|biochemical reaction|gram stain|antibiotic|sensitivity/)) return { short: 'PDF 9: Medical Microbiology', full: '300L_MEDICAL_MICROBIOLOGY_TECHNIQUES.pdf' };
-      if (text.match(/histopathology|tissue processing|microtomy|biopsy|staining|fixation/)) return { short: 'PDF 10: Histopathology', full: '400L_HISTOPATHOLOGY_TISSUE_PROCESSING.pdf' };
-      if (text.match(/parasite|parasitology|helminth|protozoa|fecal|stool|vector|malaria|amoeba|giardia/)) return { short: 'PDF 11: Parasitology & Vectors', full: '400L_MEDICAL_PARASITOLOGY_VECTORS.pdf' };
-      if (text.match(/immunology|serology|elisa|antibody|antigen|latex|vdrl|widal|hiv screening|hepatitis screen/)) return { short: 'PDF 12: Immunology & Serology', full: '400L_IMMUNOLOGY_SEROLOGY_DIAGNOSTICS.pdf' };
-      if (text.match(/blood transfusion|blood bank|cross.?match|coombs|antibody titration|blood group|storage|donor|compatibility/)) return { short: 'PDF 13: Blood Transfusion', full: '500L_BLOOD_TRANSFUSION_SCIENCES.pdf' };
-      if (text.match(/lab informatics|lis|informatics|laboratory network|database|system interface|laboratory software/)) return { short: 'PDF 14: Lab Informatics', full: '500L_CLINICAL_LAB_INFORMATICS.pdf' };
-      if (text.match(/epidemiology|research|thesis|outbreak|surveillance|medical math|sampling|statistics|study design/)) return { short: 'PDF 15: Epidemiology & Thesis', full: '500L_EPIDEMIOLOGY_RESEARCH_THESIS.pdf' };
-      if (text.match(/anatomy|physiology|organ system|endocrine|renal physiology|heart|circulation|respiratory/)) return { short: 'PDF 5: Anatomy & Physiology', full: '200L_BASIC_ANATOMY_PHYSIOLOGY_METRICS.pdf' };
-      if (text.match(/organic|metabolism|carbohydrate|lipid|protein metabolism|enzyme|krebs|glycolysis/)) return { short: 'PDF 6: Organic Biochemistry', full: '200L_ORGANIC_BIOCHEMISTRY_FOUNDATIONS.pdf' };
-      if (text.match(/analytical|blood collection|anticoagulant|edta|phlebotomy|safety|lab metrics|quality control|measurement/)) return { short: 'PDF 4: Analytical Lab Metrics', full: '200L_ANALYTICAL_LAB_METRICS_MANUAL.pdf' };
-      if (text.match(/medical chemistry|atomic|buffer|mole|solution|ph|subshell|electron|matrix formula/)) return { short: 'PDF 1: Medical Chemistry', full: '100L_INTRODUCTION_TO_MEDICAL_CHEMISTRY.pdf' };
-      if (text.match(/cellular biology|cell biology|membrane|nucleus|genetic transcription|tissue classification|cell interaction/)) return { short: 'PDF 2: Cellular Biology', full: '100L_CELLULAR_BIOLOGY_CORE_BASICS.pdf' };
-      if (text.match(/medical physics|fluid mechanics|radioactive|isotope|transducer|biomedical physics/)) return { short: 'PDF 3: Medical Physics', full: '100L_FOUNDATIONAL_MEDICAL_PHYSICS.pdf' };
-      return null;
-    }
-
-    const pdfMatch = getPdfRecommendation(userQuestion, lastTopic);
-    const recentHistory = history.slice(-12);
-
-    const systemInstruction = `You are TRUST AI LAB ASSISTANT - Global Pro Lecturer AI for MLS, Health, AI, Use of English.
-CATALOG OF 15 REAL PDFs (FOR SYSTEM USE ONLY - DO NOT LIST IN ANSWER):
-1. 100L_INTRODUCTION_TO_MEDICAL_CHEMISTRY.pdf
-2. 100L_CELLULAR_BIOLOGY_CORE_BASICS.pdf
-3. 100L_FOUNDATIONAL_MEDICAL_PHYSICS.pdf
-4. 200L_ANALYTICAL_LAB_METRICS_MANUAL.pdf
-5. 200L_BASIC_ANATOMY_PHYSIOLOGY_METRICS.pdf
-6. 200L_ORGANIC_BIOCHEMISTRY_FOUNDATIONS.pdf
-7. 300L_DIAGNOSTIC_HEMATOLOGY_VOL_I.pdf
-8. 300L_CLINICAL_BIOCHEMISTRY_SYSTEMS.pdf
-9. 300L_MEDICAL_MICROBIOLOGY_TECHNIQUES.pdf
-10. 400L_HISTOPATHOLOGY_TISSUE_PROCESSING.pdf
-11. 400L_MEDICAL_PARASITOLOGY_VECTORS.pdf
-12. 400L_IMMUNOLOGY_SEROLOGY_DIAGNOSTICS.pdf
-13. 500L_BLOOD_TRANSFUSION_SCIENCES.pdf
-14. 500L_CLINICAL_LAB_INFORMATICS.pdf
-15. 500L_EPIDEMIOLOGY_RESEARCH_THESIS.pdf
-
-LANGUAGE RULE: Default Simple English. If user Pidgin like "abeg, wetin, break am", first explain simple English, then ASK: "Would you like me to explain in Pidgin? Type Yes or No." If YES -> Pidgin + MLS terms.
-FORMATTING: NEVER USE ### or ##. Use ONLY 1️⃣ 2️⃣ 3️⃣ for headings, - for bullets, **bold** for key terms.
-PRO LECTURER STRUCTURE - FOR EVERY ANSWER MUST INCLUDE:
-1️⃣ Definition / Overview
-2️⃣ Key Points / Types / Causes / Normal Values
-3️⃣ Clinical / Lab Significance
-4️⃣ ⚠️ EXAM TRAP ALERT: 2 traps
-5️⃣ 🧠 EXAM HACK: 1-2 mnemonics
-6️⃣ Simple English Summary
-End with: 💡 Type "more" for full textbook lecture + more traps & hacks. 👉 Related: Want to explore "[relevant subtopic]"? Type Yes / No.
-IMPORTANT: Do NOT mention any PDF inside your lecture. Do NOT add "Recommended PDF". System footer will handle it. You focus only on lecture content.
-ALLOWED: MLS, Health, Medicine, AI basics, Use of English. TONE: Lecturer, friendly.`;
-
-    const messages = [{ role: 'system', content: systemInstruction },...recentHistory, { role: 'user', content: finalPrompt }];
-
-    const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-      method: 'POST',
-      headers: { 'Authorization': `Bearer ${groqKey}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ model: 'openai/gpt-oss-20b', messages, temperature: 0.38, max_tokens: tokenSize })
-    });
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.error?.message || 'Groq error');
-    let cleanAnswer = data.choices[0].message.content.replace(/###/g, '').replace(/##/g, '').replace(/^#+\s/gm, '').trim();
-
-    let promoFooter;
-    if (pdfMatch) {
-      promoFooter = `\n\n---\n📚 Love this topic? Keep it!\nFor this exact topic, get:\n**${pdfMatch.short}**\n(${pdfMatch.full})\n⬇️ Scroll up ☝️ Top of page - Tap Get File! 🧬`;
+    if (isNo) {
+      return res.status(200).json({ 
+        status: 'online', 
+        answer: `Session status: Suspended.\n\nYou may resume at any point by submitting a valid Medical Laboratory Science parameter or clinical asset screenshot.`,
+        topic: lastTopic || 'Session Terminated'
+      });
+    } else if (isYes) {
+      finalPrompt = `The user requested to proceed with the exploration of the previous context. Prior topic: ${lastTopic}. Deepen the academic exploration by expanding into advanced diagnostic variations, specific clinical protocols, and analytical abnormalities.`;
+    } else if (isInformalInput) {
+      finalPrompt = `The user has submitted an informal query: "${userQuestion}". Extract the core medical or laboratory concept beneath the informal phrasing, and deliver a comprehensive, high-clarity academic breakdown of that concept. Prior topic context: ${lastTopic}.`;
     } else {
-      promoFooter = `\n\n---\n📚 Love this lecture? Keep it!\n⬇️ Browse 15 PDFs at top - Use search bar for your topic!\n☝️ Scroll up to get your copy! 🧬`;
+      finalPrompt = `Provide an exhaustive, high-density academic textbook-grade briefing covering all foundational dimensions, methodologies, clinical insights, and advanced diagnostics for: ${userQuestion}`;
+      }
+          // --- MODERN CLINICAL AI SYSTEM ARCHITECTURE ---
+    const systemInstruction = `You are an expert clinical intelligence system specialized in Medical Laboratory Science (MLS), pathological analysis, and diagnostic health sciences. Your architecture enforces an objective, rigorous, and neutral tone, matching modern institutional medical AI models.
+
+CRITICAL INLINE MARKUP AND CONTROLS:
+- DO NOT use markdown heading tags (do not use '#', '##', or '###').
+- DO NOT use any icons, emoticons, or emojis.
+- Sections must be demarcated using clean Roman Numerals (e.g., I., II., III., IV., V., VI.) followed by bold headings.
+- Bullet points must exclusively utilize simple dashes ('-').
+- Use inline bold text ('**text**') on key diagnostics, laboratory parameters, and metrics to ensure clear visual scannability.
+
+REQUIRED CLINICAL BREAKDOWN LAYOUT:
+Every medical or laboratory response must follow this structural framework precisely, providing exhaustive, textbook-grade clarity without truncation:
+
+I. Core Definition and Physiological Overview: Establish an authoritative overview of the analyte, biological pathway, or cellular structure with clinical precision.
+
+II. Reference Intervals and Pathological Variances: Present established reference ranges, metrics, and standard international (SI) units. List clear biological variations causing values to elevate or depress.
+
+III. Diagnostic Methodologies and Laboratory Significance: Outline laboratory testing methods, equipment, specimen criteria, potential technical interferences, and analytical interpretation protocols.
+
+IV. Certification Board Examination Traps: Identify exactly 2 advanced diagnostic subtleties, calculation tricks, or differential traps frequently used to test candidates in professional council and licensure examinations.
+
+V. High-Recall Mnemonic Formats: Deliver 1 or 2 direct, professional mnemonic configurations or diagnostic patterns to facilitate immediate retention.
+
+VI. Analytical Synthesis: Conclude with a high-density, 2-to-3 line operational wrap-up detailing the absolute clinical core of the subject.
+
+PROACTIVE ENGAGEMENT SEQUENCE:
+Conclude your output exactly with this text block:
+"Submit 'more' for an advanced, textbook-grade lecture expansion featuring comprehensive diagnostic breakdowns. Alternatively, indicate if you want to explore a related aspect of this topic."
+
+STRICT SCOPE RESTRAINT:
+If an uploaded file or input text lacks clinical diagnostic utility or completely falls outside of MLS, medicine, or health science, state: 'System Restraint: The attached file or query does not contain medical laboratory or clinical health criteria. Please provide an active specimen film, diagnostic chart, or laboratory study asset.'`;
+       // --- STAGE 3: ASSEMBLE ARCHITECTURE PAYLOAD ---
+    let groqMessages = [{ role: 'system', content: systemInstruction }];
+
+    // Rehydrate conversational thread history for continuity
+    if (history && history.length > 0) {
+      history.slice(-10).forEach(msg => {
+        groqMessages.push({
+          role: msg.role === 'user' ? 'user' : 'assistant',
+          content: msg.content || msg.text || msg.answer || ''
+        });
+      });
     }
 
-    cleanAnswer = cleanAnswer + promoFooter;
-    return res.status(200).json({ status: 'online', answer: cleanAnswer });
-  } catch (e) {
-    console.error(e);
-    return res.status(500).json({ error: e.message });
+    // Dynamic vision selection based on client side data streams
+    const activeModel = attachment ? 'llama-3.2-11b-vision-preview' : 'llama-3.3-70b-specdec';
+
+    if (attachment) {
+      groqMessages.push({
+        role: 'user',
+        content: [
+          { type: 'text', text: finalPrompt },
+          { type: 'image_url', image_url: { url: attachment } }
+        ]
+      });
+    } else {
+      groqMessages.push({ role: 'user', content: finalPrompt });
+    }
+
+    // --- STAGE 4: EXECUTE INFERENCE ENGINE ---
+    const completion = await groq.chat.completions.create({
+      model: activeModel,
+      messages: groqMessages,
+      max_tokens: tokenSize,
+      temperature: 0.1
+    });
+
+    const generatedOutput = completion.choices.message.content;
+
+    // Return successfully structured response to frontend interface
+    return res.status(200).json({
+      status: 'online',
+      answer: generatedOutput,
+      topic: lastTopic || userQuestion
+    });
+
+  } catch (error) {
+    console.error('System Inference Failure:', error);
+    
+    // Safety fallback payload for client side notification container
+    return res.status(500).json({
+      error: 'The new app AI endpoint is unavailable for attachments. Deploy api/chat.js and verify GROQ_API_KEY.',
+      details: error.message
+    });
   }
-                       }
+      }
