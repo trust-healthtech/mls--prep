@@ -26,7 +26,7 @@ export default async function handler(req, res) {
     let finalPrompt = userQuestion;
     let tokenSize = 2500; 
 
-    // --- STAGE 1: STRICT MEDICAL / MLS SCOPE VALIDATION ---
+    // --- STAGE 1: MEDICAL AND SCOPE VALIDATION ENGINE ---
     const medicalKeywords = [
       'anemia', 'hemoglobin', 'pcv', 'wbc', 'rbc', 'hematology', 'blood', 'platelet', 'marrow', 'esr', 'clotting', 'coagulation',
       'lft', 'rft', 'liver', 'kidney', 'creatinine', 'urea', 'bilirubin', 'electrolyte', 'metabolic', 'serum', 'urine', 'egfr',
@@ -37,7 +37,6 @@ export default async function handler(req, res) {
       'explain', 'what', 'how', 'why', 'lecture', 'define', 'test', 'microscope', 'serological', 'count', 'indices', 'mcv', 'mch', 'mchc'
     ];
 
-    // Check history or active topic for continuity if the query is very brief (e.g. "yes", "more")
     const shortInputExceptions = ['yes', 'y', 'more', 'explain', 'continue', 'proceed', 'ok', 'okay', 'no', 'stop'];
     const isException = shortInputExceptions.includes(lower);
     const hasMedicalContext = medicalKeywords.some(keyword => lower.includes(keyword)) || 
@@ -74,8 +73,9 @@ export default async function handler(req, res) {
       finalPrompt = `The user has submitted an informal query: "${userQuestion}". Extract the core medical or laboratory concept beneath the informal phrasing, and deliver a comprehensive, high-clarity academic breakdown of that concept. Prior topic context: ${lastTopic}.`;
     } else {
       finalPrompt = `Provide an exhaustive, high-density academic textbook-grade briefing covering all foundational dimensions, methodologies, clinical insights, and advanced diagnostics for: ${userQuestion}`;
-      }
-          // --- MODERN CLINICAL AI SYSTEM ARCHITECTURE ---
+    }
+
+    // --- STAGE 3: MODERN CLINICAL SYSTEM INSTRUCTIONS ---
     const systemInstruction = `You are an expert clinical intelligence system specialized in Medical Laboratory Science (MLS), pathological analysis, and diagnostic health sciences. Your architecture enforces an objective, rigorous, and neutral tone, matching modern institutional medical AI models.
 
 CRITICAL INLINE MARKUP AND CONTROLS:
@@ -106,10 +106,10 @@ Conclude your output exactly with this text block:
 
 STRICT SCOPE RESTRAINT:
 If an uploaded file or input text lacks clinical diagnostic utility or completely falls outside of MLS, medicine, or health science, state: 'System Restraint: The attached file or query does not contain medical laboratory or clinical health criteria. Please provide an active specimen film, diagnostic chart, or laboratory study asset.'`;
-       // --- STAGE 3: ASSEMBLE ARCHITECTURE PAYLOAD ---
+
+    // --- STAGE 4: ASSEMBLE ARCHITECTURE PAYLOAD ---
     let groqMessages = [{ role: 'system', content: systemInstruction }];
 
-    // Rehydrate conversational thread history for continuity
     if (history && history.length > 0) {
       history.slice(-10).forEach(msg => {
         groqMessages.push({
@@ -119,8 +119,7 @@ If an uploaded file or input text lacks clinical diagnostic utility or completel
       });
     }
 
-    // Dynamic vision selection based on client side data streams
-    const activeModel = attachment ? 'llama-3.2-11b-vision-preview' : 'llama-3.3-70b-specdec';
+    const activeModel = attachment ? 'llama-3.2-11b-vision-preview' : 'llama-3.3-70b-versatile';
 
     if (attachment) {
       groqMessages.push({
@@ -134,7 +133,7 @@ If an uploaded file or input text lacks clinical diagnostic utility or completel
       groqMessages.push({ role: 'user', content: finalPrompt });
     }
 
-    // --- STAGE 4: EXECUTE INFERENCE ENGINE ---
+    // --- STAGE 5: EXECUTE INFERENCE ENGINE ---
     const completion = await groq.chat.completions.create({
       model: activeModel,
       messages: groqMessages,
@@ -144,7 +143,6 @@ If an uploaded file or input text lacks clinical diagnostic utility or completel
 
     const generatedOutput = completion.choices.message.content;
 
-    // Return successfully structured response to frontend interface
     return res.status(200).json({
       status: 'online',
       answer: generatedOutput,
@@ -153,11 +151,10 @@ If an uploaded file or input text lacks clinical diagnostic utility or completel
 
   } catch (error) {
     console.error('System Inference Failure:', error);
-    
-    // Safety fallback payload for client side notification container
     return res.status(500).json({
       error: 'The new app AI endpoint is unavailable for attachments. Deploy api/chat.js and verify GROQ_API_KEY.',
       details: error.message
     });
   }
       }
+    
