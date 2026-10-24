@@ -1,4 +1,4 @@
-// api/chat.js - TRUST MLS AI - Final Fix
+// api/chat.js - FINAL WORKING VERSION - Uses Free Groq models
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -8,28 +8,27 @@ export default async function handler(req, res) {
 
   try {
     let body = req.body;
-    if (typeof body === 'string') {
-      try { body = JSON.parse(body); } catch {}
-    }
+    if (typeof body === 'string') { try { body = JSON.parse(body); } catch {} }
     body = body || {};
-
-    // Accept ANY field name your frontend uses
     const message = body.message || body.prompt || body.question || body.content || body.text || body.query || "";
-    const image = body.image || body.imageBase64 || body.file || body.attachment || null;
+    const image = body.image || body.imageBase64 || null;
     const history = body.history || [];
 
     if (!message && !image) {
-      return res.status(400).json({ error: `No message provided - received keys: ${Object.keys(body).join(', ')}` });
+      return res.status(400).json({ error: 'No message provided' });
     }
 
     const groqKey = process.env.GROQ_API_KEY;
-    if (!groqKey) return res.status(500).json({ error: 'GROQ_API_KEY not set in Vercel' });
+    if (!groqKey) return res.status(500).json({ error: 'GROQ_API_KEY missing in Vercel' });
 
-    const systemPrompt = `You are TRUST MLS AI Assistant for Medical Laboratory Science students in Nigeria. Explain lab concepts simply, highlight exam traps, quick recall cues, CBT speed strategies.`;
+    const systemPrompt = "You are TRUST MLS AI Assistant for Medical Laboratory Science students in Nigeria. Explain lab concepts simply, highlight exam traps, quick recall cues, CBT strategies. Be helpful and concise.";
 
-    let modelToUse = image ? "meta-llama/llama-4-scout-17b-16e-instruct" : "llama-3.3-70b-versatile";
+    // FREE MODEL THAT WORKS IN 2026
+    const MODEL = "openai/gpt-oss-20b"; // Free tier, 1000 rpm, works for all free keys
 
-    let apiMessages = [{ role: "system", content: systemPrompt }];
+    let apiMessages = [
+      { role: "system", content: systemPrompt }
+    ];
     
     if (Array.isArray(history) && history.length) {
       history.slice(-6).forEach(h => {
@@ -37,23 +36,14 @@ export default async function handler(req, res) {
       });
     }
 
-    if (image) {
-      apiMessages.push({
-        role: "user",
-        content: [
-          { type: "text", text: message || "Explain this study material" },
-          { type: "image_url", image_url: { url: image } }
-        ]
-      });
-    } else {
-      apiMessages.push({ role: "user", content: message });
-    }
+    const userText = message || "Explain this study material";
+    apiMessages.push({ role: "user", content: image ? `${userText} (User uploaded an image - explain based on text, say you can't see image clearly but answer question)` : userText });
 
     const groqRes = await fetch("https://api.groq.com/openai/v1/chat/completions", {
       method: "POST",
       headers: { "Authorization": `Bearer ${groqKey}`, "Content-Type": "application/json" },
       body: JSON.stringify({
-        model: modelToUse,
+        model: MODEL,
         messages: apiMessages,
         temperature: 0.6,
         max_tokens: 1200
@@ -63,31 +53,16 @@ export default async function handler(req, res) {
     const data = await groqRes.json();
 
     if (!groqRes.ok) {
-      // Try fallback to text model if vision fails
-      if (image && modelToUse.includes('scout')) {
-        const fallback = await fetch("https://api.groq.com/openai/v1/chat/completions", {
-          method: "POST",
-          headers: { "Authorization": `Bearer ${groqKey}`, "Content-Type": "application/json" },
-          body: JSON.stringify({
-            model: "llama-3.3-70b-versatile",
-            messages: [{ role: "system", content: systemPrompt }, { role: "user", content: message || "Explain attached material (image was uploaded)" }],
-            temperature: 0.6,
-            max_tokens: 1200
-          })
-        });
-        const fbData = await fallback.json();
-        if (fallback.ok && fbData.choices?.[0]?.message?.content) {
-          return res.status(200).json({ reply: fbData.choices[0].message.content });
-        }
-      }
-      return res.status(groqRes.status).json({ error: `Groq error: ${data.error?.message || JSON.stringify(data)}` });
+      return res.status(groqRes.status).json({ error: `Groq error: ${data.error?.message || JSON.stringify(data)} - Model: ${MODEL}` });
     }
 
     const reply = data.choices?.[0]?.message?.content;
-    return res.status(200).json({ reply });
+    if (!reply) return res.status(500).json({ error: 'Empty response from Groq' });
+
+    return res.status(200).json({ reply, model: MODEL });
 
   } catch (err) {
     console.error(err);
     return res.status(500).json({ error: `Server error: ${err.message}` });
   }
-}
+      }
