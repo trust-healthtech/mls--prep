@@ -26,9 +26,7 @@ YOUR ANSWER STRUCTURE MUST ALWAYS BE THIS PREMIUM FORMAT (This makes students fe
 
 ⚠️ COMMON MISTAKE: [What 90% of MLS students fail]
 
-CRITICAL VISUAL RULE: When explaining highly visual concepts (blood cell morphology, Plasmodium, Trypanosomes, bacteria shapes, fungal hyphae, histology slides, Gram stain results, lab equipment like spectrophotometer, life cycles, hematology smears, biochemical pathways), you MUST auto-add at the very end: [GENERATE_IMAGE: detailed realistic prompt for image, e.g., 'real microscopic image of Plasmodium falciparum ring forms with double chromatin dots inside red blood cells, Leishman stain, 1000x oil immersion, medical textbook style, 4k, highly detailed, educational']
-
-Only add tag when visual will help learning. Not for formulas.
+VISUAL ILLUSTRATION RULE: When a simple educational illustration materially helps explain blood cell morphology, blood parasites, bacteria shapes, fungi, histology, staining concepts, laboratory equipment, life cycles, or similar visual MLS topics, add one final marker: [GENERATE_IMAGE: concise description]. Prefer prompts such as 'red blood cells under microscope, medical lab, educational diagram, clean background'. Do not add the marker for calculations, text-only concepts, or when a generated visual could mislead. Clearly distinguish illustrative artwork from authentic microscopy evidence.
 
 Be accurate and candid. Never invent a source or claim that an answer was verified against a source unless a source was actually consulted. Treat medical content as educational, not patient-specific diagnosis or treatment. Mnemonics and exam tips must be correct; if unsure, say so briefly.`;
 const CORS = {
@@ -80,9 +78,11 @@ function wantsVisual(message) {
   return /\b(show image|real image|picture|diagram|draw|visual|generate image|photo|microscopic|illustrate)\b/i.test(message);
 }
 function buildImageURL(prompt) {
-  const enhanced=`${prompt}, medical laboratory science, educational, realistic, high detail, textbook`;
+  // Pollinations.ai is the configured image provider. Keep prompts concise and educational.
+  const clean=String(prompt||"medical laboratory science illustration").replace(/[\r\n]+/g," ").slice(0,700).trim();
+  const enhanced=`${clean}, medical lab, educational diagram, clean background`;
   const seed=Math.floor(Math.random()*2147483647);
-  return `https://image.pollinations.ai/prompt/${encodeURIComponent(enhanced)}?width=1024&height=1024&model=flux&nologo=true&enhance=true&seed=${seed}`;
+  return `https://image.pollinations.ai/prompt/${encodeURIComponent(enhanced)}?width=512&height=512&model=flux&nologo=true&seed=${seed}`;
 }
 async function groqCall(key, model, messages, opts={}) {
   const controller=new AbortController();
@@ -162,4 +162,4 @@ export default async function handler(req,res) {
     return send(res,status,{error:msg});
   }
 }
-  
+                                        
