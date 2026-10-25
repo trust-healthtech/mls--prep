@@ -1,7 +1,7 @@
-// api/chat.js — THT MLS PREP — FINAL PRODUCTION 2026 - NO LEAK VERSION
+// api/chat.js — THT MLS PREP — FIXED FOR 1 GROQ KEY + REAL AMOEBA
 const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
 const TEXT_MODEL = process.env.GROQ_TEXT_MODEL || "openai/gpt-oss-20b";
-const VISION_MODEL = process.env.GROQ_VISION_MODEL || "meta-llama/llama-4-scout-17b-16e-instruct";
+const VISION_MODEL = process.env.GROQ_VISION_MODEL || "meta-llama/llama-4-maverick-17b-128e-instruct";
 const MAX_DOC_CHARS = 90000;
 const MAX_IMAGE_DATA_URL_CHARS = 1350000;
 
@@ -76,11 +76,15 @@ const responseFields = (t) => ({ reply: t, answer: t, response: t, text: t, mess
 const wantsVisual = (m) => /\b(show image|image of|picture|diagram|draw|visual|generate image|photo|microscopic|illustrate|morphology|amoeba)\b/i.test(m || "");
 
 const buildImageURL = (p) => {
-  // CLEAN SAFE PROMPT - max 70 chars, no special chars that create %20 leak
   let safe = String(p || "medical lab illustration").replace(/[^a-zA-Z0-9 ]/g, " ").replace(/\s+/g, " ").trim().slice(0, 70);
-  if (!safe) safe = "medical laboratory science";
-  const enhanced = `${safe}, educational diagram`;
-  return `https://image.pollinations.ai/prompt/${encodeURIComponent(enhanced)}?width=512&height=512&model=flux&nologo=true&seed=${Math.floor(Math.random() * 1000000)}`;
+  if (!safe) safe = "medical lab illustration";
+  let enhanced = safe;
+  if (/amoeba/i.test(safe)) {
+    enhanced = `realistic Entamoeba histolytica trophozoite with pseudopods under light microscope, ${safe}, medical laboratory science, MLS microbiology`;
+  } else {
+    enhanced = `${safe}, realistic medical illustration, MLS textbook, high detail, microscope view`;
+  }
+  return `https://image.pollinations.ai/prompt/${encodeURIComponent(enhanced)}?width=1024&height=1024&model=flux&nologo=true&enhance=true&seed=${Math.floor(Math.random() * 1000000)}`;
 };
 
 async function groqCall(k, model, messages, opts = {}) {
@@ -136,18 +140,21 @@ export default async function handler(req, res) {
     let answer;
     if (images.length) {
       const content = [{ type: "text", text: prompt }, ...images.map(u => ({ type: "image_url", image_url: { url: u } }))];
-      answer = await groqCall(key, VISION_MODEL, [{ role: "system", content: SYSTEM_PROMPT }, ...prior, { role: "user", content }], {});
+      try {
+        answer = await groqCall(key, VISION_MODEL, [{ role: "system", content: SYSTEM_PROMPT }, ...prior, { role: "user", content }], {});
+      } catch (e) {
+        // Fallback if maverick not available
+        answer = await groqCall(key, "llama-3.2-90b-vision-preview", [{ role: "system", content: SYSTEM_PROMPT }, ...prior, { role: "user", content }], {});
+      }
     } else {
       answer = await groqCall(key, TEXT_MODEL, [{ role: "system", content: SYSTEM_PROMPT }, ...prior, { role: "user", content: prompt }], {});
     }
 
-    // FINAL CLEAN IMAGE GENERATION - NO LEAK
     const tag = /\[GENERATE_IMAGE:\s*([\s\S]*?)\s*\]/i;
     const m = answer.match(tag);
     let finalText = answer;
 
     if (m) {
-      // Take only first 8 words, clean special chars
       let rawPrompt = m[1].trim().split(/\s+/).slice(0, 8).join(" ").replace(/[^a-zA-Z0-9 ]/g, " ").trim();
       if (!rawPrompt) rawPrompt = "medical lab illustration";
       const url = buildImageURL(rawPrompt);
@@ -157,7 +164,6 @@ export default async function handler(req, res) {
       finalText += `\n\n![Visual](${buildImageURL(rawPrompt)})\n\n`;
     }
 
-    // EXTRA SAFETY: Remove any accidental %20 or width= leaks that model might have generated
     finalText = finalText.replace(/%20[a-z0-9%]{5,}/gi, "")
                          .replace(/\?width=\d+&height=\d+[^\s\)]*/gi, "")
                          .replace(/width=\d+&height=\d+&model=flux[^\s\)]*/gi, "");
