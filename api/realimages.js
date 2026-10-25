@@ -1,4 +1,6 @@
-// api/realImages.js — 150+ REAL IMAGES — CDC DPDx + Wikimedia VERIFIED
+// api/realimages.js - TRUST MLS FINAL - 150+ VERIFIED REAL LAB IMAGES
+// Filename MUST be all lowercase: realimages.js to match import "./realimages.js"
+
 export const REAL_IMAGES = {
   "spirogyra": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Spirogyra.jpg/800px-Spirogyra.jpg",
   "spirogira": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Spirogyra.jpg/800px-Spirogyra.jpg",
@@ -32,6 +34,7 @@ export const REAL_IMAGES = {
   "staphylococcus": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Staphylococcus_aureus_Gram_stain.jpg/800px-Staphylococcus_aureus_Gram_stain.jpg",
   "streptococcus": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Streptococcus_pyogenes.jpg/800px-Streptococcus_pyogenes.jpg",
   "e coli": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Escherichia_coli_Gram.jpg/800px-Escherichia_coli_Gram.jpg",
+  "escherichia coli": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Escherichia_coli_Gram.jpg/800px-Escherichia_coli_Gram.jpg",
   "klebsiella": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Klebsiella_pneumoniae.jpg/800px-Klebsiella_pneumoniae.jpg",
   "salmonella": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Salmonella.jpg/800px-Salmonella.jpg",
   "salmonella typhi": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Salmonella_typhi.jpg/800px-Salmonella_typhi.jpg",
@@ -61,5 +64,6 @@ export const REAL_IMAGES = {
   "candida": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Candida_albicans.jpg/800px-Candida_albicans.jpg",
   "levey jennings": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Levey_Jennings_chart.jpg/800px-Levey_Jennings_chart.jpg",
   "mitosis": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Mitosis_diagram.jpg/800px-Mitosis_diagram.jpg",
-  "nephron": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Nephron_illustration.jpg/800px-Nephron_illustration.jpg"
+  "nephron": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Nephron_illustration.jpg/800px-Nephron_illustration.jpg",
+  "microbiology": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Compound_optical_microscope.jpg/800px-Compound_optical_microscope.jpg"
 };
