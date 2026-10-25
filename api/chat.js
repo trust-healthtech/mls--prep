@@ -1,42 +1,40 @@
 // ============================================================
-// TRUST HEALTH TECH
-// TRUST MLS AI ASSISTANT — PRODUCTION API — FIXED
-// Academic Session: 2026/2027
-// Platform: Vercel Serverless Functions
-// Provider: Groq
-//
-// TEXT MODEL: llama-3.1-8b-instant (stable, all keys)
-// VISION MODEL: llama-3.2-11b-vision-preview (works for all keys)
+// TRUST HEALTH TECH — FINAL PRO 2026/2027
+// TEXT: openai/gpt-oss-20b + fallback llama-3.3-70b-versatile
+// VISION: meta-llama/llama-4-scout + fallback qwen/qwen3-32b
+// Provider: Groq — auto fallback if model not allowed
 // ============================================================
 
 const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
 
-const TEXT_MODEL = "llama-3.1-8b-instant";
+const TEXT_MODELS = [
+  "openai/gpt-oss-20b",
+  "llama-3.3-70b-versatile",
+  "llama-3.1-8b-instant"
+];
 
-const VISION_MODEL = "llama-3.2-11b-vision-preview";
+const VISION_MODELS = [
+  "meta-llama/llama-4-scout-17b-16e-instruct",
+  "qwen/qwen3-32b",
+  "meta-llama/llama-4-maverick-17b-128e-instruct"
+];
 
 const MAX_MESSAGE = 6000;
 const MAX_DOC_TEXT = 15000;
 const MAX_HISTORY = 10;
 const MAX_IMAGE_BASE64 = 1250000;
 
-const SYSTEM_PROMPT = `You are TRUST MLS AI Assistant - MLS and Sciences expert. You CAN receive and analyze images and documents - up to 2 images or 1 doc per request. Never say you can't accept uploads. If user asks "Can I upload here", say: Yes, use + button below to upload up to 2 images (blood smear, CBC, plate) OR 1 PDF/DOCX/TXT (100MB max).
+const SYSTEM_PROMPT = `You are TRUST MLS AI Assistant - MLS and Sciences expert. You CAN and DO receive images and documents via the + button. NEVER say you can't accept uploads. If asked "Can I upload?" say: Yes, tap + below — up to 2 images (JPG/PNG) or 1 PDF/DOCX/TXT 100MB.
 
 Explain clearly with markdown headings, bold, lists, tables, emojis 🔬🧬🩸✅. No image generation.
 
-Scope: MLS and Sciences only. Discuss health topics only as clinical correlation in an MLS context.
+For formulas NEVER use LaTeX \\( \\) \\displaystyle. Use plain: MCV (fL) = [Hct (%) / RBC (x10^6/uL)] x 10.
 
-Accuracy: Be precise and honest. Never invent facts. If uncertain, say so.
-
-Teaching style: Explain clearly using headings, bold terms, lists, equations, and tables when useful. For formulas NEVER use LaTeX \\( \\displaystyle \\frac{}{} \\). Use plain text: MCV (fL) = [Hct (%) / RBC (x10^6/uL)] x 10. Adapt depth to student.
-
-Clinical boundaries: Educational assistant, not clinician. Do not diagnose individuals.
-
-Uploaded materials: Describe only what is actually visible or readable. Do not invent details. Explain limitations when needed.
-
-Conversation: Use supplied chat history as context.
-
-Core mission: Deliver accurate, useful MLS and Sciences education.`;
+Scope: MLS and Sciences only. Discuss health topics only as clinical correlation.
+Be precise, honest. Never invent references or standards.
+Teaching style: headings, bold terms, lists, tables when useful.
+Uploaded materials: Describe only what is actually visible. Do not invent.
+Core mission: Deliver accurate MLS education.`;
 
 class ServiceError extends Error {
   constructor(message, status = 502) {
@@ -48,51 +46,64 @@ class ServiceError extends Error {
 
 function safeHistory(history) {
   if (!Array.isArray(history)) return [];
-  return history.slice(-MAX_HISTORY).filter((item) => item && ["user", "assistant"].includes(item.role) && typeof item.content === "string" && item.content.trim()).map((item) => ({ role: item.role, content: item.content.trim().slice(0, 6000) }));
+  return history.slice(-MAX_HISTORY).filter(item => item && ["user","assistant"].includes(item.role) && typeof item.content === "string" && item.content.trim()).map(item => ({ role: item.role, content: item.content.trim().slice(0,6000) }));
 }
 
 function normalizeImage(item) {
   if (typeof item === "string") return { data: item, mime: "image/jpeg" };
   if (!item || typeof item !== "object" || typeof item.data !== "string") return null;
   const mime = typeof item.mime === "string" ? item.mime.toLowerCase() : "image/jpeg";
-  const supportedMimeTypes = ["image/jpeg", "image/png", "image/webp"];
-  if (!supportedMimeTypes.includes(mime)) throw new ServiceError("Unsupported image format after compression. Use JPG, PNG, or WEBP.", 400);
+  const supported = ["image/jpeg","image/png","image/webp"];
+  if (!supported.includes(mime)) throw new ServiceError("Unsupported image format. Use JPG, PNG, or WEBP.",400);
   return { data: item.data, mime };
 }
 
-async function callGroq(apiKey, model, messages, maxTokens) {
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), 55000);
-  let response;
-  try {
-    response = await fetch(GROQ_URL, {
-      method: "POST",
-      headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
-      body: JSON.stringify({ model, messages, temperature: 0.35, max_tokens: maxTokens, top_p: 0.9 }),
-      signal: controller.signal,
-    });
-  } catch (error) {
-    if (error && error.name === "AbortError") throw new ServiceError("The AI request timed out. Please try again.", 504);
-    throw new ServiceError("Could not reach the AI service. Check your connection and retry.", 502);
-  } finally { clearTimeout(timer); }
-  const data = await response.json().catch(() => ({}));
-  if (!response.ok) {
-    if (response.status === 429) throw new ServiceError("Groq rate limit reached. Wait briefly, then retry.", 429);
-    const detail = data?.error?.message;
-    throw new ServiceError(typeof detail === "string" && detail.length < 300 ? `Groq request failed: ${detail}` : `Groq request failed (HTTP ${response.status}).`, 502);
+async function callGroqWithFallback(apiKey, models, messages, maxTokens) {
+  let lastError = null;
+  for (const model of models) {
+    try {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), 55000);
+      const res = await fetch(GROQ_URL, {
+        method: "POST",
+        headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
+        body: JSON.stringify({ model, messages, temperature: 0.35, max_tokens: maxTokens, top_p: 0.9 }),
+        signal: controller.signal,
+      }).finally(() => clearTimeout(timer));
+      
+      const data = await res.json().catch(()=>({}));
+      if (!res.ok) {
+        if (res.status === 429) throw new ServiceError("Groq rate limit reached. Wait briefly, then retry.",429);
+        const detail = data?.error?.message || `HTTP ${res.status}`;
+        // If model not exist / no access, try next model
+        if (detail.toLowerCase().includes("does not exist") || detail.toLowerCase().includes("decommissioned") || detail.toLowerCase().includes("not have access")) {
+          lastError = detail;
+          continue;
+        }
+        throw new ServiceError(`Groq request failed: ${detail}`,502);
+      }
+      const answer = data?.choices?.[0]?.message?.content;
+      if (typeof answer !== "string" || !answer.trim()) throw new ServiceError("Empty response. Please retry.",502);
+      return answer.trim();
+    } catch (e) {
+      if (e instanceof ServiceError) {
+        if (e.message.includes("does not exist") || e.message.includes("not have access")) { lastError = e.message; continue; }
+        throw e;
+      }
+      if (e?.name === "AbortError") throw new ServiceError("The AI request timed out. Please try again.",504);
+      lastError = e.message;
+    }
   }
-  const answer = data?.choices?.[0]?.message?.content;
-  if (typeof answer !== "string" || !answer.trim()) throw new ServiceError("The AI service returned an empty response. Please retry.", 502);
-  return answer.trim();
+  throw new ServiceError(`Groq request failed: ${lastError || "All models failed. Check GROQ_API_KEY in Vercel and regenerate at console.groq.com"}`,502);
 }
 
 export default async function handler(req, res) {
-  res.setHeader("Cache-Control", "no-store");
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS, GET");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.setHeader("Cache-Control","no-store");
+  res.setHeader("Access-Control-Allow-Origin","*");
+  res.setHeader("Access-Control-Allow-Methods","POST, OPTIONS, GET");
+  res.setHeader("Access-Control-Allow-Headers","Content-Type");
   if (req.method === "OPTIONS") return res.status(204).end();
-  if (req.method === "GET") return res.status(200).json({ status: "TRUST MLS AI available", scope: "MLS + Sciences", imageGeneration: false });
+  if (req.method === "GET") return res.status(200).json({ status: "TRUST MLS AI available", scope: "MLS + Sciences", models: { text: TEXT_MODELS, vision: VISION_MODELS } });
   if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
 
   const apiKey = process.env.GROQ_API_KEY;
@@ -122,25 +133,21 @@ export default async function handler(req, res) {
 
     const chatHistory = safeHistory(body.chatHistory);
     let userContent = message;
-    if (!userContent) {
-      userContent = images.length ? "Please examine the attached study image(s) and explain the visible MLS or Sciences concepts, including limitations. Do not guess if details are unclear." : "Please explain and summarize the uploaded study document, highlighting key MLS and Sciences concepts.";
-    }
+    if (!userContent) userContent = images.length ? "Please examine the attached study image(s) and explain the visible MLS or Sciences concepts, including limitations. Do not guess if details are unclear." : "Please explain and summarize the uploaded study document, highlighting key MLS and Sciences concepts.";
     if (docText) userContent += "\n\n[Extracted document text]\n" + docText;
 
     const messages = [{ role: "system", content: SYSTEM_PROMPT }, ...chatHistory, { role: "user", content: userContent }];
     let requestMessages = messages;
 
     if (images.length) {
-      const lastMessage = messages[messages.length - 1];
+      const lastMessage = messages[messages.length-1];
       const content = [{ type: "text", text: lastMessage.content }];
-      for (const image of images) {
-        content.push({ type: "image_url", image_url: { url: `data:${image.mime};base64,${image.data}` } });
-      }
-      requestMessages = [...messages.slice(0, -1), { role: "user", content }];
+      for (const image of images) content.push({ type: "image_url", image_url: { url: `data:${image.mime};base64,${image.data}` } });
+      requestMessages = [...messages.slice(0,-1), { role: "user", content }];
     }
 
-    const model = images.length ? VISION_MODEL : TEXT_MODEL;
-    const reply = await callGroq(apiKey, model, requestMessages, images.length ? 2300 : 2200);
+    const models = images.length ? VISION_MODELS : TEXT_MODELS;
+    const reply = await callGroqWithFallback(apiKey, models, requestMessages, images.length ? 2300 : 2200);
 
     return res.status(200).json({ reply, success: true });
   } catch (error) {
