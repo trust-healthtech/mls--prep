@@ -3,7 +3,7 @@ import { REAL_IMAGES } from "./realimages.js";
 const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
 const GROQ_MODEL = "openai/gpt-oss-20b";
 
-const SYSTEM_GREETING = "Hey there! 👋 Welcome to TRUST MLS AI 💎 What shall we dive into? 🔬 Microbiology 🦠 Parasitology 🩸 Haematology 🧪 Chemical Pathology 📚 Exam Prep - Ask me anything!";
+const SYSTEM_GREETING = "Hey there! 👋 Welcome to THT I am TRUST MLS AI 💎 What shall we dive into? 🔬 Microbiology 🦠 Parasitology 🩸 Haematology 🧪 Chemical Pathology 📚 Exam Prep - Ask me anything!";
 
 const SYSTEM_TUTOR = `You are TRUST MLS AI - Professional Medical Lab Science Tutor for Nigeria MLSCN curriculum.
 
