@@ -1,28 +1,22 @@
-// api/chat.js — THT MLS PREP — FINAL FIX 2026 - 1 GROQ KEY - REAL ORGANISMS - NO GIRL FACE - NO WATERMARK
+// api/chat.js — FINAL READY - 1 GROQ KEY ONLY - NO DEAD MODEL - 2026
 const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
-const TEXT_MODEL = process.env.GROQ_TEXT_MODEL || "openai/gpt-oss-20b";
-const VISION_MODEL = process.env.GROQ_VISION_MODEL || "meta-llama/llama-4-maverick-17b-128e-instruct";
+const TEXT_MODEL = "openai/gpt-oss-20b";
+const VISION_MODEL = "meta-llama/llama-4-maverick-17b-128e-instruct";
 const MAX_DOC_CHARS = 90000;
 const MAX_IMAGE_DATA_URL_CHARS = 1350000;
 
 const SYSTEM_PROMPT = `You are THT MLS PREP — Elite MLS tutor built by Trust Health Tech (THT).
-
 SCOPE: ONLY answer MLS (hematology, microbiology, biochemistry, histology, parasitology, immunology, transfusion, calculations, QC), medical/health education, and THT platform questions.
-
-If unrelated (football, politics, crypto, music, relationship) say: "I'm Trust MLS AI, focused on MLS / Medical & Health Education and THT platform only, How may i Help you?."
-
-For "Hi", "Should I upload", "What is THT" — answer SHORT direct, no exam format.
-
-For MLS academic — use:
-🔬 TOPIC:
+If unrelated say: "I'm Trust MLS AI, focused on MLS / Medical & Health Education and THT platform only, How may i Help you?."
+For MLS academic use:
+TOPIC:
 [Clear explanation]
-✅ KEY POINTS TO KNOW:
-💡 MLS EXAM TRAP:
-🧠 MNEMONIC / HACK:
-⚡ CBT SPEED TIP:
-⚠️ COMMON MISTAKE:
-
-Visual: Add [GENERATE_IMAGE: concise 5-8 words description] only when illustration helps (cells, parasites, bacteria, amoeba, histology, equipment). Keep description short, e.g., "amoeba trophozoite" not long sentences.`;
+KEY POINTS TO KNOW:
+MLS EXAM TRAP:
+MNEMONIC / HACK:
+CBT SPEED TIP:
+COMMON MISTAKE:
+Visual: Add [GENERATE_IMAGE: concise 5-8 words] only when illustration helps.`;
 
 const CORS = {
   "Access-Control-Allow-Origin": "*",
@@ -41,23 +35,11 @@ const pickString = (...v) => {
   return "";
 };
 
-const isAllowed = (t) => {
-  const s = (t || "").toLowerCase();
-  if (!s) return false;
-  if (/^(hi|hello|hey|thanks|ok)$/i.test(s.trim())) return true;
-  if (/(tht|trust health tech|upload|who built|library|cbt|bundles|contact)/i.test(s)) return true;
-  if (/(mls|medical lab|hematology|microbiology|biochemistry|histology|parasitology|immunology|transfusion|amoeba|spirogyra|paramecium|euglena|plasmodium|parasite|bacteria|virus|fungi|rbc|wbc|platelet|femur|bone|cell|medical|health|anatomy|physiology)/i.test(s)) return true;
-  if (/(football|premier league|bet|politics|president|music|movie|celebrity|crypto|bitcoin)/i.test(s)) return false;
-  return true;
-};
-
 function normalizeImage(v, n) {
   if (typeof v !== "string" || !v.trim()) return null;
   let d = v.trim();
   if (/^data:image\/(png|jpe?g|webp);base64,[A-Za-z0-9+/=\r\n]+$/i.test(d)) return d;
-  if (/^data:image\/(heic|heif);base64,[A-Za-z0-9+/=\r\n]+$/i.test(d)) throw new Error("Convert HEIC to JPG/PNG.");
   if (/^https?:\/\//i.test(d)) throw new Error("Remote URLs not accepted.");
-  if (!/^[A-Za-z0-9+/=\r\n]+$/.test(d)) throw new Error("Unsupported encoding.");
   const ext = (n || "").toLowerCase();
   const mime = /\.png$/.test(ext) ? "image/png" : /\.webp$/.test(ext) ? "image/webp" : "image/jpeg";
   return `data:${mime};base64,${d.replace(/\s/g, "")}`;
@@ -73,38 +55,27 @@ function getImages(b) {
 }
 
 const responseFields = (t) => ({ reply: t, answer: t, response: t, text: t, message: t, content: t, result: t });
-const wantsVisual = (m) => /\b(show image|image of|picture|diagram|draw|visual|generate image|photo|microscopic|illustrate|morphology|amoeba|spirogyra|paramecium)\b/i.test(m || "");
+const wantsVisual = (m) => /\b(show image|image of|picture|diagram|draw|visual|generate image|photo|microscopic|illustrate|morphology|amoeba|spirogyra)\b/i.test(m || "");
 
-// FINAL FIXED IMAGE BUILDER - NO GIRL FACE - NO ABSTRACT WHEEL - NO WATERMARK
 const buildImageURL = (p) => {
   let raw = String(p || "").toLowerCase();
-  raw = raw.replace(/generate|create|make|give|show|please|can you|image|picture|photo|an|a|the/g, " ").replace(/\s+/g, " ").trim();
+  raw = raw.replace(/generate|create|make|give|show|please|image|picture|photo|an|a|the/g, " ").replace(/\s+/g, " ").trim();
   let safe = raw.replace(/[^a-zA-Z0-9 ]/g, " ").trim().slice(0, 50);
   if (!safe) safe = "cell";
-
   const MLS_MAP = {
     amoeba: "Entamoeba histolytica trophozoite with pseudopods nucleus food vacuole under light microscope realistic microbiology",
-    spirogyra: "Spirogyra green algae filament spiral chloroplast under light microscope realistic biology textbook",
-    paramecium: "Paramecium caudatum with cilia macro nucleus under light microscope realistic",
-    euglena: "Euglena with flagellum eyespot chloroplast under microscope realistic",
-    plasmodium: "Plasmodium falciparum inside red blood cell under microscope realistic hematology"
+    spirogyra: "Spirogyra green algae filament spiral chloroplast under light microscope realistic biology textbook"
   };
-
   let enhanced = "";
-  for (const key in MLS_MAP) {
-    if (safe.includes(key)) { enhanced = MLS_MAP[key]; break; }
-  }
-  if (!enhanced) {
-    enhanced = `${safe} under light microscope, realistic medical laboratory science, MLS microbiology textbook, highly detailed educational`;
-  }
-  enhanced += ", no person, no human face, no woman, no portrait, biology only, microscope view, scientific illustration";
-
+  for (const k in MLS_MAP) if (safe.includes(k)) { enhanced = MLS_MAP[k]; break; }
+  if (!enhanced) enhanced = `${safe} under light microscope, realistic medical laboratory science, MLS microbiology textbook, highly detailed educational`;
+  enhanced += ", no person, no human face, no woman, no portrait, biology only, microscope view";
   return `https://image.pollinations.ai/prompt/${encodeURIComponent(enhanced)}?width=1024&height=1024&model=turbo&nologo=true&nofeed=true&safe=true&seed=${Date.now()}`;
 };
 
-async function groqCall(k, model, messages, opts = {}) {
+async function groqCall(k, model, messages) {
   const c = new AbortController();
-  const to = setTimeout(() => c.abort(), opts.timeout || 55000);
+  const to = setTimeout(() => c.abort(), 55000);
   try {
     const r = await fetch(GROQ_URL, {
       method: "POST",
@@ -130,16 +101,11 @@ export default async function handler(req, res) {
     if (!body || typeof body !== "object") return send(res, 400, { error: "JSON object required." });
     const message = pickString(body.message, body.prompt, body.question, body.text, body.content, body.query);
     let doc = pickString(body.extractedText, body.docText);
-    if (!doc && Array.isArray(body.attachments)) { const a = body.attachments.find(x => x?.text); if (a) doc = a.text; }
     if (doc.length > MAX_DOC_CHARS) doc = doc.slice(0, MAX_DOC_CHARS) + "\n[Truncated]";
     const images = getImages(body);
     if (!message && !doc && !images.length) return send(res, 400, { error: "Enter MLS question." });
-    if (images.some(x => x.length > MAX_IMAGE_DATA_URL_CHARS)) return send(res, 413, { error: "Image too large." });
     const key = process.env.GROQ_API_KEY;
-    if (!key) return send(res, 500, { error: "GROQ_API_KEY missing." });
-    if (!isAllowed(`${message} ${doc.slice(0, 1000)}`) && !images.length && !doc) {
-      return send(res, 200, responseFields("I'm THT MLS AI, focused on MLS / medical & health education and THT platform only. Ask MLS or about THT uploads (2 images up to 100MB OR 1 doc PDF/DOCX/TXT up to 10MB)."));
-    }
+    if (!key) return send(res, 500, { error: "GROQ_API_KEY missing in Vercel." });
     let prompt = message || "Explain study material.";
     if (doc) prompt = `DOCUMENT:\n${doc}\n\nQUESTION: ${prompt}`;
     const history = Array.isArray(body.history) ? body.history.slice(-8) : [];
@@ -147,13 +113,9 @@ export default async function handler(req, res) {
     let answer;
     if (images.length) {
       const content = [{ type: "text", text: prompt }, ...images.map(u => ({ type: "image_url", image_url: { url: u } }))];
-      try {
-        answer = await groqCall(key, VISION_MODEL, [{ role: "system", content: SYSTEM_PROMPT }, ...prior, { role: "user", content }], {});
-      } catch (e) {
-        answer = await groqCall(key, "llama-3.2-90b-vision-preview", [{ role: "system", content: SYSTEM_PROMPT }, ...prior, { role: "user", content }], {});
-      }
+      answer = await groqCall(key, VISION_MODEL, [{ role: "system", content: SYSTEM_PROMPT }, ...prior, { role: "user", content }]);
     } else {
-      answer = await groqCall(key, TEXT_MODEL, [{ role: "system", content: SYSTEM_PROMPT }, ...prior, { role: "user", content: prompt }], {});
+      answer = await groqCall(key, TEXT_MODEL, [{ role: "system", content: SYSTEM_PROMPT }, ...prior, { role: "user", content: prompt }]);
     }
     const tag = /\[GENERATE_IMAGE:\s*([\s\S]*?)\s*\]/i;
     const m = answer.match(tag);
@@ -167,11 +129,9 @@ export default async function handler(req, res) {
       let rawPrompt = message.split(/\s+/).slice(0, 6).join(" ").replace(/[^a-zA-Z0-9 ]/g, " ").trim();
       finalText += `\n\n![Visual](${buildImageURL(rawPrompt)})\n\n`;
     }
-    finalText = finalText.replace(/%20[a-z0-9%]{5,}/gi, "").replace(/\?width=\d+&height=\d+[^\s\)]*/gi, "").replace(/width=\d+&height=\d+&model=flux[^\s\)]*/gi, "");
     return send(res, 200, responseFields(finalText));
   } catch (err) {
     const status = err.status >= 400 && err.status < 600 ? err.status : 500;
-    const msg = err.name === "AbortError" ? "Timeout, retry." : (err.message || "AI error");
-    return send(res, status, { error: msg });
+    return send(res, status, { error: err.message || "AI error" });
   }
-  }
+}
