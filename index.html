@@ -270,8 +270,14 @@ $('#askBtn').addEventListener('click',async()=>{
    finally{clearTimeout(timer);}
    if(!res.ok)throw new Error(data.error||`AI service returned HTTP ${res.status}.`);
    const answer=data.reply||data.answer||data.response||data.text||data.message||data.content||data.result;
-   if(typeof answer!=='string'||!answer.trim())throw new Error('The AI service returned an empty answer.');
-   pending.replaceChildren();const label=document.createElement('span');label.className='bubble-label';label.textContent='TRUST MLS AI';pending.append(label);const body=document.createElement('div');safeMarkdownInto(body,answer);pending.append(body);out.textContent='Answer received.';
+const imageUrl=data.imageUrl||data.image||data.visual||null;
+if(typeof answer!=='string'||!answer.trim())throw new Error('The AI service returned an empty answer.');
+pending.replaceChildren();const label=document.createElement('span');label.className='bubble-label';label.textContent='TRUST MLS AI';pending.append(label);const body=document.createElement('div');safeMarkdownInto(body,answer);pending.append(body);if(imageUrl){const imageWrap=document.createElement('div');imageWrap.style.cssText='margin-top:12px;max-width:480px;width:100%;';const img=document.createElement('img');img.src=imageUrl;img.alt='MLS visual';img.loading='lazy';img.style.cssText='max-width:100%;height:auto;border-radius:12px;border:1px solid #d5e6ff;display:block;';imageWrap.append(img);pending.append(imageWrap);}out.textContent='Answer received.';
+}catch(err){
+  pending.replaceChildren();const label=document.createElement('span');label.className='bubble-label';label.textContent='TRUST MLS AI · SERVICE NOTICE';pending.append(label,document.createTextNode('I could not respond: '+(err.name==='AbortError'?'The request timed out. Please try again with a smaller attachment.':err.message)+'\nPlease check the deployed Vercel API and model configuration.'));out.textContent='AI request failed.';
+}finally{
+  btn.disabled=false;btn.textContent='➤';if(aiAttachments.length){clearAiAttachments();}$('#aiChat').scrollTop=$('#aiChat').scrollHeight;
+ }
  }catch(err){
    pending.replaceChildren();const label=document.createElement('span');label.className='bubble-label';label.textContent='TRUST MLS AI · SERVICE NOTICE';pending.append(label,document.createTextNode('I could not respond: '+(err.name==='AbortError'?'The request timed out. Please try again with a smaller attachment.':err.message)+'\nPlease check the deployed Vercel API and model configuration.'));out.textContent='AI request failed.';
  }finally{
