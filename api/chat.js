@@ -1,4 +1,4 @@
-// api/chat.js — THT MLS PREP — FIXED FOR 1 GROQ KEY + REAL AMOEBA
+// api/chat.js — THT MLS PREP — FINAL FIX 2026 - 1 GROQ KEY - REAL ORGANISMS - NO GIRL FACE - NO WATERMARK
 const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
 const TEXT_MODEL = process.env.GROQ_TEXT_MODEL || "openai/gpt-oss-20b";
 const VISION_MODEL = process.env.GROQ_VISION_MODEL || "meta-llama/llama-4-maverick-17b-128e-instruct";
@@ -9,7 +9,7 @@ const SYSTEM_PROMPT = `You are THT MLS PREP — Elite MLS tutor built by Trust H
 
 SCOPE: ONLY answer MLS (hematology, microbiology, biochemistry, histology, parasitology, immunology, transfusion, calculations, QC), medical/health education, and THT platform questions.
 
-If unrelated (football, politics, crypto, music, relationship) say: "I'm Trust MLS AI, focused on MLS / Medical & Health Education and  THT platform only, How may i Help you?."
+If unrelated (football, politics, crypto, music, relationship) say: "I'm Trust MLS AI, focused on MLS / Medical & Health Education and THT platform only, How may i Help you?."
 
 For "Hi", "Should I upload", "What is THT" — answer SHORT direct, no exam format.
 
@@ -46,7 +46,7 @@ const isAllowed = (t) => {
   if (!s) return false;
   if (/^(hi|hello|hey|thanks|ok)$/i.test(s.trim())) return true;
   if (/(tht|trust health tech|upload|who built|library|cbt|bundles|contact)/i.test(s)) return true;
-  if (/(mls|medical lab|hematology|microbiology|biochemistry|histology|parasitology|immunology|transfusion|amoeba|parasite|bacteria|virus|fungi|rbc|wbc|platelet|femur|bone|cell|medical|health|anatomy|physiology)/i.test(s)) return true;
+  if (/(mls|medical lab|hematology|microbiology|biochemistry|histology|parasitology|immunology|transfusion|amoeba|spirogyra|paramecium|euglena|plasmodium|parasite|bacteria|virus|fungi|rbc|wbc|platelet|femur|bone|cell|medical|health|anatomy|physiology)/i.test(s)) return true;
   if (/(football|premier league|bet|politics|president|music|movie|celebrity|crypto|bitcoin)/i.test(s)) return false;
   return true;
 };
@@ -73,18 +73,33 @@ function getImages(b) {
 }
 
 const responseFields = (t) => ({ reply: t, answer: t, response: t, text: t, message: t, content: t, result: t });
-const wantsVisual = (m) => /\b(show image|image of|picture|diagram|draw|visual|generate image|photo|microscopic|illustrate|morphology|amoeba)\b/i.test(m || "");
+const wantsVisual = (m) => /\b(show image|image of|picture|diagram|draw|visual|generate image|photo|microscopic|illustrate|morphology|amoeba|spirogyra|paramecium)\b/i.test(m || "");
 
+// FINAL FIXED IMAGE BUILDER - NO GIRL FACE - NO ABSTRACT WHEEL - NO WATERMARK
 const buildImageURL = (p) => {
-  let safe = String(p || "medical lab illustration").replace(/[^a-zA-Z0-9 ]/g, " ").replace(/\s+/g, " ").trim().slice(0, 70);
-  if (!safe) safe = "medical lab illustration";
-  let enhanced = safe;
-  if (/amoeba/i.test(safe)) {
-    enhanced = `realistic Entamoeba histolytica trophozoite with pseudopods under light microscope, ${safe}, medical laboratory science, MLS microbiology`;
-  } else {
-    enhanced = `${safe}, realistic medical illustration, MLS textbook, high detail, microscope view`;
+  let raw = String(p || "").toLowerCase();
+  raw = raw.replace(/generate|create|make|give|show|please|can you|image|picture|photo|an|a|the/g, " ").replace(/\s+/g, " ").trim();
+  let safe = raw.replace(/[^a-zA-Z0-9 ]/g, " ").trim().slice(0, 50);
+  if (!safe) safe = "cell";
+
+  const MLS_MAP = {
+    amoeba: "Entamoeba histolytica trophozoite with pseudopods nucleus food vacuole under light microscope realistic microbiology",
+    spirogyra: "Spirogyra green algae filament spiral chloroplast under light microscope realistic biology textbook",
+    paramecium: "Paramecium caudatum with cilia macro nucleus under light microscope realistic",
+    euglena: "Euglena with flagellum eyespot chloroplast under microscope realistic",
+    plasmodium: "Plasmodium falciparum inside red blood cell under microscope realistic hematology"
+  };
+
+  let enhanced = "";
+  for (const key in MLS_MAP) {
+    if (safe.includes(key)) { enhanced = MLS_MAP[key]; break; }
   }
-  return `https://image.pollinations.ai/prompt/${encodeURIComponent(enhanced)}?width=1024&height=1024&model=flux&nologo=true&enhance=true&seed=${Math.floor(Math.random() * 1000000)}`;
+  if (!enhanced) {
+    enhanced = `${safe} under light microscope, realistic medical laboratory science, MLS microbiology textbook, highly detailed educational`;
+  }
+  enhanced += ", no person, no human face, no woman, no portrait, biology only, microscope view, scientific illustration";
+
+  return `https://image.pollinations.ai/prompt/${encodeURIComponent(enhanced)}?width=1024&height=1024&model=turbo&nologo=true&nofeed=true&safe=true&seed=${Date.now()}`;
 };
 
 async function groqCall(k, model, messages, opts = {}) {
@@ -109,51 +124,40 @@ export default async function handler(req, res) {
   Object.entries(CORS).forEach(([k, v]) => res.setHeader(k, v));
   if (req.method === "OPTIONS") return res.status(204).end();
   if (req.method !== "POST") return send(res, 405, { error: "Method not allowed." });
-
   try {
     let body = req.body;
     if (typeof body === "string") { try { body = JSON.parse(body); } catch { return send(res, 400, { error: "Invalid JSON." }); } }
     if (!body || typeof body !== "object") return send(res, 400, { error: "JSON object required." });
-
     const message = pickString(body.message, body.prompt, body.question, body.text, body.content, body.query);
     let doc = pickString(body.extractedText, body.docText);
     if (!doc && Array.isArray(body.attachments)) { const a = body.attachments.find(x => x?.text); if (a) doc = a.text; }
     if (doc.length > MAX_DOC_CHARS) doc = doc.slice(0, MAX_DOC_CHARS) + "\n[Truncated]";
-    
     const images = getImages(body);
     if (!message && !doc && !images.length) return send(res, 400, { error: "Enter MLS question." });
     if (images.some(x => x.length > MAX_IMAGE_DATA_URL_CHARS)) return send(res, 413, { error: "Image too large." });
-
     const key = process.env.GROQ_API_KEY;
     if (!key) return send(res, 500, { error: "GROQ_API_KEY missing." });
-
     if (!isAllowed(`${message} ${doc.slice(0, 1000)}`) && !images.length && !doc) {
       return send(res, 200, responseFields("I'm THT MLS AI, focused on MLS / medical & health education and THT platform only. Ask MLS or about THT uploads (2 images up to 100MB OR 1 doc PDF/DOCX/TXT up to 10MB)."));
     }
-
     let prompt = message || "Explain study material.";
     if (doc) prompt = `DOCUMENT:\n${doc}\n\nQUESTION: ${prompt}`;
-
     const history = Array.isArray(body.history) ? body.history.slice(-8) : [];
     const prior = history.filter(h => h?.content && h.content.length < 12000).map(h => ({ role: h.role === "user" ? "user" : "assistant", content: h.content }));
-
     let answer;
     if (images.length) {
       const content = [{ type: "text", text: prompt }, ...images.map(u => ({ type: "image_url", image_url: { url: u } }))];
       try {
         answer = await groqCall(key, VISION_MODEL, [{ role: "system", content: SYSTEM_PROMPT }, ...prior, { role: "user", content }], {});
       } catch (e) {
-        // Fallback if maverick not available
         answer = await groqCall(key, "llama-3.2-90b-vision-preview", [{ role: "system", content: SYSTEM_PROMPT }, ...prior, { role: "user", content }], {});
       }
     } else {
       answer = await groqCall(key, TEXT_MODEL, [{ role: "system", content: SYSTEM_PROMPT }, ...prior, { role: "user", content: prompt }], {});
     }
-
     const tag = /\[GENERATE_IMAGE:\s*([\s\S]*?)\s*\]/i;
     const m = answer.match(tag);
     let finalText = answer;
-
     if (m) {
       let rawPrompt = m[1].trim().split(/\s+/).slice(0, 8).join(" ").replace(/[^a-zA-Z0-9 ]/g, " ").trim();
       if (!rawPrompt) rawPrompt = "medical lab illustration";
@@ -163,16 +167,11 @@ export default async function handler(req, res) {
       let rawPrompt = message.split(/\s+/).slice(0, 6).join(" ").replace(/[^a-zA-Z0-9 ]/g, " ").trim();
       finalText += `\n\n![Visual](${buildImageURL(rawPrompt)})\n\n`;
     }
-
-    finalText = finalText.replace(/%20[a-z0-9%]{5,}/gi, "")
-                         .replace(/\?width=\d+&height=\d+[^\s\)]*/gi, "")
-                         .replace(/width=\d+&height=\d+&model=flux[^\s\)]*/gi, "");
-
+    finalText = finalText.replace(/%20[a-z0-9%]{5,}/gi, "").replace(/\?width=\d+&height=\d+[^\s\)]*/gi, "").replace(/width=\d+&height=\d+&model=flux[^\s\)]*/gi, "");
     return send(res, 200, responseFields(finalText));
-
   } catch (err) {
     const status = err.status >= 400 && err.status < 600 ? err.status : 500;
     const msg = err.name === "AbortError" ? "Timeout, retry." : (err.message || "AI error");
     return send(res, status, { error: msg });
   }
-}
+  }
