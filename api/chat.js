@@ -1,5 +1,5 @@
 // api/chat.js — FINAL PRO LIGHT — 70 lines — Imports images
-import { REAL_IMAGES } from "./realImages.js";
+import { REAL_IMAGES } from "./realimages.js";
 const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
 const TEXT_MODEL = "openai/gpt-oss-20b";
 const VISION_MODEL = "meta-llama/llama-4-scout-17b-16e-instruct";
