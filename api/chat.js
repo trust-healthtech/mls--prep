@@ -36,8 +36,7 @@
 const GROQ_URL =
   "https://api.groq.com/openai/v1/chat/completions";
 
-const TEXT_MODEL =
-  "llama-3.1-8b-instant";
+const TEXT_MODEL = "openai/gpt-oss-20b";
 
 const VISION_MODEL =
   "meta-llama/llama-4-scout-17b-16e-instruct";
