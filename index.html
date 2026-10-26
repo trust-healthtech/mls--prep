@@ -229,65 +229,55 @@ function startThtSpeech(target,button){
  recognition.onend=()=>{button.disabled=false;button.dataset.listening='false';button.textContent=original;button.style.background='';button.setAttribute('aria-pressed','false');};
  try{recognition.start();}catch{button.disabled=false;button.dataset.listening='false';button.textContent=original;button.style.background='';button.setAttribute('aria-pressed','false');toast('Voice input could not start. Please try again.');}
 }
-      // === TTS FIX V2 - WORKS WITH YOUR CHAT ===
-window.speakThtAnswer = function(text, btn){
-  console.log('Speaking:', text.slice(0,50));
+      // === FINAL TTS - MAKE EXISTING 🔊 WORK ===
+function forceSpeak(text){
   window.speechSynthesis.cancel();
-  // Force load voices (Chrome Android needs this)
-  const voices = window.speechSynthesis.getVoices();
-  const utter = new SpeechSynthesisUtterance(text.replace(/[#*•]/g,' ').slice(0,3800));
-  utter.lang = 'en-US';
-  utter.rate = 0.9;
-  utter.volume = 1;
-  if(voices.length) utter.voice = voices.find(v=>v.lang.includes('en-US')) || voices[0];
-  
-  if(btn){
-    btn.textContent = '⏹️ Stop';
-    utter.onend = ()=>{ btn.textContent='🔊 Speak'; console.log('Finished'); };
-    utter.onerror = (e)=>{ console.log('TTS Error', e); btn.textContent='🔊 Speak'; };
-  }
-  window.speechSynthesis.speak(utter);
-  // Android bug fix
-  setTimeout(()=>{ if(!window.speechSynthesis.speaking) window.speechSynthesis.speak(utter); }, 250);
-};
-
-// Auto-find last AI message - works with any structure
-function findAndAddSpeakBtn(){
-  // Find all message divs
-  const allDivs = document.querySelectorAll('div, section, article');
-  allDivs.forEach(el=>{
-    const txt = el.innerText || '';
-    // Heuristic: AI answer is long >100 chars and not input
-    if(txt.length > 120 && txt.length < 5000 && !el.querySelector('input') && !el.querySelector('#micBtn')){
-      if(el.dataset.hasTts) return;
-      // Check if this looks like AI answer (contains your earlier hematology style)
-      if(txt.includes('Hematology') || txt.includes('Components') || el.closest('[id*=chat]') || el.closest('[class*=message]')){
-        if(!el.querySelector('.tts-btn-v2')){
-          const btn = document.createElement('button');
-          btn.className = 'tts-btn-v2';
-          btn.textContent = '🔊 Speak';
-          btn.style.cssText = 'display:inline-block; margin:8px 0; background:#2563eb; color:white; border:none; padding:6px 14px; border-radius:20px; cursor:pointer; font-size:14px; z-index:9999;';
-          btn.onclick = (e)=>{
-            e.stopPropagation();
-            if(window.speechSynthesis.speaking){ window.speechSynthesis.cancel(); btn.textContent='🔊 Speak'; }
-            else{ window.speakThtAnswer(el.innerText, btn); }
-          };
-          el.appendChild(btn);
-          el.dataset.hasTts = '1';
-        }
-      }
-    }
-  });
+  // Chrome needs this to unlock voices
+  const u = new SpeechSynthesisUtterance(text.slice(0,4000).replace(/[#*•]/g,' '));
+  u.lang = 'en-US';
+  u.rate = 0.9;
+  u.volume = 1;
+  // Pick English voice
+  const vs = window.speechSynthesis.getVoices();
+  if(vs.length){ u.voice = vs.find(v=>v.name.includes('Google') && v.lang.includes('en')) || vs[0]; }
+  window.speechSynthesis.speak(u);
+  console.log('Speaking started');
 }
 
-// Test TTS immediately
-setTimeout(()=>{
-  window.speechSynthesis.getVoices();
-  console.log('TTS Ready, voices:', window.speechSynthesis.getVoices().length);
-}, 500);
+// This fixes ALL 🔊 buttons on page
+setInterval(()=>{
+  document.querySelectorAll('button, div, span').forEach(b=>{
+    if(b.textContent && b.textContent.trim() === '🔊' && !b.dataset.fixed){
+      b.dataset.fixed = '1';
+      b.style.cursor = 'pointer';
+      b.onclick = (e)=>{
+        e.stopPropagation();
+        if(window.speechSynthesis.speaking){
+          window.speechSynthesis.cancel();
+          return;
+        }
+        // Find parent AI card text
+        let card = b.closest('div');
+        // Go up 3 levels to get full answer
+        for(let i=0; i<3; i++){
+          if(card && card.innerText.length > 150) break;
+          card = card.parentElement;
+        }
+        const text = card ? card.innerText.replace('🔊','').trim() : 'Hello MLS scholar';
+        forceSpeak(text);
+      };
+      console.log('Fixed 🔊 button');
+    }
+  });
+}, 1000);
 
-setInterval(findAndAddSpeakBtn, 1000);
-window.speechSynthesis.onvoiceschanged = ()=>{ window.speechSynthesis.getVoices(); };
+// Unlock voices on first tap
+document.addEventListener('click', ()=>{
+  window.speechSynthesis.getVoices();
+}, {once:true});
+window.speechSynthesis.onvoiceschanged = ()=>window.speechSynthesis.getVoices();
+
+console.log('TTS fixer loaded');
       
 $('#micBtn')?.addEventListener('click',()=>startThtSpeech($('#askText'),$('#micBtn')));
 $('#homeVoiceBtn')?.addEventListener('click',()=>{show('assistant');startThtSpeech($('#askText'),$('#micBtn'));});
