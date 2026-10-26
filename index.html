@@ -229,6 +229,34 @@ function startThtSpeech(target,button){
  recognition.onend=()=>{button.disabled=false;button.dataset.listening='false';button.textContent=original;button.style.background='';button.setAttribute('aria-pressed','false');};
  try{recognition.start();}catch{button.disabled=false;button.dataset.listening='false';button.textContent=original;button.style.background='';button.setAttribute('aria-pressed','false');toast('Voice input could not start. Please try again.');}
 }
+      // === TTS - READ ALOUD FIX ===
+function speakThtAnswer(text, btn){
+  if(!text) return;
+  speechSynthesis.cancel();
+  const clean = text.replace(/[#*•]/g,' ').slice(0,4000);
+  const utter = new SpeechSynthesisUtterance(clean);
+  utter.lang='en-US'; utter.rate=0.95;
+  if(btn){
+    btn.textContent='⏹️ Stop';
+    utter.onend=()=>btn.textContent='🔊';
+    utter.onerror=()=>btn.textContent='🔊';
+  }
+  speechSynthesis.speak(utter);
+}
+function attachTtsToAnswers(){
+  document.querySelectorAll('.ai-answer, .assistant-message, [class*=ai-message]').forEach(el=>{
+    if(el.querySelector('.tts-btn')) return;
+    const btn=document.createElement('button');
+    btn.className='tts-btn'; btn.textContent='🔊';
+    btn.style='margin-left:8px; background:#e6f0ff; border:none; padding:4px 8px; border-radius:12px; cursor:pointer;';
+    btn.onclick=()=>{ 
+      if(speechSynthesis.speaking){ speechSynthesis.cancel(); btn.textContent='🔊'; }
+      else speakThtAnswer(el.innerText, btn);
+    };
+    el.appendChild(btn);
+  });
+}
+setInterval(attachTtsToAnswers, 1500);
 $('#micBtn')?.addEventListener('click',()=>startThtSpeech($('#askText'),$('#micBtn')));
 $('#homeVoiceBtn')?.addEventListener('click',()=>{show('assistant');startThtSpeech($('#askText'),$('#micBtn'));});
 $('#askText').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();$('#askBtn').click();}});
