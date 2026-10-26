@@ -147,5 +147,5 @@ export default async function handler(req, res) {
     const msg = error instanceof Error ? error.message : "Unexpected AI service error.";
     return res.status(200).json({ reply: msg });
   }
-}
+
                                                                                                                                                                               }
