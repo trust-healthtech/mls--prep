@@ -229,42 +229,55 @@ function startThtSpeech(target,button){
  recognition.onend=()=>{button.disabled=false;button.dataset.listening='false';button.textContent=original;button.style.background='';button.setAttribute('aria-pressed','false');};
  try{recognition.start();}catch{button.disabled=false;button.dataset.listening='false';button.textContent=original;button.style.background='';button.setAttribute('aria-pressed','false');toast('Voice input could not start. Please try again.');}
 }
-      // === ULTIMATE TTS FIX - TESTED ===
-let ttsVoices = [];
-function loadVoices(){ ttsVoices = window.speechSynthesis.getVoices(); }
-loadVoices();
-window.speechSynthesis.onvoiceschanged = loadVoices;
+      // === ULTRA FINAL TTS - BIRTHDAY EDITION ===
+let _v=[], _cur=null;
+const _load=()=>{ _v=speechSynthesis.getVoices(); };
+_load(); speechSynthesis.onvoiceschanged=_load;
 
-// Function that MUST speak
-window.testSpeak = function(){
-  window.speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance("Hello MLS scholar, your voice is working!");
-  u.lang = 'en-US'; u.rate = 0.9; u.volume = 1;
-  if(ttsVoices.length) u.voice = ttsVoices[0];
-  window.speechSynthesis.speak(u);
-  alert("If you hear voice, TTS works! Now tap the 🔊 on AI answer.");
-};
+const _clean=t=>t.replace(/TRUST MLS AI/gi,'').replace(/[🔊⏸️▶️⏹️]/g,'').trim().slice(0,4500);
+const _reset=()=>document.querySelectorAll('[data-u]').forEach(b=>{ if(b!==_cur) b.textContent='🔊'; });
 
-// Fix existing 🔊 buttons
 setInterval(()=>{
-  document.querySelectorAll('*').forEach(el=>{
-    if(el.childNodes.length === 1 && el.textContent.trim() === '🔊' && !el.dataset.ttsFixed){
-      el.dataset.ttsFixed = '1';
-      el.style.cursor = 'pointer';
-      el.onclick = function(e){
-        e.preventDefault(); e.stopPropagation();
-        const card = this.closest('div');
-        let text = card ? card.innerText.replace('🔊','').slice(0,3500) : '';
-        if(text.length < 20){ text = document.body.innerText.slice(0,1000); }
-        window.speechSynthesis.cancel();
-        const u = new SpeechSynthesisUtterance(text);
-        u.lang='en-US'; u.rate=0.9;
-        if(ttsVoices.length) u.voice = ttsVoices.find(v=>v.lang.includes('en')) || ttsVoices[0];
-        window.speechSynthesis.speak(u);
-      };
-    }
+  document.querySelectorAll('*').forEach(b=>{
+    if(!['🔊','⏸️','▶️'].includes(b.textContent?.trim())) return;
+    if(b.dataset.u || b.offsetWidth===0) return;
+    if((b.parentElement?.innerText||'').length<50) return;
+    
+    b.dataset.u='1'; b.style.cursor='pointer';
+    b.onclick=e=>{
+      e.preventDefault(); e.stopPropagation(); _load();
+      
+      if(speechSynthesis.speaking && !speechSynthesis.paused && _cur===b){ speechSynthesis.pause(); b.textContent='▶️'; return; }
+      if(speechSynthesis.paused && _cur===b){ speechSynthesis.resume(); b.textContent='⏸️'; return; }
+      
+      speechSynthesis.cancel(); _reset(); _cur=b;
+      
+      let card=b.parentElement;
+      if(card.innerText.trim().length<120) card=card.parentElement;
+      
+      if(card.innerText.includes('THT MLS PREP')){
+        let best=null,len=0;
+        card.querySelectorAll('div').forEach(d=>{
+          const t=d.innerText||'';
+          if(!t.includes('THT MLS PREP') && !t.includes('Contact Home') && t.length>200 && t.length<4000 && t.length>len){ best=d; len=t.length; }
+        });
+        if(best) card=best;
+      }
+      
+      const text=_clean(card.innerText);
+      if(text.length<20) return;
+      
+      const u=new SpeechSynthesisUtterance(text);
+      u.lang='en-US'; u.rate=0.92;
+      if(_v.length) u.voice=_v.find(v=>v.name.includes('Google US English'))||_v.find(v=>v.lang==='en-US')||_v[0];
+      u.onstart=()=>b.textContent='⏸️';
+      u.onend=()=>{ b.textContent='🔊'; _cur=null; };
+      u.onerror=()=>{ b.textContent='🔊'; _cur=null; };
+      speechSynthesis.speak(u);
+    };
   });
-}, 800);
+},500);
+      
 $('#micBtn')?.addEventListener('click',()=>startThtSpeech($('#askText'),$('#micBtn')));
 $('#homeVoiceBtn')?.addEventListener('click',()=>{show('assistant');startThtSpeech($('#askText'),$('#micBtn'));});
 $('#askText').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();$('#askBtn').click();}});
