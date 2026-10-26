@@ -229,34 +229,66 @@ function startThtSpeech(target,button){
  recognition.onend=()=>{button.disabled=false;button.dataset.listening='false';button.textContent=original;button.style.background='';button.setAttribute('aria-pressed','false');};
  try{recognition.start();}catch{button.disabled=false;button.dataset.listening='false';button.textContent=original;button.style.background='';button.setAttribute('aria-pressed','false');toast('Voice input could not start. Please try again.');}
 }
-      // === TTS - READ ALOUD FIX ===
-function speakThtAnswer(text, btn){
-  if(!text) return;
-  speechSynthesis.cancel();
-  const clean = text.replace(/[#*•]/g,' ').slice(0,4000);
-  const utter = new SpeechSynthesisUtterance(clean);
-  utter.lang='en-US'; utter.rate=0.95;
+      // === TTS FIX V2 - WORKS WITH YOUR CHAT ===
+window.speakThtAnswer = function(text, btn){
+  console.log('Speaking:', text.slice(0,50));
+  window.speechSynthesis.cancel();
+  // Force load voices (Chrome Android needs this)
+  const voices = window.speechSynthesis.getVoices();
+  const utter = new SpeechSynthesisUtterance(text.replace(/[#*•]/g,' ').slice(0,3800));
+  utter.lang = 'en-US';
+  utter.rate = 0.9;
+  utter.volume = 1;
+  if(voices.length) utter.voice = voices.find(v=>v.lang.includes('en-US')) || voices[0];
+  
   if(btn){
-    btn.textContent='⏹️ Stop';
-    utter.onend=()=>btn.textContent='🔊';
-    utter.onerror=()=>btn.textContent='🔊';
+    btn.textContent = '⏹️ Stop';
+    utter.onend = ()=>{ btn.textContent='🔊 Speak'; console.log('Finished'); };
+    utter.onerror = (e)=>{ console.log('TTS Error', e); btn.textContent='🔊 Speak'; };
   }
-  speechSynthesis.speak(utter);
-}
-function attachTtsToAnswers(){
-  document.querySelectorAll('.ai-answer, .assistant-message, [class*=ai-message]').forEach(el=>{
-    if(el.querySelector('.tts-btn')) return;
-    const btn=document.createElement('button');
-    btn.className='tts-btn'; btn.textContent='🔊';
-    btn.style='margin-left:8px; background:#e6f0ff; border:none; padding:4px 8px; border-radius:12px; cursor:pointer;';
-    btn.onclick=()=>{ 
-      if(speechSynthesis.speaking){ speechSynthesis.cancel(); btn.textContent='🔊'; }
-      else speakThtAnswer(el.innerText, btn);
-    };
-    el.appendChild(btn);
+  window.speechSynthesis.speak(utter);
+  // Android bug fix
+  setTimeout(()=>{ if(!window.speechSynthesis.speaking) window.speechSynthesis.speak(utter); }, 250);
+};
+
+// Auto-find last AI message - works with any structure
+function findAndAddSpeakBtn(){
+  // Find all message divs
+  const allDivs = document.querySelectorAll('div, section, article');
+  allDivs.forEach(el=>{
+    const txt = el.innerText || '';
+    // Heuristic: AI answer is long >100 chars and not input
+    if(txt.length > 120 && txt.length < 5000 && !el.querySelector('input') && !el.querySelector('#micBtn')){
+      if(el.dataset.hasTts) return;
+      // Check if this looks like AI answer (contains your earlier hematology style)
+      if(txt.includes('Hematology') || txt.includes('Components') || el.closest('[id*=chat]') || el.closest('[class*=message]')){
+        if(!el.querySelector('.tts-btn-v2')){
+          const btn = document.createElement('button');
+          btn.className = 'tts-btn-v2';
+          btn.textContent = '🔊 Speak';
+          btn.style.cssText = 'display:inline-block; margin:8px 0; background:#2563eb; color:white; border:none; padding:6px 14px; border-radius:20px; cursor:pointer; font-size:14px; z-index:9999;';
+          btn.onclick = (e)=>{
+            e.stopPropagation();
+            if(window.speechSynthesis.speaking){ window.speechSynthesis.cancel(); btn.textContent='🔊 Speak'; }
+            else{ window.speakThtAnswer(el.innerText, btn); }
+          };
+          el.appendChild(btn);
+          el.dataset.hasTts = '1';
+        }
+      }
+    }
   });
 }
-setInterval(attachTtsToAnswers, 1500);
+
+// Test TTS immediately
+setTimeout(()=>{
+  window.speechSynthesis.getVoices();
+  console.log('TTS Ready, voices:', window.speechSynthesis.getVoices().length);
+}, 500);
+
+setInterval(findAndAddSpeakBtn, 1000);
+window.speechSynthesis.onvoiceschanged = ()=>{ window.speechSynthesis.getVoices(); };
+      
 $('#micBtn')?.addEventListener('click',()=>startThtSpeech($('#askText'),$('#micBtn')));
 $('#homeVoiceBtn')?.addEventListener('click',()=>{show('assistant');startThtSpeech($('#askText'),$('#micBtn'));});
 $('#askText').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();$('#askBtn').click();}});
