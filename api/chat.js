@@ -602,4 +602,4 @@ module.exports = async function handler(req, res) {
     reply: "TRUST MLS AI Assistant is temporarily unavailable. Please try again shortly."
   });
 };
-  
+ 
