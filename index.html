@@ -229,6 +229,97 @@ function startThtSpeech(target,button){
  recognition.onend=()=>{button.disabled=false;button.dataset.listening='false';button.textContent=original;button.style.background='';button.setAttribute('aria-pressed','false');};
  try{recognition.start();}catch{button.disabled=false;button.dataset.listening='false';button.textContent=original;button.style.background='';button.setAttribute('aria-pressed','false');toast('Voice input could not start. Please try again.');}
 }
+      // === V8 FINAL ULTRA - ONLY WHITE BOARD + TRUE PAUSE ===
+let _v=[], _cur=null, _full="", _pos=0, _paused=false;
+const _load=()=>{ _v=speechSynthesis.getVoices(); };
+_load(); speechSynthesis.onvoiceschanged=_load;
+
+function getWhiteCard(btn){
+  let el=btn.parentElement;
+  for(let i=0;i<4;i++){
+    if(!el) break;
+    const t=el.innerText||'';
+    const isHeader = t.includes('THT MLS PREP');
+    const isWrapper = t.includes('Hello, MLS Scholar') && t.includes('What is hematology');
+    const isBlueYou = t.trim().startsWith('YOU') && t.includes('What is hematology');
+    if(!isHeader && !isWrapper && !isBlueYou && t.length>80 && t.length<4000){
+      return el;
+    }
+    el=el.parentElement;
+  }
+  return btn.parentElement;
+}
+
+function cleanWhite(raw){
+  if(!raw) return "";
+  // Take only after last TRUST MLS AI to kill blue YOU
+  let parts = raw.split(/TRUST MLS AI/gi);
+  let txt = parts[parts.length-1] || raw;
+  txt = txt.replace(/^\s*YOU[\s\S]{0,200}?TRUST MLS AI/gi,'')
+           .replace(/^\s*YOU\s*/i,'')
+           .replace(/What is hematology/gi,'')
+           .replace(/Hello, MLS Scholar[\s\S]*?Quick revision/gi,'')
+           .replace(/[🔊⏸️▶️]/g,'')
+           .trim();
+  return txt.slice(0,4500).trim();
+}
+
+function speakFrom(pos, btn){
+  const slice=_full.slice(pos);
+  if(!slice){ btn.textContent='🔊'; _cur=null; _paused=false; return; }
+  const u=new SpeechSynthesisUtterance(slice);
+  u.lang='en-US'; u.rate=0.92;
+  if(_v.length) u.voice=_v.find(v=>v.name.includes('Google US English'))||_v.find(v=>v.lang==='en-US')||_v[0];
+  u.onboundary=e=>{ if(e.charIndex!==undefined) _pos=pos+e.charIndex; };
+  u.onend=()=>{ if(!_paused){ btn.textContent='🔊'; _cur=null; _full=""; _pos=0; } };
+  u.onerror=()=>{ btn.textContent='🔊'; _cur=null; _paused=false; };
+  speechSynthesis.speak(u);
+}
+
+setInterval(()=>{
+  document.querySelectorAll('button, span, div').forEach(b=>{
+    const txt=b.textContent?.trim();
+    if(txt!=='🔊' && txt!=='⏸️' && txt!=='▶️') return;
+    if(b.dataset.v8 || b.offsetWidth===0) return;
+    // Only attach to buttons inside AI white card
+    const p=b.parentElement?.innerText||'';
+    if(p.length<30) return;
+    
+    b.dataset.v8='1';
+    b.style.cursor='pointer';
+    b.onclick=e=>{
+      e.preventDefault(); e.stopPropagation(); _load();
+      
+      // TRUE PAUSE (cancel + save)
+      if(_cur===b && !_paused){
+        _paused=true;
+        speechSynthesis.cancel();
+        b.textContent='▶️';
+        return;
+      }
+      // TRUE RESUME
+      if(_cur===b && _paused){
+        _paused=false;
+        b.textContent='⏸️';
+        speakFrom(_pos,b);
+        return;
+      }
+      // NEW CARD
+      speechSynthesis.cancel();
+      document.querySelectorAll('[data-v8]').forEach(x=>{ if(x!==b) x.textContent='🔊'; });
+      _cur=b; _paused=false; _pos=0;
+      
+      const card=getWhiteCard(b);
+      _full=cleanWhite(card.innerText);
+      console.log('WHITE ONLY:', _full.slice(0,90));
+      if(_full.length<20) return;
+      
+      b.textContent='⏸️';
+      speakFrom(0,b);
+    };
+  });
+},600);
+      
 $('#micBtn')?.addEventListener('click',()=>startThtSpeech($('#askText'),$('#micBtn')));
 $('#homeVoiceBtn')?.addEventListener('click',()=>{show('assistant');startThtSpeech($('#askText'),$('#micBtn'));});
 $('#askText').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();$('#askBtn').click();}});
