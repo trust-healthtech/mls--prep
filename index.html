@@ -147,7 +147,7 @@ function renderResources(){
 $$('#libTabs .tab').forEach(b=>b.addEventListener('click',()=>{libTab=b.dataset.tab;$$('#libTabs .tab').forEach(x=>x.classList.toggle('active',x===b));renderResources()}));$('#libSearch').addEventListener('input',renderResources);$$('#libLevels .level').forEach(b=>b.addEventListener('click',()=>{$$('#libLevels .level').forEach(x=>x.classList.toggle('selected',x===b));$('#libSearch').value=b.dataset.level;renderResources()}));
 // Voice-first assistant: attachments are intentionally removed from this interface.
 let chatHistory=[]; // rolling, session-only context; never persisted
-function addAiBubble(kind,label,text){const b=document.createElement('div');b.className='ai-bubble '+kind;const tag=document.createElement('span');tag.className='bubble-label';tag.textContent=label;b.append(tag,document.createTextNode(text));$('#aiTranscript').append(b);$('#aiChat').scrollTop=$('#aiChat').scrollHeight;return b;}
+function addAiBubble(kind,label,text){const b=document.createElement('div');b.className='ai-bubble '+kind;const tag=document.createElement('span');tag.className='bubble-label';tag.textContent=label;b.append(tag,document.createTextNode(text));$('#aiTranscript').append(b);return b;}
 $$('.ai-prompt').forEach(b=>b.addEventListener('click',()=>{$('#askText').value=b.dataset.prompt||'';$('#askText').focus();}));
 function safeMarkdownInto(el, mdText) {
   const raw=String(mdText||'');
@@ -174,7 +174,8 @@ $('#askBtn').addEventListener('click',async()=>{
  const question=$('#askText').value.trim(),out=$('#askOut');
  if(!question){toast('Enter a question or use the microphone.');return;}
  if(question.length>6000){toast('Please keep your question under 6,000 characters.');return;}
- const btn=$('#askBtn'),userText=question;
+ const btn=$('#askBtn'),userText=question,chatBox=$('#aiChat');
+ const shouldPositionNewAnswer=(chatBox.scrollHeight-chatBox.scrollTop-chatBox.clientHeight)<100;
  addAiBubble('user','YOU',userText);
  const pending=addAiBubble('assistant','TRUST MLS AI','🔬 Preparing your study request…');
  $('#askText').value='';btn.disabled=true;btn.textContent='…';out.textContent='TRUST AI is preparing your answer.';
@@ -200,12 +201,15 @@ $('#askBtn').addEventListener('click',async()=>{
    chatHistory.push({role:'user',content:userText},{role:'assistant',content:answer});
    chatHistory=chatHistory.slice(-10);
    out.textContent='Answer received.';
+   // If the learner was already following the latest messages, bring the START
+   // of the new answer into view. Never force-scroll a learner who moved away.
+   if(shouldPositionNewAnswer){const top=pending.getBoundingClientRect().top-chatBox.getBoundingClientRect().top+chatBox.scrollTop;chatBox.scrollTop=Math.max(0,top-12);}
  }catch(err){
    pending.replaceChildren();const label=document.createElement('span');label.className='bubble-label';label.textContent='TRUST MLS AI · SERVICE NOTICE';
    const notice=document.createElement('div');notice.textContent='I could not respond: '+(err.name==='AbortError'?'The request timed out. Please try again.':err.message)+'\nPlease check the Vercel deployment and GROQ_API_KEY setting.';
    pending.append(label,notice);out.textContent='AI request failed.';
  }finally{ 
-   btn.disabled=false;btn.textContent='➤';$('#aiChat').scrollTop=$('#aiChat').scrollHeight;
+   btn.disabled=false;btn.textContent='➤';
  }
 });
 // Calculator actions: validated outputs in each tool's existing result region.
