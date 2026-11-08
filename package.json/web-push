@@ -1,1 +1,9 @@
-
+{
+  "name": "tht-mls-prep",
+  "version": "1.0.0",
+  "private": true,
+  "description": "TRUST HEALTH TECH MLS Prep",
+  "dependencies": {
+    "web-push": "^3.6.7"
+  }
+}
